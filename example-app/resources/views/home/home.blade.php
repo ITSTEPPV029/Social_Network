@@ -12,7 +12,8 @@
     <p class="lead fw-normal">
       <font style="vertical-align: inherit;">
         <font style="vertical-align: inherit;">Це головна сторінка<br></font>
-        <font style="vertical-align: inherit;">Тут буде відображена основна інфомомація</font>
+        <font style="vertical-align: inherit;">Тут буде відображена основна інформація
+      </font>
       </font>
     </p>
     <a class="btn btn-outline-secondary" href="#">
