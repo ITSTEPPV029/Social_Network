@@ -8,11 +8,23 @@ use Auth;
 
 class AuthController extends Controller
 {
+       /**
+     * сторінка 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function getSigUp()
     {
         return view('home/registration');
     }
 
+   /**
+     * добавлення користувача в базу та авторизація 
+     *
+     * @param  Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function postSigUp(Request $request)  
     {        
         $data = $request->validate([
@@ -32,12 +44,24 @@ class AuthController extends Controller
            }
            return view('home/home');
     } 
-    
+      /**
+     * сторінка авторизації
+     *
+     * @param  
+     * @return \Illuminate\Http\Response
+     */
+
     public function getSigin()
     {
         return view('home/login');
     }
 
+   /**
+     * авторизація 
+     *
+     * @param  Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function postSigin(Request $request)  
     {        
         $request->validate([
@@ -52,7 +76,13 @@ class AuthController extends Controller
 
            return view('home/home');
     } 
-    
+
+     /**
+     *  головна сторінка
+     *
+     * @param 
+     * @return 
+     */
     public function getSigout()
     {
         Auth::logout();

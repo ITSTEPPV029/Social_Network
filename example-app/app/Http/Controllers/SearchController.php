@@ -7,6 +7,12 @@ use App\Models\User;
 use DB;
 class SearchController extends Controller
 {
+    /**
+     * пошук користувача по імені та ніку
+     *
+     * @param  Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
     public function searchUser(Request $request)     
     {
        $userName = $request->input('search');
@@ -16,16 +22,19 @@ class SearchController extends Controller
              {
                  abort(404);
              }
-      return view('home.usersFound',compact('users'));
-        
+      return view('home.usersFound',compact('users'));    
     }
     
+      /**
+     * вивід всіх користувачів
+     *
+     * @param  Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
     public function allUser()     
     {
-      
-       $users= User::all();
-      return view('home.usersFound',compact('users'));
-        
+      $users= User::all();
+      return view('home.usersFound',compact('users'));  
     }
 
 }

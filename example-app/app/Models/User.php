@@ -12,10 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-     //public function friends()
-    // {
-    //     return $this->belongsTo(Friend::class ,"user_id","id");
-    // }
      public function friendsOfMine()
       {
         return $this->belongsToMany(User::class ,'friends','user_id','friend_id');
