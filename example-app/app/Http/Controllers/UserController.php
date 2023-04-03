@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    //test1
    /**
      * запит на дружбу
      *
