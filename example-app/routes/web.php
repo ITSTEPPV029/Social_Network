@@ -28,9 +28,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('logout/','getSigout')->name('logout.getSigout');
   
   });
-  
+
+  Route::view('home/home', 'home')->name('home.home');
+
   Route::get('search/','App\Http\Controllers\SearchController@searchUser')->name('search.searchUser');
   Route::get('profile/{user}/','App\Http\Controllers\ProfileController@show')->name('profile.show');
+
   Route::get('allUser/','App\Http\Controllers\SearchController@allUser')->name('allUser.allUser');
 
   Route::get('friendRequest/{user}','App\Http\Controllers\UserController@friendRequest')->name('friendRequest.friendRequest');

@@ -13,8 +13,9 @@
            <strong>{{$user->nick_name}}</strong> 
       </div>
       <a href="{{route('profile.show',$user) }}">профіль</a>
+      @if(Auth::check())
       <a href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
-     
+       @endif
   </div>
   <br/>
 @endforeach 

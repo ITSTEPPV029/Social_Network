@@ -20,8 +20,8 @@
         </form>
 
         @if(Auth::check())
-        <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мій профіль</font></font></a>
-          вітаємо  {{ Auth::user()->last_name }}!
+         <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мій профіль</font></font></a>
+         <b class="nav-link px-2 text-white" style="vertical-align: inherit;" > вітаємо  {{ Auth::user()->last_name }}!</b>
           <button type="button" class="btn btn-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><a href="{{ route('logout.getSigout') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вийти</font></font></a></font></font></button>
           @else
           <div class="text-end"> 
