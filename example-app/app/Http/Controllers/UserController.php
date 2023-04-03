@@ -15,6 +15,7 @@ class UserController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
+    //test1
     public function friendRequest(User $user)
     {
         $User = \App\Models\User::find(Auth::user()->id);
