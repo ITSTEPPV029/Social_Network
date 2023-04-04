@@ -44,20 +44,24 @@ class UserController extends Controller
      */
     public function addAvatar(Request $request)
     {   
-          
-          $fileName= $request->file('avatar');
-          $user =  new User();
-          $filePath = $user->getAvatarPath(Auth::user()->id);
-         // Image::make($fileName)->resize(300, 200)->save(public_path($filePath.$fileName));
-          
+          $user = \App\Models\User::find(Auth::user()->id);
+       
+          if($user->avatar!="/storage/uploads/anonym.png")
+            unlink(public_path($user->avatar));
+
           $photoMainName = $request->file('avatar')->store('uploads','public');
+          $user->avatar="/storage/".$photoMainName;
+          $user->save();
 
       // $merch->name_main_photo = $photoMainName;
-
+  // $filePath = $user->getAvatarPath(Auth::user()->id);
+         // Image::make($fileName)->resize(300, 200)->save(public_path($filePath.$fileName));
+           //$fileName= $request->file('avatar');
        // $request
         //$User = \App\Models\User::find(Auth::user()->id);
        // $User->friendsRequest()->where('id',$user->id)->first()->pivot->update(['friend_request'=>true]);
-       // return view('home/home');
+        return view('home/home');
+
     }
 
 
