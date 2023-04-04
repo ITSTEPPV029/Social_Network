@@ -8,13 +8,27 @@
     <strong>{{$user->last_name}}</strong> 
     <strong>{{$user->nick_name}}</strong> 
     <hr/>
+
+    <form action="{{ route('avatar.addAvatar') }}"  method="post" enctype="multipart/form-data">
+      {{ csrf_field() }}	
+      <label for="avatar">завантажити фото </label> <br/>
+      <input class="inputfile" id="avatar" name="avatar" type="file">
+      @error('avatar')
+        <br/>
+      <span class="text-danger">{{$message}}</span>
+      @enderror
+       <br/>
+       <input type="submit" value="завантажити" >
+    </form>
+  
+   
     <h1>друзі</h1>
       @foreach($user->friends() as $friend)
         <strong>{{$friend->first_name}}</strong> <br/>  
         <a href="{{route('profile.show',$friend)}}" class="nav-link px-2 text-black">профіль</a>
-     <br/>   
+        <br/>   
        @endforeach   
-       <hr/>
+     <hr/>
 
 
 @if (!$user->friendsRequest()->count()&&Auth::check()&&Auth::user()->id==$user->id)
