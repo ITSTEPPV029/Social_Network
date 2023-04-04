@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -42,7 +42,10 @@ class AuthController extends Controller
            {
                return redirect()->back(); 
            }
-           return view('home/home');
+
+           $user= Auth::user();
+           return redirect()->route('profile.show',compact('user')); 
+          
     } 
       /**
      * сторінка авторизації
@@ -73,8 +76,8 @@ class AuthController extends Controller
            {
                return redirect()->back(); 
            }
-
-           return view('home/home');
+           $user=  Auth::user();
+           return redirect()->route('profile.show',compact('user')); 
     } 
 
      /**

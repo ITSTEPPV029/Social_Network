@@ -12,6 +12,22 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $fillable = [
+      'first_name',
+      'last_name',
+      'nick_name',
+      'email',
+      'password',];
+
+     protected $hidden = [
+         'password',
+         'remember_token',
+     ];
+ 
+      protected $casts = [
+          'email_verified_at' => 'datetime',
+      ];
+
      public function friendsOfMine()
       {
         return $this->belongsToMany(User::class ,'friends','user_id','friend_id');
@@ -32,23 +48,14 @@ class User extends Authenticatable
       {
         return $this->friendsOfMine()->wherePivot('friend_request',false)->get();       
       }
-
-
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'nick_name',
-        'email',
-        'password',];
-
-      
-       protected $hidden = [
-           'password',
-           'remember_token',
-       ];
-   
- 
-        protected $casts = [
-            'email_verified_at' => 'datetime',
-        ];
+     
+      public function  getAvatarPath($userId)
+      {
+        $path ="uploads/avatar/id{$userId}";
+             if(!file_exists("{$path}"))
+             {
+                   mkdir("{$path}",0777,true);
+             }
+          return "/{$path}/";
+      }
 }
