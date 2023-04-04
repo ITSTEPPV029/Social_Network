@@ -6,14 +6,16 @@
   <div class="col-md-5 p-lg-5 mx-auto my-5">
     <h1 class="display-4 fw-normal">
       <font style="vertical-align: inherit;">
-        <font style="vertical-align: inherit;">Привіт!!!</font>
+        <font style="vertical-align: inherit;">Привіт!!!<br></font>
+        <font style="vertical-align: inherit;">Привіт 2!!!</font>
+
       </font>
     </h1>
     <p class="lead fw-normal">
       <font style="vertical-align: inherit;">
         <font style="vertical-align: inherit;">Це головна сторінка<br></font>
         <font style="vertical-align: inherit;">Тут буде відображена основна інформація
-      </font>
+        </font>
       </font>
     </p>
     <a class="btn btn-outline-secondary" href="#">
