@@ -15,7 +15,11 @@
       </div>
       <a href="{{route('profile.show',$user) }}">профіль</a>
       @if(Auth::check())
-      <a href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
+          @if(Auth::check())
+             <a href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
+           @else
+             <p href="{{route('friendRequest.friendRequest',$user) }}">в друзях</p>
+          @endif
        @endif
   </div>
   <br/>
