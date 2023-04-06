@@ -20,8 +20,15 @@ class UserController extends Controller
     public function friendRequest(User $user)
     {
         $User = \App\Models\User::find(Auth::user()->id);
-        $User->friendsOf()->attach($user->id);
+
+        if($User->checkIfFriend($user))
+        {
+          dd($User->friendsOfMine()->get());
+          $User->friendsOfMine()->attach($user->id);
+          return view('home/home');
+        }  
         return view('home/home');
+        
     } 
     /**
      * підтвердження дружби

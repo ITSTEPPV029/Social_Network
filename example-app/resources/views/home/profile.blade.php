@@ -12,8 +12,9 @@
     <strong>{{$user->nick_name}}</strong> 
     <hr/>
 
-    <h1>друзі</h1>
+    <h1>Друзі</h1>
       @foreach($user->friends() as $friend)
+      <img style="height:100px;"  src="{{ asset($friend->avatar) }}" >
         <strong>{{$friend->first_name}}</strong> <br/>  
         <a href="{{route('profile.show',$friend)}}" class="nav-link px-2 text-black">профіль</a>
         <br/>   
@@ -33,15 +34,14 @@
    <br/>
    <input type="submit" value="завантажити" >
 </form>
-
-
-  <h1>заявки в друзі</h1>
   <h4>не має заявок в друзі</h4>
 @else  
+ <h1>заявки в друзі</h1>
   @foreach($user->friendsRequest() as $friend)
     <strong>{{$friend->first_name}}</strong> <br/>  
+    <img style="height:100px;"  src="{{ asset($friend->avatar) }}" >
     <a href="{{route('profile.show',$friend)}}" class="nav-link px-2 text-black">профіль</a>
-    <a href="{{route('addFriend.addFriend',$friend)}}" class="nav-link px-2 text-black">добавити в друзі</a>
+    <a href="{{route('addFriend.addFriend',$friend)}}" class="nav-link px-2 text-black">підтвердити заявку в друзі</a>
     <br/>   
   @endforeach   
 @endif
