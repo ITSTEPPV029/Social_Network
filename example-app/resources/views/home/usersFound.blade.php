@@ -3,12 +3,14 @@
 @section('content')
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-   <dialog open>
-    <p>HTML тег dialog створює діалогове вікно.
-  
-     Тег dialog дозволяє легко створювати спливаючі або модальні вікна на веб-сторінці.</p>
-    <p><button id="closeDialog">Закрити вікно</button></p>
-   </dialog> 
+
+@if(isset($message))
+   <dialog open >
+      <p> Користувач вже у друзях </p>
+      <p><button id="closeDialog">Закрити вікно</button></p>
+     </dialog> 
+@endif
+            
 
   @foreach($users as $user)
   <div class="blokMerch">
@@ -20,12 +22,8 @@
            <strong>{{$user->nick_name}}</strong> 
       </div>
       <a href="{{route('profile.show',$user) }}">профіль</a>
-      @if(Auth::check())
-          @if(Auth::check())
-             <a href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
-           @else
-             <p href="{{route('friendRequest.friendRequest',$user) }}">в друзях</p>
-          @endif
+      @if(Auth::check())    
+          <a href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
        @endif
   </div>
   <br/>

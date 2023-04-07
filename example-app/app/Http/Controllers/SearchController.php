@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 class SearchController extends Controller
 {
     /**
@@ -26,7 +28,7 @@ class SearchController extends Controller
     }
     
       /**
-     * вивід всіх користувачів
+     * вивід всіх користувачів  з фільтраціює (виводим не друзів )
      *
      * @param  Illuminate\Http\Request
      * @return \Illuminate\Http\Response
@@ -34,6 +36,15 @@ class SearchController extends Controller
     public function allUser()     
     {
       $users= User::all();
+     
+      if(Auth::check())  
+      {
+        $user = User::find(Auth::user()->id);
+        $users = $users->filter(function($value) use ($user) {
+          return !$user->checkIfFriend($value);
+         });  
+      }
+     
       return view('home.usersFound',compact('users'));  
     }
 

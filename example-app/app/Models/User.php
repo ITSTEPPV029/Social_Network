@@ -51,10 +51,11 @@ class User extends Authenticatable
 //перевірка чи друг 
      public function checkIfFriend(User $user)
      {
-        if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
-          return 1;    
-        else
-          return 0;      
+        return (bool) $this->friendsOfMine()->wherePivot('friend_id',$user->id)->count();
+        // if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
+        //   return 1;    
+        // else
+        //   return 0;      
      }
 
       // public function  getAvatarPath($userId)

@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('home/home');
 });
+Route::view('home/home', 'home')->name('home.home');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('registration/','getSigUp')->middleware('guest')->name('registration.getSigUp');
@@ -26,15 +27,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('login/','getSigin')->middleware('guest')->name('login.getSigin');
     Route::post('login/','postSigin')->middleware('guest')->name('login.postSigin');
     Route::get('logout/','getSigout')->name('logout.getSigout');
-  
   });
 
-  Route::post('avatar/add','App\Http\Controllers\UserController@addAvatar')->name('avatar.addAvatar');
 
-  Route::view('home/home', 'home')->name('home.home');
+  Route::post('avatar/add','App\Http\Controllers\UserController@addAvatar')->name('avatar.addAvatar');
   Route::get('search/','App\Http\Controllers\SearchController@searchUser')->name('search.searchUser');
   Route::get('profile/{user}/','App\Http\Controllers\ProfileController@show')->name('profile.show');
   Route::get('allUser/','App\Http\Controllers\SearchController@allUser')->name('allUser.allUser');
-
   Route::get('friendRequest/{user}','App\Http\Controllers\UserController@friendRequest')->name('friendRequest.friendRequest');
   Route::get('addFriend/{user}','App\Http\Controllers\UserController@addFriend')->name('addFriend.addFriend');

@@ -23,7 +23,7 @@ class UserController extends Controller
 
         if($User->checkIfFriend($user))
         {
-          return redirect()->back(); 
+          return redirect()->back();//->with('message',"123"); 
         }  
         $User->friendsOfMine()->attach($user->id);
         return view('home/home');
