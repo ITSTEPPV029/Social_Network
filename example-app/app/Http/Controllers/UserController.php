@@ -23,10 +23,9 @@ class UserController extends Controller
 
         if($User->checkIfFriend($user))
         {
-          dd($User->friendsOfMine()->get());
-          $User->friendsOfMine()->attach($user->id);
-          return view('home/home');
+          return redirect()->back(); 
         }  
+        $User->friendsOfMine()->attach($user->id);
         return view('home/home');
         
     } 

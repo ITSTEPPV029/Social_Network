@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+   <dialog open>
+    <p>HTML тег dialog створює діалогове вікно.
+  
+     Тег dialog дозволяє легко створювати спливаючі або модальні вікна на веб-сторінці.</p>
+    <p><button id="closeDialog">Закрити вікно</button></p>
+   </dialog> 
 
   @foreach($users as $user)
   <div class="blokMerch">
@@ -24,8 +30,8 @@
   </div>
   <br/>
 @endforeach 
-
-
 </div>
  
+
+
 @endsection
