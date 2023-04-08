@@ -55,9 +55,15 @@ class User extends Authenticatable
         // if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
         //   return 1;    
         // else
-        //   return 0;      
+        //   return 0;   
+        
+        
      }
-
+//повертає не друзів (доробити)
+public function  notFriend(User $user)
+{
+     return $this->friendsOf()->wherePivotNotIn('user_id',$user->id)->get();
+}
       // public function  getAvatarPath($userId)
       // {
       //   $path ="uploads/avatar/id{$userId}";
