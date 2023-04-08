@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div id="app">
+  <welcome/>
+</div>
+
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">В нас и нтерфейc в якому розбереться навіть ваший собака </font></font></h1>

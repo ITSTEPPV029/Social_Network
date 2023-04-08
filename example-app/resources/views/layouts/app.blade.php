@@ -11,10 +11,10 @@
     </head>
     <body >
 
-  
     @include("inc.header")
     @yield('content')
+
    
-    </body>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    </body>
 </html>
