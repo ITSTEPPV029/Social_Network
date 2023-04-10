@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-       /**
+    /**
      * сторінка 
      *
      * @param 
@@ -19,35 +19,33 @@ class AuthController extends Controller
         return view('home/registration');
     }
 
-   /**
-     * добавлення користувача в базу та авторизація 
+    /**
+     * реєстрація та авторизація 
      *
      * @param  Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postSigUp(Request $request)  
-    {        
+    public function postSigUp(Request $request)
+    {
         $data = $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'nick_name' => 'required|string|unique:users|max:30|alpha_dash',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-           ]);
-          
-           $data['password']= bcrypt($data['password']); 
-           User::create($data);
+            'password' => 'required|confirmed|string|min:6',
+        ]);
 
-           if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
-           {
-               return redirect()->back(); 
-           }
+        $data['password'] = bcrypt($data['password']);
+        User::create($data);
 
-           $user= Auth::user();
-           return redirect()->route('profile.show',compact('user')); 
-          
-    } 
-      /**
+        if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
+            return redirect()->back();
+        }
+
+        $user = Auth::user();
+        return redirect()->route('profile.show', compact('user'));
+    }
+    /**
      * сторінка авторизації
      *
      * @param  
@@ -59,28 +57,27 @@ class AuthController extends Controller
         return view('home/login');
     }
 
-   /**
+    /**
      * авторизація 
      *
      * @param  Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function postSigin(Request $request)  
-    {        
+    public function postSigin(Request $request)
+    {
         $request->validate([
             'email' => 'required|email|max:255',
             'password' => 'required|string|min:6',
-           ]);
-     
-           if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
-           {
-               return redirect()->back(); 
-           }
-           $user=  Auth::user();
-           return redirect()->route('profile.show',compact('user')); 
-    } 
+        ]);
 
-     /**
+        if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
+            return redirect()->back();
+        }
+        $user =  Auth::user();
+        return redirect()->route('profile.show', compact('user'));
+    }
+
+    /**
      *  головна сторінка
      *
      * @param 
@@ -91,6 +88,4 @@ class AuthController extends Controller
         Auth::logout();
         return view('home/home');
     }
-
- 
 }
