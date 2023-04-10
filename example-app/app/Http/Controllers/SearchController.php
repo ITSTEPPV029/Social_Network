@@ -45,7 +45,8 @@ class SearchController extends Controller
           return !$user->checkIfFriend($value);
          });  
       }
-      return view('home.usersFound',compact('users'));  
+      return  $users;
+      //return view('home.usersFound',compact('users'));  
     }
 
 }

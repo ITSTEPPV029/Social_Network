@@ -33,6 +33,6 @@ Route::controller(AuthController::class)->group(function () {
   Route::post('avatar/add','App\Http\Controllers\UserController@addAvatar')->name('avatar.addAvatar');
   Route::get('search/','App\Http\Controllers\SearchController@searchUser')->name('search.searchUser');
   Route::get('profile/{user}/','App\Http\Controllers\ProfileController@show')->name('profile.show');
-  Route::get('allUser/','App\Http\Controllers\SearchController@allUser')->name('allUser.allUser');
+  Route::get('allUser/','SearchController@allUser')->name('allUser.allUser');
   Route::get('friendRequest/{user}','App\Http\Controllers\UserController@friendRequest')->name('friendRequest.friendRequest');
   Route::get('addFriend/{user}','App\Http\Controllers\UserController@addFriend')->name('addFriend.addFriend');
