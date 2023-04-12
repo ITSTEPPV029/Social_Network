@@ -34,6 +34,14 @@
    <br/>
    <input type="submit" value="завантажити" >
 </form>
+
+
+<div id="appPost">
+  <Post/>
+</div>
+
+
+
   <h4>не має заявок в друзі</h4>
 @else  
  <h1>заявки в друзі</h1>

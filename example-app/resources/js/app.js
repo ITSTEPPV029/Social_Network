@@ -9,12 +9,14 @@ require('./bootstrap');
 import { createApp } from 'vue'
 import App from './components/App'
 import AppWel from './components/AppTest'
+import Post from './components/Post'
 const app = createApp({})
 
 app.component('welcome', App)
 app.component('welcome2', AppWel)
+app.component('Post', Post)
 app.mount('#app')
-
+app.mount('#appPost')
 //===============
 
 
