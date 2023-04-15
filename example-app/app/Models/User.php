@@ -69,6 +69,9 @@ public function  notFriend(User $user)
 {
      return $this->friendsOf()->wherePivotNotIn('user_id',$user->id)->get();
 }
+
+
+
       // public function  getAvatarPath($userId)
       // {
       //   $path ="uploads/avatar/id{$userId}";

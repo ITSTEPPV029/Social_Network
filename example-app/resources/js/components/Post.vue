@@ -18,7 +18,7 @@
   <div  class="post" v-for="post in posts" >
     <img v-if="post.photo"  v-bind:style="{width: '50px;' , height: '50px;'}" :src="`${post.photo}`" >
       <div class="post-content">
-      <h2 class="post-title" >Post title</h2>
+        <a @click="like(post)" >&#9829; {{post.like}}</a>
       <p class="post-text" v-if="post.text == null" > {{post.text}}</p>
       </div>
   </div>
@@ -59,19 +59,30 @@ export default {
     return {
       selectedFile: null,
       textInput: null,
-      posts: null
+      posts: null,
     };
   },
   mounted(){
     this.getPosts();
    },
   methods: {
-   
+    like(event)
+    {
+      console.log(event);
+      axios.post('/like', event).then(data => {
+        this.posts=data.data;
+      },).catch(error => {
+        console.log(error.response.data);
+      });
+  },
     onFileSelected(event) {
       // Отримуємо файл з інпуту
       this.selectedFile = event.target.files[0];
     },
     uploadFile() {
+      if (!this.selectedFile) {
+    alert('Please select a file');
+    return;}
       // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
       const formData = new FormData();
       formData.append('file', this.selectedFile);
