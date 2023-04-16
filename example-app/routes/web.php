@@ -43,6 +43,8 @@ Route::view('home/home', 'home')->name('home.home');
   Route::post('store/','MyPostController@store')->name('store');
   Route::get('index/','MyPostController@index')->name('index');
   Route::post('like/','MyPostController@like')->name('like');
+  Route::post('deletePost/','MyPostController@delete')->name('deletePost');
+  
         // Route::group(['prefix' => 'store'], function(){
 
         //     Route::post('/', 'MyPostController@store')->name('store');

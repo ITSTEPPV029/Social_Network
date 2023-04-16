@@ -51,8 +51,7 @@ class MyPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function like(Request $request) 
-    {
-      
+    {  
       if(!Like::where('my_post_id', $request->input('id'))->where('user_id', Auth::user()->id)->first())
       {
         Like::create([
@@ -68,8 +67,31 @@ class MyPostController extends Controller
         MyPost::where('id', $request->input('id'))->where('like', '>', 0)->decrement('like');
       }
 
-      $MyPost= MyPost::orderBy('id', 'desc')->get();
-      return $MyPost;
-
-    }    
+      //$MyPost= MyPost::orderBy('id', 'desc')->get();
+     // return $MyPost;
+      return $this->index();
+    } 
+    /**
+     * видаляємо пост 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request) 
+    {
+       $postId = $request->input('id');
+       $myPost= MyPost::find($postId);
+       if(MyPost::where('id',  $postId)->first())
+       {
+         Like::where('my_post_id', $postId)->delete();
+         if(file_exists(public_path($myPost->photo)))
+           unlink(public_path($myPost->photo));
+                  
+         MyPost::where('id', $postId)->delete();
+         
+       }
+        //$MyPost= MyPost::orderBy('id', 'desc')->get();
+        return $this->index();
+    }
+    
 }

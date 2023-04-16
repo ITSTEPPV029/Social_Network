@@ -1,7 +1,4 @@
-<template>
-    <h1>{{ title }}</h1>
-
-  <!-- <label for="file">завантажити фото для посту</label> <br/>
+<template><!-- <label for="file">завантажити фото для посту</label> <br/>
   <input  id="file" name="file" v-on:change="file" type="file">
     <br/>
   <span class="text-danger">{{$message}}</span>
@@ -16,10 +13,12 @@
   <br/>
 
   <div  class="post" v-for="post in posts" >
+    <a @click="deletePost(post)" >&#10006;</a>
     <img v-if="post.photo"  v-bind:style="{width: '50px;' , height: '50px;'}" :src="`${post.photo}`" >
       <div class="post-content">
         <a @click="like(post)" >&#9829; {{post.like}}</a>
-      <p class="post-text" v-if="post.text == null" > {{post.text}}</p>
+        
+      <p  class="post-text" v-if="post.text == null" > {{post.text}}</p>
       </div>
   </div>
 
@@ -66,8 +65,9 @@ export default {
     this.getPosts();
    },
   methods: {
-    like(event)
-    {
+  
+  like(event)
+  {
       console.log(event);
       axios.post('/like', event).then(data => {
         this.posts=data.data;
@@ -75,21 +75,35 @@ export default {
         console.log(error.response.data);
       });
   },
-    onFileSelected(event) {
+
+  deletePost(event)
+  {
+      console.log(event);
+      axios.post('/deletePost', event).then(data => {
+         this.posts=data.data;
+      },).catch(error => {
+        console.log(error.response.data);
+      });
+  },
+
+    onFileSelected(event)
+    {
       // Отримуємо файл з інпуту
       this.selectedFile = event.target.files[0];
     },
-    uploadFile() {
-      if (!this.selectedFile) {
+
+    uploadFile()
+    {
+    if (!this.selectedFile) {
     alert('Please select a file');
     return;}
-      // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
-      const formData = new FormData();
-      formData.append('file', this.selectedFile);
-      formData.append('text', this.textInput);
+    // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+    formData.append('text', this.textInput);
 
       // Відправляємо POST-запит на сервер
-      axios.post('/store', formData, {
+    axios.post('/store', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -102,10 +116,13 @@ export default {
         console.log(error.response.data);
       });
     },
-    getPosts(){
-          axios.get('/index').
-           then(data=>{ this. posts=data.data;})}
 
+    getPosts() {
+      axios.get('/index').
+      then(data=>{ this. posts=data.data;})
+    }
+
+    
   }
      
     
