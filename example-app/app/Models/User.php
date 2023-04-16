@@ -24,6 +24,11 @@ class User extends Authenticatable
          'remember_token',
      ];
  
+     public function myPost()
+     {
+         return $this->hasMany(MyPost::class);
+     }
+
       protected $casts = [
           'email_verified_at' => 'datetime',
       ];
@@ -51,11 +56,21 @@ class User extends Authenticatable
 //перевірка чи друг 
      public function checkIfFriend(User $user)
      {
-        if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
-          return 1;    
-        else
-          return 0;      
+        return (bool) $this->friendsOfMine()->wherePivot('friend_id',$user->id)->count();
+        // if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
+        //   return 1;    
+        // else
+        //   return 0;   
+        
+        
      }
+//повертає не друзів (доробити)
+public function  notFriend(User $user)
+{
+     return $this->friendsOf()->wherePivotNotIn('user_id',$user->id)->get();
+}
+
+
 
       // public function  getAvatarPath($userId)
       // {

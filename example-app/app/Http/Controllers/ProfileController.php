@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Friend;
 
+
 class ProfileController extends Controller
 {
   /**
