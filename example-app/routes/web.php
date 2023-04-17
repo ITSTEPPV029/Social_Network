@@ -40,19 +40,7 @@ Route::view('home/home', 'home')->name('home.home');
   Route::get('friendRequest/{user}','App\Http\Controllers\UserController@friendRequest')->name('friendRequest.friendRequest');
   Route::get('addFriend/{user}','App\Http\Controllers\UserController@addFriend')->name('addFriend.addFriend');
 
-  Route::post('store/','MyPostController@store')->name('store');
-  Route::get('index/','MyPostController@index')->name('index');
-  Route::post('like/','MyPostController@like')->name('like');
-  Route::post('deletePost/','MyPostController@delete')->name('deletePost');
-  
-        // Route::group(['prefix' => 'store'], function(){
 
-        //     Route::post('/', 'MyPostController@store')->name('store');
-
-        // });
-
-        // Route::group([ 'prefix' => 'store'], function () {
-
-        //     Route::post('/', [MyPostController::class, 'store']);
-        
-        // });
+  //у файлі апі не працює 
+  Route::post('like','MyPostController@like')->name('like');
+       

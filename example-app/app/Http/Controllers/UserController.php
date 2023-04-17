@@ -69,8 +69,28 @@ class UserController extends Controller
         return view('home/home');
 
     }
+     /**
+     * перевірка чи користувач авторизований 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+    public function isLoggedIn(Request $request)
+    {
+      // $authHeader = $request->header('Authorization');
+      // if (str_starts_with($authHeader, 'Bearer ')) {
+      //     $token = substr($authHeader, 7);
+      //     Auth::setToken($token);
+      //     $user = Auth::user();
+      // }
 
-
-
+      // return $user;
+    //  if(Auth::check())//чомусь не перевіряє 
+     //  return 0;
+     // else
+       return Auth::check();
+      // return  1;
+    }
+    
 
 }

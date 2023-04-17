@@ -18,16 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::post('/store', function(Request $request) {
-   
-    // // збереження тексту
-    // try {
-    //     $text = $request->input('text');
-    //     // збереження тексту
-    //     return response()->json(['success' => true]);
-    // } catch (\Exception $e) {
-    //     dd("123");
-    //     return response()->json(['error' => $e->getMessage()], 500);
-    // }
-//});
+Route::get('index','MyPostController@index')->name('index');
+Route::post('store','MyPostController@store')->name('store');
 
+Route::post('deletePost','MyPostController@delete')->name('deletePost');
+Route::post('isLoggedIn','UserController@isLoggedIn')->name('isLoggedIn');

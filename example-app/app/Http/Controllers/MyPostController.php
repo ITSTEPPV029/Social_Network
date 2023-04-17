@@ -27,7 +27,7 @@ class MyPostController extends Controller
           $MyPost->photo="/storage/".$photoName;
         }
          $MyPost->text=$request->input('text');
-         $MyPost->user_id=2;
+         $MyPost->user_id=2;//Auth::user()->id===========================================
          $MyPost->save();
          $MyPost= MyPost::orderBy('id', 'desc')->get();
 
@@ -40,8 +40,8 @@ class MyPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() 
-    {
-        $MyPost= MyPost::orderBy('id', 'desc')->get();
+    {//where('user_id', Auth::user()->id)->
+        $MyPost= MyPost::worderBy('id', 'desc')->get();
         return $MyPost;
     }    
 /**

@@ -9,11 +9,11 @@
     <input type="text" v-model="textInput">
     <button @click="uploadFile">завантажити</button>
   </div>
-
+  
   <br/>
 
   <div  class="post" v-for="post in posts" >
-    <a @click="deletePost(post)" >&#10006;</a>
+    <a v-if="isLoggedIn==true" @click="deletePost(post)" > &#10006;</a>
     <img v-if="post.photo"  v-bind:style="{width: '50px;' , height: '50px;'}" :src="`${post.photo}`" >
       <div class="post-content">
         <a @click="like(post)" >&#9829; {{post.like}}</a>
@@ -40,28 +40,22 @@ export default {
         //    }).then(response => {
         //     console.log(response);
         //     });
-
-        //====================
-        // addPost() {
-        //     axios.post('/store', {text: this.text, file: this.file})
-        // .then(response => {
-        //     console.log(response);
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
-        // }
- //   }
- 
  //=====================  
  data() {
     return {
       selectedFile: null,
       textInput: null,
       posts: null,
+      isLoggedIn: null
     };
   },
   mounted(){
+
+    this.getIsLoggedIn().then(() => {
+    console.log(this.isLoggedIn);
+    });
+   
+    //if (this.isLoggedIn)
     this.getPosts();
    },
   methods: {
@@ -78,8 +72,8 @@ export default {
 
   deletePost(event)
   {
-      console.log(event);
-      axios.post('/deletePost', event).then(data => {
+      //console.log(event);
+      axios.post('/api/deletePost', event).then(data => {
          this.posts=data.data;
       },).catch(error => {
         console.log(error.response.data);
@@ -103,7 +97,7 @@ export default {
     formData.append('text', this.textInput);
 
       // Відправляємо POST-запит на сервер
-    axios.post('/store', formData, {
+    axios.post('/api/store', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -118,11 +112,37 @@ export default {
     },
 
     getPosts() {
-      axios.get('/index').
-      then(data=>{ this. posts=data.data;})
-    }
+      axios.get('/api/index').
+      then(data=>{ this.posts=data.data;})
+    },
 
-    
+    // async getIsLoggedIn(){
+    //   axios.post('/isLoggedIn').
+    //   then(data=>{this.IsLoggedIn=123; console.log(this.IsLoggedIn)}).catch(error => {
+    //     console.log(error.response.data);
+    //   });
+    // },
+
+    getIsLoggedIn() {
+  return axios.post('/api/isLoggedIn',{
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+})
+    .then(response => {
+      const isLoggedIn = response.data;
+      console.log(response.data);
+      if (isLoggedIn === 1) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+    },
+  
   }
      
     
