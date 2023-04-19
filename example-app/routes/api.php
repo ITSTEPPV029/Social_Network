@@ -26,7 +26,6 @@ Route::post('isLoggedIn', 'UserController@isLoggedIn')->middleware('auth:api')->
 
 Route::post('like','MyPostController@like')->middleware('auth:api')->name('like');
 
-
 Route::get('test',function () {
     return  Auth::user()->id;
 })->middleware('auth:api');
