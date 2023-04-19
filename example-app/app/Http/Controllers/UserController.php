@@ -75,22 +75,32 @@ class UserController extends Controller
      * @param 
      * @return \Illuminate\Http\Response
      */
-    public function isLoggedIn(Request $request)
-    {
-      // $authHeader = $request->header('Authorization');
-      // if (str_starts_with($authHeader, 'Bearer ')) {
-      //     $token = substr($authHeader, 7);
-      //     Auth::setToken($token);
-      //     $user = Auth::user();
-      // }
+
+
+    // public function isLoggedIn(Request $request)
+    // {
+    //     // if (Auth::guard('api')->check()) {
+    //     //     return response()->json(['message' => 'User is logged in.'], 200);
+    //     // } else {
+    //     //     return response()->json(['message' => 'User is not logged in.'], 401);
+    //     // }
+    //     return 1;
+    // }
+
+
+   public function isLoggedIn()
+   {
+     return  Auth::check();
+   }
+  // }
 
       // return $user;
     //  if(Auth::check())//чомусь не перевіряє 
      //  return 0;
      // else
-       return Auth::check();
+       
       // return  1;
-    }
+   // }
     
 
 }

@@ -8,7 +8,7 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="\" class="nav-link px-2 text-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дом</font></font></a></li>
-          <li><a href="{{ route('login.getSigin') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Функции</font></font></a></li>
+          <li><a href="{{ route('login.getSigin') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Функции2</font></font></a></li>
           <li></li>
           <li><a href="{{ route('allUser.allUser') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">всі користувачі</font></font></a></li>
          

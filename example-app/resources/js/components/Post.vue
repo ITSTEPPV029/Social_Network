@@ -14,7 +14,7 @@
 
   <div  class="post" v-for="post in posts" >
     <a v-if="isLoggedIn==true" @click="deletePost(post)" > &#10006;</a>
-    <img v-if="post.photo"  v-bind:style="{width: '50px;' , height: '50px;'}" :src="`${post.photo}`" >
+    <img v-if="post.photo"  :src="`${post.photo}`" >
       <div class="post-content">
         <a @click="like(post)" >&#9829; {{post.like}}</a>
         
@@ -50,12 +50,7 @@ export default {
     };
   },
   mounted(){
-
-    this.getIsLoggedIn().then(() => {
-    console.log(this.isLoggedIn);
-    });
-   
-    //if (this.isLoggedIn)
+    this.getIsLoggedIn();
     this.getPosts();
    },
   methods: {
@@ -63,7 +58,7 @@ export default {
   like(event)
   {
       console.log(event);
-      axios.post('/like', event).then(data => {
+      axios.post('/api/like', event).then(data => {
         this.posts=data.data;
       },).catch(error => {
         console.log(error.response.data);
@@ -72,7 +67,6 @@ export default {
 
   deletePost(event)
   {
-      //console.log(event);
       axios.post('/api/deletePost', event).then(data => {
          this.posts=data.data;
       },).catch(error => {
@@ -89,7 +83,7 @@ export default {
     uploadFile()
     {
     if (!this.selectedFile) {
-    alert('Please select a file');
+       alert('Please select a file');
     return;}
     // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
     const formData = new FormData();
@@ -112,26 +106,18 @@ export default {
     },
 
     getPosts() {
-      axios.get('/api/index').
-      then(data=>{ this.posts=data.data;})
+      axios.get('/api/index').then(data=>{ this.posts=data.data });
     },
 
-    // async getIsLoggedIn(){
-    //   axios.post('/isLoggedIn').
-    //   then(data=>{this.IsLoggedIn=123; console.log(this.IsLoggedIn)}).catch(error => {
-    //     console.log(error.response.data);
-    //   });
-    // },
-
     getIsLoggedIn() {
-  return axios.post('/api/isLoggedIn',{
-    headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token')
-    }
-})
+     
+    // axios.get('/api/test').then(response => {
+    //   console.log(response.data) });
+  
+    axios.post('/api/isLoggedIn')
     .then(response => {
       const isLoggedIn = response.data;
-      console.log(response.data);
+     // console.log(response.data);
       if (isLoggedIn === 1) {
         this.isLoggedIn = true;
       } else {
@@ -141,6 +127,7 @@ export default {
     .catch(error => {
       console.log(error);
     });
+
     },
   
   }

@@ -20,7 +20,9 @@
         <br/>   
        @endforeach   
      <hr/>
-
+     <div id="appPost">
+      <Post/>
+    </div>
 
 @if (!$user->friendsRequest()->count()&&Auth::check()&&Auth::user()->id==$user->id)
 <form action="{{ route('avatar.addAvatar') }}"  method="post" enctype="multipart/form-data">

@@ -27,11 +27,12 @@ class MyPostController extends Controller
           $MyPost->photo="/storage/".$photoName;
         }
          $MyPost->text=$request->input('text');
-         $MyPost->user_id=2;//Auth::user()->id===========================================
+         $MyPost->user_id=Auth::user()->id;
          $MyPost->save();
-         $MyPost= MyPost::orderBy('id', 'desc')->get();
 
-       return $MyPost;
+          //$MyPost= MyPost::orderBy('id', 'desc')->get();
+         // return $MyPost;
+       return $this->index();
     }
 /**
      * отримання всіх постів  
@@ -40,8 +41,8 @@ class MyPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() 
-    {//where('user_id', Auth::user()->id)->
-        $MyPost= MyPost::worderBy('id', 'desc')->get();
+    { 
+        $MyPost= MyPost::orderBy('id', 'desc')->where('user_id', Auth::user()->id)->get();
         return $MyPost;
     }    
 /**

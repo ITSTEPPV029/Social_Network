@@ -40,7 +40,12 @@ Route::view('home/home', 'home')->name('home.home');
   Route::get('friendRequest/{user}','App\Http\Controllers\UserController@friendRequest')->name('friendRequest.friendRequest');
   Route::get('addFriend/{user}','App\Http\Controllers\UserController@addFriend')->name('addFriend.addFriend');
 
+  //Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);
+  Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
   //у файлі апі не працює 
-  Route::post('like','MyPostController@like')->name('like');
-       
+  
+ 
+
+  //Route::post('test2', [UserController::class, 'isLoggedIn'])->middleware('auth:api')->name('test2');
+
