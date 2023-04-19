@@ -21,7 +21,7 @@
        @endforeach   
      <hr/>
      <div id="appPost">
-      <Post/>
+      <Post :id="{{ json_encode($user->id) }}" /> 
     </div>
 
 @if (!$user->friendsRequest()->count()&&Auth::check()&&Auth::user()->id==$user->id)

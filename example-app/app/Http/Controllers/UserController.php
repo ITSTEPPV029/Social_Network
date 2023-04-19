@@ -76,31 +76,14 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
-    // public function isLoggedIn(Request $request)
-    // {
-    //     // if (Auth::guard('api')->check()) {
-    //     //     return response()->json(['message' => 'User is logged in.'], 200);
-    //     // } else {
-    //     //     return response()->json(['message' => 'User is not logged in.'], 401);
-    //     // }
-    //     return 1;
-    // }
-
-
-   public function isLoggedIn()
+   public function isLoggedIn(Request $request)
    {
-     return  Auth::check();
+     if(Auth::user()->id==$request->input('id'))
+     {
+        return 1;
+     }
+     return  0;//Auth::check();
    }
-  // }
-
-      // return $user;
-    //  if(Auth::check())//чомусь не перевіряє 
-     //  return 0;
-     // else
-       
-      // return  1;
-   // }
-    
-
+ 
+  
 }

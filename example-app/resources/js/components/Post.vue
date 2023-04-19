@@ -3,8 +3,8 @@
     <br/>
   <span class="text-danger">{{$message}}</span>
   <input id="text" type="text"  v-model="text" name="text"> -->
-
-  <div>
+  <h2>{{ id }}</h2>
+  <div v-show="isLoggedIn==true">
     <input type="file" ref="fileInput" @change="onFileSelected">
     <input type="text" v-model="textInput">
     <button @click="uploadFile">завантажити</button>
@@ -24,7 +24,9 @@
 
   <welcome2/>
 </template>
+
 <script>
+import { numberLiteralTypeAnnotation } from '@babel/types';
 
 
 export default {
@@ -41,6 +43,13 @@ export default {
         //     console.log(response);
         //     });
  //=====================  
+ props: {
+    id: {
+      type: Number,// String,
+      required: true
+    },
+  },
+
  data() {
     return {
       selectedFile: null,
@@ -59,7 +68,8 @@ export default {
   {
       console.log(event);
       axios.post('/api/like', event).then(data => {
-        this.posts=data.data;
+       // this.posts=data.data;
+       this.getPosts();
       },).catch(error => {
         console.log(error.response.data);
       });
@@ -68,7 +78,8 @@ export default {
   deletePost(event)
   {
       axios.post('/api/deletePost', event).then(data => {
-         this.posts=data.data;
+         //this.posts=data.data;
+         this.getPosts();
       },).catch(error => {
         console.log(error.response.data);
       });
@@ -96,9 +107,11 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then(data => {
-        this.posts=data.data,
+        //this.posts=data.data;
         this.$refs.fileInput.value = null;
+        this.selectedFile= null;
         this.textInput= null;
+        this.getPosts();
 
       },).catch(error => {
         console.log(error.response.data);
@@ -106,18 +119,18 @@ export default {
     },
 
     getPosts() {
-      axios.get('/api/index').then(data=>{ this.posts=data.data });
+      axios.post('/api/index',{ id: this.id }).then(data=>{  
+         this.posts=data.data });
     },
 
     getIsLoggedIn() {
-     
-    // axios.get('/api/test').then(response => {
-    //   console.log(response.data) });
+
+    //  axios.post('/api/test',{ id: this.id }).then(response => {
+    //     console.log(response.data) });
   
-    axios.post('/api/isLoggedIn')
+    axios.post('/api/isLoggedIn',{ id: this.id })
     .then(response => {
       const isLoggedIn = response.data;
-     // console.log(response.data);
       if (isLoggedIn === 1) {
         this.isLoggedIn = true;
       } else {

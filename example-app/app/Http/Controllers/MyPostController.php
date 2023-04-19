@@ -32,7 +32,7 @@ class MyPostController extends Controller
 
           //$MyPost= MyPost::orderBy('id', 'desc')->get();
          // return $MyPost;
-       return $this->index();
+       return 123;//$this->index();
     }
 /**
      * отримання всіх постів  
@@ -40,11 +40,14 @@ class MyPostController extends Controller
      * @param 
      * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index(Request $request) 
     { 
-        $MyPost= MyPost::orderBy('id', 'desc')->where('user_id', Auth::user()->id)->get();
+        $id=$request->input('id');
+        $MyPost= MyPost::orderBy('id', 'desc')->where('user_id', $id)->get();
         return $MyPost;
-    }    
+       
+    } 
+    
 /**
      * ставимо лайк на пост 
      *
@@ -68,9 +71,9 @@ class MyPostController extends Controller
         MyPost::where('id', $request->input('id'))->where('like', '>', 0)->decrement('like');
       }
 
-      //$MyPost= MyPost::orderBy('id', 'desc')->get();
+      //$MyPost= MyPost::orderBy('id', 'desc')->get();======================================
      // return $MyPost;
-      return $this->index();
+      return 123;//$this->index2();
     } 
     /**
      * видаляємо пост 
@@ -91,8 +94,8 @@ class MyPostController extends Controller
          MyPost::where('id', $postId)->delete();
          
        }
-        //$MyPost= MyPost::orderBy('id', 'desc')->get();
-        return $this->index();
+        //$MyPost= MyPost::orderBy('id', 'desc')->get();=============================
+        return 123;
     }
     
 }
