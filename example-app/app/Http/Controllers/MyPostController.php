@@ -27,11 +27,17 @@ class MyPostController extends Controller
           $MyPost->photo="/storage/".$photoName;
           //$MyPost->photo="/public/storage/".$photoName; //для хостинга
         }
-         $MyPost->text=$request->input('text');
+        if($request->input('text')=='null')
+         {
+            $MyPost->text = 0;
+         }
+        else
+        $MyPost->text=$request->input('text');
+
          $MyPost->user_id=Auth::user()->id;
          $MyPost->save();
 
-       return true;
+       return true; 
     }
 /**
      * отримання всіх постів  

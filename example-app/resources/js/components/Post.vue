@@ -17,8 +17,8 @@
     <img v-if="post.photo"  :src="`${post.photo}`" >
       <div class="post-content">
         <a @click="like(post)" >&#9829; {{post.like}}</a>
-        
-      <p  class="post-text" v-if="post.text == null" > {{post.text}}</p>
+        <p class="post-text" v-if="post.text!=0" > {{post.text}}</p>
+       
       </div>
   </div>
 
@@ -96,6 +96,9 @@ export default {
     if (!this.selectedFile) {
        alert('Please select a file');
     return;}
+    // if (!this.textInput) {
+    //   alert('Please select a file');
+    // }
     // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
     const formData = new FormData();
     formData.append('file', this.selectedFile);
