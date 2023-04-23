@@ -25,14 +25,13 @@ class MyPostController extends Controller
         {
           $photoName = $request->file('file')->store('uploads','public');
           $MyPost->photo="/storage/".$photoName;
+          //$MyPost->photo="/public/storage/".$photoName; //для хостинга
         }
          $MyPost->text=$request->input('text');
          $MyPost->user_id=Auth::user()->id;
          $MyPost->save();
 
-          //$MyPost= MyPost::orderBy('id', 'desc')->get();
-         // return $MyPost;
-       return 123;//$this->index();
+       return true;
     }
 /**
      * отримання всіх постів  
@@ -44,8 +43,7 @@ class MyPostController extends Controller
     { 
         $id=$request->input('id');
         $MyPost= MyPost::orderBy('id', 'desc')->where('user_id', $id)->get();
-        return $MyPost;
-       
+        return $MyPost; 
     } 
     
 /**
@@ -70,10 +68,8 @@ class MyPostController extends Controller
         ->where('user_id', Auth::user()->id)->delete();
         MyPost::where('id', $request->input('id'))->where('like', '>', 0)->decrement('like');
       }
-
-      //$MyPost= MyPost::orderBy('id', 'desc')->get();======================================
-     // return $MyPost;
-      return 123;//$this->index2();
+     
+      return true;
     } 
     /**
      * видаляємо пост 
@@ -93,9 +89,8 @@ class MyPostController extends Controller
                   
          MyPost::where('id', $postId)->delete();
          
-       }
-        //$MyPost= MyPost::orderBy('id', 'desc')->get();=============================
-        return 123;
+       }      
+        return true;
     }
     
 }
