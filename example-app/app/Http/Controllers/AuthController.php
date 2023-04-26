@@ -68,13 +68,17 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email|max:255',
             'password' => 'required|string|min:6',
-        ]);
-
-        if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
-            return redirect()->back();
-        }
-        $user =  Auth::user();
-        return redirect()->route('profile.show', compact('user'));
+           ]);
+     
+           if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
+           {
+               //return redirect()->back(); 
+               return redirect()->back()->withInput($request->only('email'))->withErrors([
+                'email' => 'Неправильна електронна адреса або пароль',]); 
+           }
+           $user=  Auth::user();
+           return redirect()->route('profile.show',compact('user')); 
+    
     }
 
     /**

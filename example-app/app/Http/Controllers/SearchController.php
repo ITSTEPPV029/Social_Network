@@ -36,8 +36,7 @@ class SearchController extends Controller
     public function allUser()     
     {
       $users= User::all();
-     // $users=$user->notFriend($user);
-    //  dd($users);
+
       if(Auth::check())  
       { 
         $user = User::find(Auth::user()->id);
@@ -45,8 +44,8 @@ class SearchController extends Controller
           return !$user->checkIfFriend($value);
          });  
       }
-      return  $users;
-      //return view('home.usersFound',compact('users'));  
+      
+      return view('home.usersFound',compact('users'));  
     }
 
 }

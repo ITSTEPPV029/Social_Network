@@ -6,26 +6,23 @@ div.error{
     background-color: rgb(255, 0, 0);
 }
 
-
-
-
-
 .post {
   
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 500px;
-    height: 500px;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+   // width: 500px;
+    height: auto;
+    //background-color: #fff;
+    //box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     overflow: hidden;
   
     img {
       width: 500px;
       height: 400px;
       object-fit: cover;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     }
   
     .post-content {

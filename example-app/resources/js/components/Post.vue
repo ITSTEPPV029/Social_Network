@@ -3,28 +3,30 @@
     <br/>
   <span class="text-danger">{{$message}}</span>
   <input id="text" type="text"  v-model="text" name="text"> -->
-
-  <div>
+  <h2>{{ id }}</h2>
+  <div v-show="isLoggedIn==true">
     <input type="file" ref="fileInput" @change="onFileSelected">
     <input type="text" v-model="textInput">
     <button @click="uploadFile">завантажити</button>
   </div>
-
+  
   <br/>
 
   <div  class="post" v-for="post in posts" >
-    <a @click="deletePost(post)" >&#10006;</a>
-    <img v-if="post.photo"  v-bind:style="{width: '50px;' , height: '50px;'}" :src="`${post.photo}`" >
+    <a v-if="isLoggedIn==true" @click="deletePost(post)" > &#10006;</a>
+    <img v-if="post.photo"  :src="`${post.photo}`" >
       <div class="post-content">
         <a @click="like(post)" >&#9829; {{post.like}}</a>
-        
-      <p  class="post-text" v-if="post.text == null" > {{post.text}}</p>
+        <p class="post-text" v-if="post.text!=0" > {{post.text}}</p>
+       
       </div>
   </div>
 
   <welcome2/>
 </template>
+
 <script>
+import { numberLiteralTypeAnnotation } from '@babel/types';
 
 
 export default {
@@ -40,28 +42,24 @@ export default {
         //    }).then(response => {
         //     console.log(response);
         //     });
-
-        //====================
-        // addPost() {
-        //     axios.post('/store', {text: this.text, file: this.file})
-        // .then(response => {
-        //     console.log(response);
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
-        // }
- //   }
- 
  //=====================  
+ props: {
+    id: {
+      type: Number,// String,
+      required: true
+    },
+  },
+
  data() {
     return {
       selectedFile: null,
       textInput: null,
       posts: null,
+      isLoggedIn: null
     };
   },
   mounted(){
+    this.getIsLoggedIn();
     this.getPosts();
    },
   methods: {
@@ -69,8 +67,9 @@ export default {
   like(event)
   {
       console.log(event);
-      axios.post('/like', event).then(data => {
-        this.posts=data.data;
+      axios.post('/api/like', event).then(data => {
+       // this.posts=data.data;
+       this.getPosts();
       },).catch(error => {
         console.log(error.response.data);
       });
@@ -78,9 +77,9 @@ export default {
 
   deletePost(event)
   {
-      console.log(event);
-      axios.post('/deletePost', event).then(data => {
-         this.posts=data.data;
+      axios.post('/api/deletePost', event).then(data => {
+         //this.posts=data.data;
+         this.getPosts();
       },).catch(error => {
         console.log(error.response.data);
       });
@@ -95,22 +94,27 @@ export default {
     uploadFile()
     {
     if (!this.selectedFile) {
-    alert('Please select a file');
+       alert('Please select a file');
     return;}
+    // if (!this.textInput) {
+    //   alert('Please select a file');
+    // }
     // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
     const formData = new FormData();
     formData.append('file', this.selectedFile);
     formData.append('text', this.textInput);
 
-      // Відправляємо POST-запит на сервер
-    axios.post('/store', formData, {
+     
+  axios.post('/api/store', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then(data => {
-        this.posts=data.data,
+        //this.posts=data.data;
         this.$refs.fileInput.value = null;
+        this.selectedFile= null;
         this.textInput= null;
+        this.getPosts();
 
       },).catch(error => {
         console.log(error.response.data);
@@ -118,11 +122,30 @@ export default {
     },
 
     getPosts() {
-      axios.get('/index').
-      then(data=>{ this. posts=data.data;})
-    }
+      axios.post('/api/index',{ id: this.id }).then(data=>{  
+         this.posts=data.data });
+    },
 
-    
+    getIsLoggedIn() {
+
+    //  axios.post('/api/test',{ id: this.id }).then(response => {
+    //     console.log(response.data) });
+  
+    axios.post('/api/isLoggedIn',{ id: this.id })
+    .then(response => {
+      const isLoggedIn = response.data;
+      if (isLoggedIn === 1) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    },
+  
   }
      
     

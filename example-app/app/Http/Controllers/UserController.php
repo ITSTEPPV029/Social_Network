@@ -19,16 +19,16 @@ class UserController extends Controller
 
     public function friendRequest(User $user)
     {
-        $User = \App\Models\User::find(Auth::user()->id);
+      $User = \App\Models\User::find(Auth::user()->id);
 
-        if($User->checkIfFriend($user))
-        {
-          return redirect()->back();//->with('message',"123"); 
-        }  
-        $User->friendsOfMine()->attach($user->id);
-        return view('home/home');
-        
-    } 
+      if ($User->checkIfFriend($user))
+      {
+        return redirect()->back();//->with('message',"123"); 
+      }  
+      $User->friendsOfMine()->attach($user->id);
+      return view('home/home');    
+    }
+
     /**
      * підтвердження дружби
      *
@@ -37,9 +37,9 @@ class UserController extends Controller
      */
     public function addFriend(User $user)
     {   
-        $User = \App\Models\User::find(Auth::user()->id);
-        $User->friendsRequest()->where('id',$user->id)->first()->pivot->update(['friend_request'=>true]);
-        return view('home/home');
+      $User = \App\Models\User::find(Auth::user()->id);
+      $User->friendsRequest()->where('id',$user->id)->first()->pivot->update(['friend_request'=>true]);
+      return view('home/home');
     }
 
   /**
@@ -50,27 +50,35 @@ class UserController extends Controller
      */
     public function addAvatar(Request $request)
     {   
-          $user = \App\Models\User::find(Auth::user()->id);
-       
-          if($user->avatar!="/storage/uploads/anonym.png")
-            unlink(public_path($user->avatar));
+      $user = \App\Models\User::find(Auth::user()->id); 
 
-          $photoMainName = $request->file('avatar')->store('uploads','public');
-          $user->avatar="/storage/".$photoMainName;
-          $user->save();
+      if ($user->avatar!="/storage/uploads/anonym.png")
+        unlink(public_path($user->avatar));
 
-      // $merch->name_main_photo = $photoMainName;
-  // $filePath = $user->getAvatarPath(Auth::user()->id);
-         // Image::make($fileName)->resize(300, 200)->save(public_path($filePath.$fileName));
-           //$fileName= $request->file('avatar');
-       // $request
-        //$User = \App\Models\User::find(Auth::user()->id);
-       // $User->friendsRequest()->where('id',$user->id)->first()->pivot->update(['friend_request'=>true]);
-        return view('home/home');
+   // if($user->avatar!="/public/storage/uploads/anonym.png")       //для хоста
+   //  unlink(public_path(str_replace('/public', '', $user->avatar))); 
 
+      $photoMainName = $request->file('avatar')->store('uploads','public');
+      $user->avatar="/storage/".$photoMainName;
+      // $user->avatar="public/storage/".$photoMainName;     //public для хоста
+      $user->save();
+
+      return view('home/home');
     }
 
-
-
-
+     /**
+     * перевірка чи користувач авторизований і чи його сторінка 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+   public function isLoggedIn(Request $request)
+   {
+     if (Auth::user()->id==$request->input('id'))
+     {
+        return 1;
+     }
+     return  0;
+   }
+ 
 }

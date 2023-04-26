@@ -9,12 +9,16 @@
                 <div class="card-header">{{ __('Увійти') }}</div>
 
                 <div class="card-body">
+                    
                     <form method="POST" action="{{ route('login.postSigin') }}">
                         @csrf
-
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Пошта') }}</label>
+                            
+                              @if($errors->has('email'))
+                                  <strong>{{ $errors->first('email') }}</strong>
+                               @endif
 
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Пошта') }}</label>
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 

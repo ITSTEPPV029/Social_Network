@@ -34,25 +34,13 @@ Route::view('home/home', 'home')->name('home.home');
   //});
 
   Route::post('avatar/add','UserController@addAvatar')->name('avatar.addAvatar');
-  Route::get('search/','App\Http\Controllers\SearchController@searchUser')->name('search.searchUser');
+  Route::get('search/','SearchController@searchUser')->name('search.searchUser');
   Route::get('profile/{user}/','ProfileController@show')->name('profile.show');
   Route::get('allUser/','SearchController@allUser')->name('allUser.allUser');
-  Route::get('friendRequest/{user}','App\Http\Controllers\UserController@friendRequest')->name('friendRequest.friendRequest');
-  Route::get('addFriend/{user}','App\Http\Controllers\UserController@addFriend')->name('addFriend.addFriend');
+  Route::get('friendRequest/{user}','UserController@friendRequest')->name('friendRequest.friendRequest');
+  Route::get('addFriend/{user}','UserController@addFriend')->name('addFriend.addFriend');
 
-  Route::post('store/','MyPostController@store')->name('store');
-  Route::get('index/','MyPostController@index')->name('index');
-  Route::post('like/','MyPostController@like')->name('like');
-  Route::post('deletePost/','MyPostController@delete')->name('deletePost');
-  
-        // Route::group(['prefix' => 'store'], function(){
+  //Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);
+  Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
-        //     Route::post('/', 'MyPostController@store')->name('store');
-
-        // });
-
-        // Route::group([ 'prefix' => 'store'], function () {
-
-        //     Route::post('/', [MyPostController::class, 'store']);
-        
-        // });
+  Route::get('chat/','ChatController@chatView')->name('chat');
