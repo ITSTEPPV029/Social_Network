@@ -26,6 +26,8 @@ Route::post('isLoggedIn', 'UserController@isLoggedIn')->middleware('auth:api')->
 
 Route::post('like','MyPostController@like')->middleware('auth:api')->name('like');
 
+Route::post('chat/','ChatController@store')->middleware('auth:api');
+Route::get('chat/','ChatController@index')->middleware('auth:api');
 // Route::post('test',function (Request $request) {
 //     return  $request->input('id');
 // })->middleware('auth:api');

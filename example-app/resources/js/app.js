@@ -10,13 +10,19 @@ import { createApp } from 'vue'
 import App from './components/App'
 import AppWel from './components/AppTest'
 import Post from './components/Post'
+import Chat from './components/Chat'
+
 const app = createApp({})
 
 app.component('welcome', App)
 app.component('welcome2', AppWel)
 app.component('Post', Post)
+app.component('Chat', Chat)
+
 app.mount('#app')
 app.mount('#appPost')
+app.mount('#appChat')
+
 //===============
 
 

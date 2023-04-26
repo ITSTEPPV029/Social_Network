@@ -104,8 +104,8 @@ export default {
     formData.append('file', this.selectedFile);
     formData.append('text', this.textInput);
 
-      // Відправляємо POST-запит на сервер
-    axios.post('/api/store', formData, {
+     
+  axios.post('/api/store', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
