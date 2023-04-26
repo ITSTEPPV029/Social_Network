@@ -1,4 +1,4 @@
-
+@use "header.scss";
 div.error{
 
     height: 501px;
@@ -6,47 +6,42 @@ div.error{
     background-color: rgb(255, 0, 0);
 }
 
-
-
-
-
 .post {
   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  img {
+    width: 500px;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .post-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 500px;
-    height: 500px;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-  
-    img {
-      width: 500px;
-      height: 400px;
-      object-fit: cover;
+    //align-items: center;
+    //padding: 40px;
+    margin-bottom: 20px;
+    .post-title {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
     }
-  
-    .post-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      //align-items: center;
-      //padding: 40px;
-      margin-bottom: 20px;
-      .post-title {
-        font-size: 32px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-  
-      .post-text {
-        font-size: 20px;
-        text-align: justify;
-        line-height: 1.5;
-      }
+
+    .post-text {
+      font-size: 20px;
+      text-align: justify;
+      line-height: 1.5;
     }
   }
-  
+}

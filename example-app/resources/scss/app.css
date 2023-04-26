@@ -1,8 +1,12 @@
+header {
+  background-color: rgb(33, 37, 41);
+}
+
 .logo {
   font-size: medium;
 }
 .logo img {
-  height: 30px;
+  height: 35px;
 }
 
 div.error {
