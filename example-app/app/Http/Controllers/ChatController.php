@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-   
     public function chatView()     
     {    
         return view('home/chat');
@@ -40,8 +39,6 @@ class ChatController extends Controller
         //     'email' => 'required|email|max:255',
         //     'password' => 'required|string|min:6',
         //    ]);
-
-
        //return $chat->load('user');
         return response()->json($chat->load('user'));
         
