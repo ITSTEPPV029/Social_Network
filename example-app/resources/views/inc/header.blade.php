@@ -7,17 +7,19 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="\" class="nav-link px-2 text-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дом</font></font></a></li>
-          <li><a href="{{ route('login.getSigin') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Функции</font></font></a></li>
+          <li><a href="\" class="nav-link px-2 text-secondary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дім</font></font></a></li>
+          <li><a href="{{ route('chat') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Чат</font></font></a></li>
           <li></li>
           <li><a href="{{ route('allUser.allUser') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">всі користувачі</font></font></a></li>
-         
+          <li><a href="{{ route('addPet') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Додати тваринок</font></font></a></li>
+
         </ul>
 
-        <form  action="{{route('search.searchUser')}}"  method="get" enctype="multipart/form-data" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+        <form  action="{{route('search.searchUser')}}" method="get" enctype="multipart/form-data" class="col-12 col-lg-auto d-flex align-items-center justify-content-between" role="search">
           <input name="search" type="search" class="form-control form-control-dark text-bg-dark" placeholder="Поиск..." aria-label="Поиск">
-          <input class="btn btn-outline-light me-2" class="inputSubmit" type="submit"  value="пошук"></input>
-        </form>
+          <button class="btn btn-outline-light ms-2 inputSubmit" type="submit">пошук</button>
+      </form>
+      
 
         @if(Auth::check())
          <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мій профіль</font></font></a>

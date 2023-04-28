@@ -14,7 +14,7 @@ class CreateFriendsTable extends Migration
     public function up()
     {
         Schema::create('friends', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->boolean("friend_request")->default(false);
             $table->bigInteger("friend_id")->constrained("users");
             $table->bigInteger("user_id")->constrained("users");
