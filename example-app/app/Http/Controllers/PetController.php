@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PetController extends Controller
 {
@@ -14,8 +16,15 @@ class PetController extends Controller
      */
     public function index()
     {
-        //
-        
+        $pets = Pet::all();
+        foreach ($pets as $pet) {
+            echo 'Name pet: ' . $pet->name;
+            echo '<br>';
+            echo 'User ID: ' . $pet->user_id;
+            echo '<br>';
+            echo '-------------------------------';
+            echo '<br>';
+        }
     }
 
     /**
@@ -36,7 +45,14 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $pet = new Pet();
+        $pet->name = $request->input('name');
+        $pet->user_id = Auth::user()->id;
+        $pet->avatar = $request->file('avatar');
+        $pet->save();
+
+        dd('Успішно збережено! ' . $pet);
     }
 
     /**
@@ -82,5 +98,10 @@ class PetController extends Controller
     public function destroy(Pet $pet)
     {
         //
+    }
+
+    public function add()
+    {
+        return view('home.addPets');
     }
 }
