@@ -18,7 +18,8 @@
           <input name="search" type="search" class="form-control-dark text-bg-dark" placeholder="Поиск..." aria-label="Поиск">
           <input class="btn btn-outline-light" class="inputSubmit" type="submit" value="пошук"/>
         </form>
-
+        
+        @if(Auth::check())
         <a class="nav-link" href="#"><img src="{{'notification.png'}}"/></a>
          <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link text-white">мій профіль</a>
          <b class="nav-link text-white" style="vertical-align: inherit;" > вітаємо  {{ Auth::user()->last_name }}!</b>
