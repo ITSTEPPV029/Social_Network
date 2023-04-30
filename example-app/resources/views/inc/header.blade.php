@@ -12,7 +12,6 @@
           <li><a href="{{ route('login.getSigin') }}" class="nav-link">Новини</a></li>
           <li></li>
           <li><a href="{{ route('allUser.allUser') }}" class="nav-link">всі користувачі</a></li>
-         
         </ul> -->
 
         <form  action="{{route('search.searchUser')}}"  method="get" enctype="multipart/form-data" role="search">
@@ -20,7 +19,6 @@
           <input class="btn btn-outline-light" class="inputSubmit" type="submit" value="пошук"/>
         </form>
 
-        @if(Auth::check())
         <a class="nav-link" href="#"><img src="{{'notification.png'}}"/></a>
          <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link text-white">мій профіль</a>
          <b class="nav-link text-white" style="vertical-align: inherit;" > вітаємо  {{ Auth::user()->last_name }}!</b>
