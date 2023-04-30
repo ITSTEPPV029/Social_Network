@@ -4,6 +4,10 @@ header {
   color: #fff !important;
 }
 
+.logo {
+  border-radius: 50%;
+}
+
 .container div {
   display: flex;
   flex-wrap: wrap !important;
