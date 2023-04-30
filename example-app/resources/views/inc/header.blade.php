@@ -7,12 +7,12 @@
         <img class="bi me-2" alt="Начальная загрузка" src="https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*" />
       </a>
 
-      <!-- <ul class="nav">
+      <ul class="nav">
           <li><a href="\" class="nav-link text-secondary">Головна</a></li>
           <li><a href="{{ route('login.getSigin') }}" class="nav-link">Новини</a></li>
           <li></li>
           <li><a href="{{ route('allUser.allUser') }}" class="nav-link">всі користувачі</a></li>
-        </ul> -->
+      </ul>
 
       <form action="{{route('search.searchUser')}}" method="get" enctype="multipart/form-data" role="search">
         <input name="search" type="search" class="form-control-dark text-bg-dark" placeholder="Поиск..." aria-label="Поиск">
