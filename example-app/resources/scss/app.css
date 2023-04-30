@@ -8,6 +8,10 @@ header {
   border-radius: 50%;
 }
 
+.notification a {
+  text-align: right;
+}
+
 .container div {
   display: flex;
   flex-wrap: wrap !important;
