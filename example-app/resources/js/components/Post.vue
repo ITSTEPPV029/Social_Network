@@ -3,7 +3,7 @@
     <br/>
   <span class="text-danger">{{$message}}</span>
   <input id="text" type="text"  v-model="text" name="text"> -->
-  <h2>{{ id }}</h2>
+  <h3>{{ id }}</h3>
   <div v-show="isLoggedIn==true">
     <input type="file" ref="fileInput" @change="onFileSelected">
     <input type="text" v-model="textInput">
@@ -22,12 +22,11 @@
       </div>
   </div>
 
-  <welcome2/>
 </template>
 
 <script>
-import { numberLiteralTypeAnnotation } from '@babel/types';
 
+import { numberLiteralTypeAnnotation } from '@babel/types';
 
 export default {
 

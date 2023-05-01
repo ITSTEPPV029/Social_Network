@@ -43,7 +43,7 @@ Route::get('addFriend/{user}', 'UserController@addFriend')->name('addFriend.addF
 //Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);
 Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
-Route::get('chat/', 'ChatController@chatView')->name('chat');
+Route::get('chat/', 'ChatController@chatView')->middleware('auth')->name('chat');
 
 
 
@@ -53,3 +53,5 @@ Route::get('/allpets', 'PetController@index');
 //додавання тваринок
 Route::get('/addPets', 'PetController@add')->name('addPet');
 Route::post('pet/add', 'PetController@store')->name('savePet');
+  Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
+  Route::get('sendingMessage{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');

@@ -40,39 +40,45 @@ class User extends Authenticatable
     return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
   }
   //поверне хто не є другом
-  public function friendsOf()
-  {
-    return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
-  }
-  //поверне друзів
-  public function friends()
-  {
-    return $this->friendsOfMine()->wherePivot('friend_request', true)->get()
-      ->merge($this->friendsOf()->wherePivot('friend_request', true)->get());
-  }
-  //поверне запити на дружбу 
-  public function friendsRequest()
-  {
-    return $this->friendsOf()->wherePivot('friend_request', false)->get();
-  }
-  //перевірка чи друг 
-  public function checkIfFriend(User $user)
-  {
-    return (bool) $this->friendsOfMine()->wherePivot('friend_id', $user->id)->count();
-    // if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
-    //   return 1;    
-    // else
-    //   return 0;   
-
-
-  }
-  //повертає не друзів (доробити)
-  public function  notFriend(User $user)
-  {
-    return $this->friendsOf()->wherePivotNotIn('user_id', $user->id)->get();
-  }
-
-
+      public function friendsOf()
+      {
+        return $this->belongsToMany(User::class ,'friends','friend_id','user_id');
+      }
+//поверне друзів
+     public function friends()
+      {
+        return $this->friendsOfMine()->wherePivot('friend_request',true)->get()
+        ->merge($this->friendsOf()->wherePivot('friend_request',true)->get());
+      }
+//поверне запити на дружбу 
+      public function friendsRequest()
+      {
+        return $this->friendsOf()->wherePivot('friend_request',false)->get();       
+      }
+//перевірка чи друг 
+     public function checkIfFriend(User $user)
+     {
+        return (bool) $this->friendsOfMine()->wherePivot('friend_id',$user->id)->count();
+        // if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
+        //   return 1;    
+        // else
+        //   return 0;       
+     }
+//повертає не друзів (доробити)
+public function  notFriend(User $user)
+{
+     return $this->friendsOf()->wherePivotNotIn('user_id',$user->id)->get();
+}
+//хто відправив повідомлення
+public function sentMessages()
+{
+  return $this->hasMany(Message::class, 'sender_user_id', 'id');
+}
+// хто отримав  повідомлення 
+public function receivedMessages()
+{
+  return $this->hasMany(Message::class, 'recipient_user_id', 'id');
+}
 
   // public function  getAvatarPath($userId)
   // {
