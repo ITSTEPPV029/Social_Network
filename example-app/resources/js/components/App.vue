@@ -8,7 +8,7 @@
            <strong>{{user.nick_name}}</strong> 
       </div>
   <br/>
-  <welcome2/>
+
 </template>
 <script>
 

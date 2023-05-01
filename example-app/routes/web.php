@@ -43,4 +43,6 @@ Route::view('home/home', 'home')->name('home.home');
   //Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);
   Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
-  Route::get('chat/','ChatController@chatView')->name('chat');
+  Route::get('chat/','ChatController@chatView')->middleware('auth')->name('chat');
+  Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
+  Route::get('sendingMessage{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');

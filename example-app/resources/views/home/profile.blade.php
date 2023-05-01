@@ -10,7 +10,7 @@
     <strong>{{$user->first_name}}</strong> 
     <strong>{{$user->last_name}}</strong> 
     <strong>{{$user->nick_name}}</strong> 
-      @if (Auth::check()&&Auth::user()->id==$user->id)
+    @if (Auth::check()&&Auth::user()->id==$user->id)
         <form action="{{ route('avatar.addAvatar') }}"  method="post" enctype="multipart/form-data">
             {{ csrf_field() }}	
             <label for="avatar">завантажити фото профілю</label> <br/>
@@ -22,7 +22,14 @@
             <br/>
             <input type="submit" value="завантажити" >
         </form>
+     @else
+     <br/>
+        @if (Auth::check())
+        <a href="{{route('sendingMessage',$user)}}" class="btn btn-primary btn-block">відправити повідомлення</a>
+        @endif
+        
     @endif
+
     <hr/>
 
  @if (Auth::check())

@@ -7,21 +7,22 @@ require('./bootstrap');
 
 
 import { createApp } from 'vue'
-import App from './components/App'
-import AppWel from './components/AppTest'
+// import App from './components/App'
+import Message from './components/Message'
 import Post from './components/Post'
 import Chat from './components/Chat'
 
 const app = createApp({})
 
-app.component('welcome', App)
-app.component('welcome2', AppWel)
+// app.component('welcome', App)
+app.component('Message', Message)
 app.component('Post', Post)
 app.component('Chat', Chat)
 
-app.mount('#app')
+// app.mount('#app')
 app.mount('#appPost')
 app.mount('#appChat')
+app.mount('#appMessage')
 
 //===============
 

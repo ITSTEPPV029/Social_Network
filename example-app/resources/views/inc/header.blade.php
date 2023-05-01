@@ -11,7 +11,7 @@
           <li><a href="{{ route('chat') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Чат</font></font></a></li>
           <li></li>
           <li><a href="{{ route('allUser.allUser') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">всі користувачі</font></font></a></li>
-         
+          <li><a href="{{ route('message') }}" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Повідомлення</font></font></a></li>
         </ul>
 
         <form  action="{{route('search.searchUser')}}" method="get" enctype="multipart/form-data" class="col-12 col-lg-auto d-flex align-items-center justify-content-between" role="search">
