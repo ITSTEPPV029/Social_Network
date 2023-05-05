@@ -53,6 +53,7 @@ class PetController extends Controller
         if ($avatar !== null) {
             $photoMainName = $avatar->store('uploads', 'public');
             $pet->avatar = "/storage/" . $photoMainName;
+        // $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
         } else
             $pet->avatar = "/storage/uploads/anonym.png";
 
