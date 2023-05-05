@@ -45,13 +45,13 @@ Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenContr
 
 Route::get('chat/', 'ChatController@chatView')->middleware('auth')->name('chat');
 
-
-
 //виведення всіх тварин
 Route::get('/allpets', 'PetController@index');
 
 //додавання тваринок
 Route::get('/addPets', 'PetController@add')->name('addPet');
 Route::post('pet/add', 'PetController@store')->name('savePet');
-  Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
-  Route::get('sendingMessage{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');
+Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
+Route::get('sendingMessage{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');
+
+Route::get('/admin', 'AdminController@index');
