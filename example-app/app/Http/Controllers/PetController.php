@@ -49,7 +49,14 @@ class PetController extends Controller
         $pet = new Pet();
         $pet->name = $request->input('name');
         $pet->user_id = Auth::user()->id;
-        $pet->avatar = $request->file('avatar');
+        $avatar = $request->file('avatar');
+        if ($avatar !== null) {
+            $photoMainName = $avatar->store('uploads', 'public');
+            $pet->avatar = "/storage/" . $photoMainName;
+        // $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
+        } else
+            $pet->avatar = "/storage/uploads/anonym.png";
+
         $pet->save();
 
         dd('Успішно збережено! ' . $pet);
