@@ -21,6 +21,7 @@
 </template>
 
 <script>
+
 //import Chat from '@/models/Chat';
 
 export default {

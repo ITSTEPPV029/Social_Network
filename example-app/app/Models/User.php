@@ -69,6 +69,7 @@ public function  notFriend(User $user)
 {
      return $this->friendsOf()->wherePivotNotIn('user_id',$user->id)->get();
 }
+
 //хто відправив повідомлення
 public function sentMessages()
 {

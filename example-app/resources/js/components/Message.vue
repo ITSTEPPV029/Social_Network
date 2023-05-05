@@ -9,10 +9,8 @@
     <a :href="'/sendingMessage' + chat.id" class="nav-link px-2 text-black">чат</a>
     <!-- <a @click="indexChat(chat.id)" >чат2</a> -->
    
-  </div>  
-
-
-    <h1>Чат з {{ user.first_name +' '+ user.last_name }}</h1>
+  </div>
+   <h1>Чат з {{ user.first_name +' '+ user.last_name }}</h1>
     <img class="avatar"  :src="`${user.avatar}`" >
     <hr/> 
        <div class="chat-container">

@@ -8,6 +8,7 @@ use App\Models\Friend;
 use App\Models\MyPost;
 use App\Http\Requests\MyPostRequest;
 use App\Models\Like;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class MyPostController extends Controller
@@ -20,24 +21,24 @@ class MyPostController extends Controller
      */
     public function store(MyPostRequest $request)     
     {
-        $MyPost= new MyPost();
-        if($request->file('file'))
-        {
-          $photoName = $request->file('file')->store('uploads','public');
-          $MyPost->photo="/storage/".$photoName;
-          //$MyPost->photo="/public/storage/".$photoName; //для хостинга
-        }
-        if($request->input('text')=='null')
-         {
-            $MyPost->text = 0;
-         }
-        else
+      $MyPost= new MyPost();
+      if($request->file('file'))
+      {
+        $photoName = $request->file('file')->store('uploads','public');
+        $MyPost->photo="/storage/".$photoName;
+        //$MyPost->photo="/public/storage/".$photoName; //для хостинга
+      }
+      if($request->input('text')=='null')
+      {
+        $MyPost->text = 0;
+      }
+      else
         $MyPost->text=$request->input('text');
 
-         $MyPost->user_id=Auth::user()->id;
-         $MyPost->save();
-
-       return true; 
+      $MyPost->user_id=Auth::user()->id;
+      $MyPost->save();
+      return  MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', Auth::user()->id)->take(2)->get(); 
+        
     }
 /**
      * отримання всіх постів  
@@ -47,9 +48,16 @@ class MyPostController extends Controller
      */
     public function index(Request $request) 
     { 
-        $id=$request->input('id');
-        $MyPost= MyPost::orderBy('id', 'desc')->where('user_id', $id)->get();
-        return $MyPost; 
+       $id=$request->input('id');
+       $page= $request->input('page');
+       if($page)
+       {
+         $MyPost= MyPost::with('comments.user')->offset($page)->orderBy('id', 'desc')->where('user_id', $id)->take(1)->get();
+       }
+       else
+       $MyPost= MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', $id)->take(1)->get(); 
+
+       return  $MyPost; 
     } 
     
 /**
@@ -77,6 +85,22 @@ class MyPostController extends Controller
      
       return true;
     } 
+
+    /**
+     * чи вже лайкав
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+    public function isLiked(Request $request) 
+    {
+      if(Like::where('my_post_id', $request->input('id'))->where('user_id', Auth::user()->id)->first())
+      {
+        return 1;
+      }
+      return 0;
+    }
+
     /**
      * видаляємо пост 
      *
@@ -96,7 +120,7 @@ class MyPostController extends Controller
          MyPost::where('id', $postId)->delete();
          
        }      
-        return true;
+        return MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', Auth::user()->id)->take(2)->get(); ;
     }
     
 }

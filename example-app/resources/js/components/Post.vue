@@ -20,6 +20,20 @@
         <p class="post-text" v-if="post.text!=0" > {{post.text}}</p>
        
       </div>
+      <div>
+    <button @click="showCommentBox = !showCommentBox">Залишити коментар</button>
+    <!-- <transition name="slide"> v-if="showCommentBox" -->
+      <div  class="comment-box">
+        <textarea v-model="newComments[post.id]" placeholder="Написати коментар"></textarea>
+        <button @click="addComment(post)">Додати коментар</button>
+        
+        <ul  v-for="comment in post.comments">
+          <li ><img style="  width: 50px; height: 50px; border-radius: 50%;" :src="`${comment.user.avatar}`" >{{ comment.user.first_name +' '+comment.user.last_name }}</li>
+          <li >{{ comment.text }}</li>
+        </ul>   
+      </div>
+    <!-- </transition> -->
+  </div>
   </div>
 
 </template>
@@ -28,25 +42,19 @@
 
 import { numberLiteralTypeAnnotation } from '@babel/types';
 
+
 export default {
 
-        // addPost() {
-        //     const token = document.head.querySelector('meta[name="csrf-token"]');
-        //         axios.post('/store', {text:this.text
-        //       }, {
-        //     headers: {
-        //        'X-CSRF-TOKEN': token.content,
-        //        'Content-Type': 'application/json'
-        //      }
-        //    }).then(response => {
-        //     console.log(response);
-        //     });
- //=====================  
- props: {
-    id: {
+  props: {
+    id:{
       type: Number,// String,
       required: true
     },
+    thisUser:{
+        type: Object,
+        required: true
+    },
+
   },
 
  data() {
@@ -54,21 +62,80 @@ export default {
       selectedFile: null,
       textInput: null,
       posts: null,
-      isLoggedIn: null
+      isLoggedIn: null,
+
+      showCommentBox: false,
+      newComment: '',
+      newComments: {},
+
     };
   },
   mounted(){
     this.getIsLoggedIn();
     this.getPosts();
    },
+   created(){
+
+    const eventHendler = ()=>{
+       const scrollTop = document.documentElement.scrollTop;
+       const viewportHeight = window.innerHeight;
+       const totalHeight = document.documentElement.offsetHeight;
+
+       const atTheBottom = scrollTop + viewportHeight==totalHeight;
+
+      //console.log(atTheBottom)
+       if (atTheBottom) {
+          this.scrollGetPost();
+       }
+    }
+
+    document.addEventListener('scroll',eventHendler)
+   },
+
   methods: {
   
-  like(event)
+    scrollGetPost() {
+  
+       axios.post('/api/index',{ id: this.id , page: this.posts.length }).then(data=>{  
+       // console.log(data.data);
+        this.posts = this.posts.concat(data.data);
+        // this.posts=;
+       });
+    },
+
+    addComment(post) {
+
+    if (this.newComments[post.id]) {
+      
+        let targetPost = this.posts.find(p => p.id === post.id);
+        console.log("комент ", this.newComments[post.id]);
+
+        axios.post('/api/comment/store', { comment: this.newComments[post.id], idPost: post.id })
+          .then(data => {
+            console.log(data.data);
+            targetPost.comments.push(data.data);
+            console.log(targetPost.comments);
+            this.newComments[post.id] = '';
+          })
+          .catch(error => {
+            console.log(error.response.data);
+          });
+      }
+    },
+
+  like(post)
   {
-      console.log(event);
-      axios.post('/api/like', event).then(data => {
+    let isLiked=0;
+    axios.post('/api/isLiked', post).then(data => {
+       isLiked=data.data;
+       post.like += isLiked ? -1 : 1;
+      },).catch(error => {
+        console.log(error.response.data);
+      });
+      
+    axios.post('/api/like', post).then(data => {
        // this.posts=data.data;
-       this.getPosts();
+       //this.getPosts();
       },).catch(error => {
         console.log(error.response.data);
       });
@@ -77,8 +144,8 @@ export default {
   deletePost(event)
   {
       axios.post('/api/deletePost', event).then(data => {
-         //this.posts=data.data;
-         this.getPosts();
+         this.posts=data.data;
+       //  this.getPosts();
       },).catch(error => {
         console.log(error.response.data);
       });
@@ -109,11 +176,11 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then(data => {
-        //this.posts=data.data;
+        this.posts=data.data;
         this.$refs.fileInput.value = null;
         this.selectedFile= null;
         this.textInput= null;
-        this.getPosts();
+       // this.getPosts();
 
       },).catch(error => {
         console.log(error.response.data);
@@ -121,7 +188,15 @@ export default {
     },
 
     getPosts() {
-      axios.post('/api/index',{ id: this.id }).then(data=>{  
+      
+     let page = 0; 
+     if (this.posts) {
+      page = this.posts.length;
+     }
+
+
+      axios.post('/api/index',{ id: this.id , page: page }).then(data=>{  
+       // console.log(data.data);
          this.posts=data.data });
     },
 
@@ -151,3 +226,34 @@ export default {
 }
   
 </script>
+<style>
+
+.avatarComent {
+  width: 50px;
+  height: 50px;
+}
+
+.comment-box {
+  width: 500px;
+  position:relative;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.slide-enter-active {
+  transition: all 0.5s;
+}
+
+.slide-leave-active {
+  transition: all 0.5s;
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translateX(-100%);
+}
+
+
+</style>

@@ -34,10 +34,11 @@
 
  @if (Auth::check())
      <div id="appPost">
-      <Post :id="{{ json_encode($user->id) }}" /> 
+      <Post :id="{{ json_encode($user->id) }}" :this-User="{{ json_encode(Auth::user())}}" /> 
     </div>
 
   <hr />
+
 
   <h1>Друзі</h1>
   @if ($user->friends()->count())
