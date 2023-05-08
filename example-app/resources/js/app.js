@@ -7,19 +7,21 @@ require('./bootstrap');
 
 
 import { createApp } from 'vue'
-// import App from './components/App'
+
+import Map from './components/MyMap'
 import Message from './components/Message'
 import Post from './components/Post'
 import Chat from './components/Chat'
 
+
 const app = createApp({})
 
-// app.component('welcome', App)
+app.component('Mymap', Map)
 app.component('Message', Message)
 app.component('Post', Post)
 app.component('Chat', Chat)
 
-// app.mount('#app')
+app.mount('#appMyMap')
 app.mount('#appPost')
 app.mount('#appChat')
 app.mount('#appMessage')
