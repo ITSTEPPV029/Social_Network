@@ -21,6 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('email');//->unique();
             $table->string('avatar')->default('/storage/uploads/anonym.png');//public
             $table->boolean('admin')->default(false);
+            
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
+            
             $table->string('password');
             $table->string('remember_token')->nullable();
 
