@@ -1,15 +1,28 @@
 header {
   background-color: rgba(33, 37, 41, var(--bs-bg-opacity, 1)) !important;
-  padding-left: 1rem !important;
+  padding: 1.1rem !important;
   color: #fff !important;
 }
 
 .logo {
+  margin-left: 3.5rem;
+}
+.logo img {
   border-radius: 50%;
 }
 
-.notification a {
-  text-align: right;
+.auth {
+  margin-right: 0;
+  margin-left: auto;
+  margin-right: 0;
+}
+.auth * {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.auth img {
+  width: 2rem;
+  border-radius: 50%;
 }
 
 .container div {
