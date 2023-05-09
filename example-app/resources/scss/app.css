@@ -27,6 +27,7 @@ div.error {
   height: 400px;
   -o-object-fit: cover;
      object-fit: cover;
+<<<<<<< HEAD
   -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
@@ -45,16 +46,32 @@ div.error {
   margin-bottom: 20px;
 }
 
+=======
+}
+.post .post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+>>>>>>> header
 .post .post-content .post-title {
   font-size: 32px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> header
 .post .post-content .post-text {
   font-size: 20px;
   text-align: justify;
   line-height: 1.5;
+<<<<<<< HEAD
 }
 /*# sourceMappingURL=app.css.map */
+=======
+}/*# sourceMappingURL=app.css.map */
+>>>>>>> header
