@@ -1,3 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+?>
 @section("header")
 <header class="text-bg-dark">
   <div class="container">
@@ -7,24 +11,24 @@
         <img class="bi me-2" alt="Начальная загрузка" src="https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*" />
       </a>
 
-      <ul class="nav">
+      <!--<ul class="nav">
           <li><a href="\" class="nav-link text-secondary">Головна</a></li>
           <li><a href="{{ route('login.getSigin') }}" class="nav-link">Новини</a></li>
           <li></li>
           <li><a href="{{ route('allUser.allUser') }}" class="nav-link">всі користувачі</a></li>
-      </ul>
+      </ul>-->
 
       <form action="{{route('search.searchUser')}}" method="get" enctype="multipart/form-data" role="search">
         <input name="search" type="search" class="form-control-dark text-bg-dark" placeholder="Поиск..." aria-label="Поиск">
         <input class="btn btn-outline-light" class="inputSubmit" type="submit" value="пошук" />
       </form>
 
-
       <div class="auth">
         @if(Auth::check())
-        <a class="nav-link" href="#"><img src="{{'notification.png'}}" /></a>
+        <a class="nav-link" href="#"><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /></a> <!--Сповіщення-->
         <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link text-white">мій профіль</a>
-        <b class="nav-link text-white" style="vertical-align: inherit;"> вітаємо {{ Auth::user()->last_name }}!</b>
+        <b class="nav-link text-white" style="vertical-align: inherit;"> {{ Auth::user()->last_name }}</b>
+        <a class="nav-link" href="#"><img src="<?=Auth::user()->avatar?>" /></a><!--Аватар-->
         <button type="button" class="btn btn-warning"><a href="{{ route('logout.getSigout') }}" class="nav-link px-2 text-white">Вийти</a></button>
         @else
         <div class="text-end">

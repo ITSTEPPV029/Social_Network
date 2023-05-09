@@ -16,6 +16,14 @@ header {
   margin-left: auto;
   margin-right: 0;
 }
+.auth * {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.auth img {
+  width: 2rem;
+  border-radius: 50%;
+}
 
 .container div {
   display: flex;
