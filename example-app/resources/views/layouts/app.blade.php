@@ -11,8 +11,13 @@
     </head>
     <body >
 
-    @include("inc.header")
-    @yield('content')
+
+      @include("inc.header")
+
+      <div class="myContainer">
+        @yield('content')
+      </div>
+   
 
    
     <script src="{{ asset('js/app.js') }}" defer></script>
