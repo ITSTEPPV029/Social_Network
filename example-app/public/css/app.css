@@ -84,6 +84,81 @@ form input[type=submit] {
   margin-right: 0.5rem !important;
 }
 
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: #e7e6e6;
+}
+.form-container label {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.form-container input[type=text],
+.form-container input[type=email],
+.form-container input[type=password] {
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid #afacac;
+  margin-bottom: 10px;
+  background-color: #e7e6e6;
+  text-align: center;
+}
+.form-container button[type=submit] {
+  background-color: #515251;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.form-container button[type=submit]:hover {
+  background-color: #a0a3a0;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
+}
+
+label.conditions {
+  font-size: 12px;
+  font-family: Geomanist, sans-serif;
+  text-align: center;
+}
+
 .post {
   display: flex;
   flex-direction: column;
