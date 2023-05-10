@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class MapController extends Controller
 {
@@ -15,23 +16,19 @@ class MapController extends Controller
 
     public function store(Request $request)     
     {
-       //$request->input('text');
-        // Отримуємо координати точки центру та радіус
-        $centerLat = 50;
-        $centerLng = 25;
-        $radius = 5; // Радіус в метрах
+       User::where('id', Auth::user()->id)->update([
+        'latitude' => $request->input('latitude'),
+        'longitude' => $request->input('longitude'),]);
 
-        // Виконуємо запит до бази даних на вибір користувачів в заданому радіусі
-        $users = DB::table('users')
-    ->select('*')
-    ->selectRaw('( 6371000 * acos( cos( radians(?) ) *
-                cos( radians( latitude ) )
-                * cos( radians( longitude ) - radians(?)
-                ) + sin( radians(?) ) *
-                sin( radians( latitude ) ) )
-                ) AS distance', [$centerLat, $centerLng, $centerLat])
-    ->whereRaw('ST_Distance_Sphere(point(longitude, latitude), point(?, ?)) <= ?', [$centerLng, $centerLat, $radius])
-    ->get();
+         $centerLat = 50.742864;
+         $centerLng = 25.331121;
+         $radius = 150000;
+
+            $users = DB::table('users')
+            ->select('*')
+            ->selectRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) AS distance', [$centerLat, $centerLat, $centerLng])
+            ->whereRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) <= ?', [$centerLat, $centerLat, $centerLng, $radius])
+            ->get();
 
 
         return $users;//response()->json($chat->load('user'));

@@ -49,17 +49,27 @@
       });
       
       console.log(`Клік на карті з координатами: ${latlng.lat}, ${latlng.lng}`);
-
-      axios.post('/api/map/store',{ lat: latlng.lat , lng: latlng.lng }).then(data => {
+      
+      axios.post('/api/map/store',{ latitude: latlng.lat , longitude: latlng.lng }).then(data => {
         console.log(data.data);
+        const users = data.data;
+            users.forEach(user => {
+            const marker = L.marker([user.latitude, user.longitude]).addTo(this.map)
+              .bindPopup( user.first_name+" "+ user.last_name).on('mousemove', () => {
+                marker.openPopup();
+              }).on('click', () => {this.MarkerClick(user);});
+          });
         },).catch(error => {
             console.log(error.response.data);
         });
-
-
     },
 
-    
+    MarkerClick(user){
+
+      console.log(user.id);
+    },
+
+
 
 
 
