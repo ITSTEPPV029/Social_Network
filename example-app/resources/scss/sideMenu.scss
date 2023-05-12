@@ -1,0 +1,29 @@
+
+$menu-background-color: #333;
+$menu-text-color: #fff;
+$menu-hover-color: #f60;
+
+.sideMenuContainer{
+
+  background-color: $menu-background-color;
+  position: absolute;
+  z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
+  width: 15%; /* задаємо ширину меню */
+  height: 92%; /* встановлюємо висоту на весь екран */
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      margin-right: 20px;
+      a {
+        color: $menu-text-color;
+        text-decoration: none;
+        &:hover {
+          color: $menu-hover-color;
+        }
+      }
+    }
+  }
+
+}
+

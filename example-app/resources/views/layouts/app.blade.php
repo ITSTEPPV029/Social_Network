@@ -7,18 +7,18 @@
         <title>Pet Life</title> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
           <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">           
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     </head>
     <body >
 
 
       @include("inc.header")
-
+      @include("inc.sideMenu")
       <div class="myContainer">
         @yield('content')
       </div>
-   
-
+    
    
     <script src="{{ asset('js/app.js') }}" defer></script>
     </body>

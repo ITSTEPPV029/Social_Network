@@ -2,10 +2,15 @@
 @use "header.scss";
 // div.error{
 
-//     height: 501px;
-//     width: 500px;
-//     background-color: rgb(255, 0, 0);
-// }
+
+@use "sideMenu.scss";
+
+div.error{
+
+    height: 501px;
+    width: 500px;
+    background-color: rgb(255, 0, 0);
+}
 
 .post {
   
