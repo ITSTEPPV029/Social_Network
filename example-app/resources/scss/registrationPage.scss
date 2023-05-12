@@ -2,19 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 100vh;
 
 form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px;
+    max-width: 370px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 15px;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     background-color: #e7e6e6;
   }
 

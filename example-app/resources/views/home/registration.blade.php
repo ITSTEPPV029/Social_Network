@@ -7,12 +7,12 @@
     <form action="{{ route('registration.postSigUp')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <label>
-            <h1><b>Створити акаунт</b></h1>
+            <h2><b>Створити акаунт</b></h2>
         </label>
         <div class="social-icons">
             <a href="https://www.facebook.com" class="facebook-icon"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-64.png" alt="Facebook"></a>
             <a href="https://appleid.apple.com/sign-in" class="apple-icon"><img src="https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-64.png" alt="Apple"></a>
-            <a href="#https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fwww.google.com.ua%2F%3Fhl%3Dru&ec=GAZAmgQ&hl=ru&passive=true&ifkv=Af_xneHp-DPJvUNvMPx9nVd7LARzhxxkJVrsjkgo6uU-Edf6OOPUHOE6xqXl-eM32eKqXwd83PD4kw&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="google-icon"><img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-64.png" alt="Google"></a>
+            <a href="https://accounts.google.com/AccountChooser/signinchooser?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser" class="google-icon"><img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-64.png" alt="Google"></a>
         </div>
         <label>
             <h2><b>Або</b></h2>
