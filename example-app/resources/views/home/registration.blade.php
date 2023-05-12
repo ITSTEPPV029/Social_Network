@@ -55,8 +55,10 @@
         <label class="conditions"> Під час входу чи реєстрації Ви погоджуєтеся з нашими Умови користування. </label>
 
         <button type="submit">Зареєструватись</button>
-
-
+        <label>
+            <h4><b>Або</b></h4>
+        </label>
+<a href="{{ route('login.getSigin') }}" class="button-link">Увійти</a>
 
 
     </form>

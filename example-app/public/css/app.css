@@ -1,3 +1,4 @@
+@charset "UTF-8";
 div.error {
   height: 501px;
   width: 500px;
@@ -130,6 +131,27 @@ form input[type=submit] {
   font-size: 16px;
 }
 .form-container button[type=submit]:hover {
+  background-color: #a0a3a0;
+}
+.form-container a {
+  text-decoration: none;
+  color: white;
+}
+.form-container a:visited {
+  color: white;
+}
+.form-container .button-link {
+  background-color: #515251;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+.form-container .button-link:hover {
+  /* Додайте стилі для наведення курсору на кнопку тут */
   background-color: #a0a3a0;
 }
 
