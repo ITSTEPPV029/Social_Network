@@ -58,3 +58,4 @@ Route::get('sendingMessage{user}/','MessageController@sendingMessage')->middlewa
 Route::get('/admin', 'AdminController@index');
 
 Route::get('/map', 'MapController@mapView')->middleware('auth')->name('map');
+Route::get('/settings', 'SettingsController@settingsView')->middleware('auth')->name('settings');

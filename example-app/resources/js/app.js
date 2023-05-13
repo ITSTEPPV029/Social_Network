@@ -12,7 +12,7 @@ import Map from './components/MyMap'
 import Message from './components/Message'
 import Post from './components/Post'
 import Chat from './components/Chat'
-
+import Settings from './components/Settings'
 
 const app = createApp({})
 
@@ -20,11 +20,13 @@ app.component('Mymap', Map)
 app.component('Message', Message)
 app.component('Post', Post)
 app.component('Chat', Chat)
+app.component('Settings', Settings)
 
 app.mount('#appMyMap')
 app.mount('#appPost')
 app.mount('#appChat')
 app.mount('#appMessage')
+app.mount('#appSettings')
 
 //===============
 
