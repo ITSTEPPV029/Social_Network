@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  //height: 100vh;
   margin-top: 40px;
 form {
     display: flex;
@@ -49,10 +48,9 @@ form {
   }
 
   button[type="submit"]:hover {
-    background-color: #a0a3a0;
-  }
-
-       a {
+    background-color: #a0a3a0; 
+       
+ a {
       text-decoration: none;
       color: white;
     }
@@ -60,6 +58,10 @@ form {
     a:visited {
       color: white;
     }
+ 
+  }
+    
+   
 
 
 .button-link {
@@ -83,8 +85,8 @@ background-color: #a0a3a0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .social-icons img {
@@ -103,4 +105,15 @@ label.conditions {
   font-size: 12px;
   font-family: Geomanist, sans-serif;
   text-align: center;
+}
+
+ a {
+        text-decoration: none;
+        color: #0a0a0a;
+}
+
+.containerA {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
 }
