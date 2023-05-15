@@ -45,9 +45,9 @@
             <strong>{{ $message }}</strong>
         </span>
         @enderror
-
-        <input class="form-control @error('confirm_password') is-invalid @enderror" type="password" id="confirm_password" name="confirm_password" placeholder="Підтвердження паролю" required>
-        @error('confirm_password')
+        
+        <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" id="password_confirmation" name="password_confirmation" placeholder="Підтвердження паролю" required>
+        @error('password_confirmation')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>

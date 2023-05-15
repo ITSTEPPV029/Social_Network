@@ -32,18 +32,18 @@ class AuthController extends Controller
             'last_name' => 'required|string',
             //'nick_name' => 'required|string|unique:users|max:30|alpha_dash',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|confirmed|string|min:6',
         ]);
 
 
-        // Отримати введені паролі
-        $password = $request->input('password');
-        $confirm_password = $request->input('confirm_password');
+        // // Отримати введені паролі
+        // $password = $request->input('password');
+        // $confirm_password = $request->input('confirm_password');
 
-        // Перевірити співпадіння паролів
-        if ($password !== $confirm_password) {
-            return redirect()->back()->withErrors(['confirm_password' => 'The password confirmation does not match.']);
-        }
+        // // Перевірити співпадіння паролів
+        // if ($password !== $confirm_password) {
+        //     return redirect()->back()->withErrors(['confirm_password' => 'The password confirmation does not match.']);
+        // }
 
 
 
