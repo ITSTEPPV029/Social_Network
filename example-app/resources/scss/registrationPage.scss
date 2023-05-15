@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-
+  //height: 100vh;
+  margin-top: 40px;
 form {
     display: flex;
     flex-direction: column;
@@ -74,7 +74,6 @@ background-color: #515251;
 }
 
 .button-link:hover {
-  /* Додайте стилі для наведення курсору на кнопку тут */
 background-color: #a0a3a0;
 }
 
