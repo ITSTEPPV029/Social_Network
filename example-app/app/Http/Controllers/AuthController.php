@@ -30,10 +30,22 @@ class AuthController extends Controller
         $data = $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'nick_name' => 'required|string|unique:users|max:30|alpha_dash',
+            //'nick_name' => 'required|string|unique:users|max:30|alpha_dash',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|string|min:6',
         ]);
+
+
+        // // Отримати введені паролі
+        // $password = $request->input('password');
+        // $confirm_password = $request->input('confirm_password');
+
+        // // Перевірити співпадіння паролів
+        // if ($password !== $confirm_password) {
+        //     return redirect()->back()->withErrors(['confirm_password' => 'The password confirmation does not match.']);
+        // }
+
+
 
         $data['password'] = bcrypt($data['password']);
         User::create($data);
