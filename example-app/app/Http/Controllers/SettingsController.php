@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class SettingsController extends Controller
 {
@@ -14,44 +15,59 @@ class SettingsController extends Controller
     }
     public function  update(Request $request)     
     {    
-        $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'nick_name' => 'required|string|unique:users|max:30|alpha_dash',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|string|min:6',
+        $validatedData = $request->validate([
+            'first_name' => 'string',
+            'last_name' => 'string',
+         'nick_name' => ['string','max:30','alpha_dash',
+         Rule::unique('users')->ignore(Auth::user()->id),],
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore(Auth::user()->id),
+            ],
         ]);
 
-        $user = $request->input('user');
         $userModel = User::find(Auth::user()->id);
-        $userModel->update($user); 
+        $userModel->update($validatedData);
 
-
-        try {
-            $userModel->update($user); 
-        } catch (\Illuminate\Database\QueryException $exception) {
-            $errorCode = $exception->errorInfo[1];
-            if($errorCode == 1062){
-                $errors = array(
-                    'nick_name' => array('This nick name has already been taken.'),
-                    'email' => array('This email has already been taken.'),
-                );
-                return response()->json(['errors' => $errors], 422);
-            }
-        }
-
-
-
-
-
-
-
-
+        
+        // try {
+        //     $userModel->update($user); 
+        // } catch (\Illuminate\Database\QueryException $exception) {
+        //     $errorCode = $exception->errorInfo[1];
+        //     if($errorCode == 1062){
+        //         $errors = array(
+        //             'nick_name' => array('This nick name has already been taken.'),
+        //             'email' => array('This email has already been taken.'),
+        //         );
+        //         return response()->json(['errors' => $errors], 422);
+        //     }
+        // }
         $userModel = User::find(Auth::user()->id);
 
         return $userModel;
     }
-   
+    public function uploadAvatar(Request $request)   
+    {
+
+     $user = \App\Models\User::find(Auth::user()->id); 
+
+      if ($user->avatar!="/storage/uploads/anonym.png")
+        unlink(public_path($user->avatar));
+
+   // if($user->avatar!="/public/storage/uploads/anonym.png")       //для хоста
+   //  unlink(public_path(str_replace('/public', '', $user->avatar))); 
+
+      $photoMainName = $request->file('avatar')->store('uploads','public');
+      $user->avatar="/storage/".$photoMainName;
+      // $user->avatar="public/storage/".$photoMainName;     //public для хоста
+      $user->save();
+
+
+        return $user->avatar;
+    }  
+    
 
 
 }
