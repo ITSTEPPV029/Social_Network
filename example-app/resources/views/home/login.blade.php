@@ -83,15 +83,12 @@
         <label>
             <h2><b>Вхід</b></h2>
         </label>
+                
                 @if($errors->has('email'))
-                <strong>{{ $errors->first('email') }}</strong>
+                <strong class="error-message">{{ $errors->first('email') }}</strong>
                 @endif
+
         <input class="form-control @error('email') is-invalid @enderror" id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Електронна пошта" autocomplete="email" required>
-        @error('email')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror  
 
         <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" placeholder="Пароль" autocomplete="password" required>
         @error('password')
