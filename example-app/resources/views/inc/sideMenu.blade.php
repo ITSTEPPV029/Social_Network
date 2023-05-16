@@ -12,6 +12,6 @@
         <li><a href="{{ route('index') }}">Вихід</a></li>
         
       </ul>
-      <div> </div>
+      <div></div>
     </nav>
     
