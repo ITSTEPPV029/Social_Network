@@ -13,8 +13,9 @@
     <body >
 
     @include("inc.header")
+    @include("inc.sideMenu")
     @yield('content')
-
+    
    
     <script src="{{ asset('js/app.js') }}" defer></script>
     </body>

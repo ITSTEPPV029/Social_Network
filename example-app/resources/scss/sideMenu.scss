@@ -1,0 +1,78 @@
+$menu-background-color: #333;
+$menu-text-color: #fff;
+$menu-hover-color: #f60;
+$header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колір header
+$side-bar-background-color: red;
+
+.sideMenu-container {
+  margin-top: -5rem;
+  background-color: $header-background-color;
+  position: fixed; //"Приліпання" до екрану
+  z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
+  width: 15%; /* задаємо ширину меню */
+  height: 120%; /* встановлюємо висоту на весь екран */
+  ul {
+    margin-top: 4rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: $header-background-color;
+    li {
+      background-color: $menu-background-color;
+      margin-top: 1rem;
+      margin-right: 20px;
+      width: 97.5%;
+      a {
+        position: relative;
+        z-index: 5;
+        color: $menu-text-color;
+        text-decoration: none;
+        &:hover {
+          color: $menu-hover-color;
+        }
+      }
+      a:before {
+        background: darkgray;
+        position: absolute;
+        //Задаємо позицію абсолютну щоб круг не залежав від позиції li
+        z-index: 4;
+        margin-left: -1.1rem;
+        border-radius: 50%;
+        margin-top: 0.25rem;
+        height: 1rem;
+        width: 1rem;
+        color: white;
+        text-align: right;
+        content: " "; //Без цього не появляється
+        display: inline-block; //По замовчуванню none
+      }
+    }
+    li:before {
+      background-position: center;
+      background: $menu-background-color;
+      //Задаємо позицію абсолютну щоб круг не залежав від позиції li
+      position: absolute;
+      z-index: 3;
+      margin-left: -1.3rem;
+      border-radius: 35%;
+      
+      height: 1.52rem;
+      width: 2.5rem;
+      margin-bottom: -1rem;
+      font-size: 150%;
+      color: white;
+      text-align: right;
+      content: " "; //Без цього не появляється
+      display: inline-block; //По замовчуванню none
+    }
+  }
+  //бокова лінія
+  div{
+    height: 125%;
+    width: 0.3rem;
+    background: $side-bar-background-color;
+    float:right;
+    margin-top: -300%;
+  }
+}
