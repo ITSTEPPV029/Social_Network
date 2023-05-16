@@ -4,25 +4,30 @@ $menu-hover-color: #f60;
 $header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колір header
 $side-bar-background-color: red;  //Колір лінії з боку ul
 
+$sideMenu-width: 15%;
+$margin-ul-left: 1rem;
+$margin-li-top: 1.5rem;
+
 .sideMenu-container {
   margin-top: -5rem;
   background-color: $header-background-color;
   position: fixed; //"Приліпання" до екрану
   z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
-  width: 15%; /* задаємо ширину меню */
+  width: calc($sideMenu-width + $margin-ul-left); /* задаємо ширину меню */
   height: 120%; /* встановлюємо висоту на весь екран */
   ul {
-    margin-top: 4rem;
+    margin-top: calc(7rem - $margin-li-top); //Відстань від header
     list-style: none;
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 120%;
     background-color: $header-background-color;
     li {
+      margin-left: $margin-ul-left;
       background-color: $menu-background-color;
-      margin-top: 1rem;
-      margin-right: 20px;
-      width: 97.5%;
+      margin-top: $margin-li-top; //Відступи між li
+      width: calc(97.5% - $margin-ul-left);
       a {
         position: relative;
         z-index: 5;
@@ -42,12 +47,11 @@ $side-bar-background-color: red;  //Колір лінії з боку ul
         margin-top: 0.25rem;
         height: 1rem;
         width: 1rem;
-        color: white;
-        text-align: right;
         content: " "; //Без цього не появляється
         display: inline-block; //По замовчуванню none
       }
     }
+    //Задній фон для круга
     li:before {
       background-position: center;
       background: $menu-background-color;
@@ -57,11 +61,10 @@ $side-bar-background-color: red;  //Колір лінії з боку ul
       margin-left: -1.3rem;
       border-radius: 35%;
       
-      height: 1.52rem;
+      height: 1.5rem;
       width: 2.5rem;
       margin-bottom: -1rem;
       font-size: 150%;
-      color: white;
       text-align: right;
       content: " "; //Без цього не появляється
       display: inline-block; //По замовчуванню none
@@ -73,7 +76,7 @@ $side-bar-background-color: red;  //Колір лінії з боку ul
     position: fixed;
     //Позиція знаходилась в позиції зверху після ul
     top: 0%;
-    left: 14.6%;
+    left: calc(14.6% + $margin-ul-left);
     //Лінія займала весь екран
     height: 305%;
     width: 0.3rem;
