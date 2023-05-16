@@ -85,7 +85,7 @@
         </label>
                 
                 @if($errors->has('email'))
-                <strong class="error-message">{{ $errors->first('email') }}</strong>
+                <strong class="login-error-message">{{ $errors->first('email') }}</strong>
                 @endif
 
         <input class="form-control @error('email') is-invalid @enderror" id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Електронна пошта" autocomplete="email" required>
@@ -96,7 +96,13 @@
             <strong>{{ $message }}</strong>
         </span>
         @enderror
-        <div class="containerA">        
+                 
+        <div class="login-remember">
+        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+        <label class="form-check-label" for="remember">Запам'ятати мене</label>
+        </div>  
+                             
+        <div class="login-forgot">        
         <a class="no-underline" href="{{ route('forgot.password') }}"><b>Забули пароль?</b></a>
         </div>
         <button type="submit">Увійти</button>

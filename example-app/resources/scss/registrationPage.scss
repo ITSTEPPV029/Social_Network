@@ -27,7 +27,8 @@ form {
 
   input[type="text"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"]
+   {
     padding: 5px;
     border-radius: 5px;
     border: 2px solid #afacac;
@@ -36,6 +37,14 @@ form {
     text-align: center;
 
   }
+    input[type="checkbox"]
+    {
+        padding: 5px;
+          border-radius: 5px;
+          border: 2px solid #afacac;
+          margin-bottom: 10px;
+          text-align: center;
+    }
 
   button[type="submit"] {
     background-color: #515251;
@@ -61,11 +70,8 @@ form {
  
   }
     
-   
-
-
-.button-link {
-background-color: #515251;
+  .button-link {
+  background-color: #515251;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -112,12 +118,20 @@ label.conditions {
         color: #0a0a0a;
 }
 
-.containerA {
+.login-forgot {
   display: flex;
   justify-content: center;
   margin-bottom: 5px;
 }
 
-.error-message {
+.login-error-message {
   color: red;
+}
+
+.login-remember {
+  display: flex;
+}
+
+input.form-check-input {
+  margin-right: 10px;
 }
