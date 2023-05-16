@@ -6,7 +6,7 @@ header {
     z-index: 5;
 }
 .logo{
-    margin-left: 3.5rem;
+    margin-left: -6.5rem;
     // margin-right: 0;
     img{
         border-radius: 50%;
@@ -55,6 +55,7 @@ header {
 form {
     margin-bottom: 0;
     margin-right: 0;
+    margin-left: 9rem;
     flex: 0 0 auto;
     width: auto;
     input[type="search"] {
