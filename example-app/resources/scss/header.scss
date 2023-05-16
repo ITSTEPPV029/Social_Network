@@ -2,10 +2,12 @@ header {
     background-color: rgba(33, 37, 41, var(--bs-bg-opacity, 1)) !important;
     padding: 1.1rem !important;
     color: #fff !important;
+    //Для того щоб header був головний
     position: relative;
     z-index: 5;
 }
 .logo{
+    //Щоб лого було на рівні бокової панелі
     margin-left: -6.5rem;
     // margin-right: 0;
     img{
@@ -55,6 +57,7 @@ header {
 form {
     margin-bottom: 0;
     margin-right: 0;
+    //Для відстані від кінця бокової панелі
     margin-left: 9rem;
     flex: 0 0 auto;
     width: auto;
