@@ -2,14 +2,15 @@ $menu-background-color: #333;
 $menu-text-color: #fff;
 $menu-hover-color: #f60;
 $header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колір header
+$side-bar-background-color: red;
 
-.sideMenuContainer {
+.sideMenu-container {
   margin-top: -5rem;
   background-color: $header-background-color;
   position: fixed; //"Приліпання" до екрану
   z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
   width: 15%; /* задаємо ширину меню */
-  height: 100%; /* встановлюємо висоту на весь екран */
+  height: 120%; /* встановлюємо висоту на весь екран */
   ul {
     margin-top: 4rem;
     list-style: none;
@@ -21,7 +22,7 @@ $header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колі
       background-color: $menu-background-color;
       margin-top: 1rem;
       margin-right: 20px;
-      width: 90%;
+      width: 97.5%;
       a {
         position: relative;
         z-index: 5;
@@ -65,5 +66,13 @@ $header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колі
       content: " "; //Без цього не появляється
       display: inline-block; //По замовчуванню none
     }
+  }
+  //бокова лінія
+  div{
+    height: 125%;
+    width: 0.3rem;
+    background: $side-bar-background-color;
+    float:right;
+    margin-top: -300%;
   }
 }

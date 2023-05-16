@@ -1,6 +1,6 @@
 @section("sideMenu")
 
-    <nav class="sideMenuContainer">
+    <nav class="sideMenu-container">
       <ul>
         <li><a href="{{ route('index') }}">Головна сторінка</a></li>
         <li><a href="{{ route('index') }}">Моя сторінка</a></li>
@@ -10,6 +10,8 @@
         <li><a href="#">Збережені дописи</a></li>
         <li><a href="#">Налаштування</a></li>
         <li><a href="{{ route('index') }}">Вихід</a></li>
+        
       </ul>
+      <div> </div>
     </nav>
     
