@@ -35,18 +35,6 @@ class AuthController extends Controller
             'password' => 'required|confirmed|string|min:6',
         ]);
 
-
-        // // Отримати введені паролі
-        // $password = $request->input('password');
-        // $confirm_password = $request->input('confirm_password');
-
-        // // Перевірити співпадіння паролів
-        // if ($password !== $confirm_password) {
-        //     return redirect()->back()->withErrors(['confirm_password' => 'The password confirmation does not match.']);
-        // }
-
-
-
         $data['password'] = bcrypt($data['password']);
         User::create($data);
 
@@ -79,7 +67,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email|max:255',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string',
            ]);
      
            if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
@@ -104,4 +92,17 @@ class AuthController extends Controller
         Auth::logout();
         return view('home/home');
     }
+
+    /**
+     *  выдновлення паролю
+     *
+     * @param 
+     * @return 
+     */
+    public function forgotPassword()
+    {
+        return view('home/forgot');
+    }
+
+
 }

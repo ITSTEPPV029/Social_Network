@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  //height: 100vh;
   margin-top: 40px;
 form {
     display: flex;
@@ -28,7 +27,8 @@ form {
 
   input[type="text"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"]
+   {
     padding: 5px;
     border-radius: 5px;
     border: 2px solid #afacac;
@@ -37,6 +37,14 @@ form {
     text-align: center;
 
   }
+    input[type="checkbox"]
+    {
+        padding: 5px;
+          border-radius: 5px;
+          border: 2px solid #afacac;
+          margin-bottom: 10px;
+          text-align: center;
+    }
 
   button[type="submit"] {
     background-color: #515251;
@@ -49,10 +57,9 @@ form {
   }
 
   button[type="submit"]:hover {
-    background-color: #a0a3a0;
-  }
-
-       a {
+    background-color: #a0a3a0; 
+       
+ a {
       text-decoration: none;
       color: white;
     }
@@ -60,10 +67,11 @@ form {
     a:visited {
       color: white;
     }
-
-
-.button-link {
-background-color: #515251;
+ 
+  }
+    
+  .button-link {
+  background-color: #515251;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -83,8 +91,8 @@ background-color: #a0a3a0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .social-icons img {
@@ -103,4 +111,27 @@ label.conditions {
   font-size: 12px;
   font-family: Geomanist, sans-serif;
   text-align: center;
+}
+
+ a {
+        text-decoration: none;
+        color: #0a0a0a;
+}
+
+.login-forgot {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.login-error-message {
+  color: red;
+}
+
+.login-remember {
+  display: flex;
+}
+
+input.form-check-input {
+  margin-right: 10px;
 }
