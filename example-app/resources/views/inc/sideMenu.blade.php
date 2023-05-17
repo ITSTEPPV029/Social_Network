@@ -1,5 +1,6 @@
 @section("sideMenu")
 
+@if (Auth::check())
     <nav class="sideMenu-container">
       <ul>
         <li><a href="\">Головна сторінка</a></li>
@@ -15,4 +16,4 @@
       </ul>
       <div></div>
     </nav>
-    
+@endif
