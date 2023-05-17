@@ -4,9 +4,9 @@ $menu-hover-color: #f60;
 $header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колір header
 $side-bar-background-color: red;  //Колір лінії з боку ul
 
-$sideMenu-width: 15%;
+$sideMenu-width: 15%; 
 $margin-ul-left: 1rem;
-$margin-li-top: 1.5rem;
+$margin-li-top: 1.5rem; //Відстань між li
 
 .sideMenu-container {
   margin-top: -5rem;
@@ -27,7 +27,7 @@ $margin-li-top: 1.5rem;
       margin-left: $margin-ul-left;
       background-color: $menu-background-color;
       margin-top: $margin-li-top; //Відступи між li
-      width: calc(97.5% - $margin-ul-left);
+      width: calc(102% - $margin-ul-left);
       a {
         position: relative;
         z-index: 5;
@@ -42,7 +42,7 @@ $margin-li-top: 1.5rem;
         position: absolute;
         //Задаємо позицію абсолютну щоб круг не залежав від позиції li
         z-index: 4;
-        margin-left: -1.1rem;
+        margin-left: -1.4rem;
         border-radius: 50%;
         margin-top: 0.25rem;
         height: 1rem;
@@ -58,9 +58,8 @@ $margin-li-top: 1.5rem;
       //Задаємо позицію абсолютну щоб круг не залежав від позиції li
       position: absolute;
       z-index: 3;
-      margin-left: -1.3rem;
+      margin-left: -1.6rem;
       border-radius: 35%;
-      
       height: 1.5rem;
       width: 2.5rem;
       margin-bottom: -1rem;
@@ -74,9 +73,9 @@ $margin-li-top: 1.5rem;
   div{
     //Лінія знаходилась в екрані
     position: fixed;
-    //Позиція знаходилась в позиції зверху після ul
+    //Позиція знаходилась в позиції зверху перед ul
     top: 0%;
-    left: calc(14.6% + $margin-ul-left);
+    left: calc(15% + $margin-ul-left); 
     //Лінія займала весь екран
     height: 305%;
     width: 0.3rem;
