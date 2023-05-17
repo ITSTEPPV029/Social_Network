@@ -26,9 +26,9 @@ use Illuminate\Support\Facades\Auth;
       <div class="auth">
         @if(Auth::check())
         <a class="nav-link" href="#"><img src="https://cdn-icons-png.flaticon.com/512/3239/3239958.png" /></a> <!--Сповіщення-->
-        <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link">мій профіль</a>
+        {{-- <a href="{{route('profile.show',['user' => Auth::user()])}}" class="nav-link">мій профіль</a> --}}
         <b class="nav-link" style="vertical-align: inherit;"> {{ Auth::user()->last_name }}</b>
-        <a class="nav-link" href="#"><img src="<?=Auth::user()->avatar?>" /></a><!--Аватар-->
+        <a class="nav-link" href="{{route('profile.show',['user' => Auth::user()])}}"><img src="<?=Auth::user()->avatar?>" /></a><!--Аватар-->
         <button type="button"><a href="{{ route('logout.getSigout') }}" class="nav-link">Вийти</a></button>
         @else
         <div>

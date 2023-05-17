@@ -1,5 +1,5 @@
 <template>
-  <div class="myContainer">
+  <div class="myMapContainer">
     <div class="myMap" id="map"></div>
   </div>
     
@@ -79,7 +79,7 @@
   </script>
   
   <style>
-  .myContainer{
+  .myMapContainer{
     margin: auto;
     width: 40%;
   }
