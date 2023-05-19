@@ -13,20 +13,137 @@ class MessageController extends Controller
 {
     public function messageShow()     
     {    
-        $user_id =  Auth::user()->id; 
+        $user_id = Auth::user()->id; 
 
+        // $user = DB::table('users')
+        // ->distinct()
+        // ->select('users.*')
+        // ->join('messages', function($join) use ($user_id) {
+        //     $join->on('users.id', '=', 'messages.sender_user_id')
+        //         ->orWhere('users.id', '=', 'messages.recipient_user_id')
+        //         ->where(function($query) use ($user_id) {
+        //             $query->where('messages.sender_user_id', '=', $user_id)
+        //                 ->orWhere('messages.recipient_user_id', '=', $user_id);
+        //         });
+        // })->first(); // ->get();
+
+     
+            // $user = DB::table('messages')
+            // ->select('users.*')
+            // ->join('users', function ($join) use ($user_id) {
+            //     $join->on('users.id', '=', 'messages.sender_user_id')
+            //         ->orWhere('users.id', '=', 'messages.recipient_user_id');
+            // })
+            // ->where(function ($query) use ($user_id) {
+            //     $query->where('messages.recipient_user_id', '=', $user_id)
+            //         ->where('users.id', '=', DB::raw('messages.sender_user_id'));
+            // })
+            // ->orWhere(function ($query) use ($user_id) {
+            //     $query->where('messages.sender_user_id', '=', $user_id)
+            //         ->where('users.id', '=', DB::raw('messages.recipient_user_id'));
+            // })
+            // ->first();
+
+            // $user = DB::table('messages')
+            // ->select('users.*')
+            // ->join('users', function ($join) use ($user_id) {
+            //     $join->on('users.id', '=', 'messages.sender_user_id')
+            //         ->orWhere('users.id', '=', 'messages.recipient_user_id');
+            // })
+            // ->where(function ($query) use ($user_id) {
+            //     $query->where('messages.recipient_user_id', '=', $user_id)
+            //         ->whereRaw('users.id = messages.sender_user_id');
+            // })
+            // ->where(function ($query) use ($user_id) {
+            //     $query->where('messages.sender_user_id', '=', $user_id)
+            //         ->whereRaw('users.id = messages.recipient_user_id');
+            // })
+            // ->first();
+        
+
+            // $user_id = Auth::user()->id;
+
+            // $user = DB::table('messages')
+            //     ->select('users.*')
+            //     ->join('users', function ($join) use ($user_id) {
+            //         $join->on('users.id', '=', 'messages.sender_user_id')
+            //             ->orWhere('users.id', '=', 'messages.recipient_user_id');
+            //     })
+            //     ->where(function ($query) use ($user_id) {
+            //         $query->where('messages.recipient_user_id', '=', $user_id)
+            //             ->whereRaw('users.id = messages.sender_user_id');
+            //     })
+            //     ->orWhere(function ($query) use ($user_id) {
+            //         $query->where('messages.sender_user_id', '=', $user_id)
+            //             ->whereRaw('users.id = messages.recipient_user_id');
+            //     })
+            //     ->limit(1)
+            //     ->first();
+            
+           
+
+            // $user = DB::table('messages') тохи працює 
+            //     ->select('users.*')
+            //     ->join('users', function ($join) use ($user_id) {
+            //         $join->on('users.id', '=', 'messages.recipient_user_id')
+            //             ->orWhere('users.id', '=', 'messages.sender_user_id');
+            //     })
+            //     ->where(function ($query) use ($user_id) {
+            //         $query->where('messages.recipient_user_id', '=', $user_id)
+            //             ->whereRaw('users.id = messages.sender_user_id');
+            //     })
+            //     ->orWhere(function ($query) use ($user_id) {
+            //         $query->where('messages.sender_user_id', '=', $user_id)
+            //             ->whereRaw('users.id = messages.recipient_user_id');
+            //     })
+            //     ->orWhere(function ($query) use ($user_id) {
+            //         $query->where('messages.recipient_user_id', '=', $user_id)
+            //             ->where('users.id', '=', $user_id);
+            //     })
+            //     ->orderBy('id', 'DESC')->first();
+                
+            $user = DB::table('messages')
+            ->select('users.*')
+            ->join('users', function ($join) use ($user_id) {
+                $join->on('users.id', '=', 'messages.recipient_user_id')
+                    ->orWhere('users.id', '=', 'messages.sender_user_id');
+            })
+            ->where(function ($query) use ($user_id) {
+                $query->where('messages.recipient_user_id', '=', $user_id)
+                    ->whereRaw('users.id = messages.sender_user_id');
+            })
+            ->orWhere(function ($query) use ($user_id) {
+                $query->where('messages.sender_user_id', '=', $user_id)
+                    ->whereRaw('users.id = messages.recipient_user_id');
+            })
+            ->orderBy('messages.id', 'DESC')
+            ->first();
+
+   //dd($user);
+
+    if($user==null)
+    {
         $user = DB::table('users')
         ->distinct()
         ->select('users.*')
-        ->join('messages', function($join) use ($user_id) {
+        ->join('messages', function ($join) use ($user_id) {
             $join->on('users.id', '=', 'messages.sender_user_id')
-                ->orWhere('users.id', '=', 'messages.recipient_user_id')
-                ->where(function($query) use ($user_id) {
-                    $query->where('messages.sender_user_id', '=', $user_id)
-                        ->orWhere('messages.recipient_user_id', '=', $user_id);
-                });
-        })->first(); // ->get();
-      
+                ->orWhere('users.id', '=', 'messages.recipient_user_id');
+        })
+        ->where(function ($query) use ($user_id) {
+            $query->where(function ($query) use ($user_id) {
+                $query->where('messages.sender_user_id', $user_id)
+                    ->where('messages.recipient_user_id', '!=', $user_id);
+            })
+            ->orWhere(function ($query) use ($user_id) {
+                $query->where('messages.recipient_user_id', $user_id)
+                    ->where('messages.sender_user_id', '!=', $user_id);
+            });
+        })
+        ->first();
+
+    }
+     
         return view('home/message',compact('user'));
     }
 
@@ -34,7 +151,7 @@ class MessageController extends Controller
     {          
         return view('home/message',compact('user'));
     }
-
+//отримує повідомлення з ким зараз чат  
     public function index(Request $request)     
     {     
         $user =User::find($request->input('id'));
@@ -71,24 +188,128 @@ class MessageController extends Controller
 
     public function getChats()     
     {       
-        $user_id =  Auth::user()->id; 
+      $user_id =  Auth::user()->id; 
 
-        $user = DB::table('users')
+        // $user = DB::table('users')
+        // ->distinct()
+        // ->select('users.*')
+        // ->join('messages', function($join) use ($user_id) {
+        //     $join->on('users.id', '=', 'messages.sender_user_id')
+        //         ->orWhere('users.id', '=', 'messages.recipient_user_id')
+        //         ->where(function($query) use ($user_id) {
+        //             $query->where('messages.sender_user_id', '=', $user_id)
+        //                 ->orWhere('messages.recipient_user_id', '=', $user_id);
+        //         });
+        // })->get();
+    
+        // $user = DB::table('users')===========
+        // ->distinct()
+        // ->select('users.*')
+        // ->where(function ($query) use ($user_id) {
+        //     $query->where('sender_user_id', $user_id)
+        //         ->orWhere('recipient_user_id', $user_id);
+        // })
+        // ->join('messages', function ($join) use ($user_id) {
+        //     $join->on('users.id', '=', 'messages.recipient_user_id')
+        //         ->where('messages.sender_user_id', $user_id)
+        //         ->orWhere(function ($query) use ($user_id) {
+        //             $query->where('users.id', '=', 'messages.sender_user_id')
+        //                 ->where('messages.recipient_user_id', $user_id);
+        //         });
+        // })
+        // ->get();
+
+   
+        // $user = DB::table('users')======================
+        // ->distinct()
+        // ->select('users.*')
+        // ->join('messages', function ($join) use ($user_id) {
+        //     $join->on('users.id', '=', 'messages.sender_user_id')
+        //         ->orWhere('users.id', '=', 'messages.recipient_user_id');
+        // })
+        // ->where(function ($query) use ($user_id) {
+        //     $query->where(function ($query) use ($user_id) {
+        //         $query->where('messages.sender_user_id', $user_id)
+        //             ->where('messages.recipient_user_id', '!=', $user_id);
+        //     })
+        //     ->orWhere(function ($query) use ($user_id) {
+        //         $query->where('messages.recipient_user_id', $user_id)
+        //             ->where('messages.sender_user_id', '!=', $user_id);
+        //     });
+        // })
+        // ->get();
+
+  
+    
+       $user = DB::table('users')
         ->distinct()
         ->select('users.*')
-        ->join('messages', function($join) use ($user_id) {
-            $join->on('users.id', '=', 'messages.sender_user_id')
-                ->orWhere('users.id', '=', 'messages.recipient_user_id')
-                ->where(function($query) use ($user_id) {
-                    $query->where('messages.sender_user_id', '=', $user_id)
-                        ->orWhere('messages.recipient_user_id', '=', $user_id);
+        ->where(function ($query) use ($user_id) {
+            $query->where('sender_user_id', $user_id)
+                ->orWhere('recipient_user_id', $user_id);
+        })
+        ->join('messages', function ($join) use ($user_id) {
+            $join->on('users.id', '=', 'messages.recipient_user_id')
+                ->where('messages.sender_user_id', $user_id)
+                ->orWhere(function ($query) use ($user_id) {
+                    $query->where('users.id', '=', 'messages.sender_user_id')
+                        ->where('messages.recipient_user_id', $user_id);
                 });
-        })->get();
+        })
+        ->get();
 
-        
-        $user = $user->reject(function ($user) use ( $user_id) {
-            return $user->id ==  $user_id;
-        });
+    
+        // $additionalUsers = DB::table('users')
+        // ->distinct()
+        // ->select('users.*')
+        // ->join('messages', function ($join) use ($user_id) {
+        //     $join->on('users.id', '=', 'messages.sender_user_id')
+        //         ->orWhere('users.id', '=', 'messages.recipient_user_id');
+        // })
+        // ->where(function ($query) use ($user_id) {
+        //     $query->where(function ($query) use ($user_id) {
+        //         $query->where('messages.sender_user_id', $user_id)
+        //             ->where('messages.recipient_user_id', '!=', $user_id);
+        //     })
+        //     ->orWhere(function ($query) use ($user_id) {
+        //         $query->where('messages.recipient_user_id', $user_id)
+        //             ->where('messages.sender_user_id', '!=', $user_id);
+        //     });
+        // })
+        // ->get();
+    
+        $user_ids = $user->pluck('id')->toArray();
+
+        $additionalUsers = DB::table('users')
+            ->distinct()
+            ->select('users.*')
+            ->join('messages', function ($join) use ($user_id) {
+                $join->on('users.id', '=', 'messages.sender_user_id')
+                    ->orWhere('users.id', '=', 'messages.recipient_user_id');
+            })
+            ->where(function ($query) use ($user_id, $user_ids) {
+                $query->where(function ($query) use ($user_id, $user_ids) {
+                    $query->where('messages.sender_user_id', $user_id)
+                        ->where('messages.recipient_user_id', '!=', $user_id);
+                })
+                ->orWhere(function ($query) use ($user_id, $user_ids) {
+                    $query->where('messages.recipient_user_id', $user_id)
+                        ->where('messages.sender_user_id', '!=', $user_id);
+                })
+                ->whereNotIn('users.id', $user_ids);
+            })
+            ->get();
+
+
+
+
+
+     $user = $user->concat($additionalUsers);
+
+       // ->groupBy('users.id')
+        // $user = $user->reject(function ($user) use ( $user_id) {
+        //     return $user->id !=  $user_id;
+        // });
 
         return  $user;
     }

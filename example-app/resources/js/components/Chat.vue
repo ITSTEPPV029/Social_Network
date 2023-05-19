@@ -76,14 +76,14 @@ export default {
 </script>
 
 <style>
-.chat{
-    display: flex;
+  /* .chat{
+     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
+     align-items: center; 
     width: 1000px;
-    margin: auto;
-}
+    margin: auto; 
+} 
 
 .messages {
   flex: 1;
@@ -99,7 +99,7 @@ export default {
   display: flex;
   flex-direction: column;
   font-weight: bold;
-}
+} 
 
 .username {
   font-weight: bold;
@@ -123,6 +123,6 @@ export default {
 
 button {
     float: left;
-  }
-
+  } 
+*/
 </style>
