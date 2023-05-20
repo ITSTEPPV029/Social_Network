@@ -31,8 +31,8 @@
   <div class="message-chats-container">
     <div class="message-chats">
       <h3>Чати</h3>
-      <div class="message-chats-user" v-for="chat in chats">
-        <img class="message-chat-avatar" :src="`${chat.avatar}`" />
+      <div class="message-chats-user" v-for="chat in chats" @click="openChat(chat)">
+        <img class="message-chat-avatar" :src="`${chat.avatar}`"  />
         <b>{{ chat.first_name + ' ' + chat.last_name + ' ' + chat.id }}</b>
         <!-- <a :href="'/sendingMessage' + chat.id" class="nav-link px-2 text-black">чат</a> -->
       </div>
@@ -42,8 +42,8 @@
   <div class="message-chat-container">
     <div class="message-chat">
       <div class="message-chat-now">
-        <img class="message-chat-avatar" :src="`${user.avatar}`" />
-         <h3 v-if="user" >{{ user.first_name +' '+ user.last_name +'  '+ user.id}}</h3>
+        <img class="message-chat-avatar" :src="`${this.UserAvatar}`" />
+         <h3 v-if="user" >{{  this.UserFirstName +' '+ this.UserLastName }}</h3>
       </div>
       <div class="messages" v-scroll-bottom>
         <div  v-bind:class="{ 'messages-user': message.sender_user.id == user.id, 'messages-user-sender': message.sender_user.id != user.id }" v-for="message in messages">
@@ -53,7 +53,7 @@
         </div>
       </div>
           <div  class="message-input">
-            <input type="text" v-model="textInput" v-on:keyup.enter="store" placeholder="Напишіть щось..." />
+            <input type="text" v-model="textInput" v-on:keyup.enter="store" placeholder="Текст повідомлення..." />
             <button @click="store"></button>
           </div>
     </div>
@@ -77,6 +77,9 @@ export default {
         chats: '',
         isTrue: false,
         isFalse: false,
+        UserLastName: '',
+        UserFirstName: '',
+        UserAvatar: '',
         };
     },
 
@@ -101,7 +104,7 @@ export default {
       }
     },
     created() {//прослуховування отримака повідомлення 
-      console.log('store_message'+this.auth);
+      // console.log('store_message'+this.auth);
         window.Echo.channel('store_message'+this.auth).listen('.store_message', (data) => {
           // console.log(data.message.original);
          if(data.message.original['sender_user']['id'] == this.user.id){
@@ -110,14 +113,33 @@ export default {
       });
 
          axios.get('/api/message/getChats').then(data=>{  
-           console.log(data.data);
+          //  console.log(data.data);
            this. chats=data.data ;
           });
-        
-
+          this.UserLastName=this.user.last_name;
+          this.UserFirstName=this.user.first_name;
+          this.UserAvatar=this.user.avatar;
      },
     methods: {
-      
+
+    openChat(openChat){
+
+     // console.log(openChat);
+
+      axios.post('/api/message/index',{ id: openChat.id}).then(data => {
+      // console.log(data.data);
+        this.messages=data.data;
+
+        this.UserLastName=openChat.last_name;
+        this.UserFirstName=openChat.first_name;
+        this.UserAvatar=openChat.avatar;
+        },).catch(error => {
+            console.log(error.response.data);
+        });
+
+       
+
+      },
     store()
     {
         axios.post('/api/message/store',{ text: this.textInput , id: this.user.id }).then(data => {
@@ -132,7 +154,7 @@ export default {
     index()
     {
         axios.post('/api/message/index',{ id: this.user.id}).then(data => {
-      //  console.log(data.data);
+        //console.log(data.data);
         this.messages=data.data;
         },).catch(error => {
             console.log(error.response.data);

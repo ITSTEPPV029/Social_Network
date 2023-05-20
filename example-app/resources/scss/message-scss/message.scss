@@ -3,7 +3,8 @@ $message-color-user: #333;
 .message-container{
 
    display: flex;
-   margin: 5%;
+   margin-left: 3%;
+   margin-top: 3%;
     // flex-direction: column;
     // justify-content: center;
     // /* align-items: center; */
@@ -19,11 +20,22 @@ $message-color-user: #333;
     }
     
     .message-chats {
-      // overflow-y: scroll;
+      max-height: 85vh;
+      overflow-y: auto;
+      direction: rtl;
       .message-chats-user{
+        margin-left: 10px;
+        direction: ltr;
         margin-top: 20px;
+        cursor: pointer;
+        border-radius: 50px;
+        //background-color: #c9c9c9;
       }
-      
+      .message-chats-user:hover{
+        background-color: #efefef;
+      // border: 2px solid red;
+      }
+
       h3{
         text-align: center;
       }
@@ -42,7 +54,7 @@ $message-color-user: #333;
         flex: 1;
         max-height: 75vh;
         height: 75vh;
-        overflow-y: scroll; 
+        overflow-y: auto; 
         scrollbar-color: #000000 #e22b2b;
         word-wrap: break-word;
         word-break: break-all;

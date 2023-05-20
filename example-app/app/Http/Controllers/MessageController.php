@@ -121,8 +121,8 @@ class MessageController extends Controller
 
    //dd($user);
 
-    if($user==null)
-    {
+     if($user==null)
+     {
         $user = DB::table('users')
         ->distinct()
         ->select('users.*')
@@ -142,9 +142,13 @@ class MessageController extends Controller
         })
         ->first();
 
-    }
+      }
      
         return view('home/message',compact('user'));
+    }
+    public function openChat(Request $request) 
+    {
+        return  $this->index($request);
     }
 
     public function sendingMessage(User $user)     

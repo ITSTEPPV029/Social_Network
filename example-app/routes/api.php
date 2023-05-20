@@ -34,6 +34,8 @@ Route::post('message/store','MessageController@store')->middleware('auth:api');
 Route::post('message/index','MessageController@index')->middleware('auth:api');
 Route::post('message/indexChat','MessageController@indexChat')->middleware('auth:api');
 Route::get('message/getChats','MessageController@getChats')->middleware('auth:api');
+Route::post('message/openChat','MessageController@openChat')->middleware('auth:api');
+
 
 Route::post('comment/store','CommentController@store')->middleware('auth:api');
 
