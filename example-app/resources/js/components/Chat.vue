@@ -76,11 +76,12 @@ export default {
 </script>
 
 <style>
+/*
 .chat{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
     width: 1000px;
     margin: auto;
 }
@@ -124,5 +125,6 @@ export default {
 button {
     float: left;
   }
+  */
 
 </style>
