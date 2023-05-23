@@ -6,11 +6,11 @@
 
 }
 
-.row {
+.profile-row {
   display: flex;
 }
 
-.col {
+.profile-col {
     //border: 1px dotted;  
   flex: 1;
   padding: 10px;
@@ -23,7 +23,7 @@
     
   }
 
-    .circle {
+    .profile-circle {
       margin-left: 45px;
       width: 200px;
       height: 200px;
@@ -31,7 +31,7 @@
       overflow: hidden;
     }
   
-    .circle img {
+    .profile-circle img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -39,27 +39,27 @@
     }
 
 
-.upload-container {
+.profile-upload-container {
   display: flex;
   align-items: center;
 }
 
-.custom-file-upload {
+.profile-custom-file-upload {
   background-color: #858484;
   color: #333;
     border-radius: 5px;
       cursor: pointer;
 }
 
-.custom-file-upload i {
+.profile-custom-file-upload i {
 padding: 3px;
 }
 
-.inputfile {
+.profile-inputfile {
   display: none;
 }
 
-.upload-button {
+.profile-upload-button {
   background-color: #4caf50;
   color: #fff;
   padding: 10px 20px;
