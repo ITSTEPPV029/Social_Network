@@ -55,24 +55,39 @@ $message-color-user: #333;
         max-height: 75vh;
         height: 75vh;
         overflow-y: auto; 
-        scrollbar-color: #000000 #e22b2b;
+        scrollbar-color: #413f3f #e22b2b;
         word-wrap: break-word;
         word-break: break-all;
         padding: 10px;
 
         .messages-user{
           margin: 5%;
+          div{
+            // background-color: #eeeeee;
+            // width: auto;
+            // width: fit-content;  // Займає ширину контенту
+            // padding: 10px;
+            // padding-left: 20px;
+            // padding-right: 20px;
+            // border-radius: 500px;
+          }
 
           .username {
             margin-bottom: 5px;
             display: inline-block;
           }
           .content{
+
             color: $message-color-user;
-            padding: 5px;
-            padding-left: 15px;
-            background-color: #eeeeee;
-            border-radius: 50px;
+           
+                div{
+                  background-color: #eeeeee;
+                  display: inline-block;
+                  padding: 5px;
+                  display: block;
+                  //padding-left: 15px;
+                  border-radius: 50px;
+                }
           }
         }
         .messages-user-sender{
@@ -147,4 +162,8 @@ $message-color-user: #333;
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+}
+.message-chat-avatar-none
+{
+  display: none;
 }
