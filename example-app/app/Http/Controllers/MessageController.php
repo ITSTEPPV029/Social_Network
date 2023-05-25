@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
-    
+    //вивід остання чату користувача (коли він нажимає на повідомлення)
     public function messageShow()     
     {    
         $user_id = Auth::user()->id; 
@@ -33,35 +33,34 @@ class MessageController extends Controller
             ->orderBy('messages.id', 'DESC')
             ->first();
 
-     if($user==null)
-     {
-        $user = DB::table('users')
-        ->distinct()
-        ->select('users.*')
-        ->join('messages', function ($join) use ($user_id) {
-            $join->on('users.id', '=', 'messages.sender_user_id')
-                ->orWhere('users.id', '=', 'messages.recipient_user_id');
-        })
-        ->where(function ($query) use ($user_id) {
-            $query->where(function ($query) use ($user_id) {
-                $query->where('messages.sender_user_id', $user_id)
-                    ->where('messages.recipient_user_id', '!=', $user_id);
+        if($user==null)
+        {
+            $user = DB::table('users')
+            ->distinct()
+            ->select('users.*')
+            ->join('messages', function ($join) use ($user_id) {
+                $join->on('users.id', '=', 'messages.sender_user_id')
+                    ->orWhere('users.id', '=', 'messages.recipient_user_id');
             })
-            ->orWhere(function ($query) use ($user_id) {
-                $query->where('messages.recipient_user_id', $user_id)
-                    ->where('messages.sender_user_id', '!=', $user_id);
-            });
-        })
-        ->first();
-      } 
-        return view('home/message',compact('user'));
+            ->where(function ($query) use ($user_id) {
+                $query->where(function ($query) use ($user_id) {
+                    $query->where('messages.sender_user_id', $user_id)
+                        ->where('messages.recipient_user_id', '!=', $user_id);
+                })
+                ->orWhere(function ($query) use ($user_id) {
+                    $query->where('messages.recipient_user_id', $user_id)
+                        ->where('messages.sender_user_id', '!=', $user_id);
+                });
+            })->first();
+        } 
+     return view('home/message',compact('user'));
     }
     
     public function openChat(Request $request) 
     {
         return  $this->index($request);
     }
-
+ 
     public function sendingMessage(User $user)     
     {          
         return view('home/message',compact('user'));
@@ -161,7 +160,7 @@ class MessageController extends Controller
        $user  = Auth::user();
        return  $user ;
     }
-
+//відмічаємо що повідомлення прочитано
     public function readFalse(User $user)
     {
         $messages = Message::where('sender_user_id', $user->id)
@@ -173,6 +172,7 @@ class MessageController extends Controller
             $message->save();
         }
     }
+
     public function  readMessageTrue(Request $request)
     {
         $user = User::find($request->input('id'));
