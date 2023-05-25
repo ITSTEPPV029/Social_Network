@@ -14,7 +14,9 @@
 
 
       @include("inc.header")
-      @include("inc.sideMenu")
+      @if (Auth::check())
+        @include("inc.sideMenu", ['user' => app('App\Services\AppServiceMessages')->getUser()])
+      @endif
       <div class="myContainer">
         @yield('content')
       </div>
