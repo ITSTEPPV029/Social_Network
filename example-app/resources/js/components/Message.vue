@@ -111,7 +111,12 @@ export default {
            console.log(this.numbers);
          }
       });
-   
+      //присвоєння іншого значення в полі меню 
+      const element = document.getElementById('messageCount');
+      if (element) {
+        element.innerText = 'повідомлення';
+      }
+
      },
     methods: {
 //вивід дати в потрібному вигляді

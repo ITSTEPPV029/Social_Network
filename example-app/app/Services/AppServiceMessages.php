@@ -19,10 +19,7 @@ class AppServiceMessages
                   ->Where('read',true);
         })->count();
        
-       // $messages = array_reverse($messages->toArray());
-
-        return  $messages;//response()->json($messages);
-       
+        return  $messages = ($messages === 0) ? '' : $messages;
     }
    
 }
