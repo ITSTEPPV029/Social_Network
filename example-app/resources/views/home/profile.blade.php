@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+<div class="">
     <h1>профіль користувача</h1>
     
     <img style="height:300px;"  src="{{ asset($user->avatar) }}" >

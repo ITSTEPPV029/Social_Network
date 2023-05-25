@@ -1,8 +1,5 @@
-<template><!-- <label for="file">завантажити фото для посту</label> <br/>
-  <input  id="file" name="file" v-on:change="file" type="file">
-    <br/>
-  <span class="text-danger">{{$message}}</span>
-  <input id="text" type="text"  v-model="text" name="text"> -->
+<template>
+
   <h3>{{ id }}</h3>
   <div v-show="isLoggedIn==true">
     <input type="file" ref="fileInput" @change="onFileSelected">
@@ -13,27 +10,48 @@
   <br/>
 
   <div  class="post" v-for="post in posts" >
-    <a v-if="isLoggedIn==true" @click="deletePost(post)" > &#10006;</a>
-    <img v-if="post.photo"  :src="`${post.photo}`" >
-      <div class="post-content">
-        <a @click="like(post)" >&#9829; {{post.like}}</a>
-        <p class="post-text" v-if="post.text!=0" > {{post.text}}</p>
-       
+    <div class="post-delete">
+      <a v-if="isLoggedIn==true" @click="openModal" > &#10006;</a>
+        <div class="post-modal" v-if="showModal" @click="closeModal">
+          <div class="post-modal-content" >
+            <p>Ви дійсно бажаєте видалити пост?</p>
+            <div class="post-modal-buttons">
+              <button @click="deletePost(post)">Видалити</button>
+              <button @click="closeModal">Скасувати</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+   <div class="post-photo-text-container">
+      <div class="post-photo">
+        <img v-if="post.photo"  :src="`${post.photo}`" >
       </div>
-      <div>
-    <button @click="showCommentBox = !showCommentBox">Залишити коментар</button>
-    <!-- <transition name="slide"> v-if="showCommentBox" -->
-      <div  class="comment-box">
-        <textarea v-model="newComments[post.id]" placeholder="Написати коментар"></textarea>
-        <button @click="addComment(post)">Додати коментар</button>
-        
-        <ul  v-for="comment in post.comments">
-          <li ><img style="  width: 50px; height: 50px; border-radius: 50%;" :src="`${comment.user.avatar}`" >{{ comment.user.first_name +' '+comment.user.last_name }}</li>
-          <li >{{ comment.text }}</li>
-        </ul>   
+      <div class="post-text">
+          <p v-if="post.text!=0" > {{post.text}}</p>
       </div>
-    <!-- </transition> -->
+    </div>
+  
+  <div class="post-like-comment-container">
+    <div class="post-like">
+      <img @click="like(post)" src="https://w7.pngwing.com/pngs/90/304/png-transparent-cat-dog-paw-paw-patrol-animals-paw-claw-thumbnail.png" >
+      <a  >{{post.like}}</a>
+    </div>
+    <div class="post-input-comment">
+         <input type="text" v-model="textInput"  placeholder="Текст повідомлення..." />
+         <button @click="store"></button>
+    </div>
   </div>
+        <!-- <div  class="comment-box">
+          <textarea v-model="newComments[post.id]" placeholder="Написати коментар"></textarea>
+          <button @click="addComment(post)">Додати коментар</button>
+          
+          <ul  v-for="comment in post.comments">
+            <li ><img style="  width: 50px; height: 50px; border-radius: 50%;" :src="`${comment.user.avatar}`" >{{ comment.user.first_name +' '+comment.user.last_name }}</li>
+            <li >{{ comment.text }}</li>
+          </ul>   
+        </div>
+    -->
   </div>
 
 </template>
@@ -41,7 +59,6 @@
 <script>
 
 import { numberLiteralTypeAnnotation } from '@babel/types';
-
 
 export default {
 
@@ -63,7 +80,7 @@ export default {
       textInput: null,
       posts: null,
       isLoggedIn: null,
-
+      showModal: false,
       showCommentBox: false,
       newComment: '',
       newComments: {},
@@ -93,7 +110,16 @@ export default {
    },
 
   methods: {
-  
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    deleteItem() {
+      // Your delete logic here
+      this.showModal = false; // Close the modal after deletion
+    },
     scrollGetPost() {
   
        axios.post('/api/index',{ id: this.id , page: this.posts.length }).then(data=>{  
@@ -228,7 +254,7 @@ export default {
 </script>
 <style>
 
-.avatarComent {
+/* .avatarComent {
   width: 50px;
   height: 50px;
 }
@@ -253,7 +279,7 @@ export default {
 
 .slide-enter, .slide-leave-to {
   transform: translateX(-100%);
-}
+} */
 
 
 </style>
