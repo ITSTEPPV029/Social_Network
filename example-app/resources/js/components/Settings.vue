@@ -7,16 +7,17 @@
       <div class="settings-item item_1">
         <label>Імя</label> 
       </div>
-
       <div class="settings-item item_2">
-        <input tyle="border-radius: 20px; padding-left: 10px;" type="text" v-model="user.first_name">
+        <input type="text" v-model="user.first_name">
+        <p v-if="errors && errors.first_name">{{ errors.first_name[0] }}</p>
       </div>
+
       <div class="settings-item item_3">
         <label>Прізвище</label>
       </div>
-
       <div class="settings-item item_4">
         <input type="text" v-model="user.last_name">
+        <p v-if="errors && errors.last_name">{{ errors.last_name[0] }}</p>
       </div>
 
       <div class="settings-item item_5">
@@ -179,27 +180,29 @@ methods: {
 
       saveChanges() {
         let dataChanged = false;
-        for (const key in this.user) {
-          if (this.user[key] !== this.originalUser[key]) {
-            dataChanged = true;
-            break;
-          }
+        const formData = new FormData();
+
+      for (const key in this.user) {
+        if (this.user[key] !== this.originalUser[key]) {
+          dataChanged = true;
+          formData.append(key, this.user[key]);
         }
+      }
   
       if (dataChanged) {
-       // console.log("дані змінено");
+        // const formData = new FormData();
+        // formData.append('first_name', this.user.first_name);
+        // formData.append('last_name', this.user.last_name);
+         formData.append('email', this.user.email);
+         formData.append('nick_name', this.user.nick_name);
 
-        const formData = new FormData();
-        formData.append('first_name', this.user.first_name);
-        formData.append('last_name', this.user.last_name);
-        formData.append('email', this.user.email);
-        formData.append('nick_name', this.user.nick_name);
+        // formData.append('date_of_birth', this.user.date_of_birth);
 
-        formData.append('date_of_birth', this.user.date_of_birth);
-        formData.append('gender', this.user.gender);
-        formData.append('city', this.user.city);
-        formData.append('about_me', this.user.about_me);
+        // formData.append('gender', this.user.gender);
+        // formData.append('city', this.user.city);
+        // formData.append('about_me', this.user.about_me);
 
+       
       axios.post('/api/settings', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -222,9 +225,6 @@ methods: {
             });
         }
 
-
-        
-        //this.originalUser = JSON.parse(JSON.stringify(this.user));
       },
 
   onFileSelected(event) {
@@ -274,7 +274,7 @@ methods: {
         this.displayText = "Координати збережено!";
         setTimeout(() => {
           this.displayText = "";
-        }, 2000); // Час затримки в мілісекундах
+        }, 3000); // Час затримки в мілісекундах
     },
 
   

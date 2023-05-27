@@ -16,7 +16,7 @@ class AppServiceMessages
         $messages = Message::with('senderUser')
         ->where(function ($query) use ($user) {
             $query->where('recipient_user_id',$user->id)
-                  ->Where('read',true);
+                  ->where('read',true);
         })->count();
        
         return  $messages = ($messages === 0) ? '' : $messages;

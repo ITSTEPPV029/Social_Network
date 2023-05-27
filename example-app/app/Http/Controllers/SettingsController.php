@@ -16,8 +16,8 @@ class SettingsController extends Controller
     public function  update(Request $request)     
     {    
         $validatedData = $request->validate([
-            'first_name' => 'string',
-            'last_name' => 'string',
+            'first_name' => 'string|regex:/^[^0-9]*$/',
+            'last_name' => 'string|regex:/^[^0-9]*$/',
             'nick_name' => ['string','max:30','alpha_dash',
                Rule::unique('users')->ignore(Auth::user()->id),],
             'email' => [
@@ -26,10 +26,10 @@ class SettingsController extends Controller
                 'max:255',
                 Rule::unique('users')->ignore(Auth::user()->id),],
 
-            'date_of_birth'=>'date|before_or_equal:today', 
-            'gender' => 'string',
+            'date_of_birth'=> 'nullable|date|before_or_equal:today',
+            'gender' => '',
             'city' => '',
-            'about_me' => 'string',
+            'about_me' => '',
         ]);
 
         $userModel = User::find(Auth::user()->id);
