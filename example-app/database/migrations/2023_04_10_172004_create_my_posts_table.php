@@ -19,11 +19,13 @@ class CreateMyPostsTable extends Migration
             $table->bigInteger("like")->default(0);
             $table->string('photo')->nullable();
             $table->string('text')->nullable();
+            $table->bigInteger("reposted_user_id")->constrained("users")->nullable();
             $table->timestamps();
         });
     }
 
     /**
+     * 
      * Reverse the migrations.
      *
      * @return void

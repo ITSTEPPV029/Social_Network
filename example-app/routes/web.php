@@ -59,5 +59,6 @@ Route::get('/admin', 'AdminController@index');
 
 Route::get('/map', 'MapController@mapView')->middleware('auth')->name('map');
 
-Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');
+Route::get('/settings', 'SettingsController@settingsView')->middleware('auth')->name('settings');
 
+Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');

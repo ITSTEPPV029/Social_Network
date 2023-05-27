@@ -21,8 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('email');//->unique();
             $table->string('avatar')->default('/storage/uploads/anonym.png');//public
             $table->boolean('admin')->default(false); 
-           // $table->float('latitude')->nullable();
-           // $table->float('longitude')->nullable();
+            
+            $table->integer('age')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('city')->nullable();
+            $table->text('about_me')->nullable();
+
             $table->double('latitude', 16, 14)->nullable();
             $table->double('longitude', 16, 14)->nullable();
             

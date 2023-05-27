@@ -42,6 +42,9 @@ Route::post('comment/store','CommentController@store')->middleware('auth:api');
 
 Route::post('map/store','MapController@store')->middleware('auth:api');
 
+Route::post('settings','SettingsController@update')->middleware('auth:api');
+Route::post('upload-avatar','SettingsController@uploadAvatar')->middleware('auth:api');
+
 // Route::post('test',function (Request $request) {
 //     return  $request->input('id');
 // })->middleware('auth:api');
