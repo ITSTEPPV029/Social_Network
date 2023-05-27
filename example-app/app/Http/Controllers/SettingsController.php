@@ -18,32 +18,23 @@ class SettingsController extends Controller
         $validatedData = $request->validate([
             'first_name' => 'string',
             'last_name' => 'string',
-         'nick_name' => ['string','max:30','alpha_dash',
-         Rule::unique('users')->ignore(Auth::user()->id),],
+            'nick_name' => ['string','max:30','alpha_dash',
+               Rule::unique('users')->ignore(Auth::user()->id),],
             'email' => [
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('users')->ignore(Auth::user()->id),
-            ],
+                Rule::unique('users')->ignore(Auth::user()->id),],
+
+            'date_of_birth'=>'date|before_or_equal:today', 
+            'gender' => 'string',
+            'city' => '',
+            'about_me' => 'string',
         ]);
 
         $userModel = User::find(Auth::user()->id);
         $userModel->update($validatedData);
 
-        
-        // try {
-        //     $userModel->update($user); 
-        // } catch (\Illuminate\Database\QueryException $exception) {
-        //     $errorCode = $exception->errorInfo[1];
-        //     if($errorCode == 1062){
-        //         $errors = array(
-        //             'nick_name' => array('This nick name has already been taken.'),
-        //             'email' => array('This email has already been taken.'),
-        //         );
-        //         return response()->json(['errors' => $errors], 422);
-        //     }
-        // }
         $userModel = User::find(Auth::user()->id);
 
         return $userModel;

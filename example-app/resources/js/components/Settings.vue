@@ -22,20 +22,56 @@
       <div class="settings-item item_5">
         <label>Нікнейм</label>
       </div>
-
       <div class="settings-item item_6">
         <input type="text" v-model="user.nick_name">
+        <p v-if="errors && errors.nick_name">{{ errors.nick_name[0] }}</p> 
       </div>
 
       <div class="settings-item item_7">
         <label>Ел. пошта</label>
       </div>
-
       <div class="settings-item item_8">
         <input type="email" name="email" v-model="user.email">
-          <p v-if="errors && errors.email">{{ errors.email[0] }}</p>
-          
+          <p v-if="errors && errors.email">{{ errors.email[0] }}</p> 
       </div>
+
+      <div class="settings-item item_10">
+        <label>Стать</label>
+      </div>
+      <div class="settings-item item_11">
+        <select  v-model="user.gender" name="options">
+          <option value=""> </option>
+          <option value="Жінка">Жінка </option>
+          <option value="Чоловік">Чоловік</option>
+          <option value="Нон-бінарний">Нон-бінарний</option>
+          <option value="Чоловік">Поза гендером</option>
+          <option value="Бігендер">Бігендер</option>
+        </select>
+      </div>
+
+      <div class="settings-item item_12">
+        <label>День народження </label>
+      </div>
+      <div class="settings-item item_13">
+        <input type="date" v-model="user.date_of_birth">
+        <p v-if="errors && errors.date_of_birth">{{ errors.date_of_birth[0] }}</p>
+      </div>
+
+      <div class="settings-item item_14">
+        <label>Місто</label>
+      </div>
+      <div class="settings-item item_15">
+        <input type="text" name="city" v-model="user.city">
+      </div>
+
+      <div class="settings-item item_16">
+        <label>Про себе</label>
+      </div>
+      <div class="settings-item item_17">
+        <textarea v-model="user.about_me" rows="3"></textarea>
+      </div>
+     
+
       <div class="settings-item item_9">
             <div class="settings-avatarWrapper">
               <img class="settings-avatarSettings" :src="`${user.avatar}`" @click="openFileInput">
@@ -44,11 +80,8 @@
             <input  style="display: none" type="file" ref="fileInput" @change="onFileSelected">
       </div>
 
-      <!-- <div>
-        <label>Birthday:</label>
-        <input type="date" v-model="user.birthday">
-      </div> -->
     </div>
+    <p v-if="displayTextSave"> {{ displayTextSave }}</p> 
     <h3 @click="saveChanges" >Зберегти</h3>
     <hr/>
   
@@ -56,11 +89,10 @@
 
     <div class="settings-map-сontainer">
           <div class="settings-map" id="map"></div>
-       
     </div>
 
    
- 
+    <!-- використовую карту leaflet  в vue js чи можна по назві міста найт координати -->
 
 </div>
 
@@ -84,12 +116,14 @@
         originalUser: null,
         marker: null,
         displayText: "", 
+        displayTextSave: "", 
         errors: {
             first_name: [],
             last_name: [],
             nick_name: [],
             email: [],
-            password: []
+            password: [],
+            date_of_birth: [],
          }
       };
     },
@@ -100,6 +134,7 @@
 
     mounted() {
       // Створення карти
+      //якщо мітка вже є то виставляємо її інакше просто переміщаємо карту на задану позицію
      if (this.user.longitude!=null){
 
       this.map = L.map('map').setView([this.user.latitude, this.user.longitude], 13);
@@ -111,7 +146,7 @@
         })
         .on('click', () => {
           this.map.removeLayer( this.marker);
-          console.log("видалення");
+        //  console.log("видалення");
 
         });
      }
@@ -136,11 +171,12 @@
       // Отримання координат з події
         const latlng = event.latlng;
        // Виклик методу з передачею координат
-      this.handleMapClick(latlng);
+        this.handleMapClick(latlng);
       });   
   },
 
 methods: {
+
       saveChanges() {
         let dataChanged = false;
         for (const key in this.user) {
@@ -150,23 +186,32 @@ methods: {
           }
         }
   
-        if (dataChanged) {
-        console.log("дані змінено");
+      if (dataChanged) {
+       // console.log("дані змінено");
 
         const formData = new FormData();
-    //formData.append('file', this.selectedFile);
-    formData.append('first_name', this.user.first_name);
-    formData.append('last_name', this.user.last_name);
-    formData.append('email', this.user.email);
-    formData.append('nick_name', this.user.nick_name);
-    
+        formData.append('first_name', this.user.first_name);
+        formData.append('last_name', this.user.last_name);
+        formData.append('email', this.user.email);
+        formData.append('nick_name', this.user.nick_name);
+
+        formData.append('date_of_birth', this.user.date_of_birth);
+        formData.append('gender', this.user.gender);
+        formData.append('city', this.user.city);
+        formData.append('about_me', this.user.about_me);
+
       axios.post('/api/settings', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then(response => {
-                console.log( response.data);
+               // console.log( response.data);
                 this.errors = {};
+
+                this.displayTextSave = "Дані збережено!";
+                setTimeout(() => {
+                  this.displayTextSave = "";
+                }, 2000); // Час затримки в мілісекундах
             })
             .catch(error => {
                 if (error.response.status === 422) {
@@ -177,6 +222,8 @@ methods: {
             });
         }
 
+
+        
         //this.originalUser = JSON.parse(JSON.stringify(this.user));
       },
 
@@ -198,7 +245,7 @@ methods: {
     },
    
     openFileInput() {
-      console.log("дані змінено");
+    //  console.log("дані змінено");
       this.$refs.fileInput.click();
     },
 
@@ -214,7 +261,7 @@ methods: {
         })
         .on('click', () => {
           this.map.removeLayer(this.marker);
-          console.log("видалення");
+         // console.log("видалення");
         });
      }
      
