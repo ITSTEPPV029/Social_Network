@@ -33,13 +33,15 @@ Route::post('login/', 'AuthController@postSigin')->middleware('guest')->name('lo
 Route::get('logout/', 'AuthController@getSigout')->name('logout.getSigout');
 //});
 
-Route::post('avatar/add', 'UserController@addAvatar')->name('avatar.addAvatar');
-Route::get('search/', 'SearchController@searchUser')->name('search.searchUser');
-Route::get('profile/{user}/', 'ProfileController@show')->name('profile.show');
-Route::get('allUser/', 'SearchController@allUser')->name('allUser.allUser');
-Route::get('friendRequest/{user}', 'UserController@friendRequest')->name('friendRequest.friendRequest');
-Route::get('addFriend/{user}', 'UserController@addFriend')->name('addFriend.addFriend');
+Route::post('avatar/add', 'UserController@addAvatar')->middleware('auth')->name('avatar.addAvatar');
+Route::get('friendRequest/{user}', 'UserController@friendRequest')->middleware('auth')->name('friendRequest.friendRequest');
+Route::get('addFriend/{user}', 'UserController@addFriend')->middleware('auth')->name('addFriend.addFriend');
+Route::get('friends', 'UserController@getFriends')->middleware('auth')->name('friends');
 
+Route::get('search/', 'SearchController@searchUser')->middleware('auth')->name('search.searchUser');
+Route::get('allUser/', 'SearchController@allUser')->middleware('auth')->name('allUser.allUser');
+
+Route::get('profile/{user}/', 'ProfileController@show')->middleware('auth')->name('profile.show');
 //Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);
 Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
@@ -47,10 +49,10 @@ Route::get('chat/', 'ChatController@chatView')->middleware('auth')->name('chat')
 
 //виведення всіх тварин
 Route::get('/allpets', 'PetController@index');
-
 //додавання тваринок
 Route::get('/addPets', 'PetController@add')->name('addPet');
 Route::post('pet/add', 'PetController@store')->name('savePet');
+
 Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
 Route::get('sendingMessage{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');
 

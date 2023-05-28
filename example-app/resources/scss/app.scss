@@ -7,11 +7,4 @@
 @use "post-scss/post";
 @use "message-scss/message";
 
-div.error{
-
-    height: 501px;
-    width: 500px;
-    background-color: rgb(255, 0, 0);
-}
-
-  
+@use "friends-scss/friends";

@@ -80,5 +80,18 @@ class UserController extends Controller
      }
      return  0;
    }
- 
+
+ /**
+     *сторінка друзів
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+   public function getFriends()
+   {
+    $user = \App\Models\User::find(Auth::user()->id);
+      return view('home/friends',compact('user'));
+   }
+
+
 }
