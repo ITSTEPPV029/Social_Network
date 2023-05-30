@@ -12,16 +12,23 @@
     </head>
     <body >
 
+{{-- //доробити діви====================================  --}}
 
       @include("inc.header")
-      @if (Auth::check())
-        @include("inc.sideMenu", ['user' => app('App\Services\AppServiceMessages')->getUser()])
-      @endif
-      <div class="myContainer">
-        @yield('content')
+
+      <div class="my-container-main">
+
+        @if (Auth::check())
+          <div class="my-container-side-menu">
+            @include("inc.sideMenu", ['user' => app('App\Services\AppServiceMessages')->getUser()])
+          </div>
+        @endif
+          <div class="my-container-content">
+             @yield('content')
+          </div>
+    
       </div>
     
-   
     <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

@@ -22,11 +22,12 @@ class UserController extends Controller
       $User = \App\Models\User::find(Auth::user()->id);
 
       if ($User->checkIfFriend($user))
-      {
-        return redirect()->back();//->with('message',"123"); 
-      }  
-      $User->friendsOfMine()->attach($user->id);
-      return view('home/home');    
+        return redirect()->back();
+
+      if ($User->id!=$user->id)
+         $User->friendsOfMine()->attach($user->id);
+
+      return redirect()->back(); 
     }
 
     /**
@@ -39,7 +40,7 @@ class UserController extends Controller
     {   
       $User = \App\Models\User::find(Auth::user()->id);
       $User->friendsRequest()->where('id',$user->id)->first()->pivot->update(['friend_request'=>true]);
-      return view('home/home');
+      return redirect()->back();
     }
 
   /**
@@ -62,8 +63,8 @@ class UserController extends Controller
       $user->avatar="/storage/".$photoMainName;
       // $user->avatar="public/storage/".$photoMainName;     //public для хоста
       $user->save();
-
-      return view('home/home');
+      return redirect()->back();
+      //return view('home/home');
     }
 
      /**
@@ -89,9 +90,29 @@ class UserController extends Controller
      */
    public function getFriends()
    {
-    $user = \App\Models\User::find(Auth::user()->id);
+     $user = \App\Models\User::find(Auth::user()->id);
       return view('home/friends',compact('user'));
    }
 
+ /**
+     *сторінка друзів
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+   public function deleteFriend(User $user)
+   {
+      $User = \App\Models\User::find(Auth::user()->id);
+      
+      if ($User->checkIfFriend($user)){
+        $User->deleteFriend($user);
+        return redirect()->back()->with('info' ,'Видалено з друзів');
+      }
+      else
+        return redirect()->back();
+     
+
+
+   }
 
 }

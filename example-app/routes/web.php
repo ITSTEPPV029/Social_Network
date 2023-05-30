@@ -25,18 +25,17 @@ Route::get('/', function () {
 });
 Route::view('home/home', 'home')->name('home.home');
 
-//Route::controller(AuthController::class)->group(function () {
 Route::get('registration/', 'AuthController@getSigUp')->middleware('guest')->name('registration.getSigUp');
 Route::post('registration/', 'AuthController@postSigUp')->middleware('guest')->name('registration.postSigUp');
 Route::get('login/', 'AuthController@getSigin')->middleware('guest')->name('login.getSigin');
 Route::post('login/', 'AuthController@postSigin')->middleware('guest')->name('login.postSigin');
 Route::get('logout/', 'AuthController@getSigout')->name('logout.getSigout');
-//});
 
 Route::post('avatar/add', 'UserController@addAvatar')->middleware('auth')->name('avatar.addAvatar');
 Route::get('friendRequest/{user}', 'UserController@friendRequest')->middleware('auth')->name('friendRequest.friendRequest');
 Route::get('addFriend/{user}', 'UserController@addFriend')->middleware('auth')->name('addFriend.addFriend');
 Route::get('friends', 'UserController@getFriends')->middleware('auth')->name('friends');
+Route::get('deleteFriend/{user}', 'UserController@deleteFriend')->middleware('auth')->name('deleteFriend');
 
 Route::get('search/', 'SearchController@searchUser')->middleware('auth')->name('search.searchUser');
 Route::get('allUser/', 'SearchController@allUser')->middleware('auth')->name('allUser.allUser');

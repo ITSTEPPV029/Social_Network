@@ -1,5 +1,23 @@
-.friends-conteiner{
+.friends-container{
     background-color: aqua;
-
     margin: 10%;
+    padding: 1%;
+    display: flex;
+   
+    h1, h4, p {
+        text-align: center;
+    }
+  
+
+    .friends{
+        background-color: rgb(31, 208, 31);  
+        width: 60%;
+        padding: 1%;
+    }
+
+    .friend-requests{
+        background-color: rgb(210, 224, 49);
+        width: 40%;
+        padding: 1%;
+    }
 }

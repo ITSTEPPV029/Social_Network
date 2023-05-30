@@ -67,12 +67,17 @@ class User extends Authenticatable
 //перевірка чи друг 
      public function checkIfFriend(User $user)
      {
-        return (bool) $this->friendsOfMine()->wherePivot('friend_id',$user->id)->count();
-        // if($this->friendsOfMine()->wherePivot('friend_id',$user->id)->count())
-        //   return 1;    
-        // else
-        //   return 0;       
+        return (bool) $this->friends()->where('id',$user->id)->count();
+        //return (bool) $this->friendsOfMine()->wherePivot('friend_id',$user->id)->count();
+            
      }
+//перевіряєм чи є запити на дружбу 
+public function checkFriendsRequest(User $user)
+{
+  return  (bool) $this->friendsOfMine()->wherePivot('friend_request',false)->wherePivot('friend_id',$user->id,false)->count();      
+}
+
+
 //повертає не друзів (доробити)
 public function  notFriend(User $user)
 {
@@ -90,20 +95,20 @@ public function receivedMessages()
   return $this->hasMany(Message::class, 'recipient_user_id', 'id');
 }
 
-  // public function  getAvatarPath($userId)
-  // {
-  //   $path ="uploads/avatar/id{$userId}";
-  //        if(!file_exists("{$path}"))
-  //        {
-  //              mkdir("{$path}",0777,true);
-  //        }
-  //     return "/{$path}/";
-  // }
-
+//видалення з друзів
+public function deleteFriend(User $user)
+{
+  $this->friendsOf()->detach($user);
+  $this->friendsOfMine()->detach($user);
+}
 
 
   public function pets()
   {
     return $this->hasMany(Pet::class);
   }
+
+
+
+
 }

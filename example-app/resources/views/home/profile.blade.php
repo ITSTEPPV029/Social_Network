@@ -39,6 +39,15 @@
 
   <hr />
 
+  @if (Auth::user()->id!=$user->id)
+    @if (Auth::user()->checkIfFriend($user))
+      <a href="{{route('deleteFriend',$user)}}" class="nav-link px-2 text-black">видалити з друзів</a>
+    @elseif (Auth::user()->checkFriendsRequest($user))
+      <p>запит на дружбу відправлений</p>
+      @else
+      <a href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
+    @endif
+  @endif
 
   <h1>Друзі</h1>
   @if ($user->friends()->count())
