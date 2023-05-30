@@ -12,8 +12,6 @@
     </head>
     <body >
 
-{{-- //доробити діви====================================  --}}
-
       @include("inc.header")
 
       <div class="my-container-main">
