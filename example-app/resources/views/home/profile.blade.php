@@ -2,117 +2,43 @@
 
 @section('content')
 
+
 <div class="profile-container">
-      <h1>Сторінка профіля користувача</h1>
 
-  <div class="profile-row">
-    <div class="profile-col">
-      <div class="profile-avatar-container">
-        <div class="profile-circle">
-         <img src="{{ asset($user->avatar) }}" >
-        </div>
-       
-        @if (Auth::check()&&Auth::user()->id==$user->id)
-             <form id="my-avatar-form" action="{{ route('avatar.addAvatar') }}"  method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}	
-<br>
-             <label for="avatar" class="profile-custom-file-upload">
-          <i class="fas fa-cloud-upload-alt"></i> Завантажити Avatar
-          </label>
-            <input class="profile-inputfile" id="avatar" name="avatar" type="file" onchange="submitForm()">
-            @error('avatar')
-              <br/>
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            <br/>
-        </form>
-        @else
-        <br/>
-            @if (Auth::check())
-            <a href="{{route('sendingMessage',$user)}}" class="btn btn-primary btn-block">відправити повідомлення</a>
-            @endif
-            
-        @endif
-          </div>          
-    </div>
-    
-    <div class="profile-col">
-       <strong>{{$user->first_name}}</strong> 
-        <strong>{{$user->last_name}}</strong> 
-        <br>NickName: @mynick
-         <br>Стать: <b>чоловіча</b>
-         <br>Місто: <b>Луцьк</b>
-         <br>Дата народження: <b>01.01.1990</b>
-    </div>
-      <div class="profile-col">
-        <b>Про себе: </b>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.<
+    <div class="profile-image">
+    <img src="{{ asset($user->avatar) }}" >
+      <div class="bottom-div">
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-  </div>
-  <div class="profile-row">
-    <div class="profile-col">
-          <h1>Тварини користувача</h1>
-          @foreach($user->pets as $pet)
-          <div>
-            <div class="name">{{$pet->name}}</a></div>
-          </div>
-          @endforeach
     </div>
-    <div class="profile-col">
-      <h1>Тут мій шикарний пост</h1>
-         @if (Auth::check())
-           <div id="appPost">
-             <Post :id="{{ json_encode($user->id) }}" :this-User="{{ json_encode(Auth::user())}}" />
-           </div>
-         @endif
 
+    <div class="profile-info-container">
+      <div class="profile-user-name-button">
+        <div class="profile-user-name">
+            <p><strong>{{$user->first_name}}</strong> 
+             <strong>{{$user->last_name}}</strong> </p>
+        </div>
+        <div class="profile-user-button">
+          <button>Додати в друзі</button>
+          <button>Написати</button>
+        </div>
+      </div>
+      <div class="profile-user-info-container">
+        <div class="profile-user-info">
+        <div class="info-field"><b>@<b>{{$user->nick_name}}</b></b></div>
+         <div class="info-field"><b>Стать:</b> {{$user->gender}}</div>
+         <div class="info-field"><b>Місто:</b> {{$user->city}}</div>
+         <div class="info-field"><b>Дата народження:</b> {{$user->date_of_birth}}</div>
+        </div>
+        <div class="profile-user-description">
+          <div class="info-field">
+                    <b>Про себе: </b>{{$user->about_meprofilePage}}
+        </div>
+      </div>
     </div>
-  </div>
 </div>
-
-
-
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
- @if (Auth::check())
-
-      <h1>Друзі</h1>
-      @if ($user->friends()->count())
-      @foreach($user->friends() as $friend)
-      <img style="height:100px;" src="{{ asset($friend->avatar) }}">
-      <strong>{{$friend->first_name}}</strong> <br />
-      <a href="{{route('profile.show',$friend)}}" class="nav-link px-2 text-black">профіль</a>
-      <br />
-        @endforeach
-  @else
-  
-  <h4>відсутні</h4>
-  @endif
-  <hr />
-
-  @if ($user->friendsRequest()->count()&&Auth::check()&&Auth::user()->id==$user->id)
-
-      <h1>заявки в друзі</h1>
-      @foreach($user->friendsRequest() as $friend)
-          <strong>{{$friend->first_name}}</strong> <br />
-          <img style="height:100px;" src="{{ asset($friend->avatar) }}">
-          <a href="{{route('profile.show',$friend)}}" class="nav-link px-2 text-black">профіль</a>
-          <a href="{{route('addFriend.addFriend',$friend)}}" class="nav-link px-2 text-black">підтвердити заявку в друзі</a>
-          <br />
-      @endforeach
-  @else
-  @if (Auth::check()&&Auth::user()->id==$user->id)
-  <h4>не має заявок в друзі</h4>
-  @endif
-  @endif
-  @endif
-
-
-
-  
-
-
-
-</div>
-
 
 {{-- 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
