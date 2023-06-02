@@ -39,6 +39,7 @@ Route::get('deleteFriend/{user}', 'UserController@deleteFriend')->middleware('au
 
 Route::get('search/', 'SearchController@searchUser')->middleware('auth')->name('search.searchUser');
 Route::get('allUser/', 'SearchController@allUser')->middleware('auth')->name('allUser.allUser');
+Route::get('filter/', 'SearchController@filterUser')->middleware('auth')->name('filterUser');
 
 Route::get('profile/{user}/', 'ProfileController@show')->middleware('auth')->name('profile.show');
 //Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);

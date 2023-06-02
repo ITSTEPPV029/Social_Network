@@ -1,0 +1,44 @@
+.search-container{
+
+background-color: rgb(140, 226, 226);
+margin: 5%;
+padding: 1%;
+display: flex;
+
+.search-users{
+    background-color: rgb(247, 249, 118);
+    width: 70%;
+    padding: 1%;
+   .search-user{
+    display: flex;
+        .search-img{
+            
+            img{
+                height: 100px;
+                display: block;
+            margin-bottom: 10px;
+            }
+        }
+        .search-user-info{
+          margin-left: 10px;
+        }
+        .search-user-actions{
+       
+        }
+   }
+
+   
+
+}
+
+.search-filter{
+
+    padding: 2%;
+    width: 30%;
+    height: auto;
+    background-color: rgb(75, 206, 132);
+    text-align: center;
+}
+
+
+}
