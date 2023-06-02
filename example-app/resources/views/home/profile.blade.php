@@ -2,6 +2,45 @@
 
 @section('content')
 
+
+<div class="profile-container">
+
+    <div class="profile-image">
+    <img src="{{ asset($user->avatar) }}" >
+      <div class="bottom-div">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="profile-info-container">
+      <div class="profile-user-name-button">
+        <div class="profile-user-name">
+            <p><strong>{{$user->first_name}}</strong> 
+             <strong>{{$user->last_name}}</strong> </p>
+        </div>
+        <div class="profile-user-button">
+          <button>Додати в друзі</button>
+          <button>Написати</button>
+        </div>
+      </div>
+      <div class="profile-user-info-container">
+        <div class="profile-user-info">
+        <div class="info-field"><b>@<b>{{$user->nick_name}}</b></b></div>
+         <div class="info-field"><b>Стать:</b> {{$user->gender}}</div>
+         <div class="info-field"><b>Місто:</b> {{$user->city}}</div>
+         <div class="info-field"><b>Дата народження:</b> {{$user->date_of_birth}}</div>
+        </div>
+        <div class="profile-user-description">
+          <div class="info-field">
+                    <b>Про себе: </b>{{$user->about_meprofilePage}}
+        </div>
+      </div>
+    </div>
+</div>
+
+{{-- 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
     <h1>профіль користувача</h1>
     
@@ -91,6 +130,14 @@
   @endforeach
 
 
-</div>
+</div> --}}
 
+
+<script>
+  function submitForm() {
+    document.getElementById("my-avatar-form").submit();
+  }
+</script>
 @endsection
+
+

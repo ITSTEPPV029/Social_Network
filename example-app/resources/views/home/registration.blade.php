@@ -2,14 +2,14 @@
 
 @section('content')
 
-<div class="form-container">
+<div class="registration-form-container">
 
     <form action="{{ route('registration.postSigUp')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <label>
             <h2><b>Створити акаунт</b></h2>
         </label>
-        <div class="social-icons">
+        <div class="registration-social-icons">
             <a href="https://www.facebook.com" class="facebook-icon"><img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-64.png" alt="Facebook"></a>
             <a href="https://appleid.apple.com/sign-in" class="apple-icon"><img src="https://cdn3.iconfinder.com/data/icons/picons-social/57/56-apple-64.png" alt="Apple"></a>
             <a href="https://accounts.google.com/AccountChooser/signinchooser?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser" class="google-icon"><img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-64.png" alt="Google"></a>
@@ -52,13 +52,13 @@
             <strong>{{ $message }}</strong>
         </span>
         @enderror
-        <label class="conditions"> Під час входу чи реєстрації Ви погоджуєтеся з нашими Умови користування. </label>
+        <label class="registration-conditions"> Під час входу чи реєстрації Ви погоджуєтеся з нашими Умови користування. </label>
 
         <button type="submit">Зареєструватись</button>
         <label>
             <h4><b>Або</b></h4>
         </label>
-<a href="{{ route('login.getSigin') }}" class="button-link">Увійти</a>
+<a href="{{ route('login.getSigin') }}" class="registration-button-link">Увійти</a>
 
 
     </form>
