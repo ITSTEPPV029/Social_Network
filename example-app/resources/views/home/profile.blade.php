@@ -17,25 +17,40 @@
     <div class="profile-info-container">
       <div class="profile-user-name-button">
         <div class="profile-user-name">
-            <p><strong>{{$user->first_name}}</strong> 
-             <strong>{{$user->last_name}}</strong> </p>
+            <h3><strong>{{$user->first_name}}</strong> 
+              <strong>{{$user->last_name}}</strong>  </h3>
         </div>
         <div class="profile-user-button">
-          <button>Додати в друзі</button>
-          <button>Написати</button>
+            @if (Auth::user()->id!=$user->id)
+              @if (Auth::user()->checkIfFriend($user))
+                <a href="{{route('deleteFriend',$user)}}" class="nav-link px-2 text-black">видалити з друзів</a>
+              @elseif (Auth::user()->checkFriendsRequest($user))
+                <p>запит на дружбу відправлений</p>
+                @else
+                <a class="profile-button" href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
+              @endif
+                <a class="profile-button2" href="{{route('sendingMessage',$user)}}" >відправити повідомлення</a>
+            @endif
         </div>
       </div>
       <div class="profile-user-info-container">
         <div class="profile-user-info">
-        <div class="info-field"><b>@<b>{{$user->nick_name}}</b></b></div>
-         <div class="info-field"><b>Стать:</b> {{$user->gender}}</div>
-         <div class="info-field"><b>Місто:</b> {{$user->city}}</div>
-         <div class="info-field"><b>Дата народження:</b> {{$user->date_of_birth}}</div>
+          @if ($user->nick_name)
+           <div class="profile-info-field"><b>Нікнейм: </b> {{$user->nick_name}}</div>
+           @endif  @if ($user->gender)
+          <div class="profile-info-field"><b>Стать: </b> {{$user->gender}}</div>
+          @endif  @if ($user->city)
+          <div class="profile-info-field"><b>Місто: </b> {{$user->city}}</div>
+          @endif @if ($user->date_of_birth)
+          <div class="profile-info-field"><b>Дата народження: </b> {{$user->date_of_birth}}</div>
+          @endif
         </div>
         <div class="profile-user-description">
-          <div class="info-field">
-                    <b>Про себе: </b>{{$user->about_meprofilePage}}
-        </div>
+          <div class="profile-info-field">
+            @if ($user->about_me)
+             <b>Про себе: </b>{{$user->about_me}}
+             @endif 
+         </div>
       </div>
     </div>
 </div>
@@ -64,7 +79,7 @@
      @else
      <br/>
         @if (Auth::check())
-        <a href="{{route('sendingMessage',$user)}}" class="btn btn-primary btn-block">відправити повідомлення</a>
+       
         @endif
         
     @endif

@@ -2,7 +2,8 @@
 
   width: 100%;
   height: 400px;
-  margin: 5%;
+  margin-top: 2%;
+  margin-left: 5%;
   display: flex;
   background-color: #f2f2f2;
   .profile-image {
@@ -47,6 +48,7 @@
       //background-color: rgb(37, 98, 164);
       display: flex;
 
+
       .profile-user-name {
         width: 50%;
         display: flex;
@@ -61,16 +63,25 @@
             justify-content: center;
             align-items: center;
 
-        
-        button {
-          margin-left: 5px;
-              background-color: #a1a1a1;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
+        .profile-button{
+            background-color: #f19beb;
+           border-radius: 50px;
+           padding: 1%; 
+           padding-left: 2%;
+           padding-right: 2%;      
         }
+        .profile-button2{
+          margin-left: 10px;
+          background-color: #42f875;
+          padding: 1%; 
+          border-radius: 50px;
+          padding-left: 2%;
+          padding-right: 2%;
+          
+       }
+
+
+
       }
     }
 
@@ -85,6 +96,10 @@
       //  background-color: rgb(227, 122, 52);
         width: 50%;
         height: 100%;
+        padding: 1%;
+      }
+      .profile-info-field{
+
       }
 
       .profile-user-description {
@@ -92,6 +107,7 @@
         // background-color: rgb(175, 127, 242);
         width: 60%;
         height: 100%;
+
       }
 
     }
