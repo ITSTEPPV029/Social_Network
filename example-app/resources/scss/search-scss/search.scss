@@ -1,0 +1,105 @@
+.search-container{
+
+background-color: rgb(140, 226, 226);
+margin: 5%;
+padding: 1%;
+display: flex;
+
+.search-users{
+    background-color: rgb(247, 249, 118);
+    width: 75%;
+    padding: 1%;
+
+    .search-user-check-container{
+        border: 2px solid #a61010;
+        display: flex;
+        border-radius: 50px;
+        margin-bottom: 10px;
+        .search-img{
+            
+            img{
+                height: 200px;
+                display: block;
+              
+                border-radius: 50%;
+            }
+        }
+        .search-user-info{
+          margin-left: 10px;
+        }
+        .search-user-actions{  
+        }
+
+    }
+
+
+   .search-user{
+    display: flex;
+        .search-img{
+            
+            img{
+                height: 150px;
+                display: block;
+                margin-bottom: 10px;
+                border-radius: 50%;
+            }
+        }
+        .search-user-info{
+          margin-left: 10px;
+        }
+        .search-user-actions{  
+        }
+   }
+
+   
+
+}
+
+.search-filter-container{
+
+    padding: 2%;
+    width: 35%;
+    height: auto;
+    background-color: rgb(200, 200, 200);
+    text-align: center;
+    
+    .search-filter{
+
+        input{
+            border-radius: 20px;
+            border-color: red; 
+        }
+        select{
+            border-color: red;
+            border-radius: 20px;
+          }
+
+    }
+    .search-button{
+        
+        input{
+            border-color: red;
+            border-radius: 20px;
+        }
+    }
+
+    .search-myMapContainer{
+       
+        margin-top: 50px;
+        margin: auto;
+        width: 100%;
+        border: 2px solid #a61010;
+        .search-myMap{
+          
+            height: 300px;
+           
+        }
+
+    }
+}
+.user-marker-icon {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+}

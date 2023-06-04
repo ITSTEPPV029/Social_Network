@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+
+use App\Models\MyPost;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Filters\UserFilter;
+use Illuminate\Validation\Rule;
 
 class SearchController extends Controller
 {
@@ -26,7 +31,31 @@ class SearchController extends Controller
              }
       return view('home.usersFound',compact('users'));    
     }
-    
+
+     /**
+     * пошук користувача по імені
+     *
+     * @param  Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+    public function filterUser(Request $request)     
+    {
+      $data = $request->validate([
+        'name' => '',
+        'nick_name' => '',
+        'date_of_birth'=> '',
+        'gender' => '',
+        'city' => '',
+       ]);
+
+       $filter = app()->make(UserFilter::class,['queryParams'=>array_filter($data)]);
+
+        $users = User::filter($filter)->get();
+     
+      return $users;
+     // return view('home.usersFound',compact('users'));    
+    }
+
       /**
      * вивід всіх користувачів  з фільтраціює (вивідом не друзів)
      *
