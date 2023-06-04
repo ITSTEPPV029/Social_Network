@@ -40,31 +40,21 @@ class SearchController extends Controller
      */
     public function filterUser(Request $request)     
     {
-
-
-    //   $data = $request->validate([
-    //     'first_name' => 'string|regex:/^[^0-9]*$/',
-    //     'last_name' => 'string|regex:/^[^0-9]*$/',
-    //     'nick_name' => ['string','max:30','alpha_dash',
-    //        Rule::unique('users')->ignore(Auth::user()->id),],
-    //     'date_of_birth'=> 'nullable|date|before_or_equal:today',
-    //     'gender' => '',
-    //     'city' => '',
-    // ]);
-      $data = $request->validate(['first' => 'string']);
+      $data = $request->validate([
+        'name' => '',
+        'nick_name' => '',
+        'date_of_birth'=> '',
+        'gender' => '',
+        'city' => '',
+       ]);
 
        $filter = app()->make(UserFilter::class,['queryParams'=>array_filter($data)]);
 
-       $users = User::filter($filter)->get();
-     
+        $users = User::filter($filter)->get();
      
       return $users;
      // return view('home.usersFound',compact('users'));    
     }
-    
-
-
-
 
       /**
      * вивід всіх користувачів  з фільтраціює (вивідом не друзів)
