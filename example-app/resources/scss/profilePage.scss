@@ -98,10 +98,6 @@
         height: 100%;
         padding: 1%;
       }
-      .profile-info-field{
-
-      }
-
       .profile-user-description {
 
         // background-color: rgb(175, 127, 242);
@@ -115,3 +111,15 @@
   }
 
 }
+
+/* Застосувати стилі, коли ширина екрану менше або дорівнює 600px */
+               /*АДАПТАЦІЯ*/
+        @media screen and (max-width: 600px) {
+    
+         .profile-info-container{
+                display: none;
+           }
+    .sideMenu-container{
+      display: block;
+    }
+        }

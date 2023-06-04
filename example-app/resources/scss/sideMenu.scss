@@ -82,3 +82,22 @@ $margin-li-top: 1.5rem; //Відстань між li
     background: $side-bar-background-color;
   }
 }
+
+
+/* Застосувати стилі, коли ширина екрану менше або дорівнює 600px */
+/*АДАПТАЦІЯ*/
+@media screen and (max-width: 600px) {
+
+  .sideMenu-container li {
+        display: none;
+      }
+
+      .sideMenu-container li:first-child {
+        display: block;
+      }
+
+      .sideMenu-container li:hover ul {
+        display: block;
+      }
+
+}
