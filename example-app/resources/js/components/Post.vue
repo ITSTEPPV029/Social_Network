@@ -6,42 +6,64 @@
     <input type="text" v-model="textInput">
     <button @click="uploadFile">завантажити</button>
   </div>
-  
   <br/>
 
+<div class="post-container">
   <div  class="post" v-for="post in posts" >
-    <div class="post-delete">
-      <a v-if="isLoggedIn==true" @click="openModal" > &#10006;</a>
-        <div class="post-modal" v-if="showModal" @click="closeModal">
-          <div class="post-modal-content" >
-            <p>Ви дійсно бажаєте видалити пост?</p>
-            <div class="post-modal-buttons">
-              <button @click="deletePost(post)">Видалити</button>
-              <button @click="closeModal">Скасувати</button>
+
+      <div class="post-delete">
+        <a v-if="isLoggedIn==true" @click="openModal" > &#10006;</a>
+          <div class="post-modal" v-if="showModal" @click="closeModal">
+            <div class="post-modal-content" >
+              <p>Ви дійсно бажаєте видалити пост?</p>
+              <div class="post-modal-buttons">
+                <button @click="deletePost(post)">Видалити</button>
+                <button @click="closeModal">Скасувати</button>
+              </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
 
-   <div class="post-photo-text-container">
-      <div class="post-photo">
-        <img v-if="post.photo"  :src="`${post.photo}`" >
+      <div class="post-full-screen">
+          <div class="post-moda-full-screen" v-if="showFullScreen" @click="closeFullScreenModal">
+             <div class="post-modal-full-screen-content" >
+              <p>тест</p>
+            <!--  <div class="post-modal-buttons">
+                <button @click="deletePost(post)">Видалити</button>
+                <button @click="closeModal">Скасувати</button>
+              </div> -->
+            </div>
+          </div>
       </div>
-      <div class="post-text">
-          <p v-if="post.text!=0" > {{post.text}}</p>
-      </div>
+
+    <div class="post-photo">
+        <img v-if="post.photo" @click="openFullScreen" :src="`${post.photo}`" >
     </div>
-  
-  <div class="post-like-comment-container">
+    
     <div class="post-like">
       <img @click="like(post)" src="https://w7.pngwing.com/pngs/90/304/png-transparent-cat-dog-paw-paw-patrol-animals-paw-claw-thumbnail.png" >
-      <a  >{{post.like}}</a>
+      <span  >{{post.like}}</span>
     </div>
-    <div class="post-input-comment">
-         <input type="text" v-model="textInput"  placeholder="Текст повідомлення..." />
-         <button @click="store"></button>
-    </div>
+
+  <div v-if="post.text!=0" class="post-text">
+      <div v-if="expanded==post.id">{{ post.text }}</div>
+      <div v-else>{{ truncatedText(post.text) }}</div>
+      <b @click="toggleExpanded(post.id)">
+        {{ expanded==post.id ? 'Згорнути' : 'Розгорнути' }} </b>
   </div>
+
+  <div v-if="commentCheck==post.id" class="post-first-comment">
+    <img  :src="`${thisUser.avatar}`" /> 
+    <div><b>{{thisUser.first_name + ' ' + thisUser.last_name }}</b>
+        <p>{{ comment }}</p>
+    </div>  
+  </div>
+    
+  <div class="post-input-comment">
+    <input type="text" v-model="newComments[post.id]"  placeholder="Текст повідомлення..." />
+    <button @click="addComment(post)"></button>
+  </div>
+ 
         <!-- <div  class="comment-box">
           <textarea v-model="newComments[post.id]" placeholder="Написати коментар"></textarea>
           <button @click="addComment(post)">Додати коментар</button>
@@ -53,7 +75,7 @@
         </div>
     -->
   </div>
-
+</div>
 </template>
 
 <script>
@@ -84,7 +106,11 @@ export default {
       showCommentBox: false,
       newComment: '',
       newComments: {},
-
+      expanded: false,
+      maxCharacters: 25,
+      comment:'',
+      commentCheck:0,
+      showFullScreen: false,
     };
   },
   mounted(){
@@ -109,6 +135,20 @@ export default {
     document.addEventListener('scroll',eventHendler)
    },
 
+   computed: {
+    truncatedText(text) {
+      return (text) => {
+       text = text.toString(); // Перетворення на рядок, якщо не є рядком
+          if (text.length <= this.maxCharacters) {
+            return text;
+          }
+       return text.slice(0, this.maxCharacters) + "...";
+        };
+      
+    }
+  },
+
+
   methods: {
     openModal() {
       this.showModal = true;
@@ -116,10 +156,19 @@ export default {
     closeModal() {
       this.showModal = false;
     },
-    deleteItem() {
-      // Your delete logic here
-      this.showModal = false; // Close the modal after deletion
+
+    openFullScreen(){
+      this.showFullScreen = true;
     },
+    closeFullScreenModal(){
+      this.showFullScreen = false;
+    },
+    
+    // deleteItem() {
+    //   // Your delete logic here
+    //   this.showModal = false; // Close the modal after deletion
+    // },
+
     scrollGetPost() {
   
        axios.post('/api/index',{ id: this.id , page: this.posts.length }).then(data=>{  
@@ -133,6 +182,10 @@ export default {
 
     if (this.newComments[post.id]) {
       
+      this.comment =this.newComments[post.id];
+
+      this.commentCheck=post.id;
+
         let targetPost = this.posts.find(p => p.id === post.id);
         console.log("комент ", this.newComments[post.id]);
 
@@ -183,47 +236,47 @@ export default {
       this.selectedFile = event.target.files[0];
     },
 
-    uploadFile()
-    {
-    if (!this.selectedFile) {
-       alert('Please select a file');
-    return;}
-    // if (!this.textInput) {
-    //   alert('Please select a file');
-    // }
-    // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
-    const formData = new FormData();
-    formData.append('file', this.selectedFile);
-    formData.append('text', this.textInput);
+    uploadFile(){
 
-     
-  axios.post('/api/store', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then(data => {
-        this.posts=data.data;
-        this.$refs.fileInput.value = null;
-        this.selectedFile= null;
-        this.textInput= null;
-       // this.getPosts();
+      if (!this.selectedFile) {
+        alert('Please select a file');
+      return;}
+      // if (!this.textInput) {
+      //   alert('Please select a file');
+      // }
+      // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+      formData.append('text', this.textInput);
 
-      },).catch(error => {
-        console.log(error.response.data);
-      });
-    },
-
-    getPosts() {
       
-     let page = 0; 
-     if (this.posts) {
-      page = this.posts.length;
-     }
+    axios.post('/api/store', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(data => {
+          this.posts=data.data;
+          this.$refs.fileInput.value = null;
+          this.selectedFile= null;
+          this.textInput= null;
+        // this.getPosts();
+
+        },).catch(error => {
+          console.log(error.response.data);
+        });
+      },
+
+      getPosts() {
+        
+      let page = 0; 
+      if (this.posts) {
+        page = this.posts.length;
+      }
 
 
-      axios.post('/api/index',{ id: this.id , page: page }).then(data=>{  
-       // console.log(data.data);
-         this.posts=data.data });
+        axios.post('/api/index',{ id: this.id , page: page }).then(data=>{  
+        // console.log(data.data);
+          this.posts=data.data });
     },
 
     getIsLoggedIn() {
@@ -245,6 +298,15 @@ export default {
     });
 
     },
+
+    toggleExpanded(id) {
+      if(this.expanded==id)
+      this.expanded=0;
+      else
+        this.expanded = id//!this.expanded;
+
+    },
+   
   
   }
      

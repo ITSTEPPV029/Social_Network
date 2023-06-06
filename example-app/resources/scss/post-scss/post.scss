@@ -1,10 +1,18 @@
+.post-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+
+
 .post {
+
+  
   margin: 10%;
    // display: flex;
     //flex-direction: column;
    // justify-content: center;
    //align-items: center;
-   // width: 500px;
+   width: 400px;
     height: auto;
     background-color: #ffffff;
     //box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -47,13 +55,38 @@
   
     }
 
+    .post-full-screen{
 
-  
-    .post-photo-text-container{
+
+      .post-moda-full-screen{
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .post-modal-full-screen-content{
+          
+          border-radius: 10px;
+          background-color: white;
+          padding: 20px;
+          text-align: center;
+
+        }   
+      }
+
+    }
+    
      
-      display: flex;
-      flex-direction: row;
-      .post-photo{
+
+
+
+    .post-photo{
         img {
           width: 400px;
           height: 550px;
@@ -63,31 +96,28 @@
         }
       }
       .post-text {
-        margin-left: 5%;
+       // margin-left: 5%;
+       display: flex;
+       align-items:end;
+       justify-content: space-between;
         width: 100%;
-        height: 550px;
-        background-color: #85b212;
+        height: auto;
         font-size: 20px;
-        // text-align: justify;
-        // line-height: 1.5;
+       
+        b{
+          cursor: pointer;
+        }
       }
+      .post-first-comment{
 
-    }
+        display: flex;
+        img{
+          width: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
     
-    // .post-content {
-   
-    //   .post-title {
-    //     font-size: 32px;
-    //     font-weight: bold;
-    //     text-align: center;
-    //     margin-bottom: 10px;
-    //   }
-    // }
-    .post-like-comment-container{
-    
-      display: flex;
-      flex-direction: row;
-      margin-top: 10px;
       .post-like{
         padding-left: 3%;
         
@@ -101,8 +131,8 @@
 
       .post-input-comment
       {
-        width: 58%;
-        margin-left: 5%;
+        width: 100%;
+      
        // align-self: flex-end;
        display: flex;
        border: 2px solid red;
@@ -136,7 +166,7 @@
       
 
 
-    }
+    
 
   }
- 
+}
