@@ -273,7 +273,6 @@ export default {
         page = this.posts.length;
       }
 
-
         axios.post('/api/index',{ id: this.id , page: page }).then(data=>{  
         // console.log(data.data);
           this.posts=data.data });
