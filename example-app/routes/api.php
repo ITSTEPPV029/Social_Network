@@ -47,4 +47,4 @@ Route::post('upload-avatar','SettingsController@uploadAvatar')->middleware('auth
 
 Route::post('filter', 'SearchController@filterUser')->middleware('auth:api');
 
-
+Route::post('PetStore', 'PetController@store')->middleware('auth:api');

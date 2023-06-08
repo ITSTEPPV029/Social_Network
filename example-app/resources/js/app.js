@@ -8,6 +8,7 @@ import Post from './components/Post'
 import Chat from './components/Chat'
 import Settings from './components/Settings'
 import Search from './components/Search'
+import Userpage from './components/UserPage'
 
 const app = createApp({})
 
@@ -17,6 +18,7 @@ app.component('Post', Post)
 app.component('Chat', Chat)
 app.component('Settings', Settings)
 app.component('Search', Search)
+app.component('Userpage', Userpage)
 
 app.mount('#appMyMap')
 app.mount('#appPost')
@@ -24,3 +26,4 @@ app.mount('#appChat')
 app.mount('#appMessage')
 app.mount('#appSettings')
 app.mount('#appSearch')
+app.mount('#appUserpage')

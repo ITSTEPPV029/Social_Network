@@ -8,9 +8,11 @@
           <font style="vertical-align: inherit;">
             <h1>Тут буде сторінка відновлення паролю!!!</h1>
           </font>
+
       </p>
     </div>
   </div>
 </div>
+
 
 @endsection

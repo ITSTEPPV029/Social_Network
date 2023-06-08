@@ -3,11 +3,26 @@
 @section('content')
 
 
-<div class="profile-container">
+<div class="profile-user-button">
+  @if (Auth::user()->id!=$user->id)
+    @if (Auth::user()->checkIfFriend($user))
+      <a href="{{route('deleteFriend',$user)}}" class="nav-link px-2 text-black">видалити з друзів</a>
+    @elseif (Auth::user()->checkFriendsRequest($user))
+      <p>запит на дружбу відправлений</p>
+      @else
+      <a class="profile-button" href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
+    @endif
+      <a class="profile-button2" href="{{route('sendingMessage',$user)}}" >відправити повідомлення</a>
+  @endif
+</div>
+
+
+{{-- <div class="profile-container">
 
     <div class="profile-image">
     <img src="{{ asset($user->avatar) }}" >
       <div class="bottom-div">
+      
         <div></div>
         <div></div>
         <div></div>
@@ -57,14 +72,17 @@
 
  
       
-</div>
+</div> --}}
 
-<div class="profile-post-container">
-  <div id="appPost">
+
+  {{-- <div id="appPost">
     <Post :id="{{ json_encode($user->id) }}" :this-User="{{ json_encode(Auth::user())}}" /> 
-  </div>
-</div>
-
+  </div> --}}
+ 
+  <div id="appUserpage">
+    <Userpage :id="{{ json_encode($user->id) }}" :this-User="{{ json_encode(Auth::user())}}" />
+ </div>
+ 
 {{-- 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
     <h1>профіль користувача</h1>

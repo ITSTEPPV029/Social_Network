@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
 
 class PetController extends Controller
 {
@@ -46,20 +46,19 @@ class PetController extends Controller
     public function store(Request $request)
     {
 
-        $pet = new Pet();
-        $pet->name = $request->input('name');
-        $pet->user_id = Auth::user()->id;
-        $avatar = $request->file('avatar');
-        if ($avatar !== null) {
-            $photoMainName = $avatar->store('uploads', 'public');
-            $pet->avatar = "/storage/" . $photoMainName;
-        // $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
-        } else
-            $pet->avatar = "/storage/uploads/anonym.png";
-
+         $pet = new Pet();
+         $pet->name = $request->input('name');
+         $pet->user_id = Auth::user()->id;
+         $avatar = $request->file('file');
+         
+         $photoName = $avatar->store('uploads', 'public');
+         $pet->avatar = "/storage/" . $photoName;
+       //   $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
         $pet->save();
-
-        dd('Успішно збережено! ' . $pet);
+        
+        $user = User::find($request->input('id'));
+        return $user;
+      
     }
 
     /**
