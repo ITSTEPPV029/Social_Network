@@ -52,10 +52,10 @@ class MyPostController extends Controller
        $page= $request->input('page');
        if($page)
        {
-         $MyPost= MyPost::with('comments.user')->offset($page)->orderBy('id', 'desc')->where('user_id', $id)->take(1)->get();
+         $MyPost= MyPost::with('comments.user')->offset($page)->orderBy('id', 'desc')->where('user_id', $id)->take(2)->get();
        }
        else
-       $MyPost= MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', $id)->take(1)->get(); 
+       $MyPost= MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', $id)->take(2)->get(); 
 
        return  $MyPost; 
     } 
