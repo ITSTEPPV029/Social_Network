@@ -3,8 +3,8 @@
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: flex-end;
-
+ // justify-content: flex-end; застаріле і видає помилку 
+  justify-content: end;
   button{
     border-radius: 50px;
     border-color: #de8d8d;
@@ -40,7 +40,6 @@
 
     div{
       margin-top: 4%;
-    
       h3{
         text-align: center;
       }
@@ -78,17 +77,10 @@
         text-align: center;
       }
     }
-    
-
-
-    
-
-
   }
-
-
-
 }
+
+
 
 .post-container{
   display: grid;
@@ -323,5 +315,14 @@
 
     
 
+  }
+}
+
+@media (max-width: 1000px)
+ {
+  .post-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
   }
 }
