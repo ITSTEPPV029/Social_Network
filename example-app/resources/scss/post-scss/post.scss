@@ -1,40 +1,328 @@
-.post {
-  
+.post-add-container{
+
+  width: 100%;
+  height: auto;
+  display: flex;
+ // justify-content: flex-end; застаріле і видає помилку 
+  justify-content: end;
+  button{
+    border-radius: 50px;
+    border-color: #de8d8d;
+    padding: 5px;
+    background-color: #fcfcfc;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .post-modal-add{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-   // width: 500px;
+    justify-content: center;
+  }
+  
+  .post-modal-add-content {
+    border-radius: 50px;
+    background-color: white;
+    width: 500px;
     height: auto;
-    //background-color: #fff;
-    //box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-  
-    img {
-      width: 500px;
-      height: 400px;
-      object-fit: cover;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-    }
-  
-    .post-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      //align-items: center;
-      //padding: 40px;
-      margin-bottom: 20px;
-      .post-title {
-        font-size: 32px;
-        font-weight: bold;
+
+    padding: 1%;
+   span{
+    text-align: right;
+    display: block;
+    cursor: pointer;
+   }
+
+    div{
+      margin-top: 4%;
+      h3{
         text-align: center;
-        margin-bottom: 10px;
       }
-  
-      .post-text {
-        font-size: 20px;
-        text-align: justify;
-        line-height: 1.5;
+    }
+    .post-modal-choose-file{
+     
+      img{
+        width: 100px;
+        cursor: pointer;
+      }
+      b{
+        cursor: pointer;
+      }
+      p{
+        text-align: center;
+      }
+    }
+    .post-modal-textarea-content{
+      text-align: center;
+      textarea{
+        width: 80%;
+      }
+    }
+   
+
+   .post-modal-button-content{
+    text-align: center;
+    margin: 1%;
+      .post-modal-button{
+
+        border-radius: 50px;
+        background-color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
       }
     }
   }
+}
+
+
+
+.post-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+
+
+.post {
+
+  
+  margin: 10%;
+   // display: flex;
+    //flex-direction: column;
+   // justify-content: center;
+   //align-items: center;
+   width: 400px;
+    height: auto;
+    background-color: #ffffff;
+    //box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    //overflow: hidden; 
+   
+    .post-delete{
+      text-align: right;
+      cursor: pointer;
+      padding: 10px;
+      
+    }
+    
+    .post-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .post-modal-content {
+      border-radius: 10px;
+      background-color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .post-modal-buttons {
+      margin-top: 20px;
+      
+      button{
+        background-color: rgb(230, 230, 230);
+        border-radius: 10px;
+        margin-left: 5%;
+      }
+      button:hover{
+      border-color: red;
+      }
+
+
+    }
+
+    .post-full-screen{
+
+
+      .post-moda-full-screen{
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .post-modal-full-screen-content{
+          
+          border-radius: 10px;
+          background-color: rgb(207, 190, 187);
+    
+          width: 60%;
+          height: 70%;
+          display: flex;
+          padding: 5px;
+
+          .post-modal-full-screen-photo{
+            width: 70%;
+            height: 100%;
+            background-color: rgb(51, 55, 56);
+
+            img{
+              width: 100%;
+              height: 100%;
+              object-fit: contain; /* Зберігає пропорції зображення та вміщує його в межі елемента */
+              max-width: 100%; /* Забезпечує максимальну ширину елемента, щоб уникнути виходу зображення за межі */
+              max-height: 100%; /* Забезпечує максимальну висоту елемента, щоб уникнути виходу зображення за межі */
+  
+            }
+          }
+          .post-modal-full-screen-comments{
+            background-color: rgb(232, 230, 236);
+            width: 30%;
+            height: 100%;
+            overflow: hidden; /* Обрізати вміст, який виходить за межі батьківського елемента */
+            a{
+              float: right; 
+              cursor: pointer;
+            }
+            .post-modal-text{
+
+              margin: 10px;
+            }
+            .post-modal-comments{
+              display: grid;
+              height: 50%;
+              div{
+
+                align-self: end;
+                background-color: rgb(213, 213, 233);
+                overflow: auto;
+                height: 500px;
+                margin-top: 30px;
+                ul{
+                  padding-left: 10px;
+                  li{
+                    list-style-type: none;
+                  }
+                }
+              }
+            
+             
+
+            }
+
+          }
+
+
+         
+        }   
+      }
+
+    }
+    
+     
+    .post-photo{
+        img {
+          width: 400px;
+          height: 550px;
+          object-fit: cover;
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+          border-radius: 10px;
+          cursor: pointer;
+        }
+      }
+      .post-text {
+       
+       display: flex;
+       align-items:end;
+       justify-content: space-between;
+        width: 100%;
+        height: auto;
+        font-size: 20px;
+       
+        b{
+          cursor: pointer;
+        }
+      }
+      .post-first-comment{
+
+        display: flex;
+        img{
+          width: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    
+      .post-like-container{
+
+        padding-left: 3%;
+        margin-top: 2%;
+        background-color: rgb(255, 255, 255);
+        width: 400px;
+        .post-like{
+          img{
+            width: 50px;
+            cursor: pointer;
+            margin-left: 10px;
+          }
+        }
+        
+      }
+
+      .post-input-comment
+      {
+        width: 100%;
+        margin-top: 2%;
+       // align-self: flex-end;
+       display: flex;
+       border: 2px solid red;
+       border-radius: 50px;
+       padding: 7px;
+       
+       input {
+        flex: 1;
+        border: none;
+            &:focus {
+              outline: none;
+            }
+        }
+          
+        button {
+          border: none;
+          background-color: transparent;
+          padding: 5px;
+          border-radius: 50%;
+          margin-left: 10px;
+          cursor: pointer;
+          
+          &::after {
+            content: "➤";
+            display: block;
+            transform: rotate(45deg);
+          } 
+        }
+      }
+  
+      
+
+
+    
+
+  }
+}
+
+@media (max-width: 1000px)
+ {
+  .post-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+  }
+}

@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->string('text');
             $table->bigInteger("like")->default(0);
             $table->bigInteger("user_id")->constrained("users");
-            $table->bigInteger("my_post_id")->constrained("my_posts");
+            $table->bigInteger("my_post_id")->constrained("my_posts")->onDelete('cascade');
             $table->timestamps();
         });
     }
