@@ -53,6 +53,16 @@
          </div>
       </div>
     </div>
+  </div>
+
+ 
+      
+</div>
+
+<div class="profile-post-container">
+  <div id="appPost">
+    <Post :id="{{ json_encode($user->id) }}" :this-User="{{ json_encode(Auth::user())}}" /> 
+  </div>
 </div>
 
 {{-- 
@@ -87,9 +97,7 @@
     <hr/>
 
  @if (Auth::check())
-     <div id="appPost">
-      <Post :id="{{ json_encode($user->id) }}" :this-User="{{ json_encode(Auth::user())}}" /> 
-    </div>
+     
 
   <hr />
 
