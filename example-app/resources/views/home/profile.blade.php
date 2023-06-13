@@ -16,6 +16,13 @@
   @endif
 </div>
 
+{{-- <h1>Тварини користувача</h1>
+@foreach($user->pets as $pet)
+<div>
+  <div class="name">{{$pet->name}}</a></div>
+</div>
+@endforeach --}}
+
 
 {{-- <div class="profile-container">
 
@@ -80,7 +87,7 @@
   </div> --}}
  
   <div id="appUserpage">
-    <Userpage :id="{{ json_encode($user->id) }}" :this-User="{{ json_encode(Auth::user())}}" />
+    <Userpage :user="{{ json_encode($user) }}" :this-User="{{ json_encode(Auth::user())}}" />
  </div>
  
 {{-- 
@@ -163,22 +170,17 @@
 
 
   
-  <h1>Тварини користувача</h1>
-  @foreach($user->pets as $pet)
-  <div>
-    <div class="name">{{$pet->name}}</a></div>
-  </div>
-  @endforeach
-
+ 
 
 </div> --}}
 
 
-<script>
+{{-- <script>
   function submitForm() {
     document.getElementById("my-avatar-form").submit();
   }
-</script>
+</script> --}}
+
 @endsection
 
 

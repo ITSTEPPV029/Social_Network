@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Pet;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -19,4 +19,18 @@ class ProfileController extends Controller
   {
     return view('home.profile', compact('user'));
   }
+  
+  public function getCheckUser(Request $request)
+  {
+    $userPage = User::find( $request->input('id'));
+    $user = User::find(Auth::user()->id);
+
+    $mas = [
+      'checkFriendsRequest'=> $user->checkFriendsRequest($userPage),
+      'checkIfFriend'=>$user->checkIfFriend($userPage),
+    ];
+
+    return  $mas;
+  }
+
 }

@@ -192,13 +192,12 @@ export default {
         this.name='';
         this.nick_name='';
         this.date_of_birth='';
-        this.gender='';
-        this.city='';
-
+        this.gender='';   
         this.checkUserID=0;
-
+        this.city='Луцьк'; 
+// пофіксити скидання фільтрації ========================================================================
         this.applyFilter();
-        this.citySearch('Луцьк');
+       
       },
       citySearch(city){
 

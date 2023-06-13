@@ -1,184 +1,446 @@
 <template>
-   
+  <div class="profile-container">
 
+    <div class="profile-image">
+      <img :src="`${user.avatar}`">
+      <div class="profile-image-bottom-div">
 
-<div class="profile-container">
+        <div v-for="pet in Pets">
+          <div title="{{ pet.name }}" class="profile-bottom-button">
+            <img @click="showModalEdit(pet)" :src="`${pet.avatar}`">
+          </div>
+        </div>
 
-<div class="profile-image">
- <img :src="`${originalUser.avatar}`" >
-  <div class="profile-image-bottom-div">
-       
-       <div  class="profile-bottom-button">
-          <img @click="showModalAdd" src="https://avatars.mds.yandex.net/i?id=caba12d0db357404b21a92a69c98b5fc856f1b1e-8191562-images-thumbs&n=13" > 
-       </div>
+        <div v-if="myPage" class="profile-bottom-button">
+          <img @click="showModalAdd"
+            src="https://avatars.mds.yandex.net/i?id=caba12d0db357404b21a92a69c98b5fc856f1b1e-8191562-images-thumbs&n=13">
+        </div>
 
-       <div class="profile-modal-add" v-if="showModalAddPet" >  
-              <div class="profile-modal-add-content">  
-                     <div class="profile-modal-choose-file">
-                     <input type="file" ref="fileInput" style="display: none" @change="onFileSelected">
-                            <img @click="openFileInput" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJODoz1fSZOpbbKokY2sMWoOkIojZDba9BprAO_dtzaslXlxCtKoFnbgS9JelQv7MCi0I&usqp=CAU" >
-                            <b @click="openFileInput">вибрати фото</b>
-                            <p v-if="selectedFileName"> {{ selectedFileName }}</p>
-                     </div>
-                     <div class="profile-modal-text-content">
-                     <p>імя тварини</p>
-                     <input type="text" v-model="textInput"  placeholder="імя тварини..." />
-                     </div>
-                     
-                     <div class="profile-modal-button-content"> 
-                     <button  class="profile-modal-button"  @click="uploadFile">Додати тварину</button>
-                     </div> 
+ <!-- вікно інформація про тварину  -->
+      <div class="profile-modal-add" v-if="showModalInfoPet">
+          <div class="profile-modal-add-content">
+            <span @click="closeModalEdit"> &#10006;</span>
+            <h4>інформація про тварину</h4>
+            <div class="profile-modal-add-input-fields-content">
 
-              </div>  
+              <div class="profile-modal-add-input-info">
+                <p>Кличка</p>
+                <p>Вид улюбленця</p>
+                <p>Стать</p>
+                <p>Вік</p>
+              </div>
+              <div class="profile-modal-add-input-text">
+                <input type="text" v-model="PetEdit.name" placeholder="імя тварини..." />
+
+                <select v-model="kind" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">собака </option>
+                  <option value="Чоловік">кіт</option>
+                </select>
+
+                <select v-model="kind" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">собака </option>
+                  <option value="Чоловік">кіт</option>
+                </select>
+
+                <input class="profile-modal-add-input-number" type="number" min="1" max="100">
+              </div>
+
+              <div class="profile-modal-add-input-photo-content">
+                <div class="profile-modal-add-input-photo">  
+                  <img :src="`${PetEdit.avatar}`">    
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-modal-add-input-about-pet-content">
+              <div class="profile-modal-add-input-about-pet">
+                <p>Про улюбленця</p>
+              </div>
+              <div class="profile-modal-add-input-about-pet-text">
+                <textarea name="" rows="6"></textarea>
+              </div>
+            </div>
+            <div class="profile-modal-button-content">  
+            </div>
+          </div>
+        </div>
+
+        <!-- вікно редагування -->
+        <div class="profile-modal-add" v-if="showModalEditPet">
+          <div class="profile-modal-add-content">
+            <span @click="closeModalEdit"> &#10006;</span>
+            <h4>редагування</h4>
+            <div class="profile-modal-add-input-fields-content">
+
+              <div class="profile-modal-add-input-info">
+                <p>Кличка</p>
+                <p>Вид улюбленця</p>
+                <p>Стать</p>
+                <p>Вік</p>
+              </div>
+              <div class="profile-modal-add-input-text">
+                <input type="text" v-model="PetEdit.name" placeholder="імя тварини..." />
+
+                <select v-model="kind" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">собака </option>
+                  <option value="Чоловік">кіт</option>
+                </select>
+
+                <select v-model="kind" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">Жінка </option>
+                  <option value="Чоловік">Чоловік</option>
+                  <option value="Нон-бінарний">Нон-бінарний</option>
+                  <option value="Чоловік">Поза гендером</option>
+                  <option value="Бігендер">Бігендер</option>
+                </select>
+
+                <input class="profile-modal-add-input-number" type="number" min="1" max="100">
+              </div>
+
+              <div class="profile-modal-add-input-photo-content">
+                <div class="profile-modal-add-input-photo">
+                  <input type="file" ref="fileInput" style="display: none" @change="onFileSelected">
+                  <img :src="`${PetEdit.avatar}`">
+                  <img @click="openFileInput"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJODoz1fSZOpbbKokY2sMWoOkIojZDba9BprAO_dtzaslXlxCtKoFnbgS9JelQv7MCi0I&usqp=CAU">
+                  <span @click="openFileInput">вибрати фото</span>
+                  <p v-if="selectedFileName"> {{ selectedFileName }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-modal-add-input-about-pet-content">
+              <div class="profile-modal-add-input-about-pet">
+                <p>Про улюбленця</p>
+              </div>
+              <div class="profile-modal-add-input-about-pet-text">
+                <textarea name="" rows="6"></textarea>
+              </div>
+            </div>
+            <div class="profile-modal-button-content">
+              <button class="profile-edit-modal-button" @click="deletePet(PetEdit.id)">видалити тварину</button>
+              <button class="profile-edit-modal-button" @click="EditPet">Редагувати тварину</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- вікно добавлення  тварини-->
+        <div class="profile-modal-add" v-if="showModalAddPet">
+          <div class="profile-modal-add-content">
+            <span @click="closeModalAdd"> &#10006;</span>
+            <h4>Додати улюбленця</h4>
+            <div class="profile-modal-add-input-fields-content">
+
+              <div class="profile-modal-add-input-info">
+                <p>Кличка</p>
+                <p>Вид улюбленця</p>
+                <p>Стать</p>
+                <p>Вік</p>
+              </div>
+              <div class="profile-modal-add-input-text">
+                <input type="text" v-model="textInput" placeholder="імя тварини..." />
+
+                <select v-model="kind" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">собака </option>
+                  <option value="Чоловік">кіт</option>
+                </select>
+
+                <select v-model="kind" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">Жінка </option>
+                  <option value="Чоловік">Чоловік</option>
+                  <option value="Нон-бінарний">Нон-бінарний</option>
+                  <option value="Чоловік">Поза гендером</option>
+                  <option value="Бігендер">Бігендер</option>
+                </select>
+
+                <input class="profile-modal-add-input-number" type="number" min="1" max="100">
+              </div>
+
+              <div class="profile-modal-add-input-photo-content">
+                <div class="profile-modal-add-input-photo">
+                  <input type="file" ref="fileInput" style="display: none" @change="onFileSelected">
+                  <img @click="openFileInput"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJODoz1fSZOpbbKokY2sMWoOkIojZDba9BprAO_dtzaslXlxCtKoFnbgS9JelQv7MCi0I&usqp=CAU">
+                  <span @click="openFileInput">вибрати фото</span>
+                  <p v-if="selectedFileName"> {{ selectedFileName }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-modal-add-input-about-pet-content">
+              <div class="profile-modal-add-input-about-pet">
+                <p>Про улюбленця</p>
+              </div>
+              <div class="profile-modal-add-input-about-pet-text">
+                <textarea name="" rows="6"></textarea>
+              </div>
+            </div>
+            <div class="profile-modal-add-button-content">
+              <button class="profile-add-modal-button" @click="PetStore">Додати тварину</button>
+            </div>
+          </div>
+        </div>
       </div>
-     
-      <p>123</p>
-      <div class="" v-for="pet in originalUser.pets">
-          <p>123{{  pet.name }}</p>
-       </div>
-       <!--  -->
-<!--    
-    <div></div>
-    <div></div> -->
-
-  </div>
-</div>
-
-<div class="profile-info-container">
-  <div class="profile-user-name-button">
-    <div class="profile-user-name">
-         <h3><strong>{{originalUser.first_name}}</strong> 
-          <strong>{{originalUser.last_name}}</strong>  </h3>
     </div>
-     <!-- <div class="profile-user-button">
-        @if (Auth::user()->id!=$user->id)
-          @if (Auth::user()->checkIfFriend($user))
-            <a href="{{route('deleteFriend',$user)}}" class="nav-link px-2 text-black">видалити з друзів</a>
-          @elseif (Auth::user()->checkFriendsRequest($user))
-            <p>запит на дружбу відправлений</p>
-            @else
-            <a class="profile-button" href="{{route('friendRequest.friendRequest',$user) }}">добавити в друзі</a>
-          @endif
-            <a class="profile-button2" href="{{route('sendingMessage',$user)}}" >відправити повідомлення</a>
-        @endif
-    </div>  -->
-  </div>
-  <div class="profile-user-info-container">
-    <div class="profile-user-info">
-    
-       <div v-if="originalUser.nick_name" class="profile-info-field"><b>Нікнейм: </b> {{originalUser.nick_name}}</div>
-     
-      <div v-if="originalUser.gender" class="profile-info-field"><b>Стать: </b> {{originalUser.gender}}</div>
-    
-      <div v-if="originalUser.city" class="profile-info-field"><b>Місто: </b> {{originalUser.city}}</div>
-   
-      <div v-if="originalUser.date_of_birth" class="profile-info-field"><b>Дата народження: </b> {{originalUser.date_of_birth}}</div>
- 
+
+    <div class="profile-info-container">
+      <div class="profile-user-name-button">
+        <div class="profile-user-name">
+          <h3><strong>{{ user.first_name }}</strong> &nbsp;
+            <strong>{{ user.last_name }}</strong>
+          </h3>
+        </div>
+
+        <div v-if="thisUser.id != user.id" class="profile-user-button">
+          <a v-if="checkIfFriend" @click="deleteFriend" class="nav-link px-2 text-black">видалити з друзів</a>
+          <p v-if="checkFriendsRequest">запит на дружбу відправлений</p>
+          <a v-if="!checkIfFriend && !checkFriendsRequest" class="profile-button" @click="addFriends">добавити в друзі</a>
+          <a class="profile-button2" :href="`/sendingMessage/${this.user.id}`">відправити повідомлення</a>
+        </div>
+
+      </div>
+      <div class="profile-user-info-container">
+        <div class="profile-user-info">
+
+          <div v-if="user.nick_name" class="profile-info-field"><b>Нікнейм: </b> {{ user.nick_name }}</div>
+
+          <div v-if="user.gender" class="profile-info-field"><b>Стать: </b> {{ user.gender }}</div>
+
+          <div v-if="user.city" class="profile-info-field"><b>Місто: </b> {{ user.city }}</div>
+
+          <div v-if="user.date_of_birth" class="profile-info-field"><b>Дата народження: </b> {{ user.date_of_birth }}
+          </div>
+
+        </div>
+        <div class="profile-user-description">
+          <div v-if="user.about_me" class="profile-info-field">
+            <b>Про себе: </b>{{ user.about_me }}
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="profile-user-description">
-      <div v-if="originalUser.about_me" class="profile-info-field">
-         <b>Про себе: </b>{{originalUser.about_me}}
-     </div>
   </div>
-</div>
-</div>
-</div>
 
- <div class="profile-post-container">
-     <Post :id="id" :originalUser="originalUser" />
- </div>
-
+  <div class="profile-post-container">
+    <Post :id="user.id" :thisUser="thisUser" />
+  </div>
 </template>
 
 <script>
 import Post from './Post'
 export default {
 
-components: {
+  components: {
     Post,
-},
+  },
 
-data() {
+  data() {
     return {
       selectedFile: null,
       textInput: null,
       showModalAddPet: false,
+      showModalEditPet: false,
       selectedFileName: '',
-      originalUser: null,
+      Pets: [],
+      PetEdit: [],
+      PetEditOriginal: [],
+      myPage: false,
+      checkIfFriend: false,
+      checkFriendsRequest: false,
+      showModalInfoPet: false,
     };
   },
 
 
-props: {
- id:{
-      type: Number,// String,
+  props: {
+    user: {//користувач на чію сторінку ми перейшли 
+      type: Object,//Number,// String,id
       required: true
     },
-    thisUser:{
-        type: Object,
-        required: true
+    thisUser: {// зареєстрований користувач
+      type: Object,
+      required: true
     },
   },
 
   created() {
-      this.originalUser = JSON.parse(JSON.stringify(this.thisUser));
-      console.log(this.originalUser);
-    },
+
+    if (this.user.id == this.thisUser.id)
+      this.myPage = true;
+
+    this.getPets();
+    this.getCheck();
+  },
 
   methods: {
 
+    closeModalEdit() {
+      this.showModalEditPet = false;
+      this.PetEdit = null;
+      this.PetEditOriginal = null;
+
+      this.showModalInfoPet= false;
+    },
+
+    showModalEdit(pet) {
+
+      this.PetEdit = JSON.parse(JSON.stringify(pet));
+      if(this.myPage)
+      {
+        this.showModalEditPet = true;
+        this.PetEditOriginal = JSON.parse(JSON.stringify(pet));
+      }
+     else
+      this.showModalInfoPet= true;
+
+    },
+
     openFileInput() {
-       this.$refs.fileInput.click();
+      this.$refs.fileInput.click();
     },
 
-    onFileSelected(event)
-    {
+    onFileSelected(event) {
       this.selectedFile = event.target.files[0];
-      this.selectedFileName = this.selectedFile.name;  
+      this.selectedFileName = this.selectedFile.name;
     },
 
-//вікно добавлення тварини
-    showModalAdd(){
+    //вікно добавлення тварини
+    showModalAdd() {
       this.showModalAddPet = true;
     },
-    closeModalAdd(){
+    closeModalAdd() {
       this.showModalAddPet = false;
     },
 
-    uploadFile(){
+    deleteFriend() {
+      axios.post('/api/deleteFriendVueJs/', { id: this.user.id })
+        .then(data => {
+          this.checkFriendsRequest =false;
+          this.checkIfFriend = false;
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    },
 
-       if (!this.selectedFile) {
-         alert('Please select a file');
-       return;}
+    addFriends() {
+      axios.post('/api/friendRequest/', { id: this.user.id })
+        .then(data => {
+          this.checkFriendsRequest = data.data;
+          // console.log(data.data);
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    },
 
-       // Створюємо об'єкт FormData та додаємо до нього файл і значення текстового поля
-       const formData = new FormData();
-       formData.append('file', this.selectedFile);
-       formData.append('name', this.textInput);
+    deletePet(id) {
+      axios.post('/api/deletePets', { id: id })
+        .then(data => {
+          this.Pets = data.data;
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
 
-       axios.post('/api/PetStore', formData, {
-          headers: {
-         'Content-Type': 'multipart/form-data'
+      this.showModalEditPet = false;
+      this.$refs.fileInput.value = null;
+      this.selectedFile = null;
+      this.selectedFileName = '';
+    },
+
+
+    EditPet() {
+      let dataChanged = false;
+      const formData = new FormData();
+
+      for (const key in this.PetEditOriginal) {
+        if (this.PetEditOriginal[key] !== this.PetEdit[key]) {
+          dataChanged = true;
+          formData.append(key, this.PetEdit[key]);
         }
-       }).then(data => {
-        console.log(data.data);
-         this.originalUser=data.data;
+      }
 
-       },).catch(error => {
-           console.log(error);
-       });
+      if (dataChanged || this.selectedFile) {
+        formData.append('id', this.PetEdit.id);
+        formData.append('file', this.selectedFile);
 
-              this.showModalAddPet = false;
-              this.$refs.fileInput.value = null;
-              this.selectedFile= null;
-              this.textInput= null;
-              this.selectedFileName= '';
-       },
+        axios.post('/api/PetUpdate', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }).then(data => {
+          //console.log(data.data);
+          this.Pets = data.data;
+        },).catch(error => {
+          console.log(error);
+        });
+      }
 
+      this.showModalEditPet = false;
+      this.$refs.fileInput.value = null;
+      this.selectedFile = null;
+      this.textInput = null;
+      this.selectedFileName = '';
+      this.PetEdit = null;
+      this.PetEditOriginal = null;
+    },
 
+    //перевірка чи друг чи відправлено запит на дружбу
+    getCheck() {
+      axios.post('/api/getCheckUser', { id: this.user.id })
+        .then(data => {
+          this.checkIfFriend = data.data['checkIfFriend'];
+          this.checkFriendsRequest = data.data['checkFriendsRequest'];
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    },
+
+    getPets() {
+      axios.post('/api/getPets', { id: this.user.id })
+        .then(data => {
+          this.Pets = data.data;
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    },
+
+    PetStore() {
+      if (!this.selectedFile) {
+        alert('Please select a file');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+      formData.append('name', this.textInput);
+
+      axios.post('/api/PetStore', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(data => {
+        //console.log(data.data);
+        this.Pets = data.data;
+      },).catch(error => {
+        console.log(error);
+      });
+
+      this.showModalAddPet = false;
+      this.$refs.fileInput.value = null;
+      this.selectedFile = null;
+      this.textInput = null;
+      this.selectedFileName = '';
+    },
 
   }
-
 
 
 

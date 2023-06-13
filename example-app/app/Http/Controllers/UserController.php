@@ -16,18 +16,19 @@ class UserController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-
-    public function friendRequest(User $user)
+    
+    public function friendRequest(Request $request)
     {
+      $user = User::find( $request->input('id'));
       $User = \App\Models\User::find(Auth::user()->id);
 
       if ($User->checkIfFriend($user))
-        return redirect()->back();
+        return false;
 
       if ($User->id!=$user->id)
          $User->friendsOfMine()->attach($user->id);
-
-      return redirect()->back(); 
+      //return redirect()->back(); 
+      return true;
     }
 
     /**
@@ -64,7 +65,6 @@ class UserController extends Controller
       // $user->avatar="public/storage/".$photoMainName;     //public для хоста
       $user->save();
       return redirect()->back();
-      //return view('home/home');
     }
 
      /**
@@ -95,9 +95,9 @@ class UserController extends Controller
    }
 
  /**
-     *сторінка друзів
+     *видалити з друзів друзів
      *
-     * @param 
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
    public function deleteFriend(User $user)
@@ -109,10 +109,21 @@ class UserController extends Controller
         return redirect()->back()->with('info' ,'Видалено з друзів');
       }
       else
-        return redirect()->back();
-     
-
-
+        return redirect()->back(); 
    }
+
+   public function deleteFriendVueJs(Request $request)
+    {   
+      $user = User::find( $request->input('id'));
+      $User = \App\Models\User::find(Auth::user()->id);
+      
+      if ($User->checkIfFriend($user)){
+        $User->deleteFriend($user);
+        return true;
+      }
+      else
+        return false; 
+   }
+
 
 }

@@ -48,3 +48,11 @@ Route::post('upload-avatar','SettingsController@uploadAvatar')->middleware('auth
 Route::post('filter', 'SearchController@filterUser')->middleware('auth:api');
 
 Route::post('PetStore', 'PetController@store')->middleware('auth:api');
+Route::post('getPets', 'PetController@index')->middleware('auth:api');
+Route::post('PetUpdate', 'PetController@update')->middleware('auth:api');
+Route::post('deletePets', 'PetController@destroy')->middleware('auth:api');
+
+Route::post('getCheckUser', 'ProfileController@getCheckUser')->middleware('auth:api');
+
+Route::post('friendRequest', 'UserController@friendRequest')->middleware('auth:api');
+Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');

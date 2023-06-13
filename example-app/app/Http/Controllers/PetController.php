@@ -14,17 +14,14 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pets = Pet::all();
-        foreach ($pets as $pet) {
-            echo 'Name pet: ' . $pet->name;
-            echo '<br>';
-            echo 'User ID: ' . $pet->user_id;
-            echo '<br>';
-            echo '-------------------------------';
-            echo '<br>';
-        }
+        // $user->pets->get();
+        //$pets = Pet::where('user_id', $request->input('id'))->get();
+
+        $user = User::find($request->input('id'));
+        return  $user->pets; 
+
     }
 
     /**
@@ -36,7 +33,6 @@ class PetController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -54,11 +50,11 @@ class PetController extends Controller
          $photoName = $avatar->store('uploads', 'public');
          $pet->avatar = "/storage/" . $photoName;
        //   $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
-        $pet->save();
-        
-        $user = User::find($request->input('id'));
-        return $user;
-      
+         $pet->save();
+
+        $user = User::find(Auth::user()->id);
+        return  $user->pets; 
+
     }
 
     /**
@@ -78,9 +74,9 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pet $pet)
+    public function edit() 
     {
-        //
+       
     }
 
     /**
@@ -90,9 +86,25 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pet $pet)
+    public function update(Request $request)
     {
-        //
+        $petId = $request->input('id');
+        $petData = $request->except('_token', '_method', 'id');
+        
+        $pet = Pet::find($petId);
+        $pet->update($petData);
+    
+        if($request->file('file'))
+        {
+            $avatar = $request->file('file');
+            $photoName = $avatar->store('uploads', 'public');
+            $pet->avatar = "/storage/" . $photoName;
+            // $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
+            $pet->save();
+        }
+    
+        $user = User::find(Auth::user()->id);
+        return $user->pets; 
     }
 
     /**
@@ -101,13 +113,15 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pet $pet)
+    public function destroy(Request $request)
     {
-        //
+       
+        $pet = Pet::find($request->input('id'));
+        $pet->delete();
+
+        $user = User::find( Auth::user()->id );
+        return  $user->pets; 
+
     }
 
-    public function add()
-    {
-        return view('home.addPets');
-    }
 }

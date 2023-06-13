@@ -54,7 +54,7 @@ Route::get('/addPets', 'PetController@add')->name('addPet');
 Route::post('pet/add', 'PetController@store')->name('savePet');
 
 Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
-Route::get('sendingMessage{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');
+Route::get('sendingMessage/{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');
 
 
 Route::get('/admin', 'AdminController@index');

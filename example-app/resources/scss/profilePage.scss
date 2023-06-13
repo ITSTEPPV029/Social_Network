@@ -6,6 +6,7 @@
   margin-left: 5%;
   display: flex;
   background-color: #f2f2f2;
+
   .profile-image {
     // background-color: rgb(76, 207, 61);
     width: 400px;
@@ -18,25 +19,26 @@
       object-fit: cover;
     }
 
-    .profile-image-bottom-div{
+    .profile-image-bottom-div {
       background-color: #42f8760d;
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
       display: flex;
-       //justify-content: space-between;
+      //justify-content: space-between;
       // justify-content: flex-start;
       align-items: flex-end;
       justify-content: flex-end;
-      .profile-bottom-button{
 
-        background-color: #4269f8;
+      .profile-bottom-button {
+
+       // background-color: #4269f8;
         width: 100px;
         height: 100px;
         border-radius: 50%;
 
-        img{
+        img {
           width: 100px;
           height: 100px;
           cursor: pointer;
@@ -44,19 +46,11 @@
       }
     }
 
-    // .bottom-div>div {
-    //   width: calc(33.33% - 10px);
-    //   height: 100px;
-    //   background-color: #a1a1a1;
-    //   margin-right: 10px;
-    //   border-radius: 50%;
-    // }
-
   }
 
   .profile-info-container {
     width: 100%;
-    
+
 
     .profile-user-name-button {
       width: 100%;
@@ -69,32 +63,33 @@
         width: 50%;
         display: flex;
         //background-color: rgb(37, 164, 92);
-        align-items: center;          
-        }
+        align-items: center;
+      }
 
       .profile-user-button {
         width: 50%;
         //  background-color: rgb(215, 71, 181); 
-          display: flex;
-            justify-content: center;
-            align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        .profile-button{
-            background-color: #f19beb;
-           border-radius: 50px;
-           padding: 1%; 
-           padding-left: 2%;
-           padding-right: 2%;      
+        .profile-button {
+          background-color: #f19beb;
+          border-radius: 50px;
+          padding: 1%;
+          padding-left: 2%;
+          padding-right: 2%;
         }
-        .profile-button2{
+
+        .profile-button2 {
           margin-left: 10px;
           background-color: #42f875;
-          padding: 1%; 
+          padding: 1%;
           border-radius: 50px;
           padding-left: 2%;
           padding-right: 2%;
-          
-       }
+
+        }
 
       }
     }
@@ -107,14 +102,13 @@
       margin-left: 5px;
 
       .profile-user-info {
-      //  background-color: rgb(227, 122, 52);
+        //  background-color: rgb(227, 122, 52);
         width: 50%;
         height: 100%;
         padding: 1%;
       }
-      .profile-info-field{
 
-      }
+      .profile-info-field {}
 
       .profile-user-description {
 
@@ -126,57 +120,226 @@
     }
   }
 }
-.profile-post-container{
+
+.profile-post-container {
   margin-top: 1%;
   margin-left: 5%;
   width: 80%;
   margin: auto;
 }
 
-.profile-modal-add{
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-   // background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
+// добавлення тварин 
+.profile-modal-add {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .profile-modal-add-content {
+    border: 1px solid #F8AD22;
     border-radius: 50px;
     background-color: white;
-    width: 500px;
+    width: 600px;
     height: auto;
     padding: 1%;
 
-    .profile-modal-choose-file{
-      img{
-        width: 100px;
-        cursor: pointer;
-      }
-      b{ cursor: pointer; }
-      p{  text-align: center;}
+    span {
+      text-align: right;
+      display: block;
+      cursor: pointer;
+    }
 
-      .profile-modal-text-content{
+    h4 {
+      text-align: center;
+    }
+
+    .profile-modal-add-input-fields-content {
+      display: flex;
+      height: auto;
+      margin-top: 20px;
+
+      .profile-modal-add-input-info {
+       // background-color: rgb(240, 184, 182);
+        width: 30%;
+
+        p{
+          margin-top: 5px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+      }
+
+      .profile-modal-add-input-text {
+       // background-color: rgb(233, 229, 155);
+        width: 40%;
+
+        input {
+          display: block;
+          width: 100%;
+          border-radius: 50px;
+          padding-left: 10px;
+          border: none;
+          margin-top: 10px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          background-color: #F2F2F2;//============================
+        }
+
+        select {
+          margin-top: 10px;
+          display: block;
+          width: 100%;
+          border-radius: 50px;
+          border: none;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 5px;
+          background-color: #F2F2F2//============================
+        }
+
+        .profile-modal-add-input-number {
+          margin-top: 10px;
+        }
+
+      }
+
+      .profile-modal-add-input-photo-content {
+       // background-color: rgb(131, 222, 239);
+        width: 30%;
+        display: flex;
+        justify-content: center;
+
+        /* Вирівнювання по горизонталі */
+        .profile-modal-add-input-photo {
+          width: 60%;
+
+          img {
+            margin-top: 10px;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+          }
+
+          span {
+            cursor: pointer;
+            display: block;
+            text-align: center;
+          }
+
+          p {
+            text-align: center;
+            word-break: break-all;
+          }
+        }
+
+      }
+
+      .profile-modal-choose-file {
+
+        img {
+          width: 100px;
+          cursor: pointer;
+        }
+
+        span {
+          cursor: pointer;
+        }
+
+        p {
+          text-align: center;
+        }
+
+        .profile-modal-text-content {
+          text-align: center;
+
+          input {
+            width: 80%;
+          }
+        }
+      }
+     
+      .profile-modal-button-content {
         text-align: center;
-        input{
-          width: 80%;
+        margin: 1%;
+
+        .profile-modal-button {
+          border-radius: 50px;
+          //background-color: white;
+          padding-left: 20px;
+          padding-right: 20px;
+          text-align: center;
+        }
+      }
+
+
+    }
+
+    .profile-modal-add-input-about-pet-content {
+      height: auto;
+      width: 100%;
+     // background-color: rgb(127, 129, 147);
+      display: flex;
+      margin-top: 5px;
+
+      .profile-modal-add-input-about-pet {
+        width: 30%;
+      //  background-color: rgb(196, 131, 210);
+      }
+
+      .profile-modal-add-input-about-pet-text {
+        width: 70%;
+      //  background-color: rgb(48, 209, 230);
+
+        textarea {
+          background-color:  #F2F2F2;//======================================
+          width: 100%;
+          border-radius: 20px;
+          border: none;
         }
       }
     }
-    .profile-modal-button-content{
-        text-align: center;
-        margin: 1%;
-          .profile-modal-button{
-            border-radius: 50px;
-            background-color: white;
-            padding-left: 20px;
-            padding-right: 20px;
-            text-align: center;
-          }
-        }
-    } 
+    .profile-modal-add-button-content{
+     // background-color: rgb(133, 222, 101);
+      text-align: center;
+      .profile-add-modal-button{
+      
+          margin-top: 10px;
+          border-radius: 50px;
+          background-color: #F5F4F5;//======================================
+          padding-left: 42px;
+          padding-right: 42px;
+          text-align: center;
+          border: none;
+          box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+      }
+      .profile-add-modal-button:hover{
+        background-color: #e0deded6;
+      }
+        
+    }
+
+  }
+  
+}
+//кнопки в редагуванні тварини 
+.profile-edit-modal-button{
+      margin-left: 50px;
+  margin-top: 10px;
+  border-radius: 50px;
+  background-color: #F5F4F5;//======================================
+  padding-left: 22px;
+  padding-right: 22px;
+  text-align: center;
+  border: none;
+  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+}
+.profile-edit-modal-button:hover{
+  background-color: #e0deded6;
 }
