@@ -56,3 +56,7 @@ Route::post('getCheckUser', 'ProfileController@getCheckUser')->middleware('auth:
 
 Route::post('friendRequest', 'UserController@friendRequest')->middleware('auth:api');
 Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
+
+Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
+
+Route::post('getPosts', 'NewsController@getPost')->middleware('auth:api');

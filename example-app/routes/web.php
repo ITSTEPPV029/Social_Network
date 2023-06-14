@@ -54,6 +54,7 @@ Route::get('/addPets', 'PetController@add')->name('addPet');
 Route::post('pet/add', 'PetController@store')->name('savePet');
 
 Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
+//добавив age/{us  було age{us 
 Route::get('sendingMessage/{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');
 
 
@@ -64,3 +65,4 @@ Route::get('/map', 'MapController@mapView')->middleware('auth')->name('map');
 Route::get('/settings', 'SettingsController@settingsView')->middleware('auth')->name('settings');
 
 Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');
+Route::get('news', 'NewsController@index')->middleware('auth')->name('news');
