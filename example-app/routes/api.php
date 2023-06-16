@@ -56,7 +56,12 @@ Route::post('getCheckUser', 'ProfileController@getCheckUser')->middleware('auth:
 
 Route::post('friendRequest', 'UserController@friendRequest')->middleware('auth:api');
 Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
-
 Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
 
 Route::post('getPosts', 'NewsController@getPost')->middleware('auth:api');
+
+Route::post('addCategory', 'SavePostController@addCategory')->middleware('auth:api');
+Route::post('getCategories', 'SavePostController@getCategories')->middleware('auth:api');
+Route::post('savePostToCategory', 'SavePostController@savePostToCategory')->middleware('auth:api');
+Route::post('savePostGetCategory', 'SavePostController@savePostGetCategory')->middleware('auth:api');
+

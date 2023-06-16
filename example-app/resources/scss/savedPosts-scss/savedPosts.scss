@@ -1,0 +1,37 @@
+.savedPosts-container{
+width: 100%;
+height: auto;
+
+.savedPosts-Posts{
+    width: 70%;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    padding-top: 20px ;
+
+    .savedPosts-Post{
+       
+        margin: auto;
+        margin-top: 20px;
+        background-color: #F2F2F2;
+        width: 400px;
+        height: auto;
+        border-radius: 50px;
+        border: 2px solid #F8AD22;
+        padding: 10px;
+        img{
+            width: 100%;
+            height: auto;
+            border-radius: 50px;
+            margin: auto;
+            cursor: pointer;
+        }
+         h3{
+            text-align: center;
+           
+         }
+    }
+}
+}
+.savedPosts-back{
+    cursor: pointer;
+}

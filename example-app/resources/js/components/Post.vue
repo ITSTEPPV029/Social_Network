@@ -1,8 +1,47 @@
 <template>
 
-<div class="post-add-container" v-show="isLoggedIn==true">
-  <button @click="showModalAdd">+Додати пост</button>
+ 
+<div class="post-add-container" v-show="isLoggedIn==true" >
 
+  <div class="post-SavePost-modal" v-if="ModalSavePost" >
+       <div class="post-SavePost-modal-content" >
+        <div class="post-SavePost-height">
+          <span @click="closeModalSavePost" >&#10006;</span>
+          <h3>Зберегти в</h3> 
+        </div>
+
+          <div class="post-SavePost-categories">
+            <p  v-if="Сategories==null"  > добавте категорію </p>
+         
+            <div class="post-SavePost-show-categories" v-for="category in Сategories" :key="category.id">
+              <label :for="category.id"><b>{{ category.text }}</b></label><br>
+              <input type="radio" :id="category.id" v-model="selectedCategory"  name="options" :value="category.id">  
+            </div>
+
+          </div> 
+
+          <div class="post-SavePost-save-button">
+              <button class="post-SavePost-save-button-orange"  @click="savePostToCategory">Зберегти</button>
+          </div>
+
+          <div class="post-SavePost-orange-line"></div> 
+
+          <div class="post-SavePost-add-name-category">
+            <b>Назва</b>
+            <input type="text" v-model="Category"  placeholder="Додайте назву новій добірці..." />
+          </div> 
+
+          <div class="post-SavePost-button-container">
+            <button @click="closeModalSavePost">Скасувати</button> 
+            <button class="post-SavePost-button-range"  @click="addCategory">Створити</button>
+          </div> 
+        </div>
+   </div>
+
+
+
+  <button @click="showModalAdd">+Додати пост</button>
+  <!-- вікно додавання поста  -->
   <div class="post-modal-add" v-if="showModalAddPost" >
             <div class="post-modal-add-content" >
               <span @click="closeModalAdd" >&#10006;</span>
@@ -24,11 +63,9 @@
 
              <div class="post-modal-button-content"> 
                  <button  class="post-modal-button"  @click="uploadFile">Додати пост</button>
-             </div>
-           
+             </div>         
            </div> 
-    </div>
-    
+    </div> 
 </div>
 
 <div class="post-container">
@@ -47,6 +84,7 @@
           </div>
       </div>
 
+<!-- показ картинки на весь екран  -->
       <div class="post-full-screen">
           <div class="post-moda-full-screen" v-if="showFullScreen" @click="closeFullScreenModal">
              <div class="post-modal-full-screen-content" >
@@ -68,9 +106,7 @@
                         </ul>  
                       </div>
                   </div>
-    
               </div>
-
             </div>
           </div>
       </div>
@@ -87,8 +123,8 @@
         <img @click="openFullScreen(post)" src="https://cdn.icon-icons.com/icons2/1518/PNG/512/commentmono_105952.png" >
         <span  >{{post.comments.length}}</span>
 
+        <img @click="showModalSavePost(post)" src="https://st3.depositphotos.com/1561359/12794/i/600/depositphotos_127942996-stock-photo-green-plus-sign.jpg" >
       </div>
-      
     </div>
 
   <div v-if="post.text!=0" class="post-text">
@@ -152,6 +188,10 @@ export default {
       showInner: 0,
       showModalAddPost: false,
       selectedFileName: '',
+      ModalSavePost: '',
+      Category: '',
+      Сategories: [],
+      selectedCategory: '',
     };
   },
   mounted(){
@@ -194,6 +234,23 @@ export default {
       this.$refs.fileInput.click();
     },
 
+  //вікно збереження поста поста
+    showModalSavePost(post){ 
+      this.postModal=post;
+
+      axios.post('/api/getCategories').then(data=>{  
+        console.log(data.data)
+        this.Сategories = data.data;
+       });
+
+      this.ModalSavePost = true;
+    },
+    closeModalSavePost(){
+      this.ModalSavePost = false;
+      this.postModal=null;
+      this.Category='';
+    },
+
      //вікно добавлення поста
     showModalAdd(){
       this.showModalAddPost = true;
@@ -234,14 +291,35 @@ export default {
     // },
 
     scrollGetPost() {
-  
+ 
        axios.post('/api/index',{ id: this.id , page: this.posts.length }).then(data=>{  
         this.posts = this.posts.concat(data.data);
        });
     },
 
-    addComment(post) {
+    //збереження поста в категорії 
+    savePostToCategory(){ 
+      if(this.selectedCategory!="")
+      {
+        axios.post('/api/savePostToCategory',{ category: this.selectedCategory ,postId :this.postModal.id }).then(data=>{  
+        //  console.log(data.data)
+         this.closeModalSavePost();
+       });
+      }
+    },
+    
+    //добавлення категорії 
+    addCategory(){
+     
+      axios.post('/api/addCategory',{ category: this.Category }).then(data=>{  
+        console.log(data.data)
+        this.Сategories = data.data;
+       });
 
+      this.Category='';
+    },
+
+    addComment(post) {
     if (this.newComments[post.id]) {
       
       this.comment =this.newComments[post.id];

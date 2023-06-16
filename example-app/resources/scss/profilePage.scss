@@ -1,26 +1,28 @@
 .profile-container {
 
   width: 100%;
-  height: 400px;
+  height: 350px;
   margin-top: 2%;
   margin-left: 5%;
   display: flex;
-  background-color: #f2f2f2;
+  //background-color: #f2f2f2;
 
   .profile-image {
     // background-color: rgb(76, 207, 61);
-    width: 400px;
+    width: 350px;
     height: 100%;
     position: relative;
 
     img {
       border-radius: 50%;
-      width: 350px;
+      width: 300px;
+      height: 300px;
+     // border: 3px solid  #F8AD22; обвотка аватарки (створити клас і перемістити туди)
       object-fit: cover;
     }
 
     .profile-image-bottom-div {
-      background-color: #42f8760d;
+     // background-color: #42f8760d;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -74,7 +76,7 @@
         align-items: center;
 
         .profile-button {
-          background-color: #f19beb;
+        //  background-color: #f19beb;
           border-radius: 50px;
           padding: 1%;
           padding-left: 2%;
@@ -83,7 +85,7 @@
 
         .profile-button2 {
           margin-left: 10px;
-          background-color: #42f875;
+         // background-color: #42f875;
           padding: 1%;
           border-radius: 50px;
           padding-left: 2%;

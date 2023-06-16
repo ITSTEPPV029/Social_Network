@@ -64,5 +64,6 @@ Route::get('/map', 'MapController@mapView')->middleware('auth')->name('map');
 
 Route::get('/settings', 'SettingsController@settingsView')->middleware('auth')->name('settings');
 
-Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');
+//Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');
 Route::get('news', 'NewsController@index')->middleware('auth')->name('news');
+Route::get('savedPosts', 'SavePostController@savedPosts')->middleware('auth')->name('savedPosts');

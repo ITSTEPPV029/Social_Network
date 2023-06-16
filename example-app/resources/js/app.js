@@ -10,6 +10,7 @@ import Settings from './components/Settings'
 import Search from './components/Search'
 import Userpage from './components/UserPage'
 import News from './components/News'
+import SavedPosts from './components/SavedPosts'
 
 const app = createApp({})
 
@@ -21,6 +22,7 @@ app.component('Settings', Settings)
 app.component('Search', Search)
 app.component('Userpage', Userpage)
 app.component('News', News)
+app.component('SavedPosts', SavedPosts)
 
 app.mount('#appMyMap')
 app.mount('#appPost')
@@ -30,3 +32,4 @@ app.mount('#appSettings')
 app.mount('#appSearch')
 app.mount('#appUserpage')
 app.mount('#appNews')
+app.mount('#appSavedPosts')
