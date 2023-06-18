@@ -1,13 +1,21 @@
 .my-container-main
 {
 
-  
   .my-container-side-menu{
+    position: relative;
+    width: max-content;
 
+    button{
+      position: fixed;
+      top: 1.8rem;
+      z-index: 10;
+      border: none;
+      border-radius: 20%;
+    }
   }
 
   .my-container-content{
-    width: 70%;
+    width:auto;
     margin: auto;
   }
 }

@@ -1,12 +1,15 @@
-$color-P: #FF0000;
+$color-P: #ff0000;
 $color-secP: #990000;
 $color-a: #330099;
+$main-background: rgb(249, 172, 32);
 
 //Розмір цього елемента залежить від класу myContainer
 
 .homeMain {
+    // position: absolute;
+    background: $main-background;
     overflow: hidden;
-    // width: 100%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -23,12 +26,26 @@ $color-a: #330099;
         text-align: center;
     }
     .homeDiv {
-        display: flex;
-        flex-flow: row;
-        align-self: center;
-        
+        margin: auto;
+        width: max-content;
         text {
-            font-size: larger;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 128px;
+            line-height: 133px;
+        }
+        p {
+            width: 30%;
+            margin-left: 1rem;
+            text-align: left;
+            color: $color-P;
+            font-size: 255%;
+        }
+        div{
+            text-align: left;
+            position: relative;
+            z-index: 4;
+            margin-bottom: 2rem;
         }
     }
     .homeSecond {
@@ -51,22 +68,20 @@ $color-a: #330099;
     }
 
     .logo-main {
-        margin-left: auto;
-        width: 17em;
-        text-align: left;
-        p {
-            color: $color-P;
-            font-size: 155%;
-        }
+        position: relative;
+        text-align: center;
+        z-index: 2;
+        height: 7rem;
         img {
-            margin-top: 1.45em;
-            margin-bottom: 0.5em;
-            height: 4.2em;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+            margin-right: 4em;
+            height: 6em;
         }
     }
 
     .moreHome {
-        background-color: darkgray;
+        background-color: $main-background;
         margin: 0% auto;
         width: 28em;
 

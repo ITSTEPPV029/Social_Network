@@ -15,13 +15,12 @@
       @include("inc.header")
 
       <div class="my-container-main">
-
         @if (Auth::check())
           <div class="my-container-side-menu">
             @include("inc.sideMenu", ['user' => app('App\Services\AppServiceMessages')->getUser()])
           </div>
         @endif
-          <div class="my-container-content">
+          <div class="my-container-content" @if(Auth::check()) style="width: 73%;" @endif>
              @yield('content')
           </div>
     

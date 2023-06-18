@@ -1,11 +1,11 @@
 $border-color: white;
 $color-button: white;
 $color-hover: black;
-
 $margin-logo: 1.5rem;
+$backgroundColor: #F8AD25;
 
 header {
-    background-color: rgba(33, 37, 41, var(--bs-bg-opacity, 1)) !important;
+    background-color: $backgroundColor !important;
     padding: 0.5rem !important;
     color: #fff !important;
     //Для того щоб header був головний

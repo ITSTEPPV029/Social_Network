@@ -2,29 +2,15 @@
 
 @section('content')
 
-<div class="homeMain" style="background-color: darkgray;">
+<div class="homeMain">
   <div class="homeDiv">
     <div class="logo-main">
-      <div>
-        <img src="https://thumbs.dreamstime.com/b/dog-icon-vector-illustration-white-background-81226692.jpg" />
-      </div>
-      <p>Соцмережа для вас та ваших улюбленців</p>
-      <a href="#">Вхід</a>
-      <a href="#">Зареєструватись</a>
+      <img src="https://thumbs.dreamstime.com/b/dog-icon-vector-illustration-white-background-81226692.jpg" />
     </div>
-    <div class="homeSecond">
-      <div>
-        <strong>Знайомся</strong>
-        <img src="https://media.istockphoto.com/id/1188848722/vector/animal-paw-print-icon-dog-or-cat-paw-print.jpg?s=612x612&w=0&k=20&c=sWlHN3SRc7gEeSUxg-ZO1UlXDZxnlIMBMm5e_18QO28=" />
-      </div>
-      <div>
-        <strong>Зустрічай</strong>
-        <img src="https://cdn-icons-png.flaticon.com/512/194/194279.png" />
-      </div>
-      <div>
-        <strong>Питай</strong>
-        <img src="https://media.istockphoto.com/id/1311566650/vector/man-and-dog-thin-line-icon-animal-hospital-concept-dog-training-sign-on-white-background.jpg?s=1024x1024&w=is&k=20&c=4Ez3lCWe9KE-FA8Tq8A8mffSM6Z7MgBHlwTg4SvDVWA=" />
-      </div>
+    <div>
+      <p>Знайди друзів для себе і свого улюбленця</p>
+      <a href="#">Увійти</a>
+      <a href="#">Зареєструватись</a>
     </div>
   </div>
   <div class="moreNext">
