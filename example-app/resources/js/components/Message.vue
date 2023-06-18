@@ -6,7 +6,7 @@
     <div class="message-chats">
       <h3 v-if="user != null">Чати</h3>
       <div class="message-chats-user" v-for="chat in chats" @click="openChat(chat)">
-        <img class="message-chat-avatar" :src="`${chat.avatar}`"  />
+           <img class="message-chat-avatar" :src="`${chat.avatar}`"  />
         <b>{{ chat.first_name + ' ' + chat.last_name}}</b>
         <b v-if="checkingNewmMssages(chat.id)">{{ NewMssagesCount(chat.id) }}</b>
       </div>
@@ -17,9 +17,12 @@
   <div class="message-chat-container">
     <div class="message-chat">
       <div class="message-chat-now">
-        <img v-bind:class="{ 'message-chat-avatar': this.user != null, 'message-chat-avatar-none': this.user == null }" :src="`${this.UserAvatar}`" />
+        <a :href="`/profile/${user.id}`"> 
+           <img v-bind:class="{ 'message-chat-avatar': this.user != null, 'message-chat-avatar-none': this.user == null }" :src="`${this.UserAvatar}`" />
+        </a>
          <h3 >{{  this.UserFirstName +' '+ this.UserLastName }}</h3>
       </div>
+
       <div class="messages" v-scroll-bottom>
         <div  v-for="message in messages" v-bind:class="{ 'messages-user': message.sender_user.id ==  this.UserId, 'messages-user-sender': message.sender_user.id != this.UserId }" >
           <div>

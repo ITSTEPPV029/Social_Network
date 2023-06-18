@@ -1,4 +1,14 @@
 <template>
+
+<div class="search-modal-map" v-if="showModalMap">
+          <div class="search-modal-map-content">
+            <span @click="closeModal"> &#10006;</span>
+                   
+            
+          </div>
+  </div>
+
+
 <div class="search-container">
   <div class="search-users">           
   <h3>Результати пошуку</h3>
@@ -81,6 +91,8 @@
         <input @click="clearFilter"  type="submit"  value="Очистити фільтр">
     </div>
      
+    <input @click="showModal"  type="submit"  value="Пошук по карті">
+
   <p>місця вигулу користувачів</p>
   <div class="search-myMapContainer">
       <div class="search-myMap" id="searchMap"></div>
@@ -92,6 +104,7 @@
 </template>
 
 <script>
+
 import L from 'leaflet';
 
 export default {
@@ -107,6 +120,7 @@ export default {
           localUsers: null,
           user:null,
           map: null,
+          showModalMap: false,
         } 
     },
     props: {
@@ -133,6 +147,15 @@ export default {
 
     methods: {
 
+    //вікно map
+    showModal() {
+      this.showModalMap = true;
+    },
+    closeModal() {
+      this.showModalMap = false;
+    },
+
+
       applyFilter() {
         
         const formData = new FormData();
@@ -144,17 +167,18 @@ export default {
          formData.append('gender', this.gender);
          formData.append('city', this.city);
        
+
       axios.post('/api/filter', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
           this.localUsers = { ...response.data };
-          this.aadMarkerk(response.data);
+         // this.aadMarkerk(response.data);
 
           }).catch(error => {
                 console.log(error);
           });
 
-          this.citySearch( this.city)  
+        //  this.citySearch( this.city)  
       },
 //додавання користувачів на карту 
       aadMarkerk(users){
@@ -195,10 +219,9 @@ export default {
         this.gender='';   
         this.checkUserID=0;
         this.city='Луцьк'; 
-// пофіксити скидання фільтрації ========================================================================
-        this.applyFilter();
-       
+        this.applyFilter();   
       },
+
       citySearch(city){
 
         // Отримання координат міста за його назвою

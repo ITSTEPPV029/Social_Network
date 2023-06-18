@@ -70,29 +70,32 @@
 
       .profile-user-button {
         width: 50%;
-        //  background-color: rgb(215, 71, 181); 
+         //background-color: rgb(215, 71, 181); 
         display: flex;
         justify-content: center;
         align-items: center;
 
-        .profile-button {
-        //  background-color: #f19beb;
+        .profile-button-orange{
+          background-color:#F8AD22;
           border-radius: 50px;
           padding: 1%;
-          padding-left: 2%;
-          padding-right: 2%;
+          padding-left: 5%;
+          padding-right: 5%;
+           cursor: pointer;
+           color: white;
+           box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
         }
 
-        .profile-button2 {
-          margin-left: 10px;
-         // background-color: #42f875;
-          padding: 1%;
+        .profile-button-sending-message {
+          background-color:#F5F4F5;
           border-radius: 50px;
-          padding-left: 2%;
-          padding-right: 2%;
-
+          padding: 1%;
+          padding-left: 3%;
+          padding-right: 3%;
+           cursor: pointer;
+           box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+          margin-left: 30px;
         }
-
       }
     }
 
@@ -108,6 +111,7 @@
         width: 50%;
         height: 100%;
         padding: 1%;
+       
       }
 
       .profile-info-field {}
@@ -175,6 +179,9 @@
           margin-top: 5px;
           padding-top: 5px;
           padding-bottom: 5px;
+   
+          font-weight: bold;
+          
         }
       }
 
@@ -280,7 +287,7 @@
         }
       }
 
-
+      
     }
 
     .profile-modal-add-input-about-pet-content {
@@ -290,6 +297,9 @@
       display: flex;
       margin-top: 5px;
 
+      p{
+        font-weight: bold;
+      }
       .profile-modal-add-input-about-pet {
         width: 30%;
       //  background-color: rgb(196, 131, 210);
@@ -344,4 +354,215 @@
 }
 .profile-edit-modal-button:hover{
   background-color: #e0deded6;
+}
+
+
+// інформація про тварину 
+.profile-modal-info {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .profile-modal-info-content {
+    border: 1px solid #F8AD22;
+    border-radius: 20px;
+    background-color: white;
+    width: 600px;
+    height: auto;
+    padding: 1%;
+
+    span {
+      text-align: right;
+      display: block;
+      cursor: pointer;
+    }
+
+    h4 {
+      text-align: center;
+    }
+
+    .profile-modal-info-input-fields-content {
+      display: flex;
+      height: auto;
+      margin-top: 20px;
+
+      .profile-modal-info-input-info {
+       // background-color: rgb(240, 184, 182);
+        width: 30%;
+
+        p{
+          margin-top: 5px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+   
+          font-weight: bold;
+          
+        }
+      }
+
+      .profile-modal-info-input-text {
+       // background-color: rgb(233, 229, 155);
+        width: 40%;
+        p{
+           margin-top: 10px;
+           padding-top: 5px;
+           padding-bottom: 2px;
+        }
+        input {
+          display: block;
+          width: 100%;
+          border-radius: 50px;
+          padding-left: 10px;
+          border: none;
+          margin-top: 10px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          background-color: #ffffff;//============================
+        }
+
+        select {
+          margin-top: 10px;
+          display: block;
+          width: 100%;
+          border-radius: 50px;
+          border: none;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 5px;
+          background-color: #ffffff//============================
+        }
+
+        .profile-modal-info-input-number {
+          margin-top: 10px;
+        }
+
+      }
+
+      .profile-modal-info-input-photo-content {
+       // background-color: rgb(131, 222, 239);
+        width: 30%;
+        display: flex;
+        justify-content: center;
+
+        /* Вирівнювання по горизонталі */
+        .profile-modal-info-input-photo {
+          width: 60%;
+
+          img {
+            margin-top: 10px;
+            width: 130px;
+            height: 130px;
+           // cursor: pointer;
+          }
+
+          span {
+            cursor: pointer;
+            display: block;
+            text-align: center;
+          }
+
+          p {
+            text-align: center;
+            word-break: break-all;
+          }
+        }
+
+      }
+
+      .profile-modal-choose-file {
+
+        img {
+          width: 100px;
+          cursor: pointer;
+        }
+
+        span {
+          cursor: pointer;
+        }
+
+        p {
+          text-align: center;
+        }
+
+        .profile-modal-text-content {
+          text-align: center;
+
+          input {
+            width: 80%;
+          }
+        }
+      }
+     
+      .profile-modal-button-content {
+        text-align: center;
+        margin: 1%;
+
+        .profile-modal-button {
+          border-radius: 50px;
+          //background-color: white;
+          padding-left: 20px;
+          padding-right: 20px;
+          text-align: center;
+        }
+      }
+
+      
+    }
+
+    .profile-modal-info-input-about-pet-content {
+      height: auto;
+      width: 100%;
+     // background-color: rgb(127, 129, 147);
+      display: flex;
+      margin-top: 5px;
+
+      p{
+        font-weight: bold;
+      }
+      .profile-modal-info-input-about-pet {
+        width: 30%;
+      //  background-color: rgb(196, 131, 210);
+      }
+
+      .profile-modal-info-input-about-pet-text {
+        width: 70%;
+      //  background-color: rgb(48, 209, 230);
+
+        textarea {
+          background-color:  #ffffff;//======================================
+          width: 100%;
+          border-radius: 20px;
+          border: none;
+        }
+      }
+    }
+    .profile-modal-info-button-content{
+     // background-color: rgb(133, 222, 101);
+      text-align: center;
+      .profile-info-modal-button{
+      
+          margin-top: 10px;
+          border-radius: 50px;
+          background-color: #ffffff;//======================================
+          padding-left: 42px;
+          padding-right: 42px;
+          text-align: center;
+          border: none;
+          box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+      }
+      .profile-info-modal-button:hover{
+        background-color: #e0deded6;
+      }
+        
+    }
+
+  }
+  
 }

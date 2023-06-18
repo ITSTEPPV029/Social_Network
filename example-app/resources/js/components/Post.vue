@@ -86,9 +86,9 @@
 
 <!-- показ картинки на весь екран  -->
       <div class="post-full-screen">
-          <div class="post-moda-full-screen" v-if="showFullScreen" @click="closeFullScreenModal">
+          <div class="post-moda-full-screen" v-if="showFullScreen" >
              <div class="post-modal-full-screen-content" >
-            
+
               <div class="post-modal-full-screen-photo">
                 <img :src="`${postModal.photo}`" >
               </div>
@@ -96,17 +96,38 @@
               <div  class="post-modal-full-screen-comments">
                 <a v-if="isLoggedIn==true" @click="closeFullScreenModal" > &#10006;</a>
 
-                  <div v-if="postModal.text!=0" class="post-modal-text">{{  postModal.text }}</div>
+                <!-- <div class="">
+                  /інформація чий пост 
+                  <img :src="`${postModal.user.avatar}`" >
+                  <b>{{postModal.user.first_name + ' ' + postModal.user.last_name}}</b>     
+                </div> -->
+
+                  <div v-if="postModal.text!=0" class="post-modal-text">{{ postModal.text }}</div>
+
+                  <div class="post-modal-like-container">
+                    <div class="post-modal-like">
+                      <!-- =================================/public для сервера ============================== -->
+                      <img class="post-like-img-like" @click="like(post)" :src="'/img/like.png'" > 
+                      <span  >{{post.like}}</span>
+                      <img  :src="'/img/comment.png'" >
+                      <img  :src="'/img/share.png'">
+                      <img  :src="'/img/save.png'">
+                    </div>
+                  </div>
 
                   <div v-if="postModal.comments.length>0" class="post-modal-comments">
-                      <div class="">
-                        <ul  v-for="comment in postModal.comments">
-                          <li ><img style="  width: 50px; height: 50px; border-radius: 50%;" :src="`${comment.user.avatar}`" >{{ comment.user.first_name +' '+comment.user.last_name }}</li>
-                          <li >{{ comment.text }}</li>
-                        </ul>  
+                      <div class="post-modal-comment" v-for="comment in postModal.comments">  
+                         <img style="  width: 50px; height: 50px; border-radius: 50%;" :src="`${comment.user.avatar}`" >
+                        <div class="post-modal-comment-info">
+                          <b>{{ comment.user.first_name +' '+comment.user.last_name }}</b> 
+                          <span>{{ comment.text }}</span> 
+                        </div>
+                       
                       </div>
+                   
                   </div>
               </div>
+
             </div>
           </div>
       </div>
@@ -117,13 +138,13 @@
     
     <div class="post-like-container">
       <div class="post-like">
-        <img @click="like(post)" src="https://w7.pngwing.com/pngs/90/304/png-transparent-cat-dog-paw-paw-patrol-animals-paw-claw-thumbnail.png" >
+        <!-- =================================/public для сервера ============================== -->
+        <img class="post-like-img-like" @click="like(post)" :src="'/img/like.png'" > 
         <span  >{{post.like}}</span>
-
-        <img @click="openFullScreen(post)" src="https://cdn.icon-icons.com/icons2/1518/PNG/512/commentmono_105952.png" >
+        <img class="post-like-img-comment" @click="openFullScreen(post)" :src="'/img/comment.png'" >
         <span  >{{post.comments.length}}</span>
-
-        <img @click="showModalSavePost(post)" src="https://st3.depositphotos.com/1561359/12794/i/600/depositphotos_127942996-stock-photo-green-plus-sign.jpg" >
+        <img class="post-like-img-share" @click="showModalSavePost(post)" :src="'/img/share.png'">
+        <img class="post-like-img-save" @click="showModalSavePost(post)" :src="'/img/save.png'">
       </div>
     </div>
 
@@ -143,7 +164,8 @@
     
   <div class="post-input-comment">
     <input type="text" v-model="newComments[post.id]"  placeholder="Прокоментувати..." />
-    <button @click="addComment(post)"></button>
+    <!-- <button ></button> -->
+    <img @click="addComment(post)" :src="'/img/sendArrow.png'" >
   </div>
     
   </div>

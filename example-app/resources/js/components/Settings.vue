@@ -72,7 +72,6 @@
         <textarea v-model="user.about_me" rows="3"></textarea>
       </div>
      
-
       <div class="settings-item item_9">
             <div class="settings-avatarWrapper">
               <img class="settings-avatarSettings" :src="`${user.avatar}`" @click="openFileInput">
@@ -83,17 +82,24 @@
 
     </div>
     <p v-if="displayTextSave"> {{ displayTextSave }}</p> 
-    <h3 @click="saveChanges" >Зберегти</h3>
+    <div class="settings-button-save-container">
+      <h5 class="settings-button-save" @click="saveChanges" >Зберегти</h5>
+    </div>
+     
     <hr/>
   
-    <p>Виберіть місце вигулу, щоб брати участь у пошуку <b v-if="displayText"> {{ displayText }}</b></p> 
-
+    <p>Виберіть місце вигулу, щоб брати участь у пошуку </p> 
+    <b v-if="displayText"> {{ displayText }}</b>
+      <div class="settings-map-search">
+            <input  v-model="city" type="text"  placeholder="Назва міста"> 
+            <p @click="citySearch">пошук</p>
+      </div>
     <div class="settings-map-сontainer">
-          <div class="settings-map" id="map"></div>
+          <div class="settings-map" id="map">
+            
+          </div>
     </div>
 
-   
-    <!-- використовую карту leaflet  в vue js чи можна по назві міста найт координати -->
 
 </div>
 
@@ -118,6 +124,7 @@
         marker: null,
         displayText: "", 
         displayTextSave: "", 
+        city: "",
         errors: {
             first_name: [],
             last_name: [],
@@ -194,7 +201,7 @@ methods: {
         // formData.append('first_name', this.user.first_name);
         // formData.append('last_name', this.user.last_name);
          formData.append('email', this.user.email);
-         formData.append('nick_name', this.user.nick_name);
+         //formData.append('nick_name', this.user.nick_name);
 
         // formData.append('date_of_birth', this.user.date_of_birth);
 
@@ -276,6 +283,33 @@ methods: {
           this.displayText = "";
         }, 3000); // Час затримки в мілісекундах
     },
+    citySearch(){
+
+        // Отримання координат міста за його назвою
+        const cityName = this.city;
+        const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cityName)}`;
+
+        fetch(geocodeUrl)
+          .then(response => response.json())
+          .then(data => {
+            if (data.length > 0) {
+              const lat = parseFloat(data[0].lat);
+              const lon = parseFloat(data[0].lon);
+
+              // Переміщення карти на координати міста
+              this.map.setView([lat, lon], 13);
+            } else {
+              console.log('Місто не знайдено');
+            }
+          })
+          .catch(error => {
+            console.log('Помилка при отриманні координат міста:', error);
+          });
+
+    },
+
+
+
 
   
   },

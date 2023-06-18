@@ -1,5 +1,5 @@
 .post-add-container{
-
+ 
   width: 100%;
   height: auto;
   display: flex;
@@ -222,12 +222,12 @@
 .post {
 
   
-  //margin: 10%;
+  margin-bottom: 3%;
    // display: flex;
     //flex-direction: column;
    // justify-content: center;
    //align-items: center;
-   width: 400px;
+    width: 400px;
     height: auto;
     background-color: #ffffff;
     //box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -276,9 +276,7 @@
 
     .post-full-screen{
 
-
       .post-moda-full-screen{
-
         position: fixed;
         top: 0;
         left: 0;
@@ -290,31 +288,37 @@
         justify-content: center;
 
         .post-modal-full-screen-content{
-          
           border-radius: 10px;
-          background-color: rgb(207, 190, 187);
+          background-color: rgb(255, 255, 255);
     
-          width: 60%;
-          height: 70%;
+          width: 70%;
+          height: 80%;
+         // padding: 10px;
+    
           display: flex;
-          padding: 5px;
+          justify-content: center;
+          align-items: center;
 
           .post-modal-full-screen-photo{
             width: 70%;
             height: 100%;
-            background-color: rgb(51, 55, 56);
+            background-color: rgba(0, 0, 0, 0.59);
+            display: flex;
+             justify-content: center;
+            align-items: center;
 
-            img{
-              width: 100%;
-              height: 100%;
-              object-fit: contain; /* Зберігає пропорції зображення та вміщує його в межі елемента */
+            img{ 
+              border-radius: 10px;
+              width: 70%;
+              height: 80%;
+              object-fit: cover;
+             // object-fit: contain; /* Зберігає пропорції зображення та вміщує його в межі елемента */
               max-width: 100%; /* Забезпечує максимальну ширину елемента, щоб уникнути виходу зображення за межі */
               max-height: 100%; /* Забезпечує максимальну висоту елемента, щоб уникнути виходу зображення за межі */
-  
             }
           }
           .post-modal-full-screen-comments{
-            background-color: rgb(232, 230, 236);
+           // background-color: rgb(135, 65, 255);
             width: 30%;
             height: 100%;
             overflow: hidden; /* Обрізати вміст, який виходить за межі батьківського елемента */
@@ -322,36 +326,67 @@
               float: right; 
               cursor: pointer;
             }
-            .post-modal-text{
 
+            .post-modal-text{
               margin: 10px;
             }
-            .post-modal-comments{
-              display: grid;
-              height: 50%;
-              div{
+            .post-modal-like-container{
 
-                align-self: end;
-                background-color: rgb(213, 213, 233);
-                overflow: auto;
-                height: 500px;
-                margin-top: 30px;
-                ul{
-                  padding-left: 10px;
-                  li{
-                    list-style-type: none;
-                  }
+              padding-left: 4%;
+              margin-top: 2%;
+              background-color: rgb(255, 255, 255);
+              width: auto;
+      
+              .post-modal-like{
+                display: flex;
+                align-items: flex-end;
+                
+                img{
+                  width: 40px;
+                  cursor: pointer;
+                  margin-left: 7%;
                 }
               }
+            }
+           
+            .post-modal-comments{
             
-             
+              padding: 10px;
+              .post-modal-comment{
+                background-color:#F5F4F5;
+                border-radius: 10px;
+                margin-top: 10px;
+                border: 1px solid #F8AD22;
+                width:100%;
+                display: flex;
+               img{
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover; 
+                  }
+                  .post-modal-comment-info{
+                
+                    b{
+                     
+                      display: inline-block;
+                     
+                      width: 100%;
+                    }
+                    span{
+                      display: inline-block;
+                    
+                      display: block;
+                      width: 100%;
+                    }
+                  }           
+               
+              }
 
+            
             }
 
           }
 
-
-         
         }   
       }
 
@@ -385,6 +420,7 @@
 
         display: flex;
         img{
+          height: 60px;
           width: 60px;
           border-radius: 50%;
           object-fit: cover;
@@ -392,19 +428,21 @@
       }
     
       .post-like-container{
-
         padding-left: 3%;
         margin-top: 2%;
         background-color: rgb(255, 255, 255);
         width: 400px;
+
         .post-like{
+          display: flex;
+          align-items: flex-end;
+          
           img{
             width: 50px;
             cursor: pointer;
-            margin-left: 10px;
+            margin-left: 7%;
           }
         }
-        
       }
 
       .post-input-comment
@@ -413,36 +451,68 @@
         margin-top: 2%;
        // align-self: flex-end;
        display: flex;
-       border: 2px solid red;
+   
+      background-color: #F2F2F2;//============================
        border-radius: 50px;
-       padding: 7px;
+       padding: 3px;
        
        input {
         flex: 1;
         border: none;
+        margin-left: 20px;
+        background-color: #F2F2F2;//============================
             &:focus {
               outline: none;
             }
         }
-          
-        button {
-          border: none;
-          background-color: transparent;
+        img{
           padding: 5px;
-          border-radius: 50%;
-          margin-left: 10px;
           cursor: pointer;
-          
-          &::after {
-            content: "➤";
-            display: block;
-            transform: rotate(45deg);
-          } 
         }
+        // button {
+        //   border: none;
+        //   background-color: transparent;
+        //   padding: 5px;
+        //   border-radius: 50%;
+        //   margin-left: 10px;
+        //   cursor: pointer;
+          
+        //   &::after {
+        //     content: "➤";
+        //     display: block;
+        //     transform: rotate(45deg);
+        //   } 
+        // }
       }
   
   }
 }
+
+.post-like-img-save:hover {
+
+  background-image: url('/img/saveHover.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.post-like-img-comment:hover {
+  background-image: url('/img/commentHover.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.post-like-img-like:hover {
+
+  background-image: url('/img/likeHover.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.post-like-img-share:hover {
+  
+  background-image: url('/img/shareHover.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 @media (max-width: 1000px)
  {
@@ -452,3 +522,6 @@
     grid-gap: 10px;
   }
 }
+
+
+

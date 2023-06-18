@@ -41,15 +41,19 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-
          $pet = new Pet();
-         $pet->name = $request->input('name');
-         $pet->user_id = Auth::user()->id;
          $avatar = $request->file('file');
-         
          $photoName = $avatar->store('uploads', 'public');
+
+    //   $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
          $pet->avatar = "/storage/" . $photoName;
-       //   $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
+         $pet->name = $request->input('name');
+         $pet->kind_of = $request->input('kindOfPet');
+         $pet->gender = $request->input('genderPet');
+         $pet->age = $request->input('agePet');
+         $pet->about = $request->input('aboutPet');
+         $pet->user_id = Auth::user()->id;
+      
          $pet->save();
 
         $user = User::find(Auth::user()->id);

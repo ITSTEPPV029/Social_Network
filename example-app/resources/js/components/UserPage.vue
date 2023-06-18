@@ -10,59 +10,59 @@
             <img @click="showModalEdit(pet)" :src="`${pet.avatar}`">
           </div>
         </div>
-
-        <div v-if="myPage" class="profile-bottom-button">
-          <img @click="showModalAdd"
-            src="https://avatars.mds.yandex.net/i?id=caba12d0db357404b21a92a69c98b5fc856f1b1e-8191562-images-thumbs&n=13">
+ <!--======================= добавити public для сервера ================================= -->
+        <div v-if="myPage && Pets.length<3" class="profile-bottom-button">
+          <img @click="showModalAdd" :src="'/img/addPet.png'">
         </div>
 
- <!-- вікно інформація про тварину  -->
-      <div class="profile-modal-add" v-if="showModalInfoPet">
-          <div class="profile-modal-add-content">
+        <!-- вікно інформація про тварину  -->
+     <div class="profile-modal-info" v-if="showModalInfoPet">
+          <div class="profile-modal-info-content">
             <span @click="closeModalEdit"> &#10006;</span>
             <h4>інформація про тварину</h4>
-            <div class="profile-modal-add-input-fields-content">
+            <div class="profile-modal-info-input-fields-content">
 
-              <div class="profile-modal-add-input-info">
+              <div class="profile-modal-info-input-info">
                 <p>Кличка</p>
                 <p>Вид улюбленця</p>
                 <p>Стать</p>
                 <p>Вік</p>
               </div>
-              <div class="profile-modal-add-input-text">
-                <input type="text" v-model="PetEdit.name" placeholder="імя тварини..." />
+              <div class="profile-modal-info-input-text">
+                <!-- <input type="text"  readonly v-model="" placeholder="імя тварини..." /> -->
+                <p>{{PetEdit.name}}</p>
+                <p>{{PetEdit.kind_of}}</p>
+                <p>{{PetEdit.gender}}</p>
+                <p>{{PetEdit.age}}</p>
+                <p>{{}}</p>
+                <!-- <select v-model=""  readonly name="options">
+                
+                </select> -->
 
-                <select v-model="kind" name="options">
-                  <option value=""> </option>
-                  <option value="Жінка">собака </option>
-                  <option value="Чоловік">кіт</option>
+                <!-- <select v-model="PetEdit.gender"  readonly  name="options">
+               
                 </select>
 
-                <select v-model="kind" name="options">
-                  <option value=""> </option>
-                  <option value="Жінка">собака </option>
-                  <option value="Чоловік">кіт</option>
-                </select>
-
-                <input class="profile-modal-add-input-number" type="number" min="1" max="100">
+                <input v-model="PetEdit.age" class="profile-modal-info-input-number" type="number" min="1" max="100"> -->
               </div>
 
-              <div class="profile-modal-add-input-photo-content">
-                <div class="profile-modal-add-input-photo">  
-                  <img :src="`${PetEdit.avatar}`">    
+              <div class="profile-modal-info-input-photo-content">
+                <div class="profile-modal-info-input-photo">
+                  <img :src="`${PetEdit.avatar}`">
                 </div>
               </div>
+
             </div>
 
-            <div class="profile-modal-add-input-about-pet-content">
-              <div class="profile-modal-add-input-about-pet">
+            <div class="profile-modal-info-input-about-pet-content">
+              <div class="profile-modal-info-input-about-pet">
                 <p>Про улюбленця</p>
               </div>
-              <div class="profile-modal-add-input-about-pet-text">
-                <textarea name="" rows="6"></textarea>
+              <div class="profile-modal-info-input-about-pet-text">
+                <textarea v-model="PetEdit.about" name="" rows="6" readonly></textarea>
               </div>
             </div>
-            <div class="profile-modal-button-content">  
+            <div class="profile-modal-button-content">
             </div>
           </div>
         </div>
@@ -82,14 +82,14 @@
               </div>
               <div class="profile-modal-add-input-text">
                 <input type="text" v-model="PetEdit.name" placeholder="імя тварини..." />
-
-                <select v-model="kind" name="options">
+        
+                <select v-model="PetEdit.kind_of" name="options">
                   <option value=""> </option>
                   <option value="Жінка">собака </option>
                   <option value="Чоловік">кіт</option>
                 </select>
 
-                <select v-model="kind" name="options">
+                <select v-model="PetEdit.gender" name="options">
                   <option value=""> </option>
                   <option value="Жінка">Жінка </option>
                   <option value="Чоловік">Чоловік</option>
@@ -98,7 +98,7 @@
                   <option value="Бігендер">Бігендер</option>
                 </select>
 
-                <input class="profile-modal-add-input-number" type="number" min="1" max="100">
+                <input v-model="PetEdit.age" class="profile-modal-add-input-number" type="number" min="1" max="100">
               </div>
 
               <div class="profile-modal-add-input-photo-content">
@@ -118,7 +118,7 @@
                 <p>Про улюбленця</p>
               </div>
               <div class="profile-modal-add-input-about-pet-text">
-                <textarea name="" rows="6"></textarea>
+                <textarea v-model="PetEdit.about"   name="" rows="6"></textarea>
               </div>
             </div>
             <div class="profile-modal-button-content">
@@ -143,14 +143,14 @@
               </div>
               <div class="profile-modal-add-input-text">
                 <input type="text" v-model="textInput" placeholder="імя тварини..." />
-
-                <select v-model="kind" name="options">
+      
+                <select v-model="kindOfPet" name="options">
                   <option value=""> </option>
                   <option value="Жінка">собака </option>
                   <option value="Чоловік">кіт</option>
                 </select>
 
-                <select v-model="kind" name="options">
+                <select v-model="genderPet" name="options">
                   <option value=""> </option>
                   <option value="Жінка">Жінка </option>
                   <option value="Чоловік">Чоловік</option>
@@ -158,8 +158,8 @@
                   <option value="Чоловік">Поза гендером</option>
                   <option value="Бігендер">Бігендер</option>
                 </select>
-
-                <input class="profile-modal-add-input-number" type="number" min="1" max="100">
+      
+                <input class="profile-modal-add-input-number" v-model="agePet"  type="number" min="1" max="100">
               </div>
 
               <div class="profile-modal-add-input-photo-content">
@@ -178,7 +178,7 @@
                 <p>Про улюбленця</p>
               </div>
               <div class="profile-modal-add-input-about-pet-text">
-                <textarea name="" rows="6"></textarea>
+                <textarea  v-model="aboutPet"  name="" rows="6"></textarea>
               </div>
             </div>
             <div class="profile-modal-add-button-content">
@@ -198,10 +198,10 @@
         </div>
 
         <div v-if="thisUser.id != user.id" class="profile-user-button">
-          <a v-if="checkIfFriend" @click="deleteFriend" class="nav-link px-2 text-black">видалити з друзів</a>
+          <a class="profile-button-orange" v-if="checkIfFriend" @click="deleteFriend" >видалити з друзів</a>
           <p v-if="checkFriendsRequest">запит на дружбу відправлений</p>
-          <a v-if="!checkIfFriend && !checkFriendsRequest" class="profile-button" @click="addFriends">добавити в друзі</a>
-          <a class="profile-button2" :href="`/sendingMessage/${this.user.id}`">відправити повідомлення</a>
+          <a v-if="!checkIfFriend && !checkFriendsRequest" class="profile-button-orange" @click="addFriends">добавити в друзі</a>
+          <a class="profile-button-sending-message" :href="`/sendingMessage/${this.user.id}`">Написати</a>
         </div>
 
       </div>
@@ -254,6 +254,13 @@ export default {
       checkIfFriend: false,
       checkFriendsRequest: false,
       showModalInfoPet: false,
+
+      kindOfPet: '',
+      genderPet: '',
+      agePet: '',
+      aboutPet: '',
+
+
     };
   },
 
@@ -285,19 +292,18 @@ export default {
       this.PetEdit = null;
       this.PetEditOriginal = null;
 
-      this.showModalInfoPet= false;
+      this.showModalInfoPet = false;
     },
 
     showModalEdit(pet) {
 
       this.PetEdit = JSON.parse(JSON.stringify(pet));
-      if(this.myPage)
-      {
+      if (this.myPage) {
         this.showModalEditPet = true;
         this.PetEditOriginal = JSON.parse(JSON.stringify(pet));
       }
-     else
-      this.showModalInfoPet= true;
+      else
+        this.showModalInfoPet = true;
 
     },
 
@@ -321,7 +327,7 @@ export default {
     deleteFriend() {
       axios.post('/api/deleteFriendVueJs/', { id: this.user.id })
         .then(data => {
-          this.checkFriendsRequest =false;
+          this.checkFriendsRequest = false;
           this.checkIfFriend = false;
         })
         .catch(error => {
@@ -421,6 +427,11 @@ export default {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
       formData.append('name', this.textInput);
+
+      formData.append('kindOfPet', this.kindOfPet);
+      formData.append('genderPet', this.genderPet);
+      formData.append('agePet', this.agePet);
+      formData.append('aboutPet', this.aboutPet);
 
       axios.post('/api/PetStore', formData, {
         headers: {

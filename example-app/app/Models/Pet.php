@@ -12,7 +12,11 @@ class Pet extends Model
     protected $fillable = [
         'id',
         'avatar',
-        'name',
+        'kind_of',
+        'gender',
+        'age',
+        'about',
         'user_id',
     ];
+
 }

@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="profile-user-button">
+{{-- <div class="profile-user-button">
   @if (Auth::user()->id!=$user->id)
     @if (Auth::user()->checkIfFriend($user))
       <a href="{{route('deleteFriend',$user)}}" class="nav-link px-2 text-black">видалити з друзів</a>
@@ -14,7 +14,7 @@
     @endif
       <a class="profile-button2" href="{{route('sendingMessage',$user)}}" >відправити повідомлення</a>
   @endif
-</div>
+</div> --}}
 
 {{-- <h1>Тварини користувача</h1>
 @foreach($user->pets as $pet)

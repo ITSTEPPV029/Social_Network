@@ -55,7 +55,7 @@ $message-color-user: #333;
         max-height: 75vh;
         height: 75vh;
         overflow-y: auto; 
-        scrollbar-color: #413f3f #e22b2b;
+        scrollbar-color: #413f3f#F8AD22;
         word-wrap: break-word;
         word-break: break-all;
         padding: 10px;
@@ -119,7 +119,9 @@ $message-color-user: #333;
     {
      // align-self: flex-end;
      display: flex;
-     border: 2px solid red;
+    // border: 2px solid red;
+     border: none;
+     background-color: #F2F2F2;//============================
      border-radius: 50px;
      padding: 7px;
      
@@ -127,6 +129,8 @@ $message-color-user: #333;
      input {
       flex: 1;
       border: none;
+      margin-left: 20px;
+      background-color: #F2F2F2;//============================
           &:focus {
             outline: none;
           }
@@ -156,8 +160,10 @@ $message-color-user: #333;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover;
 }
 .message-chat-avatar {
+  object-fit: cover;
   width: 50px;
   height: 50px;
   border-radius: 50%;

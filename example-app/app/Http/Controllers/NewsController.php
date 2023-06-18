@@ -46,8 +46,6 @@ class NewsController extends Controller
             ->where('user_id',  $combinedFriends)
             ->take(2)->get();
 
-            
-
         } else
         {
             $MyPost = MyPost::with('comments.user')
