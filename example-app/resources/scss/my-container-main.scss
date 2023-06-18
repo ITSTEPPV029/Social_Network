@@ -4,6 +4,7 @@
   .my-container-side-menu{
     position: relative;
     width: max-content;
+    transition: width 2s ease-in-out;
 
     button{
       position: fixed;

@@ -2,11 +2,23 @@
 
 <script>
   let full_show = false;
+
   function onClick(elem) {
-  let r = document.querySelector(':root');
-  let p = elem.parentElement;
+    let r = document.querySelector(':root');
+    let p = elem.parentElement;
+    let t = p.getElementsByTagName("nav")[0];
+    // t.style.setProperty('--sideMenu-width', "11%");
+    // t.style.setProperty('--sideMenu-height', "300%");
+    // t.style.setProperty('--margin-ul-left', "1%");
+    // t.style.setProperty('--margin-li-top', "15.5%");
+    // t.style.setProperty('--sideMenu-short-width', "2.2%");
+    p.classList.add("show-full");
+    t.style.setProperty('--sideMenu-width', t.clientWidth + 'px');
+    p.classList.remove("show-full");
+    t.style.setProperty('transition', 'width 2s ease-in-out');
     if (full_show) {
       p.classList.remove("show-full");
+      // t.style.setProperty('width', '2.2%');
       full_show = false;
     } else {
       p.classList.add("show-full");

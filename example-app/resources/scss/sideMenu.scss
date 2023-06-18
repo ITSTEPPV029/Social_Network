@@ -1,16 +1,10 @@
-$menu-background-color: #333;
+$menu-background-color: #d5d5d5;
 $menu-text-color: #fff;
 $menu-hover-color: #f60;
-$header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1)); //Колір header
-$side-bar-background-color: red; //Колір лінії з боку ul
-
-:root {
-  --sideMenu-width: 15.5%;
-  --sideMenu-height: 300%;
-  --margin-ul-left: 0.8rem;
-  --margin-li-top: 1.5rem; //Відстань між li
-  --sideMenu-short-width: 2.2%;
-}
+$header-background-color: white; //#F8AD25;
+$side-bar-background-color: #f8ad25; //Колір лінії з боку ul
+$span-background: darkgray;
+$boxShadowStyle: 0px 2px 0px #a8a8a8;
 
 /* $sideMenu-width: 15%;
 $sideMenu-height: 300%;
@@ -18,29 +12,38 @@ $margin-ul-left: 1rem;
 $margin-li-top: 1.5rem; */
 
 .sideMenu-container {
+  --sideMenu-height: 300%;
+  --margin-ul-left: 0.5rem;
+  --margin-li-top: 1rem; //Відстань між li
+  --sideMenu-short-width: 2.2%;
   margin-top: -20%;
   background-color: $header-background-color;
   overflow: hidden;
   position: fixed; //"Приліпання" до екрану
-  z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
+  z-index: 2; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
   width: var(--sideMenu-short-width); /* задаємо ширину меню */
   height: var(--sideMenu-height); /* встановлюємо висоту на весь екран */
+  transition: width 2s ease-in-out 2s;
   ul {
     position: relative;
-    top: 25%; //Відстань від header
+    top: calc(15% + var(--margin-li-top) ); //Відстань від header
     list-style: none;
+    z-index: 4;
     display: flex;
     flex-direction: column;
     width: 20%;
     height: fit-content;
-    background-color: $header-background-color;
+    transition: width 2s ease-in-out;
+    transition: margin-left 2s ease-in-out;
     li {
+      z-index: 5;
       margin-left: 1px;
       background-color: $menu-background-color;
-      margin-top: var(--margin-li-top); //Відступи між li
+      margin-top: calc(var(--margin-li-top) + 1rem); //Відступи між li
       width: calc(var(--margin-ul-left) + 11rem);
+      box-shadow: $boxShadowStyle;
       span {
-        background: darkgray;
+        background: $span-background;
         position: absolute;
         //Задаємо позицію абсолютну щоб круг не залежав від позиції li
         z-index: 4;
@@ -53,6 +56,18 @@ $margin-li-top: 1.5rem; */
         display: inline-block; //По замовчуванню none
         transition: margin-left 2s ease-in; //Анімація
       }
+    }
+    li:before {
+      background: $menu-background-color;
+      position: absolute;
+      //Задаємо позицію абсолютну щоб круг не залежав від позиції li
+      z-index: -1;
+      margin-left: -1.8rem;
+      border-radius: 20% 0% 0% 20%;
+      height: calc(var(--margin-li-top) + 1.5%);
+      width: 95%;
+      box-shadow: $boxShadowStyle;
+      content: " "; //Без цього не появляється
     }
   }
   //бокова лінія
@@ -73,18 +88,22 @@ $margin-li-top: 1.5rem; */
 
 .show-full {
   width: var(--sideMenu-width);
+  transition: width 2s ease-in-out;
   nav {
-    width: var(--sideMenu-width);
+    transition: width 2s ease-in-out;
+    width: fit-content;
     ul {
       li {
         span {
           margin-left: -1.4rem;
           transition: margin-left 0.5s ease-in-out;
         }
+        transition: width 2s ease-in-out;
       }
+      transition: width 2s ease-in-out;
     }
     div {
-      left: calc(var(--sideMenu-width));
+      left: var(--sideMenu-width);
     }
   }
 }

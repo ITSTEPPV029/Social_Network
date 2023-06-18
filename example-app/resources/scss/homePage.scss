@@ -44,7 +44,7 @@ $main-background: rgb(249, 172, 32);
         div{
             text-align: left;
             position: relative;
-            z-index: 4;
+            z-index: 0;
             margin-bottom: 2rem;
         }
     }
@@ -70,7 +70,6 @@ $main-background: rgb(249, 172, 32);
     .logo-main {
         position: relative;
         text-align: center;
-        z-index: 2;
         height: 7rem;
         img {
             margin-top: 1rem;
