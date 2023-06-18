@@ -7,8 +7,9 @@ $side-bar-background-color: red; //Колір лінії з боку ul
 :root {
   --sideMenu-width: 16.5%;
   --sideMenu-height: 300%;
-  --margin-ul-left: 1rem;
+  --margin-ul-left: 0.8rem;
   --margin-li-top: 1.5rem; //Відстань між li
+  --sideMenu-short-width: 2.2%;
 }
 
 /* $sideMenu-width: 15%;
@@ -16,15 +17,13 @@ $sideMenu-height: 300%;
 $margin-ul-left: 1rem;
 $margin-li-top: 1.5rem; */
 
-
-
 .sideMenu-container {
   margin-top: -20%;
   background-color: $header-background-color;
   overflow: hidden;
   position: fixed; //"Приліпання" до екрану
   z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
-  width: 2.5%; /* задаємо ширину меню */
+  width: var(--sideMenu-short-width); /* задаємо ширину меню */
   height: var(--sideMenu-height); /* встановлюємо висоту на весь екран */
   ul {
     position: relative;
@@ -45,13 +44,14 @@ $margin-li-top: 1.5rem; */
         position: absolute;
         //Задаємо позицію абсолютну щоб круг не залежав від позиції li
         z-index: 4;
-        margin-left: -1.4rem;
+        margin-left: -1.9rem;
         border-radius: 50%;
         margin-top: 0.25rem;
         height: 1rem;
         width: 1rem;
         content: " "; //Без цього не появляється
         display: inline-block; //По замовчуванню none
+        transition: margin-left 2s ease-in; //Анімація
       }
     }
   }
@@ -61,7 +61,7 @@ $margin-li-top: 1.5rem; */
     position: fixed;
     //Позиція знаходилась в позиції зверху перед ul
     top: 0%;
-    left: calc(var(--margin-ul-left) + 1rem);
+    left: calc(var(--sideMenu-short-width));
     //Лінія займала весь екран
     height: 305%;
     width: 0.3rem;
@@ -75,7 +75,15 @@ $margin-li-top: 1.5rem; */
   width: var(--sideMenu-width);
   nav {
     width: var(--sideMenu-width);
-    div{
+    ul {
+      li {
+        span {
+          margin-left: -1.4rem;
+          transition: margin-left 0.5s ease-in-out;
+        }
+      }
+    }
+    div {
       left: calc(var(--sideMenu-width));
     }
   }
