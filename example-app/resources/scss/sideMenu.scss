@@ -5,7 +5,7 @@ $header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1)); //Колі�
 $side-bar-background-color: red; //Колір лінії з боку ul
 
 :root {
-  --sideMenu-width: 16.5%;
+  --sideMenu-width: 15.5%;
   --sideMenu-height: 300%;
   --margin-ul-left: 0.8rem;
   --margin-li-top: 1.5rem; //Відстань між li
@@ -44,7 +44,7 @@ $margin-li-top: 1.5rem; */
         position: absolute;
         //Задаємо позицію абсолютну щоб круг не залежав від позиції li
         z-index: 4;
-        margin-left: -1.9rem;
+        margin-left: -1.65rem;
         border-radius: 50%;
         margin-top: 0.25rem;
         height: 1rem;
