@@ -1,8 +1,8 @@
 <template>
 
-    <!-- <div class="news-add-container" >
-        <h1>news</h1>
-      <button @click="showModalAdd">+Додати пост</button>
+    <div class="news-add-container" >
+        <!-- <h1>news</h1>
+      <button @click="showModalAdd">+Додати пост</button> -->
     
       <div class="news-modal-add" v-if="showModalAddPost" >
                 <div class="news-modal-add-content" >
@@ -30,9 +30,26 @@
                </div> 
         </div>
         
-    </div> -->
-    
+    </div>
+<div class="news-head-container">
+  <div class="news-head">
+      <div class="news-head-block">
+        <div class="news-head-block-text"><h4>Стрічка</h4></div>
+        <div class="news-head-block-line"></div>
+      </div>
+      <div class="news-head-block">
+        <div class="news-head-block-text"><h4 @click="showModalAdd">Додати допис</h4></div>
+        <div class="news-head-block-line2"></div>
+      </div>
+      <div class="news-head-block">
+        <div class="news-head-block-text"><h4>Експерти</h4></div>
+        <div class="news-head-block-line2"></div>
+      </div>
+  </div>
+</div>
     <div class="news-container">
+   
+
     <div class="news">
       <div class="news-new" @mouseover="showInnerElement(post.id)" @mouseleave="hideInnerElement" v-for="post in posts" >
     
@@ -171,13 +188,17 @@
            const viewportHeight = window.innerHeight;
            const totalHeight = document.documentElement.offsetHeight;
     
-           const atTheBottom = parseInt(scrollTop) + viewportHeight == totalHeight
-
+           const atTheBottom = parseInt(scrollTop+1) + viewportHeight == totalHeight;
+        
            if (atTheBottom) {
+            console.log("скрол1 da");
               this.scrollGetPost();
            }
         }
-        document.addEventListener('scroll',eventHendler)
+        document.addEventListener('scroll',eventHendler);
+
+        
+
        },
     
     
@@ -339,10 +360,13 @@
     
         getPosts() {
           let page = 0; 
-          if (this.posts) {
+          if (this.posts!=null) {
             page = this.posts.length;
           }
-    
+          else{
+            page=0;
+          }
+
             axios.post('/api/getPosts',{ id: this.thisUser.id , page: page }).then(data=>{  
              console.log(data.data);
               this.posts=data.data

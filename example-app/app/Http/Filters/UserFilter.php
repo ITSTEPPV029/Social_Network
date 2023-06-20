@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class UserFilter extends AbstractFilter
 {
-
     public const NAME = 'name';
-     public const NICK = 'nick_name';
-     public const DATE = 'date_of_birth';
-     public const GENDER = 'gender';
-     public const CITY = 'city';
+    public const NICK = 'nick_name';
+    public const DATE = 'date_of_birth';
+    public const GENDER = 'gender';
+    public const CITY = 'city';
 
+    public const AGEPET = 'agePet';
+    public const GENDERPET= 'genderPet';
+    public const KINDPET = 'kindPet';
+    
     protected function getCallbacks(): array
     {
         return [
@@ -23,6 +26,10 @@ class UserFilter extends AbstractFilter
             self::DATE => [$this, 'dateBirth'],
             self::CITY => [$this, 'city'],
             self::GENDER => [$this, 'gender'],
+
+            self::AGEPET => [$this, 'agePet'],
+            self::GENDERPET => [$this, 'genderPet'],
+            self::KINDPET => [$this, 'kindPet'],
         ];
     }
 
@@ -36,11 +43,13 @@ class UserFilter extends AbstractFilter
         $builder->where('nick_name', 'like', "%{$value}%");
     }
 
+
     public function city(Builder $builder, $value)
     {
         $builder->where('city', 'like', "%{$value}%");      
     }
   
+
     public function gender(Builder $builder, $value)
     {
         $builder->where('gender', 'like', "%{$value}%");
@@ -51,4 +60,22 @@ class UserFilter extends AbstractFilter
     }
 
 
+    public function agePet(Builder $builder, $value)
+    {
+        $builder->whereHas('pets', function ($query) use ($value) {
+            $query->where('age', '<', $value);
+        });
+    }
+    public function genderPet(Builder $builder, $value)
+    {
+        $builder->whereHas('pets', function ($query) use ($value) {
+            $query->where('gender', 'LIKE', "%{$value}%");
+        });
+    }
+    public function kindPet(Builder $builder, $value)
+    {
+        $builder->whereHas('pets', function ($query) use ($value) {
+            $query->where('kind_of', 'LIKE', "%{$value}%");
+        });
+    }
 }

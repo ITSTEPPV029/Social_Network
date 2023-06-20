@@ -35,6 +35,7 @@ Route::post('avatar/add', 'UserController@addAvatar')->middleware('auth')->name(
 Route::get('friendRequest/{user}', 'UserController@friendRequest')->middleware('auth')->name('friendRequest.friendRequest');
 Route::get('addFriend/{user}', 'UserController@addFriend')->middleware('auth')->name('addFriend.addFriend');
 Route::get('friends', 'UserController@getFriends')->middleware('auth')->name('friends');
+Route::get('pageFriends/{user}', 'UserController@pageFriendsJs')->middleware('auth');
 Route::get('deleteFriend/{user}', 'UserController@deleteFriend')->middleware('auth')->name('deleteFriend');
 
 Route::get('search/', 'SearchController@searchUser')->middleware('auth')->name('search.searchUser');
@@ -64,6 +65,6 @@ Route::get('/map', 'MapController@mapView')->middleware('auth')->name('map');
 
 Route::get('/settings', 'SettingsController@settingsView')->middleware('auth')->name('settings');
 
-//Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');
+Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');
 Route::get('news', 'NewsController@index')->middleware('auth')->name('news');
 Route::get('savedPosts', 'SavePostController@savedPosts')->middleware('auth')->name('savedPosts');

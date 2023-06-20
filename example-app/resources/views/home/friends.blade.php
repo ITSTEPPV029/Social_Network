@@ -21,7 +21,9 @@
               </a>
                 <b>{{$friend->first_name }} &nbsp; {{$friend->last_name}}</b><br/>
             </div>
+            @if (Auth::user()->id==$user->id)
             <a href="{{route('deleteFriend',$friend)}}"  class="friend-button-delete-orange" >видалити з друзів</a>
+            @endif
             <br />
           @endforeach
       @else
@@ -31,7 +33,7 @@
 
 <div class="friend-spacer"></div>
 
-
+@if (Auth::user()->id==$user->id)
 
  <div class="friend-requests">
   <h1>Заявки в друзі</h1>
@@ -52,7 +54,7 @@
         <h4>не має заявок</h4>
         @endif
     @endif
-   
+  @endif 
  </div>
 
 </div>

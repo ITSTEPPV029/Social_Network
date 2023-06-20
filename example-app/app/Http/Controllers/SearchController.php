@@ -46,6 +46,9 @@ class SearchController extends Controller
         'date_of_birth'=> '',
         'gender' => '',
         'city' => '',
+        'agePet' => '',
+        'genderPet' => '',
+        'kindPet' => '',
        ]);
 
        $filter = app()->make(UserFilter::class,['queryParams'=>array_filter($data)]);
@@ -76,5 +79,31 @@ class SearchController extends Controller
       
       return view('home.usersFound',compact('users'));  
     }
+
+   /**
+     * вивід користувачів які входять в радіус пошуку 
+     *
+     * @param  
+     * @return \Illuminate\Http\Response
+     */
+
+    public function getUsersMap(Request $request)     
+    {
+     
+         $centerLat = Auth::user()->latitude;//. 50.742864;
+         $centerLng = Auth::user()->longitude;//25.331121;
+         $radius = 50000;//радіус пошуку користувачів
+
+            $users = DB::table('users')
+            ->select('*')
+            ->selectRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) AS distance', [$centerLat, $centerLat, $centerLng])
+            ->whereRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) <= ?', [$centerLat, $centerLat, $centerLng, $radius])
+            ->get();
+
+        return $users;//response()->json($chat->load('user'));
+    
+    }
+
+
 
 }

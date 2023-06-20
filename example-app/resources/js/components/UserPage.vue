@@ -1,4 +1,10 @@
 <template>
+
+
+  <div class="profile-overlay-test"></div>
+
+
+
   <div class="profile-container">
 
     <div class="profile-image">
@@ -28,22 +34,12 @@
                 <p>Стать</p>
                 <p>Вік</p>
               </div>
-              <div class="profile-modal-info-input-text">
-                <!-- <input type="text"  readonly v-model="" placeholder="імя тварини..." /> -->
+
+              <div class="profile-modal-info-input-text">    
                 <p>{{PetEdit.name}}</p>
                 <p>{{PetEdit.kind_of}}</p>
                 <p>{{PetEdit.gender}}</p>
                 <p>{{PetEdit.age}}</p>
-                <p>{{}}</p>
-                <!-- <select v-model=""  readonly name="options">
-                
-                </select> -->
-
-                <!-- <select v-model="PetEdit.gender"  readonly  name="options">
-               
-                </select>
-
-                <input v-model="PetEdit.age" class="profile-modal-info-input-number" type="number" min="1" max="100"> -->
               </div>
 
               <div class="profile-modal-info-input-photo-content">
@@ -51,19 +47,18 @@
                   <img :src="`${PetEdit.avatar}`">
                 </div>
               </div>
-
             </div>
 
             <div class="profile-modal-info-input-about-pet-content">
               <div class="profile-modal-info-input-about-pet">
                 <p>Про улюбленця</p>
               </div>
+
               <div class="profile-modal-info-input-about-pet-text">
                 <textarea v-model="PetEdit.about" name="" rows="6" readonly></textarea>
               </div>
             </div>
-            <div class="profile-modal-button-content">
-            </div>
+            <div class="profile-modal-button-content"> </div>
           </div>
         </div>
 
@@ -219,6 +214,9 @@
 
         </div>
         <div class="profile-user-description">
+          <a :href="`/pageFriends/${this.user.id}`">
+            <p><b>Друзі:</b> {{ friendsCount }}</p>
+          </a>
           <div v-if="user.about_me" class="profile-info-field">
             <b>Про себе: </b>{{ user.about_me }}
           </div>
@@ -259,7 +257,7 @@ export default {
       genderPet: '',
       agePet: '',
       aboutPet: '',
-
+      friendsCount: '',
 
     };
   },
@@ -283,6 +281,7 @@ export default {
 
     this.getPets();
     this.getCheck();
+    this.getFriends();
   },
 
   methods: {
@@ -304,7 +303,6 @@ export default {
       }
       else
         this.showModalInfoPet = true;
-
     },
 
     openFileInput() {
@@ -340,6 +338,17 @@ export default {
         .then(data => {
           this.checkFriendsRequest = data.data;
           // console.log(data.data);
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    },
+
+    getFriends() {
+      axios.post('/api/getFriendsCount/', { id: this.user.id })
+        .then(data => {
+          // console.log(data.data);
+           this.friendsCount= data.data;
         })
         .catch(error => {
           console.log(error.response.data);

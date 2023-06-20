@@ -16,7 +16,6 @@ class NewsController extends Controller
      */
     public function index()
     {
-      
         return view('home.news');
     }
 
@@ -27,26 +26,24 @@ class NewsController extends Controller
      */
     public function getPost(Request $request)
     {
-        $id = $request->input('id');
         $page = $request->input('page');
-
+    
         $user = User::find(Auth::user()->id);
 
         $friends = $user->friends()->pluck('id');
         $friendsOfMine = $user->friendsOfMine()->get()->pluck('id');
 
         $combinedFriends = $friends->union($friendsOfMine);//обєднуємо колекцію
-      
-
-        if ($page) {
+       
+        if ($page>0&&!$combinedFriends->isEmpty()) {
             $MyPost = MyPost::with('comments.user')
             ->with(['user', 'user.myPost'])
             ->offset($page)
             ->orderBy('id', 'desc')
             ->where('user_id',  $combinedFriends)
             ->take(2)->get();
-
-        } else
+           
+        } else if (!$combinedFriends->isEmpty())
         {
             $MyPost = MyPost::with('comments.user')
             ->with(['user', 'user.myPost'])
@@ -54,22 +51,17 @@ class NewsController extends Controller
             ->where('user_id',  $combinedFriends)
             ->take(2)->get();
         }
-
-        if($MyPost->isEmpty()){
-   
-            $MyPostId = MyPost::inRandomOrder()->take(1)->pluck('user_id');
-            $MyPost = MyPost::with('comments.user')
+        else// вибираємо рандомний пост 
+        {
+            $MyPost = MyPost::inRandomOrder()
+            ->with('comments.user')
             ->with(['user', 'user.myPost'])
-            ->orderBy('id', 'desc')
-            ->whereIn('user_id', $MyPostId)
+            ->orderBy('id', 'desc')  
             ->inRandomOrder()
             ->take(2)
             ->get();
-          //  ->offset($page)
         }
-
-            //$MyPost = MyPost::with('comments.user')->with(['user', 'user.myPost'])->orderBy('id', 'desc')->where('user_id', $id)->take(2)->get();
-            
+ 
         return  $MyPost;
     }
 }

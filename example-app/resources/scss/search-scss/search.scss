@@ -11,7 +11,7 @@ border: 2px solid #F8AD22;
    // background-color: rgb(247, 249, 118);
     width: 75%;
     padding: 1%;
-
+   
     .search-user-check-container{
         border: 2px solid #a61010;
         display: flex;
@@ -108,28 +108,31 @@ border: 2px solid #F8AD22;
         }
     }
 
-    .search-myMapContainer{
+    // .search-myMapContainer{
        
-        margin-top: 50px;
-        margin: auto;
-        width: 100%;
-        border: 2px solid #a61010;
-        .search-myMap{    
-            height: 300px;  
-        }
+    //     margin-top: 50px;
+    //     margin: auto;
+    //     width: 100%;
+    //     border: 2px solid #a61010;
+    //     .search-myMap{    
+    //         height: 300px;  
+    //     }
 
-    }
+    // }
+}
+
 }
 .user-marker-icon {
-    border-radius: 50%;
-    overflow: hidden;
-  }
-  
-}
-
+  border-radius: 50%;
+  overflow: hidden;
+} 
+//модальне вікно карти
 .search-modal-map {
+     display: none; 
+}
+.search-modal-map2{
 
-    position: fixed;
+  position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -141,10 +144,79 @@ border: 2px solid #F8AD22;
   
     .search-modal-map-content {
       border: 1px solid #F8AD22;
-      border-radius: 50px;
+      border-radius: 20px;
       background-color: white;
-      width: 600px;
+      width: 700px;
       height: auto;
       padding: 1%;
+
+      h3{
+        text-align: center;
+        display: block;
+
+      }
+
+      .search-modal-map-span{
+        text-align: right;
+        display: block;
+        cursor: pointer;
+      }
+
+      .search-user-check-container{
+        //border: 2px solid #a61010;
+        display: flex;
+        border-radius: 50px;
+        margin: 5px;
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        .search-img{
+            
+            img{
+                height: 100px;
+                display: block;
+                border-radius: 50%;
+            }
+        }
+        .search-user-info{
+          margin-left: 10px;
+        }
+        .search-user-actions{  
+        }
+
     }
+
+ 
+    }
+
 }
+
+.search-myMapContainer{
+ 
+     margin: auto;
+     margin-bottom: 30px;
+      width: 600px;
+     // height: 500px;
+  // border: 2px solid #a61010;
+ 
+   .search-myMap{    
+     width: 600px;
+     height: 400px;
+      // height: 300px;  
+   }
+ 
+ }
+ .search-map-button{
+
+  text-align: center;
+    border: none;
+    background-color: #F8AD22;
+    border-radius: 50px;
+    padding: 1%;
+    // padding-left: 2%;
+    // padding-right: 2%;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+
+ }

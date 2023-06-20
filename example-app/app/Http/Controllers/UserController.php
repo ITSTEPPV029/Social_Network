@@ -94,6 +94,19 @@ class UserController extends Controller
       return view('home/friends',compact('user'));
    }
 
+   /**
+     *сторінка друзів
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+   public function  pageFriendsJs(User $user)
+   {
+     //$user = \App\Models\User::find(Auth::user()->id);
+      return view('home/friends',compact('user'));
+   }
+
+
  /**
      *видалити з друзів друзів
      *
@@ -123,6 +136,13 @@ class UserController extends Controller
       }
       else
         return false; 
+   }
+  
+
+   public function  getFriendsCount(Request $request)
+   {   
+     $user = User::find( $request->input('id'));
+     return $user->friends()->count();
    }
 
 

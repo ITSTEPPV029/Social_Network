@@ -1,3 +1,19 @@
+
+.profile-overlay-test{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 250px;
+  height: 350px;
+ // background-color: rgba(0, 0, 0, 0.5);
+
+  background-image: url("/img/cow.png");
+  background-size: 100% 100%;
+ 
+  z-index: 9999;
+}
+
+
 .profile-container {
 
   width: 100%;
@@ -113,14 +129,16 @@
         padding: 1%;
        
       }
-
+      
       .profile-info-field {}
-
       .profile-user-description {
 
-        // background-color: rgb(175, 127, 242);
+         //background-color: rgb(175, 127, 242);
         width: 60%;
         height: 100%;
+        p{
+          cursor: pointer;
+        }
 
       }
     }

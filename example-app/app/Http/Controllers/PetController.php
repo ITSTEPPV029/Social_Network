@@ -112,7 +112,7 @@ class PetController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 
      *
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response

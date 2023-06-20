@@ -45,8 +45,6 @@ Route::post('map/store','MapController@store')->middleware('auth:api');
 Route::post('settings','SettingsController@update')->middleware('auth:api');
 Route::post('upload-avatar','SettingsController@uploadAvatar')->middleware('auth:api');
 
-Route::post('filter', 'SearchController@filterUser')->middleware('auth:api');
-
 Route::post('PetStore', 'PetController@store')->middleware('auth:api');
 Route::post('getPets', 'PetController@index')->middleware('auth:api');
 Route::post('PetUpdate', 'PetController@update')->middleware('auth:api');
@@ -57,6 +55,7 @@ Route::post('getCheckUser', 'ProfileController@getCheckUser')->middleware('auth:
 Route::post('friendRequest', 'UserController@friendRequest')->middleware('auth:api');
 Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
 Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
+Route::post('getFriendsCount', 'UserController@getFriendsCount')->middleware('auth:api');
 
 Route::post('getPosts', 'NewsController@getPost')->middleware('auth:api');
 
@@ -65,3 +64,5 @@ Route::post('getCategories', 'SavePostController@getCategories')->middleware('au
 Route::post('savePostToCategory', 'SavePostController@savePostToCategory')->middleware('auth:api');
 Route::post('savePostGetCategory', 'SavePostController@savePostGetCategory')->middleware('auth:api');
 
+Route::post('getUsersMap', 'SearchController@getUsersMap')->middleware('auth:api');
+Route::post('filter', 'SearchController@filterUser')->middleware('auth:api');

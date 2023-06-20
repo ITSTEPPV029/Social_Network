@@ -1,91 +1,139 @@
-// .news-add-container{
+.news-add-container{
 
-//   width: 100%;
-//   height: auto;
-//   display: flex;
-//  // justify-content: flex-end; застаріле і видає помилку 
-//   justify-content: end;
-//   button{
-//     border-radius: 50px;
-//     border-color: #de8d8d;
-//     padding: 5px;
-//     background-color: #fcfcfc;
-//     padding-left: 10px;
-//     padding-right: 10px;
-//   }
-//   .news-modal-add{
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0, 0, 0, 0.5);
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
+  width: 100%;
+  height: auto;
+  display: flex;
+ // justify-content: flex-end; застаріле і видає помилку 
+  justify-content: end;
+  button{
+    border-radius: 50px;
+    border-color: #de8d8d;
+    padding: 5px;
+    background-color: #fcfcfc;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .news-modal-add{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
-//   .news-modal-add-content {
-//     border-radius: 50px;
-//     background-color: white;
-//     width: 500px;
-//     height: auto;
+  .news-modal-add-content {
+    border-radius: 50px;
+    background-color: white;
+    width: 500px;
+    height: auto;
 
-//     padding: 1%;
-//    span{
-//     text-align: right;
-//     display: block;
-//     cursor: pointer;
-//    }
+    padding: 1%;
+   span{
+    text-align: right;
+    display: block;
+    cursor: pointer;
+   }
 
-//     div{
-//       margin-top: 4%;
-//       h3{
-//         text-align: center;
-//       }
-//     }
-//     .news-modal-choose-file{
+    div{
+      margin-top: 4%;
+      h3{
+        text-align: center;
+      }
+    }
+    .news-modal-choose-file{
      
-//       img{
-//         width: 100px;
-//         cursor: pointer;
-//       }
-//       b{
-//         cursor: pointer;
-//       }
-//       p{
-//         text-align: center;
-//       }
-//     }
-//     .news-modal-textarea-content{
-//       text-align: center;
-//       textarea{
-//         width: 80%;
-//       }
-//     }
+      img{
+        width: 100px;
+        cursor: pointer;
+      }
+      b{
+        cursor: pointer;
+      }
+      p{
+        text-align: center;
+      }
+    }
+    .news-modal-textarea-content{
+      text-align: center;
+      textarea{
+        width: 80%;
+      }
+    }
    
 
-//    .news-modal-button-content{
-//     text-align: center;
-//     margin: 1%;
-//       .news-modal-button{
+   .news-modal-button-content{
+    text-align: center;
+    margin: 1%;
+      .news-modal-button{
 
-//         border-radius: 50px;
-//         background-color: white;
-//         padding-left: 20px;
-//         padding-right: 20px;
-//         text-align: center;
-//       }
-//     }
-//   }
-// }
+        border-radius: 50px;
+        background-color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+      }
+    }
+  }
+}
+.news-head-container{
+  width: 100%;
+ 
+  .news-head{
+    margin: auto;
+    width: 60%;
+    height: 70px;
+  //  background-color: #47d110;
+    display: flex;
+    justify-content: space-around;
+    
+    .news-head-block{
+      width: 30%;
+      height: 70px;
+   //   background-color: #2e85dc;
+      //display: flex;
+      align-items: end;
+
+      .news-head-block-text{
+        text-align: center;
+        padding: 20px;
+        width: 100%;
+        height: 60px;
+     //   background-color: #c82abb;
+
+     cursor: pointer;
+      }
+      .news-head-block-line{
+        width: 100%;
+        height: 5px;
+        background-color: #F8AD20;
+        border-radius: 5px;
+      }
+      .news-head-block-line2{
+        width: 100%;
+        height: 5px;
+        background-color: #D9D9D9;
+        border-radius: 5px;
+      }
+
+
+
+    }
+  }
+
+}
+
 
 .news-container{
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 10px;
   margin: auto;
-  width: 40%;       
+  width: 40%;   
+  
 .news {
    width: 400px;
     height: auto;

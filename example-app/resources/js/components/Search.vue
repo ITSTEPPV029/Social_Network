@@ -1,13 +1,31 @@
 <template>
 
-<div class="search-modal-map" v-if="showModalMap">
+<div class="search-modal-map" v-bind:class="{ 'search-modal-map2': showModalMap }">
           <div class="search-modal-map-content">
-            <span @click="closeModal"> &#10006;</span>
-                   
-            
+            <span class="search-modal-map-span" @click="closeModal"> &#10006;</span>  
+      <h3>Пошук по карті</h3>
+            <div   v-if="this.checkUserID>0" class="search-user-check-container">
+                <div class="search-img">
+                      <a :href="`/profile/${this.user.id}`"> <img :src="`${user.avatar}`" ></a> 
+                    </div>
+                  <div class="search-user-info">
+                        <strong>{{  this.user.first_name }} </strong>&nbsp;
+                        <strong> {{  this.user.last_name}}</strong> 
+                        <div class="search-user-actions">
+                        <span>{{  this.user.nick_name}} </span><br/>
+                        <span> {{  this.user.date_of_birth}}</span> <br/>
+                        <span> {{  this.user.gender}}</span><br/>
+                        <span> {{  this.user.city}}</span><br/>
+                        </div>
+                </div>
+              </div>
+              
+           <div class="search-myMapContainer">
+                <div class="search-myMap" id="searchMap"></div>
+            </div>    
           </div>
   </div>
-
+ 
 
 <div class="search-container">
   <div class="search-users">           
@@ -15,7 +33,7 @@
   <hr/>
   <div v-if="JSON.stringify(this.localUsers) === '{}'" class="">Співпадінь не знайдено</div>
 
-  <div   v-if="this.checkUserID>0" class="search-user-check-container">
+  <!-- <div   v-if="this.checkUserID>0" class="search-user-check-container">
     <div class="search-img">
           <a :href="`/profile/${this.user.id}`"> <img :src="`${user.avatar}`" ></a> 
         </div>
@@ -29,7 +47,7 @@
             <span> {{  this.user.city}}</span><br/>
             </div>
     </div>
-  </div>
+  </div> -->
 
     <div  v-for="user in localUsers" class="search-user">
         <div class="search-img">
@@ -51,7 +69,9 @@
   </div>
   <div class="search-filter-container"> 
 <h4>Фільтрація пошуку</h4>
+
 <hr/>
+<input class="search-map-button" @click="showModal" value="Пошук по карті">
      <div class="search-filter">
         <label>Ім'я та Прізвище</label><br/>
         <input  v-model="name" type="text"> 
@@ -84,19 +104,46 @@
         <label>Місто</label><br/>
         <input  v-model="city" type="text"> 
       </div>
+<hr/>
+      <div class="search-filter">
+        <label>Вид улюблинця</label><br/>
+        <select v-model="kindPet" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">собака </option>
+                  <option value="Чоловік">кіт</option>
+        </select>      
+      </div>
 
+      <div class="search-filter">
+        <label>Стать улюблинця</label><br/>
+        <!-- <input  v-model="genderPet" type="text">  -->
+        <select v-model="genderPet" name="options">
+                  <option value=""> </option>
+                  <option value="Жінка">Жінка </option>
+                  <option value="Чоловік">Чоловік</option>
+                  <option value="Нон-бінарний">Нон-бінарний</option>
+                  <option value="Чоловік">Поза гендером</option>
+                  <option value="Бігендер">Бігендер</option>
+                </select>
+      </div>
+
+      <div class="search-filter">
+        <label>Вік улюбленця</label><br/>
+        <input v-model="agePet"  type="number" min="1" max="100"> 
+      </div>
+    
       <br/>
     <div class="search-button">
         <input @click="applyFilter"  type="submit"  value="Фільтрувати"> <br/> <br/>
         <input @click="clearFilter"  type="submit"  value="Очистити фільтр">
     </div>
      
-    <input @click="showModal"  type="submit"  value="Пошук по карті">
 
-  <p>місця вигулу користувачів</p>
-  <div class="search-myMapContainer">
-      <div class="search-myMap" id="searchMap"></div>
-  </div>
+
+    <!-- <p>місця вигулу користувачів</p>
+    <div class="search-myMapContainer">
+        <div class="search-myMap" id="searchMap"></div>
+    </div> -->
 
   </div>
 </div>
@@ -121,43 +168,79 @@ export default {
           user:null,
           map: null,
           showModalMap: false,
+          agePet:'',
+          genderPet:'',
+          kindPet:'',
+          usersMap:null,
         } 
     },
     props: {
       users: {
         type:  Object,
         required: true,
-      }
+      },
+      userthis: {
+        type: Object,
+        required: true,
+      },
     },
    mounted(){
-    this.localUsers = { ...this.users }; 
+    // this.localUsers = { ...this.users }; 
 
-    // Створення карти
-    this.map = L.map('searchMap').setView([50.745580217132755, 25.329238253994962], 13);
+    // // Створення карти
+    // this.map = L.map('searchMap').setView([50.745580217132755, 25.329238253994962], 13);
       
-      // Додавання плитки карти
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 18,
-      }).addTo(this.map);
+    //   // Додавання плитки карти
+    //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //     attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    //     maxZoom: 18,
+    //   }).addTo(this.map);
 
-      this.map.doubleClickZoom.disable();
-      this.aadMarkerk(this.users);
+    //   this.map.doubleClickZoom.disable();
+
+     // this.aadMarkerk(this.users);
+     this.applyFilter();
    },
 
     methods: {
 
+      initializeMap() {
+
+
+        this.map = L.map('searchMap').setView([this.userthis.latitude, this.userthis.longitude], 13);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+          maxZoom: 18,
+        }).addTo(this.map);
+       
+        
+        this.map.doubleClickZoom.disable();
+        // this.addMarkers(this.users);
+
+      //Додавання маркера кормстувача 
+        // L.marker([this.userthis.latitude, this.userthis.longitude]).addTo(this.map)
+        //         .bindPopup('Ваше місце Вигулу')
+        //         .openPopup();
+        this.getUsersMap(); 
+    },
+
     //вікно map
-    showModal() {
+  showModal() {
+   
       this.showModalMap = true;
+      setTimeout(() => {
+       
+        this.initializeMap();
+      }, 0);
+      
+
     },
     closeModal() {
       this.showModalMap = false;
     },
 
-
       applyFilter() {
-        
         const formData = new FormData();
 
         formData.append('name', this.name);
@@ -167,8 +250,11 @@ export default {
          formData.append('gender', this.gender);
          formData.append('city', this.city);
        
-
-      axios.post('/api/filter', formData, {
+         formData.append('agePet', this. agePet);
+         formData.append('genderPet', this.genderPet);
+         formData.append('kindPet', this.kindPet);
+ 
+        axios.post('/api/filter', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
           this.localUsers = { ...response.data };
@@ -180,9 +266,9 @@ export default {
 
         //  this.citySearch( this.city)  
       },
+
 //додавання користувачів на карту 
       aadMarkerk(users){
-
         // Видалення попередніх маркерів
         this.map.eachLayer((layer) => {
           if (layer instanceof L.Marker) {
@@ -198,7 +284,7 @@ export default {
                 popupAnchor: [0, -40], // якорна точка спливаючого вікна
                 className: 'user-marker-icon' // CSS-клас для стилізації
               });
-
+              
               const marker = L.marker([user.latitude, user.longitude], { icon: userIcon }).addTo(this.map)
                 .bindPopup(user.first_name + " " + user.last_name).on('mousemove', () => {
                   marker.openPopup();
@@ -208,6 +294,7 @@ export default {
       },
 
       MarkerClick(user){
+     
         this.checkUserID=user.id;
         this.user=user;
       },
@@ -244,6 +331,20 @@ export default {
           .catch(error => {
             console.log('Помилка при отриманні координат міста:', error);
           });
+
+      },
+
+
+      getUsersMap() {
+
+        axios.post('/api/getUsersMap').then(data=>{  
+         // console.log(data.data);
+         this.usersMap=data.data;
+        
+          this.aadMarkerk(data.data);
+       });
+
+
 
       }
 

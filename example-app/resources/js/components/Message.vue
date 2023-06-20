@@ -219,7 +219,7 @@ export default {
       if(this.user!=null)
       {
         axios.post('/api/message/getNotReadMessage',{ id: UserId}).then(data => {
-          //console.log('отримка чату');
+          console.log('отримка чату');
           this.numbers=data.data;
         },).catch(error => {
             console.log(error.response.data);
