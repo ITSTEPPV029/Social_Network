@@ -32,5 +32,12 @@ class ProfileController extends Controller
 
     return  $mas;
   }
+  
+  public function getUserPost(Request $request)
+  {
+    $user = User::find( $request->input('id'));
+    return $user;
+  }
+
 
 }

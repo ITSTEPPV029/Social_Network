@@ -51,6 +51,8 @@ Route::post('PetUpdate', 'PetController@update')->middleware('auth:api');
 Route::post('deletePets', 'PetController@destroy')->middleware('auth:api');
 
 Route::post('getCheckUser', 'ProfileController@getCheckUser')->middleware('auth:api');
+Route::post('getUserPost', 'ProfileController@getUserPost')->middleware('auth:api');
+
 
 Route::post('friendRequest', 'UserController@friendRequest')->middleware('auth:api');
 Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
@@ -66,3 +68,4 @@ Route::post('savePostGetCategory', 'SavePostController@savePostGetCategory')->mi
 
 Route::post('getUsersMap', 'SearchController@getUsersMap')->middleware('auth:api');
 Route::post('filter', 'SearchController@filterUser')->middleware('auth:api');
+

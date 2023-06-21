@@ -92,21 +92,21 @@
 
               <div class="post-modal-full-screen-photo-content">
                 <div class="post-modal-full-screen-photo-head">
-                  <img  :src="'/img/arrow right.png'">
-                  <img  :src="'/img/arrow right.png'">
-                  <img  :src="'/img/arrow right.png'">
-                  <img  :src="'/img/arrow right.png'">
+                  <img  :src="'/img/minus.png'">
+                  <img  :src="'/img/plus.png'">
+                  <img  :src="'/img/expansion_arrows.png'">
+                  <img @click="closeFullScreenModal" :src="'/img/closing_cross.png'">
                 </div>
 
                 <div class="post-modal-full-screen-photo-center-content">
                   <div class="post-modal-full-screen-photo-center-left">
-                    <img  :src="'/img/arrow right.png'">
+                    <img  :src="'/img/arrow_right.png'">
                   </div>
                   <div class="post-modal-full-screen-photo">
                         <img :src="`${postModal.photo}`" >
                    </div>
                     <div class="post-modal-full-screen-photo-center-right">
-                      <img  :src="'/img/arrow right.png'">
+                      <img  :src="'/img/arrow_right.png'">
                     </div>
                 </div>
                 
@@ -116,11 +116,10 @@
               <div  class="post-modal-full-screen-comments">
                 <a v-if="isLoggedIn==true" @click="closeFullScreenModal" > &#10006;</a>
 
-                <!-- <div class="">
-                  /інформація чий пост 
-                  <img :src="`${postModal.user.avatar}`" >
-                  <b>{{postModal.user.first_name + ' ' + postModal.user.last_name}}</b>     
-                </div> -->
+                <div class="post-modal-full-screen-user">
+                  <img :src="`${userPost.avatar}`" >
+                  <b>{{userPost.first_name + ' ' + userPost.last_name}}</b>     
+                </div> 
 
                   <div v-if="postModal.text!=0" class="post-modal-text">{{ postModal.text }}</div>
 
@@ -233,6 +232,7 @@ export default {
       Category: '',
       Сategories: [],
       selectedCategory: '',
+      userPost: null,
     };
   },
   mounted(){
@@ -246,7 +246,7 @@ export default {
        const viewportHeight = window.innerHeight;
        const totalHeight = document.documentElement.offsetHeight;
 
-       const atTheBottom = scrollTop + viewportHeight==totalHeight;
+       const atTheBottom = parseInt(scrollTop+1) + viewportHeight==totalHeight;
 
        if (atTheBottom) {
           this.scrollGetPost();
@@ -320,8 +320,11 @@ export default {
    // відкрити фото 
     openFullScreen(post){
       this.postModal=post;
-      this.showFullScreen = true;
-      //console.log(this.postModal);
+
+      axios.post('/api/getUserPost',{ id: post.user_id }).then(data=>{  
+         this.userPost=data.data;
+         this.showFullScreen = true;
+         });
      
     },
     closeFullScreenModal(){
