@@ -1,5 +1,21 @@
 $message-color-user: #333;
 
+
+
+.message-overlay-test{
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 250px;
+  height: 350px;
+ // background-color: rgba(0, 0, 0, 0.5);
+  background-image: url("/img/cow.png");
+  background-size: 100% 100%;
+ 
+  z-index: 9999;
+}
+
+
 .message-container{
 
    display: flex;
@@ -10,6 +26,7 @@ $message-color-user: #333;
     // /* align-items: center; */
     // width: 1000px;
     // margin: auto;
+    
     .message-chats-container {
       //flex: 1;
       width: 30%;
@@ -41,16 +58,15 @@ $message-color-user: #333;
       }
     }
     
-    .message-chat {
-    
+  .message-chat {
       .message-chat-now
       {
-        display: flex; /* Встановлюємо flex контейнер */
-        align-items: center; /* Вирівнюємо елементи вертикально по центру */
-        justify-content: center; /* Вирівнюємо елементи горизонтально по центру */
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
       }
 
-      .messages {
+ .messages {
         flex: 1;
         max-height: 75vh;
         height: 75vh;
@@ -60,73 +76,92 @@ $message-color-user: #333;
         word-break: break-all;
         padding: 10px;
 
-        .messages-user{
-          margin: 5%;
-          div{
-            // background-color: #eeeeee;
-            // width: auto;
-            // width: fit-content;  // Займає ширину контенту
-            // padding: 10px;
-            // padding-left: 20px;
-            // padding-right: 20px;
-            // border-radius: 500px;
-          }
+       // background-color: #8da788;
+    .messages-user{
 
+          width: 48%;
           .username {
             margin-bottom: 5px;
             display: inline-block;
           }
-          .content{
+          .message-user-left{
+            margin: 5px;
+            margin-left: 30px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #F8AD22;
+            .message-user-content-text-message{
 
-            color: $message-color-user;
-           
-                div{
-                  background-color: #eeeeee;
-                  display: inline-block;
-                  padding: 5px;
-                  display: block;
-                  //padding-left: 15px;
-                  border-radius: 50px;
-                }
-          }
-        }
-        .messages-user-sender{
-          text-align: right; /* Розміщення вправо */
-          margin: 5%;
+              color: $message-color-user;
+             
+                  div{
+                  //  background-color: #eeeeee;
+                    display: inline-block;
+                    padding: 5px;
+                    display: block;
+                    border-radius: 50px;
+                  }
+            }
 
-          .username2 {       
-            color: rgb(43, 78, 71);
-            margin-bottom: 5px;
-            display: inline-block;
-           
           }
-          .content{
-            color: $message-color-user;
-            padding: 5px;
-            padding-right: 15px;
-            background-color: #f8f8f8;
-            border-radius: 50px;
-           // width: fit-content;
-          }
+
+         
         }
-        
-          
+          .messages-user-sender{
+ 
+            text-align: left; /* Розміщення вправо */
+            //text-align: right; /* Розміщення вправо */
+         
+           // background-color: #34ea18;
+           
+            .message-user-right{
+             // background-color: #0757ad;
+             margin-top: 10px;
+              width: 48%;
+              margin-left: auto;
+              padding: 10px;
+              border-radius: 10px;
+              border: 2px solid #F8AD22;
+
+            .username2 {       
+              //color: rgb(14, 223, 181);
+              margin-bottom: 5px;
+              display: inline-block;
+            }
+
+            .message-user-content-text-message{
+              color: $message-color-user;
+              padding: 5px;
+              padding-right: 15px;
+             // background-color: #f16565;
+              border-radius: 50px;
+            }
+          }
+
+
+        }   
       }
 
     }
     
     .message-input
     {
-     // align-self: flex-end;
      display: flex;
-    // border: 2px solid red;
      border: none;
      background-color: #F2F2F2;//============================
      border-radius: 50px;
      padding: 7px;
      
+     img{
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      margin-right: 10px;
+     }
+     
 
      input {
+     
       flex: 1;
       border: none;
       margin-left: 20px;
@@ -136,21 +171,20 @@ $message-color-user: #333;
           }
       }
         
-      button {
-        border: none;
-        background-color: transparent;
-        padding: 5px;
-        border-radius: 50%;
-        margin-left: 10px;
-        cursor: pointer;
+    //   button {
+    //     border: none;
+    //     background-color: transparent;
+    //     padding: 5px;
+    //     border-radius: 50%;
+    //     margin-left: 10px;
+    //     cursor: pointer;
         
-        &::after {
-          content: "➤";
-          display: block;
-          transform: rotate(-45deg);
-        } 
-      }
-
+    //     &::after {
+    //       content: "➤";
+    //       display: block;
+    //       transform: rotate(-45deg);
+    //     } 
+     // }
     }
 
 }

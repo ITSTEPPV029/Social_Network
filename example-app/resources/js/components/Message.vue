@@ -1,4 +1,5 @@
 <template>
+<div class="message-overlay-test"></div>
 
 <div class="message-container">
   <h2 v-if="this.user==null">У вас ще немає повідомлень</h2>
@@ -25,18 +26,22 @@
 
       <div class="messages" v-scroll-bottom>
         <div  v-for="message in messages" v-bind:class="{ 'messages-user': message.sender_user.id ==  this.UserId, 'messages-user-sender': message.sender_user.id != this.UserId }" >
-          <div>
-              <img class="message-avatar" :src="`${message.sender_user.avatar}`" />
-              <div v-bind:class="{ 'username': message.sender_user.id == this.UserId, 'username2': message.sender_user.id != this.UserId }">{{ message.sender_user.first_name + ' ' + message.sender_user.last_name }}</div>
-              <div class="content"><div>{{ message.text }}</div></div>
-              <div ><div>{{formatDate(message.created_at) }}</div></div>
+          <div class="message-user-right">
+              <img v-if="message.sender_user.id == this.UserId" class="message-avatar" :src="`${message.sender_user.avatar}`" />
+              <div v-if="message.sender_user.id == this.UserId" v-bind:class="{ 'username': message.sender_user.id == this.UserId, 'username2': message.sender_user.id != this.UserId }">{{ message.sender_user.first_name + ' ' + message.sender_user.last_name }}</div>
+              <div class="message-user-left">
+                <div class="message-user-content-text-message"><div><h5>{{ message.text }}</h5></div></div>
+                 <div ><div>{{formatDate(message.created_at) }}</div></div>
+              </div>
+              
               <!-- <div ><div>{{message.read }}</div></div> можна доробити на чи переглятуте повідомлення -->
           </div>
         </div>
       </div>
           <div v-if="this.user!=null" class="message-input">
             <input type="text" v-model="textInput" v-on:keyup.enter="store" placeholder="Текст повідомлення..." />
-            <button @click="store"></button>
+            <img  @click="store" :src="'/img/sendArrow.png'" >
+            <!-- <button @click="store"></button> -->
           </div>
     </div>
   </div>

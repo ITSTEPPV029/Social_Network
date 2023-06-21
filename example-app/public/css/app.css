@@ -1258,18 +1258,56 @@ input.login-form-check-input {
   justify-content: center;
   align-items: center;
 }
-.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo {
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content {
   width: 70%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.59);
+  background-color: rgb(77, 176, 193);
+}
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-head {
+  width: 100%;
+  height: 5%;
+  background-color: rgb(24, 239, 149);
+  display: flex;
+  justify-content: flex-end;
+}
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-center-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-center-content .post-modal-full-screen-photo-center-left {
+  height: 95%;
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(64, 136, 219);
+}
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-center-content .post-modal-full-screen-photo-center-left img {
+  transform: scaleX(-1);
+  cursor: pointer;
+}
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-center-content .post-modal-full-screen-photo-center-right {
+  height: 95%;
+  width: 15%;
+  background-color: rgba(193, 119, 16, 0.949);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-center-content .post-modal-full-screen-photo-center-right img {
+  cursor: pointer;
+}
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-center-content .post-modal-full-screen-photo {
+  width: 70%;
+  height: 95%;
+  background-color: rgba(148, 0, 0, 0.59);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo img {
+.post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content .post-modal-full-screen-photo-center-content .post-modal-full-screen-photo img {
   border-radius: 10px;
-  width: 70%;
-  height: 80%;
   -o-object-fit: cover;
      object-fit: cover;
   max-width: 100%; /* Забезпечує максимальну ширину елемента, щоб уникнути виходу зображення за межі */
@@ -1426,6 +1464,17 @@ input.login-form-check-input {
     grid-gap: 10px;
   }
 }
+.message-overlay-test {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 250px;
+  height: 350px;
+  background-image: url("/img/cow.png");
+  background-size: 100% 100%;
+  z-index: 9999;
+}
+
 .message-container {
   display: flex;
   margin-left: 3%;
@@ -1456,9 +1505,9 @@ input.login-form-check-input {
   text-align: center;
 }
 .message-container .message-chat .message-chat-now {
-  display: flex; /* Встановлюємо flex контейнер */
-  align-items: center; /* Вирівнюємо елементи вертикально по центру */
-  justify-content: center; /* Вирівнюємо елементи горизонтально по центру */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .message-container .message-chat .messages {
   flex: 1;
@@ -1471,36 +1520,47 @@ input.login-form-check-input {
   padding: 10px;
 }
 .message-container .message-chat .messages .messages-user {
-  margin: 5%;
+  width: 48%;
 }
 .message-container .message-chat .messages .messages-user .username {
   margin-bottom: 5px;
   display: inline-block;
 }
-.message-container .message-chat .messages .messages-user .content {
+.message-container .message-chat .messages .messages-user .message-user-left {
+  margin: 5px;
+  margin-left: 30px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #F8AD22;
+}
+.message-container .message-chat .messages .messages-user .message-user-left .message-user-content-text-message {
   color: #333;
 }
-.message-container .message-chat .messages .messages-user .content div {
-  background-color: #eeeeee;
+.message-container .message-chat .messages .messages-user .message-user-left .message-user-content-text-message div {
   display: inline-block;
   padding: 5px;
   display: block;
   border-radius: 50px;
 }
 .message-container .message-chat .messages .messages-user-sender {
-  text-align: right; /* Розміщення вправо */
-  margin: 5%;
+  text-align: left; /* Розміщення вправо */
 }
-.message-container .message-chat .messages .messages-user-sender .username2 {
-  color: rgb(43, 78, 71);
+.message-container .message-chat .messages .messages-user-sender .message-user-right {
+  margin-top: 10px;
+  width: 48%;
+  margin-left: auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #F8AD22;
+}
+.message-container .message-chat .messages .messages-user-sender .message-user-right .username2 {
   margin-bottom: 5px;
   display: inline-block;
 }
-.message-container .message-chat .messages .messages-user-sender .content {
+.message-container .message-chat .messages .messages-user-sender .message-user-right .message-user-content-text-message {
   color: #333;
   padding: 5px;
   padding-right: 15px;
-  background-color: #f8f8f8;
   border-radius: 50px;
 }
 .message-container .message-input {
@@ -1510,6 +1570,12 @@ input.login-form-check-input {
   border-radius: 50px;
   padding: 7px;
 }
+.message-container .message-input img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 10px;
+}
 .message-container .message-input input {
   flex: 1;
   border: none;
@@ -1518,19 +1584,6 @@ input.login-form-check-input {
 }
 .message-container .message-input input:focus {
   outline: none;
-}
-.message-container .message-input button {
-  border: none;
-  background-color: transparent;
-  padding: 5px;
-  border-radius: 50%;
-  margin-left: 10px;
-  cursor: pointer;
-}
-.message-container .message-input button::after {
-  content: "➤";
-  display: block;
-  transform: rotate(-45deg);
 }
 
 .message-avatar {

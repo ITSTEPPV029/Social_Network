@@ -299,24 +299,74 @@
           justify-content: center;
           align-items: center;
 
-          .post-modal-full-screen-photo{
+          .post-modal-full-screen-photo-content{
             width: 70%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.59);
-            display: flex;
-             justify-content: center;
-            align-items: center;
+            background-color: rgb(77, 176, 193);
 
-            img{ 
-              border-radius: 10px;
-              width: 70%;
-              height: 80%;
-              object-fit: cover;
-             // object-fit: contain; /* Зберігає пропорції зображення та вміщує його в межі елемента */
-              max-width: 100%; /* Забезпечує максимальну ширину елемента, щоб уникнути виходу зображення за межі */
-              max-height: 100%; /* Забезпечує максимальну висоту елемента, щоб уникнути виходу зображення за межі */
+            .post-modal-full-screen-photo-head{
+              width: 100%;
+              height: 5%;
+              background-color: rgb(24, 239, 149);
+              display: flex;
+              justify-content: flex-end;
+
             }
-          }
+            .post-modal-full-screen-photo-center-content{
+              
+              display: flex;
+              width: 100%;
+              height: 100%;
+              .post-modal-full-screen-photo-center-left{
+                height: 95%;
+                width: 15%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb(64, 136, 219);
+                img{
+                  transform: scaleX(-1);//повернули картинку дзеркально 
+                  cursor: pointer;
+                }
+
+              }
+
+              .post-modal-full-screen-photo-center-right{
+                height: 95%;
+                width: 15%;;
+                background-color: rgba(193, 119, 16, 0.949);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+
+                  cursor: pointer;
+                }
+              }
+
+              .post-modal-full-screen-photo{
+                  //margin: auto;
+                  width: 70%;
+                  height: 95%;
+                  background-color: rgba(148, 0, 0, 0.59);
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                img{ 
+                  border-radius: 10px;
+                 // width: auto;
+                //  height: 95%;
+                  object-fit: cover;
+                // object-fit: contain; /* Зберігає пропорції зображення та вміщує його в межі елемента */
+                  max-width: 100%; /* Забезпечує максимальну ширину елемента, щоб уникнути виходу зображення за межі */
+                  max-height: 100%; /* Забезпечує максимальну висоту елемента, щоб уникнути виходу зображення за межі */
+                }
+              }
+
+
+
+            }
+        }
           .post-modal-full-screen-comments{
            // background-color: rgb(135, 65, 255);
             width: 30%;

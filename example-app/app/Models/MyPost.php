@@ -33,8 +33,6 @@ class MyPost extends Model
     }
 
 
-
-    
     public function savePost()
     {
         return $this->hasMany(SavePost::class); 

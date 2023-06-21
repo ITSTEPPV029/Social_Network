@@ -7,6 +7,7 @@
        <div class="post-SavePost-modal-content" >
         <div class="post-SavePost-height">
           <span @click="closeModalSavePost" >&#10006;</span>
+          
           <h3>Зберегти в</h3> 
         </div>
 
@@ -72,7 +73,7 @@
   <div @mouseover="showInnerElement(post.id)" @mouseleave="hideInnerElement" class="post" v-for="post in posts" >
 
       <div class="post-delete">
-        <a  @click="openModal" > &nbsp <samp v-show="showInner==post.id" v-if="isLoggedIn==true">&#10006;</samp> </a>
+        <a  @click="openModal" > &nbsp <samp v-show="showInner==post.id" v-if="isLoggedIn==true">...</samp> </a>
           <div class="post-modal" v-if="showModal" @click="closeModal">
             <div class="post-modal-content" >
               <p>Ви дійсно бажаєте видалити пост?</p>
@@ -89,8 +90,27 @@
           <div class="post-moda-full-screen" v-if="showFullScreen" >
              <div class="post-modal-full-screen-content" >
 
-              <div class="post-modal-full-screen-photo">
-                <img :src="`${postModal.photo}`" >
+              <div class="post-modal-full-screen-photo-content">
+                <div class="post-modal-full-screen-photo-head">
+                  <img  :src="'/img/arrow right.png'">
+                  <img  :src="'/img/arrow right.png'">
+                  <img  :src="'/img/arrow right.png'">
+                  <img  :src="'/img/arrow right.png'">
+                </div>
+
+                <div class="post-modal-full-screen-photo-center-content">
+                  <div class="post-modal-full-screen-photo-center-left">
+                    <img  :src="'/img/arrow right.png'">
+                  </div>
+                  <div class="post-modal-full-screen-photo">
+                        <img :src="`${postModal.photo}`" >
+                   </div>
+                    <div class="post-modal-full-screen-photo-center-right">
+                      <img  :src="'/img/arrow right.png'">
+                    </div>
+                </div>
+                
+              
               </div>
 
               <div  class="post-modal-full-screen-comments">
@@ -175,7 +195,6 @@
 <script>
 
 import { numberLiteralTypeAnnotation } from '@babel/types';
-
 
 export default {
 
@@ -302,6 +321,8 @@ export default {
     openFullScreen(post){
       this.postModal=post;
       this.showFullScreen = true;
+      //console.log(this.postModal);
+     
     },
     closeFullScreenModal(){
       this.showFullScreen = false;
