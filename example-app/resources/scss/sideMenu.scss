@@ -5,19 +5,20 @@ $header-background-color: white; //#F8AD25;
 $side-bar-background-color: #f8ad25; //Колір лінії з боку ul
 $span-background: darkgray;
 $boxShadowStyle: 0px 2px 0px #a8a8a8;
-$shadowStyle: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0.61) 30%, rgba(0,0,0,0.8968837535014006) 51%, rgba(0,0,0,0.6055672268907564) 73%, rgba(255,255,255,1) 100%);
+// $shadowStyle: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0.61) 40%, rgba(0,0,0,0.8968837535014006) 51%, rgba(0,0,0,0.6055672268907564) 63%, rgba(255,255,255,1) 100%);
 
 /* $sideMenu-width: 15%;
 $sideMenu-height: 300%;
 $margin-ul-left: 1rem;
 $margin-li-top: 1.5rem; */
 
+//Поки показує розгорнуте
 .sideMenu-container {
   --sideMenu-height: 150%;
   --margin-ul-left: 0.5rem;
   --margin-li-top: 1rem; //Відстань між li
   --sideMenu-short-width: 2.2%;
-  --sideMenu-width: 14rem;
+  --sideMenu-width: 15.5rem;
   background-color: $header-background-color;
   overflow: hidden;
   top: -2rem;
@@ -42,11 +43,13 @@ $margin-li-top: 1.5rem; */
       height: 1.8rem;
       padding-left: 0.5rem;
       z-index: 5;
-      border-radius: 20%;
+      border-radius: 50px;
       margin-left: 1px;
       background: #F2F2F2;
-      margin-top: calc(var(--margin-li-top) + 0.0125rem); //Відступи між li
-      width: calc(var(--margin-ul-left) + 13rem);
+      margin-top: calc(var(--margin-li-top) + 0.005rem); //Відступи між li
+      width: calc(var(--margin-ul-left) + 14rem);
+      
+      box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
       // box-shadow: $boxShadowStyle;
       img {
         margin-left: 0.5%;
@@ -59,19 +62,20 @@ $margin-li-top: 1.5rem; */
         transition: margin-left 2s ease-in; //Анімація
       }
     }
-    li:before {
-      background: $shadowStyle;
+    /* li:before {
+      content: " "; //Без цього не появляється
+      // background: $shadowStyle;
+      background-color: none;
       position: absolute;
       //Задаємо позицію абсолютну щоб круг не залежав від позиції li
       z-index: -1;
-      margin-left: -0.6rem;
-      margin-top: 1rem;
+      margin-left: -0.5rem;
+      margin-top: 1.2rem;
       // border-radius: 20% 0% 0% 20%;
       height: 1rem;
       width: 12rem;
-      box-shadow: $boxShadowStyle;
-      content: " "; //Без цього не появляється
-    } 
+      box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+    }  */
   }
   //бокова лінія
   /*div {
@@ -90,6 +94,7 @@ $margin-li-top: 1.5rem; */
   transition: width 2s ease-in-out;
 }
 
+//Показ повного
 .show-full {
   width: var(--sideMenu-width);
   transition: width 2s ease-in-out;

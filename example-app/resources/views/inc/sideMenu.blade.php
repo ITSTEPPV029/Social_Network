@@ -30,15 +30,15 @@
 <nav class="sideMenu-container">
   <ul>
     <li style="background: linear-gradient(0deg, #F5F5F5 6.79%, #F5F4F5 68.13%, #F1F0F1 74.23%, #E5E4E5 80.43%, #D0D0D0 86.68%, #B4B4B4 92.91%, #A3A3A3 96.02%);"><img src="file:///D://SHAG//Diplom//house.png" /><a href="\">Головна сторінка</a></li>
-    <li><span></span><a href="{{ route('profile.show',['user' => Auth::user()]) }}">Моя сторінка</a></li>
-    <li><span></span><a href="{{ route('home.home') }}">Додати опис</a></li>
-    <li><span></span><a href="{{ route('allUser.allUser') }}">всі користувачі(тест)</a></li>
-    <li><span></span><a href="{{ route('friends') }}">Друзі</a></li>
-    <li><span></span><a id="messageCount" href="{{ route('message') }}">повідомлення {{$user}}</a></li>
-    <li><span></span><a href="{{ route('chat') }}">Чат</a></li>
-    <li><span></span><a href="\">Збережені дописи</a></li>
-    <li><span></span><a href="{{ route('settings') }}">Налаштування профілю</a></li>
-    <li><span></span><a href="\">Вихід</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="{{ route('profile.show',['user' => Auth::user()]) }}">Моя сторінка</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="{{ route('home.home') }}">Додати опис</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="{{ route('allUser.allUser') }}">всі користувачі(тест)</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="{{ route('friends') }}">Друзі</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a id="messageCount" href="{{ route('message') }}">повідомлення {{$user}}</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="{{ route('chat') }}">Чат</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="\">Збережені дописи</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="{{ route('settings') }}">Налаштування профілю</a></li>
+    <li><img src="file:///D://SHAG//Diplom//house.png" /><a href="\">Вихід</a></li>
   </ul>
   <div></div>
 </nav>
