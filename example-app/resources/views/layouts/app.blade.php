@@ -12,8 +12,10 @@
     </head>
     <body >
 
-      @include("inc.header")
-
+      @if (Auth::check())
+        @include("inc.header")
+      @endif
+      
       <div class="my-container-main">
 
         @if (Auth::check())

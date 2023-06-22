@@ -1,14 +1,16 @@
 .my-container-main
 {
+  display: flex;
 
-  
   .my-container-side-menu{
-
+     width: 15%;
   }
 
   .my-container-content{
-    width: 70%;
+
+    width: 75%;
     margin: auto;
+    margin-top: 1%;
   }
 }
 

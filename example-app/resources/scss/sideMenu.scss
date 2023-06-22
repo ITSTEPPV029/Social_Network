@@ -1,84 +1,163 @@
-$menu-background-color: #333;
-$menu-text-color: #fff;
-$menu-hover-color: #f60;
-$header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колір header
-$side-bar-background-color: red;  //Колір лінії з боку ul
 
-$sideMenu-width: 15%; 
-$margin-ul-left: 1rem;
-$margin-li-top: 1.5rem; //Відстань між li
+.sideMenu-container{
 
-.sideMenu-container {
-  margin-top: -5rem;
-  background-color: $header-background-color;
-  position: fixed; //"Приліпання" до екрану
-  z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
-  width: calc($sideMenu-width + $margin-ul-left); /* задаємо ширину меню */
-  height: 120%; /* встановлюємо висоту на весь екран */
-  ul {
-    margin-top: calc(7rem - $margin-li-top); //Відстань від header
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 120%;
-    background-color: $header-background-color;
-    li {
-      margin-left: $margin-ul-left;
-      background-color: $menu-background-color;
-      margin-top: $margin-li-top; //Відступи між li
-      width: calc(102% - $margin-ul-left);
-      a {
-        position: relative;
-        z-index: 5;
-        color: $menu-text-color;
-        text-decoration: none;
-        &:hover {
-          color: $menu-hover-color;
-        }
+  width: auto;
+  height: 1000px;
+ // background-color: aqua;
+  display: flex;
+  justify-content: end;
+
+  .sideMenu-container-menu{
+    width: 85%;
+    height: 1000px;
+   // background-color: #aaa59b;
+
+    .sideMenu-menu-item{
+      
+      cursor: pointer;
+      margin-top: 35px;
+      width: 100%;
+      height: 40px;
+      background-color: #F5F4F5;
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+      position: relative;
+      box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.5);
+
+      display: flex;
+      //justify-content: center;
+      align-items: center;
+
+      img{
+        margin-left: 10px;
       }
-      a:before {
-        background: darkgray;
-        position: absolute;
-        //Задаємо позицію абсолютну щоб круг не залежав від позиції li
-        z-index: 4;
-        margin-left: -1.4rem;
-        border-radius: 50%;
-        margin-top: 0.25rem;
-        height: 1rem;
-        width: 1rem;
-        content: " "; //Без цього не появляється
-        display: inline-block; //По замовчуванню none
+      span{
+        margin-left: 10px;
       }
     }
-    //Задній фон для круга
-    li:before {
-      background-position: center;
-      background: $menu-background-color;
-      //Задаємо позицію абсолютну щоб круг не залежав від позиції li
+    .sideMenu-menu-item:hover{
+      box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.1);
+    }
+
+   
+    .sideMenu-menu-item::before {
+      content: "";
       position: absolute;
-      z-index: 3;
-      margin-left: -1.6rem;
-      border-radius: 35%;
-      height: 1.5rem;
-      width: 2.5rem;
-      margin-bottom: -1rem;
-      font-size: 150%;
-      text-align: right;
-      content: " "; //Без цього не появляється
-      display: inline-block; //По замовчуванню none
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+      width: 100%;
+      height: 100%;
+      // top: 10px;
+      // right: 10px;
+      // bottom: 10px;
+      // left: 10px;
+      box-shadow: inset 0 0 0 rgba(0, 0, 0, 0); /* Початкове значення тіні */
+      transition: box-shadow 0.2s ease-in-out; /* Плавний перехід тіні */
     }
+    
+    .sideMenu-menu-item:hover::before {
+      box-shadow: inset 1px 4px 10px rgba(0, 0, 0, 0.2); /* Тінь при наведенні */
+
+    }
+
   }
-  //бокова лінія
-  div{
-    //Лінія знаходилась в екрані
-    position: fixed;
-    //Позиція знаходилась в позиції зверху перед ul
-    top: 0%;
-    left: calc(15% + $margin-ul-left); 
-    //Лінія займала весь екран
-    height: 305%;
-    width: 0.3rem;
-    background: $side-bar-background-color;
+
+  .sideMenu-line{
+    border-radius: 10px;
+    width: 3%;
+    background-color: #F8AD25;
+    height: 1000px;
+    
   }
+
 }
+
+
+
+
+
+// $menu-background-color: #333;
+// $menu-text-color: #fff;
+// $menu-hover-color: #f60;
+// $header-background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));  //Колір header
+// $side-bar-background-color: red;  //Колір лінії з боку ul
+
+// $sideMenu-width: 15%; 
+// $margin-ul-left: 1rem;
+// $margin-li-top: 1.5rem; //Відстань між li
+
+// .sideMenu-container {
+//   margin-top: -5rem;
+//   background-color: $header-background-color;
+//   position: fixed; //"Приліпання" до екрану
+//   z-index: 1; /* задаємо високий рівень z-index, щоб меню було над іншими елементами */
+//   width: calc($sideMenu-width + $margin-ul-left); /* задаємо ширину меню */
+//   height: 120%; /* встановлюємо висоту на весь екран */
+//   ul {
+//     margin-top: calc(7rem - $margin-li-top); //Відстань від header
+//     list-style: none;
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     height: 120%;
+//     background-color: $header-background-color;
+//     li {
+//       margin-left: $margin-ul-left;
+//       background-color: $menu-background-color;
+//       margin-top: $margin-li-top; //Відступи між li
+//       width: calc(102% - $margin-ul-left);
+//       a {
+//         position: relative;
+//         z-index: 5;
+//         color: $menu-text-color;
+//         text-decoration: none;
+//         &:hover {
+//           color: $menu-hover-color;
+//         }
+//       }
+//       a:before {
+//         background: darkgray;
+//         position: absolute;
+//         //Задаємо позицію абсолютну щоб круг не залежав від позиції li
+//         z-index: 4;
+//         margin-left: -1.4rem;
+//         border-radius: 50%;
+//         margin-top: 0.25rem;
+//         height: 1rem;
+//         width: 1rem;
+//         content: " "; //Без цього не появляється
+//         display: inline-block; //По замовчуванню none
+//       }
+//     }
+//     //Задній фон для круга
+//     li:before {
+//       background-position: center;
+//       background: $menu-background-color;
+//       //Задаємо позицію абсолютну щоб круг не залежав від позиції li
+//       position: absolute;
+//       z-index: 3;
+//       margin-left: -1.6rem;
+//       border-radius: 35%;
+//       height: 1.5rem;
+//       width: 2.5rem;
+//       margin-bottom: -1rem;
+//       font-size: 150%;
+//       text-align: right;
+//       content: " "; //Без цього не появляється
+//       display: inline-block; //По замовчуванню none
+//     }
+//   }
+//   //бокова лінія
+//   div{
+//     //Лінія знаходилась в екрані
+//     position: fixed;
+//     //Позиція знаходилась в позиції зверху перед ul
+//     top: 0%;
+//     left: calc(15% + $margin-ul-left); 
+//     //Лінія займала весь екран
+//     height: 305%;
+//     width: 0.3rem;
+//     background: $side-bar-background-color;
+//   }
+// }
+
