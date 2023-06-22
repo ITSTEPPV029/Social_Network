@@ -14,21 +14,22 @@
 
       @if (Auth::check())
         @include("inc.header")
-      @endif
-      
       <div class="my-container-main">
-
-        @if (Auth::check())
           <div class="my-container-side-menu">
-            @include("inc.sideMenu", ['user' => app('App\Services\AppServiceMessages')->getUser()])
-          </div>
-        @endif
+             @include("inc.sideMenu", ['user' => app('App\Services\AppServiceMessages')->getUser()])
+           </div>
+
           <div class="my-container-content">
-             @yield('content')
-          </div>
-    
-      </div>
-    
+              @yield('content')
+           </div>
+        </div>
+      @else
+         <div class="guest-container">
+            @yield('contentGuest')
+         </div>
+      @endif
+
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

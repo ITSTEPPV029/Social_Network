@@ -45,13 +45,13 @@ class AuthController extends Controller
         $user = Auth::user();
         return redirect()->route('profile.show', compact('user'));
     }
+
     /**
      * сторінка авторизації
      *
      * @param  
      * @return \Illuminate\Http\Response
      */
-
     public function getSigin()
     {
         return view('home/login');
@@ -78,7 +78,6 @@ class AuthController extends Controller
            }
            $user=  Auth::user();
            return redirect()->route('profile.show',compact('user')); 
-    
     }
 
     /**

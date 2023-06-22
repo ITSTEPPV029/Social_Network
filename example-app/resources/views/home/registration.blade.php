@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('contentGuest')
 
 <div class="registration-form-container">
 
