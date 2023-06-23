@@ -25,10 +25,11 @@
         </div>
       @else
          <div class="guest-container">
-            @yield('contentGuest')
+            @yield('contentGuest')  
          </div>
       @endif
-
+      
+      @yield('contentERROR')
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     </body>

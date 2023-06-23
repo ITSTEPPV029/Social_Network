@@ -345,10 +345,12 @@ export default {
 
     //збереження поста в категорії 
     savePostToCategory(){ 
+
       if(this.selectedCategory!="")
-      {
-        axios.post('/api/savePostToCategory',{ category: this.selectedCategory ,postId :this.postModal.id }).then(data=>{  
-        //  console.log(data.data)
+      {   
+      
+        axios.post('/api/savePostToCategory',{ category: this.selectedCategory ,postId : this.postModal.id }).then(data=>{  
+         console.log(data.data)
          this.closeModalSavePost();
        });
       }
@@ -359,6 +361,7 @@ export default {
      
       axios.post('/api/addCategory',{ category: this.Category }).then(data=>{  
         console.log(data.data)
+        
         this.Сategories = data.data;
        });
 

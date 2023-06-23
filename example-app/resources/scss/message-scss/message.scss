@@ -1,7 +1,6 @@
 $message-color-user: #333;
 
 
-
 .message-overlay-test{
   position: absolute;
   top: 30%;
@@ -15,21 +14,20 @@ $message-color-user: #333;
   z-index: 9999;
 }
 
-
 .message-container{
 
    display: flex;
-   margin-left: 3%;
-   margin-top: 3%;
+  // margin-left: 3%;
+   margin-top: 1%;
     // flex-direction: column;
     // justify-content: center;
     // /* align-items: center; */
-    // width: 1000px;
+     width: 85%;
     // margin: auto;
     
     .message-chats-container {
       //flex: 1;
-      width: 30%;
+      width: 25%;
     }
     
     .message-chat-container {
@@ -40,6 +38,7 @@ $message-color-user: #333;
       max-height: 85vh;
       overflow-y: auto;
       direction: rtl;
+      
       .message-chats-user{
         margin-left: 10px;
         direction: ltr;

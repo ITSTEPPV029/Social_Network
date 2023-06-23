@@ -2,7 +2,7 @@
   position: absolute;
   bottom: 0;
   left: 60%;
-  width: 650px;
+  width: 35%;
   height: 850px;
  // background-color: rgba(0, 0, 0, 0.5);
 
@@ -11,10 +11,21 @@
   
   z-index: 9999;
 }
+.registration-overlay-test-logo{
 
+  position: absolute;
+  bottom: 50%;
+  left: 5%;
+  width: 30%;
+  height: 150px;
+ // background-color: rgba(0, 0, 0, 0.5);
 
+  background-image: url("/img/logoPage.png");
+  background-size: 100% 100%;
+  
+  z-index: 9999;
 
-
+}
 
 .registration-form-container {
   display: flex;
@@ -35,7 +46,7 @@
       box-sizing: border-box;
       font-family: Arial, sans-serif;
       font-size: 14px;
-      background-color: #e7e6e6;
+      background-color: #ffffff;
     }
 
     label {
@@ -51,34 +62,37 @@
   input[type="password"]
    {
     padding: 5px;
-    border-radius: 5px;
-    border: 2px solid #afacac;
+    border-radius: 10px;
+   // border: 2px solid #afacac;
     margin-bottom: 10px;
-    background-color: #e7e6e6;
+    background-color:  #e7e6e6;
     text-align: center;
+    border: none;
+   // color: #dbdbdb;
 
   }
     input[type="checkbox"]
     {
-        padding: 5px;
-          border-radius: 5px;
+          width: 20px;
+          padding: 5px;
+          border-radius: 10px;
           border: 2px solid #afacac;
           margin-bottom: 10px;
           text-align: center;
     }
 
   button[type="submit"] {
-    background-color: #515251;
+    background-color: #080808;
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
   }
 
   button[type="submit"]:hover {
-    background-color: #a0a3a0; 
+    background-color: #4a4a4a; 
        
  a {
       text-decoration: none;
@@ -92,15 +106,16 @@
   }
     
   .registration-button-link {
-  background-color: #515251;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: center;
-}
+      background-color:  #080808;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+
+    }
 
 .registration-button-link:hover {
 background-color: #a0a3a0;

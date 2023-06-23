@@ -79,8 +79,12 @@
         
                 <select v-model="PetEdit.kind_of" name="options">
                   <option value=""> </option>
-                  <option value="Жінка">собака </option>
-                  <option value="Чоловік">кіт</option>
+                  <option value="собака">собака </option>
+                  <option value="кіт">кіт</option>
+                  <option value="рибки">рибка</option>
+                  <option value="птах">птах</option>
+                  <option value="хом'як">хом'як</option>
+                  <option value="кролик">кролик</option>
                 </select>
 
                 <select v-model="PetEdit.gender" name="options">
@@ -88,7 +92,7 @@
                   <option value="Жінка">Жінка </option>
                   <option value="Чоловік">Чоловік</option>
                   <option value="Нон-бінарний">Нон-бінарний</option>
-                  <option value="Чоловік">Поза гендером</option>
+                  <option value="Поза гендером">Поза гендером</option>
                   <option value="Бігендер">Бігендер</option>
                 </select>
 
@@ -140,16 +144,20 @@
       
                 <select v-model="kindOfPet" name="options">
                   <option value=""> </option>
-                  <option value="Жінка">собака </option>
-                  <option value="Чоловік">кіт</option>
+                  <option value="собака">собака </option>
+                  <option value="кіт">кіт</option>
+                  <option value="рибки">рибка</option>
+                  <option value="птах">птах</option>
+                  <option value="хом'як">хом'як</option>
+                  <option value="кролик">кролик</option>
                 </select>
 
                 <select v-model="genderPet" name="options">
                   <option value=""> </option>
-                  <option value="Жінка">Жінка </option>
+                  <option value="Жінка">Жінка</option>
                   <option value="Чоловік">Чоловік</option>
                   <option value="Нон-бінарний">Нон-бінарний</option>
-                  <option value="Чоловік">Поза гендером</option>
+                  <option value="Поза гендером">Поза гендером</option>
                   <option value="Бігендер">Бігендер</option>
                 </select>
       
@@ -402,6 +410,10 @@ export default {
       this.selectedFileName = '';
       this.PetEdit = null;
       this.PetEditOriginal = null;
+      this.kindOfPet= '';
+      this.agePet= '';
+      this.genderPet= '';
+      this.aboutPet= '';
     },
 
     //перевірка чи друг чи відправлено запит на дружбу
@@ -457,6 +469,10 @@ export default {
       this.selectedFile = null;
       this.textInput = null;
       this.selectedFileName = '';
+      this.kindOfPet= '';
+      this.agePet= '';
+      this.genderPet= '';
+      this.aboutPet= '';
     },
 
   }

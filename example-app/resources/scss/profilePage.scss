@@ -15,7 +15,7 @@
 
 .profile-container {
 
-  width: 100%;
+  width: 85%;
   height: 350px;
  // margin-top: 2%;
  // margin-left: 5%;
@@ -221,7 +221,7 @@
         }
 
         select {
-          margin-top: 10px;
+          margin-top: 12px;
           display: block;
           width: 100%;
           border-radius: 50px;
@@ -233,7 +233,7 @@
         }
 
         .profile-modal-add-input-number {
-          margin-top: 10px;
+          margin-top: 15px;
         }
 
       }
@@ -333,6 +333,7 @@
           width: 100%;
           border-radius: 20px;
           border: none;
+          padding-left: 20px;
         }
       }
     }

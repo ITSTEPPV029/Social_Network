@@ -2,14 +2,14 @@
 .sideMenu-container{
 
   width: auto;
-  height: 1000px;
+  height: auto;
  // background-color: aqua;
   display: flex;
   justify-content: end;
 
   .sideMenu-container-menu{
     width: 85%;
-    height: 1000px;
+    min-height: 92vh;
    // background-color: #aaa59b;
     .sideMenu-menu-item{
       
@@ -65,8 +65,8 @@
     border-radius: 10px;
     width: 3%;
     background-color: #F8AD25;
-    height: 1000px;
-    
+   // min-height: 90vh;
+    height: auto;
   }
 
 }

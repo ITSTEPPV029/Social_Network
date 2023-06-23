@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 class NewsController extends Controller
 {
-
     /**
      * .
      *

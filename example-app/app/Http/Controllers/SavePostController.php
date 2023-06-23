@@ -27,11 +27,11 @@ class SavePostController extends Controller
      */
     public function  addCategory(Request $request)
     {
-        $category = new SavePostCategory();
-        $category->text=$request->input('category');
-        $category->user_id=Auth::user()->id;
-        $category->my_post_id=$request->input('postId');
-        $category->save();
+       
+         $category = new SavePostCategory();
+         $category->text=$request->input('category');
+         $category->user_id=Auth::user()->id;
+         $category->save();
     
         return SavePostCategory::where('user_id', Auth::user()->id)->get();      
     }
@@ -40,7 +40,7 @@ class SavePostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function   getCategories()
+    public function getCategories()
     {
         return SavePostCategory::where('user_id', Auth::user()->id)->get();      
     }

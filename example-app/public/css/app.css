@@ -57,9 +57,20 @@
   position: absolute;
   bottom: 0;
   left: 60%;
-  width: 650px;
+  width: 35%;
   height: 850px;
   background-image: url("/img/dog.png");
+  background-size: 100% 100%;
+  z-index: 9999;
+}
+
+.registration-overlay-test-logo {
+  position: absolute;
+  bottom: 50%;
+  left: 5%;
+  width: 30%;
+  height: 150px;
+  background-image: url("/img/logoPage.png");
   background-size: 100% 100%;
   z-index: 9999;
 }
@@ -83,7 +94,7 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  background-color: #e7e6e6;
+  background-color: #ffffff;
 }
 .registration-form-container label {
   margin-bottom: 5px;
@@ -96,30 +107,31 @@
 .registration-form-container input[type=email],
 .registration-form-container input[type=password] {
   padding: 5px;
-  border-radius: 5px;
-  border: 2px solid #afacac;
+  border-radius: 10px;
   margin-bottom: 10px;
   background-color: #e7e6e6;
   text-align: center;
+  border: none;
 }
 .registration-form-container input[type=checkbox] {
+  width: 20px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 2px solid #afacac;
   margin-bottom: 10px;
   text-align: center;
 }
 .registration-form-container button[type=submit] {
-  background-color: #515251;
+  background-color: #080808;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
 }
 .registration-form-container button[type=submit]:hover {
-  background-color: #a0a3a0;
+  background-color: #4a4a4a;
 }
 .registration-form-container button[type=submit]:hover a {
   text-decoration: none;
@@ -129,11 +141,11 @@
   color: white;
 }
 .registration-form-container .registration-button-link {
-  background-color: #515251;
+  background-color: #080808;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
   text-align: center;
@@ -193,13 +205,13 @@ input.login-form-check-input {
 
 .sideMenu-container {
   width: auto;
-  height: 1000px;
+  height: auto;
   display: flex;
   justify-content: end;
 }
 .sideMenu-container .sideMenu-container-menu {
   width: 85%;
-  height: 1000px;
+  min-height: 92vh;
 }
 .sideMenu-container .sideMenu-container-menu .sideMenu-menu-item {
   cursor: pointer;
@@ -240,7 +252,7 @@ input.login-form-check-input {
   border-radius: 10px;
   width: 3%;
   background-color: #F8AD25;
-  height: 1000px;
+  height: auto;
 }
 
 .profile-overlay-test {
@@ -255,7 +267,7 @@ input.login-form-check-input {
 }
 
 .profile-container {
-  width: 100%;
+  width: 85%;
   height: 350px;
   display: flex;
 }
@@ -413,7 +425,7 @@ input.login-form-check-input {
   background-color: #F2F2F2;
 }
 .profile-modal-add .profile-modal-add-content .profile-modal-add-input-fields-content .profile-modal-add-input-text select {
-  margin-top: 10px;
+  margin-top: 12px;
   display: block;
   width: 100%;
   border-radius: 50px;
@@ -424,7 +436,7 @@ input.login-form-check-input {
   background-color: #F2F2F2;
 }
 .profile-modal-add .profile-modal-add-content .profile-modal-add-input-fields-content .profile-modal-add-input-text .profile-modal-add-input-number {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .profile-modal-add .profile-modal-add-content .profile-modal-add-input-fields-content .profile-modal-add-input-photo-content {
   width: 30%;
@@ -496,6 +508,7 @@ input.login-form-check-input {
   width: 100%;
   border-radius: 20px;
   border: none;
+  padding-left: 20px;
 }
 .profile-modal-add .profile-modal-add-content .profile-modal-add-button-content {
   text-align: center;
@@ -691,15 +704,13 @@ input.login-form-check-input {
 }
 
 .settings-container-main {
-  padding-right: 5%;
-  padding-left: 5%;
-  padding-top: 3%;
-  padding-bottom: 5%;
-  margin-top: 1%;
-  margin-left: 25%;
-  margin-right: 15%;
-  background-color: rgb(222, 222, 222);
+  margin: auto;
+  padding: 5%;
+  padding-top: 2%;
+  width: 55%;
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
+  border: 2px solid #F8AD22;
 }
 .settings-container-main h3 {
   text-align: center;
@@ -710,7 +721,7 @@ input.login-form-check-input {
 }
 
 .settings-container {
-  background-color: rgb(222, 222, 222);
+  background-color: rgb(255, 255, 255);
   grid-template-columns: 1fr 1fr 1fr; /* встановлюємо 3 колонки, 3 колонка має більшу ширину */
   /* grid-template-rows: auto; встановлюємо автоматичну висоту рядків */
   grid-row-gap: 10px;
@@ -812,6 +823,7 @@ input.login-form-check-input {
 .settings-item.item_17 textarea {
   width: 100%;
   box-sizing: border-box;
+  padding-left: 10px;
   border-radius: 10px;
   border: none;
   background-color: #F2F2F2;
@@ -892,14 +904,18 @@ input.login-form-check-input {
 .settings-button-save-container .settings-button-save {
   text-align: center;
   width: 30%;
-  background-color: #F5F4F5;
+  background-color: #F8AD22;
   border-radius: 50px;
   padding: 1%;
   margin: 10px;
   padding-left: 5%;
   padding-right: 5%;
+  color: #ffffff;
   cursor: pointer;
   box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+}
+.settings-button-save-container .settings-button-save:hover {
+  background-color: #f7c466;
 }
 
 .post-add-container {
@@ -984,6 +1000,10 @@ input.login-form-check-input {
   box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
   background-color: #F8AD25;
 }
+.post-add-container .post-SavePost-modal .post-SavePost-modal-content .post-SavePost-save-button .post-SavePost-save-button-orange:hover {
+  background-color: #fabe4f;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
 .post-add-container .post-SavePost-modal .post-SavePost-modal-content .post-SavePost-orange-line {
   height: 5px;
   background-color: #F8AD25;
@@ -1015,7 +1035,7 @@ input.login-form-check-input {
 .post-add-container .post-SavePost-modal .post-SavePost-modal-content .post-SavePost-button-container button {
   margin-left: 10px;
   border-radius: 50px;
-  background-color: #F5F4F5;
+  background-color: #d7d7d7;
   padding-left: 22px;
   padding-right: 22px;
   text-align: center;
@@ -1024,6 +1044,9 @@ input.login-form-check-input {
 }
 .post-add-container .post-SavePost-modal .post-SavePost-modal-content .post-SavePost-button-container .post-SavePost-button-range {
   background-color: #F8AD25;
+}
+.post-add-container .post-SavePost-modal .post-SavePost-modal-content .post-SavePost-button-container button:hover {
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
 }
 .post-add-container .post-modal-add {
   position: fixed;
@@ -1076,7 +1099,7 @@ input.login-form-check-input {
 }
 .post-add-container .post-modal-add-content .post-modal-button-content .post-modal-button {
   border-radius: 50px;
-  background-color: white;
+  background-color: #F8AD25;
   padding-left: 20px;
   padding-right: 20px;
   text-align: center;
@@ -1085,7 +1108,7 @@ input.login-form-check-input {
 .post-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+  grid-gap: 20px;
 }
 .post-container .post {
   margin-bottom: 3%;
@@ -1383,11 +1406,11 @@ input.login-form-check-input {
 
 .message-container {
   display: flex;
-  margin-left: 3%;
-  margin-top: 3%;
+  margin-top: 1%;
+  width: 85%;
 }
 .message-container .message-chats-container {
-  width: 30%;
+  width: 25%;
 }
 .message-container .message-chat-container {
   flex: 1;
@@ -2049,6 +2072,9 @@ input.login-form-check-input {
   margin: auto;
   background-color: rgb(255, 255, 255);
   padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
 }
 .savedPosts-container .savedPosts-Posts .savedPosts-Post {
   margin: auto;
@@ -2062,10 +2088,12 @@ input.login-form-check-input {
 }
 .savedPosts-container .savedPosts-Posts .savedPosts-Post img {
   width: 100%;
-  height: auto;
+  height: 500px;
   border-radius: 50px;
   margin: auto;
   cursor: pointer;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .savedPosts-container .savedPosts-Posts .savedPosts-Post h3 {
   text-align: center;
