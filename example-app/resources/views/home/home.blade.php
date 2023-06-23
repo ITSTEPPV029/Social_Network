@@ -28,8 +28,8 @@
     </div>
     <div>
       <h2>Знайди друзів для себе і свого улюбленця</h2>
-      <a href="#">Увійти</a>
-      <a href="#">Зареєструватися</a>
+      <a href="login">Увійти</a>
+      <a href="registration">Зареєструватися</a>
     </div>
     <div class="imageDog" style="top: 6rem; left: 56.5%;">
       <img src="/img/dog.png" />
@@ -63,7 +63,7 @@
       </div>
     </div>
     <p>
-      <a href="#">Зареєструватися</a>
+      <a href="registration">Зареєструватися</a>
     </p>
   </div>
 
