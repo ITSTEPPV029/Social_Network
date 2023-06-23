@@ -6,7 +6,7 @@
 <script>
   let hidden = true;
 
-  function changeDisplay(elem) {
+  /* function changeDisplay(elem) {
     let img = elem.getElementsByTagName('img');
     if (hidden) {
       document.getElementById("moreHome").style.setProperty('display', 'block');
@@ -18,6 +18,12 @@
         img[0].style.setProperty('transform', 'rotateZ(0)');
     }
     hidden = !hidden;
+  } */
+  function onVideoHover(elem) {
+    elem.play();
+  }
+  function onVideoHoverOut(elem){
+    elem.pause();
   }
 </script>
 
@@ -28,7 +34,7 @@
     </div>
     <div>
       <h2>Знайди друзів для себе і свого улюбленця</h2>
-      <a href="login">Увійти</a>
+      <a href="login" style="width: 7.5rem;">Увійти</a>
       <a href="registration">Зареєструватися</a>
     </div>
     <div class="imageDog" style="top: 6rem; left: 56.5%;">
@@ -37,17 +43,17 @@
   </div>
 
   <div class="moreNext">
-    <button id="moreBtn" onclick="changeDisplay(this)">Дізнатися більше </br>
-      <img src="/img/doubleArrowDown.svg" /></button>
+    <p>Дізнатися більше </p>
+    <img src="/img/doubleArrowDown.svg" /></button>
   </div>
   <!-- _______________________________________Для виділення головного екрану__________________________________________________ -->
-  <div id="moreHome" style="display: none;">
+  <div id="moreHome">
     <div class="moreDiv">
       <img src="/img/PetLifeLogo_Line.png" />
       <div>
         <h2>Діліться з своїми моментами з іншими</h2>
         <div class="video-frame">
-          <video controls width="100%">
+          <video controls width="100%" onmouseover="onVideoHover(this)" onmouseleave="onVideoHoverOut(this)"  muted="muted">
             <source src="/video/testVideo.mp4" />
           </video>
         </div>
@@ -60,7 +66,7 @@
       <img src="/img/PetLifeLogo_Line.png" />
       <div>
         <div class="video-frame">
-          <video controls width="100%">
+          <video controls width="100%" onmouseover="onVideoHover(this)" onmouseleave="onVideoHoverOut(this)"  muted="muted">
             <source src="/video/testVideo1.mp4" />
           </video>
         </div>
