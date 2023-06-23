@@ -10,11 +10,11 @@
     let img = elem.getElementsByTagName('img');
     if (hidden) {
       document.getElementById("moreHome").style.setProperty('display', 'block');
-      if(img != null)
+      if (img != null)
         img[0].style.setProperty('transform', 'rotateZ(180deg)');
     } else {
       document.getElementById("moreHome").style.setProperty('display', 'none');
-      if(img != null)
+      if (img != null)
         img[0].style.setProperty('transform', 'rotateZ(0)');
     }
     hidden = !hidden;
@@ -46,19 +46,27 @@
       <img src="/img/PetLifeLogo_Line.png" />
       <div>
         <h2>Діліться з своїми моментами з іншими</h2>
-        <div class="video-frame">Тут буде відео</div>
+        <div class="video-frame">
+          <video controls width="100%">
+            <source src="/video/testVideo.mp4" />
+          </video>
+        </div>
       </div>
-      <div class="imageDog" style="top: 44.5%; left: 45%;">
+      <div class="imageDog" style="top: 44.5%; right: -4.5%;">
         <img src="/img/dog.png" style="height: 450px;" />
       </div>
     </div>
     <div class="moreDiv">
       <img src="/img/PetLifeLogo_Line.png" />
       <div>
-        <div class="video-frame">Тут буде відео</div>
+        <div class="video-frame">
+          <video controls width="100%">
+            <source src="/video/testVideo1.mp4" />
+          </video>
+        </div>
         <h2>Знаходьте компанію для себе і своїх улюбленців</h2>
       </div>
-      <div class="imageDog" style="top: 82%; left: -40%;">
+      <div class="imageDog" style="top: 82%; left: 0%;">
         <img src="/img/cat.png" style="height: 450px;" />
       </div>
     </div>

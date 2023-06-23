@@ -85,7 +85,7 @@ $main-background: rgb(249, 172, 32);
         margin: 0% auto;
         // width: 28em;
 
-        > div {
+        > div:not(.imageDog) {
             display: flex;
             flex-direction: row;
             margin-right: auto;
@@ -130,6 +130,7 @@ $main-background: rgb(249, 172, 32);
 }
 .imageDog {
     position: absolute;
+    width: fit-content;
     /* top: 4%;
     left: 56.5%; */
     img {
@@ -142,7 +143,11 @@ $main-background: rgb(249, 172, 32);
 
 .video-frame {
     width: 50%;
-    height: 35rem;
+    height: fit-content;
+    border: none;
+    video{
+        border: none;
+    }
     background-color: gray;
 }
 h2 {
