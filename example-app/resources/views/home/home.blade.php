@@ -15,7 +15,7 @@
     } else {
       document.getElementById("moreHome").style.setProperty('display', 'none');
       if(img != null)
-        img[0].style.setProperty('transform', 'rotateZ(-180deg)');
+        img[0].style.setProperty('transform', 'rotateZ(0)');
     }
     hidden = !hidden;
   }
@@ -31,7 +31,7 @@
       <a href="#">Увійти</a>
       <a href="#">Зареєструватися</a>
     </div>
-    <div class="imageDog" style="top: 4.5rem; left: 56.5%;">
+    <div class="imageDog" style="top: 6rem; left: 56.5%;">
       <img src="/img/dog.png" />
     </div>
   </div>

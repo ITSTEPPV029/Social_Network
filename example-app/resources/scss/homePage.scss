@@ -13,6 +13,7 @@ $main-background: rgb(249, 172, 32);
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    overflow: hidden;
     a {
         width: 9em;
         height: 2.375em;
@@ -124,7 +125,7 @@ $main-background: rgb(249, 172, 32);
     }
     .moreNext {
         height: 2.5em;
-        margin-bottom: 2%;
+        margin-bottom: 3.5%;
     }
 }
 .imageDog {
