@@ -1,0 +1,161 @@
+$color-P: #fff;
+$color-secP: #990000;
+$color-a: #fff;
+$main-background: rgb(249, 172, 32);
+
+//Розмір цього елемента залежить від класу myContainer
+
+.homeMain {
+    position: relative;
+    background: $main-background;
+    overflow: hidden;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    a {
+        width: 9em;
+        height: 2.375em;
+        padding-top: 0.5%;
+        margin-right: 0.3em;
+        margin-top: 2.5%;
+        border-radius: 6px;
+        border: none;
+        background-color: black;
+        color: $color-a;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .homeDiv {
+        margin: auto;
+        width: fit-content;
+        margin-left: 3.38%;
+        // width: max-content;
+        text {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 128px;
+            line-height: 133px;
+        }
+        div {
+            text-align: left;
+            z-index: 0;
+            padding-bottom: 2rem;
+        }
+    }
+    .homeSecond {
+        margin-right: auto;
+        margin-left: 0em;
+        div {
+            text-align: right;
+            margin: 1em;
+            height: 20%;
+            font-size: large;
+            * {
+                margin-right: 0.5em;
+            }
+
+            img {
+                height: 4em;
+                width: 4em;
+            }
+        }
+    }
+
+    .logo-main {
+        position: relative;
+        text-align: center;
+        margin-left: 8.12%;
+        margin-bottom: 5.88%;
+        height: 7rem;
+        img {
+            // width: 46.82294rem;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+            margin-right: 4em;
+            height: 10rem;
+        }
+    }
+
+    .moreDiv {
+        background-color: $main-background;
+        margin: 0% auto;
+        // width: 28em;
+
+        > div {
+            display: flex;
+            flex-direction: row;
+            margin-right: auto;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            div:nth-child(1) {
+                margin-left: 0;
+                margin-right: 1em;
+            }
+            text-align: left;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+        h2 {
+            margin-left: 1%;
+            width: 40%;
+            font-size: 400%;
+        }
+    }
+
+    #moreBtn {
+        width: 100%;
+        color: $color-a;
+        border: none;
+        background: none;
+        text-align: center;
+        font-size: 1.4rem;
+        font-family: Inter;
+        font-weight: 700;
+        line-height: 1.75rem;
+        img {
+            margin-top: 0.6%;
+            width: 3rem;
+            transition: transform 0.2s ease-out;
+        }
+    }
+    .moreNext {
+        height: 2.5em;
+        margin-bottom: 2%;
+    }
+}
+.imageDog {
+    position: absolute;
+    /* top: 4%;
+    left: 56.5%; */
+    img {
+        // width: 650px;
+        height: 650px;
+    }
+    /* background-image: url("/img/dog.png");
+    background-size: 100% 100%; */
+}
+
+.video-frame {
+    width: 50%;
+    height: 35rem;
+    background-color: gray;
+}
+h2 {
+    width: 50%;
+    // margin-left: 1rem;
+    color: $color-P;
+    font-size: 470%;
+    font-weight: 700;
+    line-height: 150%;
+    text-shadow: 13px 8px 10px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.25rem;
+    // font-size: 255%;
+}
+
+#moreHome{
+    margin-top: 2%;
+}
