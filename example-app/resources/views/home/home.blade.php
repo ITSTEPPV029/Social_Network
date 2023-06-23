@@ -37,7 +37,7 @@
       <a href="login" style="width: 7.5rem;">Увійти</a>
       <a href="registration">Зареєструватися</a>
     </div>
-    <div class="imageDog" style="top: 6rem; left: 56.5%;">
+    <div class="imageDog" style="top: 4.8%; left: 56.5%;">
       <img src="/img/dog.png" />
     </div>
   </div>
@@ -61,7 +61,7 @@
       <div class="imageDog" style="top: 44.5%; right: -4.5%;">
         <img src="/img/dog.png" style="height: 450px;" />
       </div>
-    </div>
+    </div>  
     <div class="moreDiv">
       <img src="/img/PetLifeLogo_Line.png" />
       <div>
