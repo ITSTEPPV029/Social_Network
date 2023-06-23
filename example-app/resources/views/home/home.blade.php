@@ -19,12 +19,27 @@
     }
     hidden = !hidden;
   } */
-  function onVideoHover(elem) {
-    elem.play();
-  }
-  function onVideoHoverOut(elem){
-    elem.pause();
-  }
+  const posDif = 250;
+  window.addEventListener('scroll', () => {
+        let elem = document.getElementsByTagName('video');
+        const scrolled = window.scrollY;
+        let position;
+        for (let el of elem) {
+          position = el.offsetTop;
+          if ((position < scrolled + posDif && position >= scrolled) || (position > scrolled - posDif && position <= scrolled))
+            onVideoHover(el);
+          else
+            onVideoHoverOut(el);
+        }
+      });
+
+      function onVideoHover(elem) {
+        elem.play();
+      }
+
+      function onVideoHoverOut(elem) {
+        elem.pause();
+      }
 </script>
 
 <div class="homeMain">
@@ -37,7 +52,7 @@
       <a href="login" style="width: 7.5rem;">Увійти</a>
       <a href="registration">Зареєструватися</a>
     </div>
-    <div class="imageDog" style="top: 4.8%; left: 56.5%;">
+    <div class="imageDog" style="top: 3.29%; left: 56.5%;">
       <img src="/img/dog.png" />
     </div>
   </div>
@@ -53,7 +68,7 @@
       <div>
         <h2>Діліться з своїми моментами з іншими</h2>
         <div class="video-frame">
-          <video controls width="100%" onmouseover="onVideoHover(this)" onmouseleave="onVideoHoverOut(this)"  muted="muted">
+          <video controls width="100%" muted="muted">
             <source src="/video/testVideo.mp4" />
           </video>
         </div>
@@ -61,12 +76,12 @@
       <div class="imageDog" style="top: 44.5%; right: -4.5%;">
         <img src="/img/dog.png" style="height: 450px;" />
       </div>
-    </div>  
+    </div>
     <div class="moreDiv">
       <img src="/img/PetLifeLogo_Line.png" />
       <div>
         <div class="video-frame">
-          <video controls width="100%" onmouseover="onVideoHover(this)" onmouseleave="onVideoHoverOut(this)"  muted="muted">
+          <video controls width="100%" muted="muted">
             <source src="/video/testVideo1.mp4" />
           </video>
         </div>
