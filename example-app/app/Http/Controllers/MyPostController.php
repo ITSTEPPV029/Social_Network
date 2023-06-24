@@ -120,7 +120,39 @@ class MyPostController extends Controller
          MyPost::where('id', $postId)->delete();
          
        }      
-        return MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', Auth::user()->id)->take(2)->get(); ;
+        return MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', Auth::user()->id)->take(2)->get();
     }
     
+     /**
+     * поширити пост 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+    public function sharePost(Request $request) 
+    {
+      $myPost= MyPost::find($request->input('postId'));
+
+      $newPost = new MyPost();
+
+      $newPost->reposted_user_id=$myPost->user_id;
+      $newPost->user_id=Auth::user()->id;
+      $newPost->photo=$myPost->photo;
+      $newPost->text=$myPost->text;
+      $newPost->save();
+
+      return $newPost;
+
+    }
+    
+     /**
+     * поширити пост 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
+    public function sharePostGetUser(Request $request) {
+      
+    //  return User::find($request->input('idUser'));
+    }
 }

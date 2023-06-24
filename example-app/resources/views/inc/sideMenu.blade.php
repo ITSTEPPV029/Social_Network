@@ -1,6 +1,5 @@
 @section("sideMenu")
 
-
 <div class="sideMenu-container">
 
   <div class="sideMenu-container-menu">
@@ -52,7 +51,10 @@
               <img src="/img/exit.png">
               <span>Вихід</span> 
         </div></a>
-
+        
   </div>
   <div class="sideMenu-line"></div>
 </div>
+
+
+  

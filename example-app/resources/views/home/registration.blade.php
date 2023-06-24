@@ -9,6 +9,9 @@
 
     <form action="{{ route('registration.postSigUp')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
+
+
+       
         <label>
             <h2><b>Створити акаунт</b></h2>
         </label>
@@ -58,13 +61,16 @@
         </span>
         @enderror
         <label class="registration-conditions"> Під час входу чи реєстрації Ви погоджуєтеся з нашими Умови користування. </label>
-
+        
         <button type="submit">Зареєструватись</button>
         <br/>
         <label><br/>
             <h4><b>Або</b></h4>
         </label>
-<a href="{{ route('login.getSigin') }}" class="registration-button-link">Увійти</a>
+        <input style="display: none;" type="checkbox" name="remember" id="remember"  checked >
+
+      <a href="{{ route('login.getSigin') }}" class="registration-button-link">Увійти</a>
+
 
 
     </form>

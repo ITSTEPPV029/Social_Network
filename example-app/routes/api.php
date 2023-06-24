@@ -23,9 +23,11 @@ Route::post('index','MyPostController@index')->middleware('auth:api')->name('ind
 Route::post('store','MyPostController@store')->middleware('auth:api')->name('store');
 Route::post('deletePost','MyPostController@delete')->middleware('auth:api')->name('deletePost');
 Route::post('isLoggedIn', 'UserController@isLoggedIn')->middleware('auth:api')->name('isLoggedIn');
-
 Route::post('like','MyPostController@like')->middleware('auth:api')->name('like');
 Route::post('isLiked','MyPostController@isLiked')->middleware('auth:api');
+Route::post('sharePost','MyPostController@sharePost')->middleware('auth:api');
+Route::post('sharePostGetUser','MyPostController@sharePostGetUser')->middleware('auth:api');
+
 
 Route::post('chat/','ChatController@store')->middleware('auth:api');
 Route::get('chat/','ChatController@index')->middleware('auth:api');
@@ -68,4 +70,5 @@ Route::post('savePostGetCategory', 'SavePostController@savePostGetCategory')->mi
 
 Route::post('getUsersMap', 'SearchController@getUsersMap')->middleware('auth:api');
 Route::post('filter', 'SearchController@filterUser')->middleware('auth:api');
+
 

@@ -109,8 +109,12 @@
         <label>Вид улюблинця</label><br/>
         <select v-model="kindPet" name="options">
                   <option value=""> </option>
-                  <option value="Жінка">собака </option>
-                  <option value="Чоловік">кіт</option>
+                  <option value="собака">собака </option>
+                  <option value="кіт">кіт</option>
+                  <option value="рибки">рибка</option>
+                  <option value="птах">птах</option>
+                  <option value="хом'як">хом'як</option>
+                  <option value="кролик">кролик</option>
         </select>      
       </div>
 
@@ -122,7 +126,7 @@
                   <option value="Жінка">Жінка </option>
                   <option value="Чоловік">Чоловік</option>
                   <option value="Нон-бінарний">Нон-бінарний</option>
-                  <option value="Чоловік">Поза гендером</option>
+                  <option value="Поза гендером">Поза гендером</option>
                   <option value="Бігендер">Бігендер</option>
                 </select>
       </div>

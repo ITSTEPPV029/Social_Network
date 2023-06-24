@@ -255,11 +255,16 @@ input.login-form-check-input {
   height: auto;
 }
 
+@media (max-width: 830px) {
+  .sideMenu-menu-item span {
+    display: none;
+  }
+}
 .profile-overlay-test {
   position: absolute;
   top: 50%;
   right: 0;
-  width: 250px;
+  width: 12%;
   height: 350px;
   background-image: url("/img/cow.png");
   background-size: 100% 100%;
@@ -1109,6 +1114,7 @@ input.login-form-check-input {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
+  margin-top: 10px;
 }
 .post-container .post {
   margin-bottom: 3%;
@@ -1397,7 +1403,7 @@ input.login-form-check-input {
   position: absolute;
   top: 30%;
   right: 0;
-  width: 250px;
+  width: 12%;
   height: 350px;
   background-image: url("/img/cow.png");
   background-size: 100% 100%;
@@ -2101,4 +2107,13 @@ input.login-form-check-input {
 
 .savedPosts-back {
   cursor: pointer;
+}
+
+@media (max-width: 830px) {
+  .profile-info-container {
+    display: none;
+  }
+  .profile-overlay-test {
+    display: none;
+  }
 }
