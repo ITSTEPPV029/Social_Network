@@ -72,6 +72,8 @@
 <div class="post-container">
   <div @mouseover="showInnerElement(post.id)" @mouseleave="hideInnerElement" class="post" v-for="post in posts" >
 
+   <!-- <h3 v-if="post.reposted_user_id">{{ sharePostGetUser(post.user_id)}}</h3>  -->
+
       <div class="post-delete">
         <a  @click="openModal" > &nbsp <samp v-show="showInner==post.id" v-if="isLoggedIn==true">...</samp> </a>
           <div class="post-modal" v-if="showModal" @click="closeModal">
@@ -95,18 +97,18 @@
                   <img  :src="'/img/minus.png'">
                   <img  :src="'/img/plus.png'">
                   <img  :src="'/img/expansion_arrows.png'">
-                  <img @click="closeFullScreenModal" :src="'/img/closing_cross.png'">
+                  <img @click="closeFullScreenModal()" :src="'/img/closing_cross.png'">
                 </div>
 
                 <div class="post-modal-full-screen-photo-center-content">
                   <div class="post-modal-full-screen-photo-center-left">
-                    <img  :src="'/img/arrow_right.png'">
+                    <img  @click="FullScreenRight" :src="'/img/arrow_right.png'">
                   </div>
                   <div class="post-modal-full-screen-photo">
                         <img :src="`${postModal.photo}`" >
                    </div>
                     <div class="post-modal-full-screen-photo-center-right">
-                      <img  :src="'/img/arrow_right.png'">
+                      <img @click="FullScreenLeft"  :src="'/img/arrow_right.png'">
                     </div>
                 </div>
                 
@@ -162,7 +164,7 @@
         <span  >{{post.like}}</span>
         <img class="post-like-img-comment" @click="openFullScreen(post)" :src="'/img/comment.png'" >
         <span  >{{post.comments.length}}</span>
-        <img class="post-like-img-share" @click="showModalSavePost(post)" :src="'/img/share.png'">
+        <img class="post-like-img-share" @click="sharePost(post)" :src="'/img/share.png'">
         <img class="post-like-img-save" @click="showModalSavePost(post)" :src="'/img/save.png'">
       </div>
     </div>
@@ -238,6 +240,7 @@ export default {
   mounted(){
     this.getIsLoggedIn();
     this.getPosts();
+    
    },
 
    created(){
@@ -249,12 +252,12 @@ export default {
        const atTheBottom = parseInt(scrollTop+1) + viewportHeight==totalHeight;
 
        if (atTheBottom) {
+          console.log('skrol');
           this.scrollGetPost();
        }
     }
     document.addEventListener('scroll',eventHendler)
    },
-
 
    computed: {
     truncatedText(text) {
@@ -265,9 +268,8 @@ export default {
           }
          return text.slice(0, this.maxCharacters) + "...";
         };  
-    }
+    },
   },
-
 
   methods: {
 
@@ -317,27 +319,53 @@ export default {
       this.showInner = 0;
     },
 
-   // відкрити фото 
+   // гортання фото 
+   FullScreenLeft(){
+    const foundPost = this.posts.find(post => post.id === this.postModal.id-1);
+      if (foundPost) {
+        this.openFullScreen(foundPost);
+      }
+   },
+   FullScreenRight(){
+    const foundPost = this.posts.find(post => post.id === this.postModal.id+1);
+      if (foundPost) {
+        this.openFullScreen(foundPost);
+      }
+   },
+
+// відкрити фото 
     openFullScreen(post){
       this.postModal=post;
-
       axios.post('/api/getUserPost',{ id: post.user_id }).then(data=>{  
          this.userPost=data.data;
          this.showFullScreen = true;
          });
-     
     },
     closeFullScreenModal(){
       this.showFullScreen = false;
     },
-    
-    // deleteItem() {
-    //   // Your delete logic here
-    //   this.showModal = false; // Close the modal after deletion
-    // },
 
-    scrollGetPost() {
- 
+  // поширити фото 
+  sharePost(post){ 
+      axios.post('/api/sharePost',{ postId: post.id }).then(data=>{  
+     //  console.log(data.data);
+        });
+    }, 
+  
+    sharePostGetUser(id){ 
+
+      console.log('gtUser');
+      //  axios.post('/api/sharePostGetUser',{ idUser: id }).then(data=>{  
+      //    console.log(data.data);
+       
+      //      //this.userPost=data.data;
+      //      //this.showFullScreen = true;
+      //     });
+      //     return id;
+    }, 
+    
+
+  scrollGetPost() {
        axios.post('/api/index',{ id: this.id , page: this.posts.length }).then(data=>{  
         this.posts = this.posts.concat(data.data);
        });
@@ -348,9 +376,8 @@ export default {
 
       if(this.selectedCategory!="")
       {   
-      
         axios.post('/api/savePostToCategory',{ category: this.selectedCategory ,postId : this.postModal.id }).then(data=>{  
-         console.log(data.data)
+       //  console.log(data.data)
          this.closeModalSavePost();
        });
       }
