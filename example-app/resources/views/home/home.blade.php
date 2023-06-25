@@ -21,25 +21,25 @@
   } */
   const posDif = 250;
   window.addEventListener('scroll', () => {
-        let elem = document.getElementsByTagName('video');
-        const scrolled = window.scrollY;
-        let position;
-        for (let el of elem) {
-          position = el.offsetTop;
-          if ((position < scrolled + posDif && position >= scrolled) || (position > scrolled - posDif && position <= scrolled))
-            onVideoHover(el);
-          else
-            onVideoHoverOut(el);
-        }
-      });
+    let elem = document.getElementsByTagName('video');
+    const scrolled = window.scrollY;
+    let position;
+    for (let el of elem) {
+      position = el.offsetTop;
+      if ((position < scrolled + posDif && position >= scrolled) || (position > scrolled - posDif && position <= scrolled))
+        onVideoHover(el);
+      else
+        onVideoHoverOut(el);
+    }
+  });
 
-      function onVideoHover(elem) {
-        elem.play();
-      }
+  function onVideoHover(elem) {
+    elem.play();
+  }
 
-      function onVideoHoverOut(elem) {
-        elem.pause();
-      }
+  function onVideoHoverOut(elem) {
+    elem.pause();
+  }
 </script>
 
 <div class="homeMain">
@@ -48,32 +48,41 @@
       <img src="/img/PetLifeLogo_Line.png" />
     </div>
     <div>
-      <h2>Знайди друзів для себе і свого улюбленця</h2>
+      <h1>Знайди друзів</h1>
+      <h1>для себе</h1>
+      <h1>і свого</h1>
+      <h1>улюбленця</h1>
       <a href="login" style="width: 7.5rem;">Увійти</a>
       <a href="registration">Зареєструватися</a>
     </div>
-    <div class="imageDog" style="top: 3.29%; left: 56.5%;">
+    <div class="imageDog" style="bottom: -8%; right: 0%;">
       <img src="/img/dog.png" />
+    </div>
+    <div class="moreNext">
+      <p>Дізнатися більше </p>
+      <img src="/img/doubleArrowDown.svg" /></button>
     </div>
   </div>
 
-  <div class="moreNext">
-    <p>Дізнатися більше </p>
-    <img src="/img/doubleArrowDown.svg" /></button>
-  </div>
+
   <!-- _______________________________________Для виділення головного екрану__________________________________________________ -->
   <div id="moreHome">
     <div class="moreDiv">
       <img src="/img/PetLifeLogo_Line.png" />
       <div>
-        <h2>Діліться з своїми моментами з іншими</h2>
+        <div>
+          <h1>Діліться</h1>
+          <h1>своїми</h1>
+          <h1>моментами</h1>
+          <h1>з іншими</h1>
+        </div>
         <div class="video-frame">
           <video controls width="100%" muted="muted">
             <source src="/video/testVideo.mp4" />
           </video>
         </div>
       </div>
-      <div class="imageDog" style="top: 44.5%; right: -4.5%;">
+      <div class="imageDog" style="bottom: 0%; right: 0%;">
         <img src="/img/dog.png" style="height: 450px;" />
       </div>
     </div>
@@ -85,9 +94,15 @@
             <source src="/video/testVideo1.mp4" />
           </video>
         </div>
-        <h2>Знаходьте компанію для себе і своїх улюбленців</h2>
+        <div style="text-align: right;">
+          <h1>Знаходьте</h1>
+          <h1>компанію</h1>
+          <h1>для себе</h1>
+          <h1>і своїх</h1>
+          <h1>улюбленців</h1>
+        </div>
       </div>
-      <div class="imageDog" style="top: 82%; left: 0%;">
+      <div class="imageDog" style="bottom: -15%; left: 0%;">
         <img src="/img/cat.png" style="height: 450px;" />
       </div>
     </div>
@@ -96,17 +111,6 @@
     </p>
   </div>
 
-  <div>
-    <!-- <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-4 fw-normal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">В нас и нтерфейc в якому розбереться навіть ваший собака </font></font></h1>
-      <p class="lead fw-normal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">И еще более остроумный подзаголовок в придачу. </font><font style="vertical-align: inherit;">Ускорьте свои маркетинговые усилия с помощью этого примера, основанного на маркетинговых страницах Apple.</font></font></p>
-      <a class="btn btn-outline-secondary" href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вскоре</font></font></a>
-    </div> -->
-    <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-  </div>
-  <div class="product-device shadow-sm d-none d-md-block"></div>
-  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
 </div>
 
 
