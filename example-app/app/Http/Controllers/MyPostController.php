@@ -37,7 +37,12 @@ class MyPostController extends Controller
 
       $MyPost->user_id=Auth::user()->id;
       $MyPost->save();
-      return  MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', Auth::user()->id)->take(2)->get(); 
+
+      return  MyPost::with('comments.user')
+      ->with(['user', 'user.myPost', 'repostedUser'])
+      ->orderBy('id', 'desc')
+      ->where('user_id', Auth::user()
+      ->id)->take(2)->get(); 
         
     }
 /**
@@ -52,10 +57,19 @@ class MyPostController extends Controller
        $page= $request->input('page');
        if($page)
        {
-         $MyPost= MyPost::with('comments.user')->offset($page)->orderBy('id', 'desc')->where('user_id', $id)->take(2)->get();
+         $MyPost= MyPost::with('comments.user')
+         ->with(['user', 'user.myPost', 'repostedUser'])
+         ->offset($page)
+         ->orderBy('id', 'desc')
+         ->where('user_id', $id)
+         ->take(2)->get();
        }
        else
-       $MyPost= MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', $id)->take(2)->get(); 
+       $MyPost= MyPost::with('comments.user')
+       ->with(['user', 'user.myPost', 'repostedUser'])
+       ->orderBy('id', 'desc')
+       ->where('user_id', $id)
+       ->take(2)->get(); 
 
        return  $MyPost; 
     } 
@@ -111,16 +125,27 @@ class MyPostController extends Controller
     {
        $postId = $request->input('id');
        $myPost= MyPost::find($postId);
+        // видалення поширених постів
+       MyPost::where('reposted_user_id',Auth::user()->id)
+       ->where('photo',  $myPost->photo)
+       ->delete();
+
        if(MyPost::where('id',  $postId)->first())
        {
          Like::where('my_post_id', $postId)->delete();
          if(file_exists(public_path($myPost->photo)))
            unlink(public_path($myPost->photo));
                   
-         MyPost::where('id', $postId)->delete();
-         
-       }      
-        return MyPost::with('comments.user')->orderBy('id', 'desc')->where('user_id', Auth::user()->id)->take(2)->get();
+         MyPost::where('id', $postId)->delete();      
+       }     
+
+      
+
+        return MyPost::with('comments.user')
+        ->with(['user', 'user.myPost', 'repostedUser'])
+        ->orderBy('id', 'desc')
+        ->where('user_id', Auth::user()
+        ->id)->take(2)->get();
     }
     
      /**

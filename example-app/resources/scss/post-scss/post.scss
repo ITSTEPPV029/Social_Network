@@ -345,8 +345,8 @@
               }
       
             }
-            .post-modal-full-screen-photo-center-content{
-              
+
+            .post-modal-full-screen-photo-center-content{   
               display: flex;
               width: 100%;
               height: 100%;
@@ -437,6 +437,9 @@
             .post-modal-comments{
          
               padding: 20px;
+              overflow-y: auto;
+              height: 80%;
+
               .post-modal-comment{
                 background-color:#F5F4F5;
                 border-radius: 10px;
@@ -446,15 +449,16 @@
                 height: auto;
                 display: flex;
                 padding: 10px;
+               
                img{
                     width: 50px;
                     height: 50px;
                     object-fit: cover; 
                   }
                   .post-modal-comment-info{
+
                     flex: 1;
                     padding: 5px;
-                   
                     b{
 
                     }
@@ -477,7 +481,20 @@
       }
 
     }
-    
+
+    .post-share-user-container{
+      .post-share-user{
+        display: flex;
+        img{
+          margin: 5px;
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+      } 
+    }
      
     .post-photo{
         img {
@@ -503,13 +520,14 @@
         }
       }
       .post-first-comment{
-
+       
         display: flex;
         img{
           height: 60px;
           width: 60px;
           border-radius: 50%;
           object-fit: cover;
+          margin: 5px;
         }
       }
     
@@ -531,8 +549,7 @@
         }
       }
 
-      .post-input-comment
-      {
+      .post-input-comment{
         width: 100%;
         margin-top: 2%;
        // align-self: flex-end;
@@ -554,21 +571,7 @@
         img{
           padding: 5px;
           cursor: pointer;
-        }
-        // button {
-        //   border: none;
-        //   background-color: transparent;
-        //   padding: 5px;
-        //   border-radius: 50%;
-        //   margin-left: 10px;
-        //   cursor: pointer;
-          
-        //   &::after {
-        //     content: "➤";
-        //     display: block;
-        //     transform: rotate(45deg);
-        //   } 
-        // }
+        } 
       }
   
   }
@@ -586,6 +589,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .post-like-img-like {
   background-image: url('/img/like.png');
   background-repeat: no-repeat;

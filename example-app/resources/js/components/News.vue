@@ -1,5 +1,74 @@
 <template>
 
+   <!-- показ картинки на весь екран  -->
+   <div class="news-full-screen">
+          <div class="news-moda-full-screen" v-if="showFullScreen" >
+             <div class="news-modal-full-screen-content" >
+
+              <div class="news-modal-full-screen-photo-content">
+                <div class="news-modal-full-screen-photo-head">
+                  <img  :src="'/img/minus.png'">
+                  <img  :src="'/img/plus.png'">
+                  <img  :src="'/img/expansion_arrows.png'">
+                  <img @click="closeFullScreenModal()" :src="'/img/closing_cross.png'">
+                </div>
+
+                <div class="news-modal-full-screen-photo-center-content">
+                  <div class="news-modal-full-screen-photo-center-left">
+                    <img  @click="FullScreenRight" :src="'/img/arrow_right.png'">
+                  </div>
+                  <div class="news-modal-full-screen-photo">
+                        <img :src="`${postModal.photo}`" >
+                   </div>
+                    <div class="news-modal-full-screen-photo-center-right">
+                      <img @click="FullScreenLeft"  :src="'/img/arrow_right.png'">
+                    </div>
+                </div>
+              </div>
+
+              <div  class="news-modal-full-screen-comments">
+                <a v-if="isLoggedIn==true" @click="closeFullScreenModal" > &#10006;</a>
+
+                <div class="news-modal-full-screen-user">
+                  <img :src="`${postModal.user.avatar}`" >
+                  <b>{{postModal.user.first_name + ' ' + postModal.user.last_name}}</b>     
+                </div> 
+
+                  <div v-if="postModal.text!=0" class="news-modal-text">{{ postModal.text }}</div>
+
+                  <div class="news-modal-like-container">
+                    <div class="news-modal-like">
+                      <!-- =================================/public для сервера ============================== -->
+                      <img class="news-like-img-like" @click="like(postModal)" :src="'/img/like.png'" > 
+                
+                      <span  >{{postModal.like}}</span>
+                      <img  :src="'/img/comment.png'" >
+                      <img  :src="'/img/share.png'">
+                      <img  :src="'/img/save.png'">
+                    </div>
+                  </div>
+
+                  <div v-if="postModal.comments.length>0" class="news-modal-comments">
+                      <div class="news-modal-comment" v-for="comment in postModal.comments">  
+                         <img style="  width: 50px; height: 50px; border-radius: 50%;" :src="`${comment.user.avatar}`" >
+                        <div class="news-modal-comment-info">
+                          <b>{{ comment.user.first_name +' '+comment.user.last_name }}</b> 
+                          <span>{{ comment.text }}</span> 
+                        </div>
+                       
+                      </div>
+                   
+                  </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+
+
+
+
+
     <div class="news-add-container" >
         <!-- <h1>news</h1>
       <button @click="showModalAdd">+Додати пост</button> -->
@@ -28,9 +97,9 @@
                  </div>
                
                </div> 
-        </div>
-        
+        </div> 
     </div>
+
 <div class="news-head-container">
   <div class="news-head">
       <div class="news-head-block">
@@ -47,9 +116,9 @@
       </div>
   </div>
 </div>
-    <div class="news-container">
-   
 
+
+  <div class="news-container">
     <div class="news">
       <div class="news-new" @mouseover="showInnerElement(post.id)" @mouseleave="hideInnerElement" v-for="post in posts" >
     
@@ -66,52 +135,38 @@
               </div>
           </div> -->
           <div class="news-user">
+            <a :href="`/profile/${post.user.id}`"> 
             <img :src="`${post.user.avatar}`" >
+            </a>
             <b>{{ post.user.first_name + ' ' + post.user.last_name}}</b>     
           </div>
-          <div class="news-full-screen">
-              <div class="news-moda-full-screen" v-if="showFullScreen" @click="closeFullScreenModal">
-                 <div class="news-modal-full-screen-content" >
-                
-                  <div class="news-modal-full-screen-photo">
-                    <img :src="`${postModal.photo}`" >
-                  </div>
-    
-                  <div  class="news-modal-full-screen-comments">
-                    <a @click="closeFullScreenModal" > &#10006;</a>
-    
-                      <div v-if="postModal.text!=0" class="news-modal-text">{{  postModal.text }}</div>
-    
-                      <div v-if="postModal.comments.length>0" class="news-modal-comments">
-                          <div class="">
-                            <ul  v-for="comment in postModal.comments">
-                              <li ><img style="  width: 50px; height: 50px; border-radius: 50%;" :src="`${comment.user.avatar}`" >{{ comment.user.first_name +' '+comment.user.last_name }}</li>
-                              <li >{{ comment.text }}</li>
-                            </ul>  
-                          </div>
-                      </div>
-        
-                  </div>
-    
-                </div>
-              </div>
+
+      <!-- поширив пост  -->
+      <div v-if="post.reposted_user_id" class="post-share-user-container">
+            <b>Поширено від</b>
+            <div class="post-share-user">
+              <a v-if="post.reposted_user_id" :href="`/profile/${post.reposted_user.id}`">  
+                <img :src="`${post.reposted_user.avatar}`" >
+            </a>
+              <span>{{post.reposted_user.first_name + ' ' + post.reposted_user.last_name }}</span>
+            </div>
           </div>
-    
+
         <div class="news-photo">
             <img v-if="post.photo" @click="openFullScreen(post)" :src="`${post.photo}`" >
         </div>
         
-        <div class="news-like-container">
-          <div class="news-like">
-            <img @click="like(post)" src="https://w7.pngwing.com/pngs/90/304/png-transparent-cat-dog-paw-paw-patrol-animals-paw-claw-thumbnail.png" >
-            <span  >{{post.like}}</span>
-    
-            <img @click="openFullScreen(post)" src="https://cdn.icon-icons.com/icons2/1518/PNG/512/commentmono_105952.png" >
-            <span  >{{post.comments.length}}</span>
-    
+        <div class="post-like-container">
+          <div class="post-like">
+            <!-- =================================/public для сервера ============================== -->
+            <img class="post-like-img-like" @click="like(post)" :src="'/img/like.png'" > 
+            <span v-if="post.like>0" >{{post.like}}</span>
+            <img class="post-like-img-comment" @click="openFullScreen(post)" :src="'/img/comment.png'" >
+            <span v-if="post.comments.length>0" >{{post.comments.length}}</span>
+            <img class="post-like-img-share" @click="sharePost(post)" :src="'/img/share.png'">
+            <img class="post-like-img-save" @click="showModalSavePost(post)" :src="'/img/save.png'">
           </div>
-          
-        </div>
+      </div>
     
       <div v-if="post.text!=0" class="news-text">
           <div v-if="expanded==post.id">{{ post.text }}</div>
@@ -120,16 +175,16 @@
             {{ expanded==post.id ? 'Згорнути' : 'Розгорнути' }} </b>
       </div>
     
-      <div v-if="commentCheck==post.id" class="post-first-comment">
+      <div v-if="commentCheck==post.id" class="news-first-comment">
         <img  :src="`${thisUser.avatar}`" /> 
         <div><b>{{thisUser.first_name + ' ' + thisUser.last_name }}</b>
             <p>{{ comment }}</p>
         </div>  
       </div>
         
-      <div class="news-input-comment">
+      <div class="news-input-comment">   
         <input type="text" v-model="newComments[post.id]"  placeholder="Прокоментувати..." />
-        <button @click="addComment(post)"></button>
+        <img @click="addComment(post)" :src="'/img/sendArrow.png'" >
       </div>
         
       </div>
@@ -366,9 +421,8 @@
           else{
             page=0;
           }
-
             axios.post('/api/getPosts',{ id: this.thisUser.id , page: page }).then(data=>{  
-             console.log(data.data);
+            // console.log(data.data);
               this.posts=data.data
              });
         },

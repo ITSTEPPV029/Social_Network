@@ -34,33 +34,39 @@ class NewsController extends Controller
 
         $combinedFriends = $friends->union($friendsOfMine);//обєднуємо колекцію
        
+        $MyPost = new MyPost();
+
         if ($page>0&&!$combinedFriends->isEmpty()) {
             $MyPost = MyPost::with('comments.user')
             ->with(['user', 'user.myPost'])
+            ->with(['user', 'user.myPost', 'repostedUser'])
             ->offset($page)
             ->orderBy('id', 'desc')
             ->where('user_id',  $combinedFriends)
             ->take(2)->get();
            
         } else if (!$combinedFriends->isEmpty())
-        {
+        {  
             $MyPost = MyPost::with('comments.user')
+            ->with(['user', 'user.myPost', 'repostedUser'])
             ->with(['user', 'user.myPost'])
             ->orderBy('id', 'desc')
             ->where('user_id',  $combinedFriends)
             ->take(2)->get();
         }
-        else// вибираємо рандомний пост 
+
+        if ($MyPost->isEmpty())// вибираємо рандомний пост 
         {
-            $MyPost = MyPost::inRandomOrder()
-            ->with('comments.user')
-            ->with(['user', 'user.myPost'])
-            ->orderBy('id', 'desc')  
-            ->inRandomOrder()
-            ->take(2)
-            ->get();
+                $MyPost = MyPost::inRandomOrder()
+                ->with(['user', 'user.myPost', 'repostedUser'])
+                ->with('comments.user')
+                ->with(['user', 'user.myPost'])
+                ->orderBy('id', 'desc')  
+                ->inRandomOrder()
+                ->take(2)
+                ->get();
         }
- 
+
         return  $MyPost;
     }
 }

@@ -32,11 +32,14 @@ class MyPost extends Model
         return $this->hasMany(Comment::class)->with('user');
     }
 
-
     public function savePost()
     {
         return $this->hasMany(SavePost::class); 
     }
-
+    
+    public function repostedUser()
+    {
+        return $this->belongsTo(User::class, 'reposted_user_id');
+    }
 
 }

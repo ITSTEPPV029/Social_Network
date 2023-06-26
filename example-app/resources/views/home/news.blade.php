@@ -2,7 +2,7 @@
 
 @section('content')
 
- <div id="appNews">
+ <div class="news-containes-appNews" id="appNews">
     <News :this-User="{{ json_encode(Auth::user())}}" /> 
  </div> 
   

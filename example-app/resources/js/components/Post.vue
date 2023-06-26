@@ -39,8 +39,6 @@
         </div>
    </div>
 
-
-
   <button @click="showModalAdd">+Додати пост</button>
   <!-- вікно додавання поста  -->
   <div class="post-modal-add" v-if="showModalAddPost" >
@@ -71,8 +69,6 @@
 
 <div class="post-container">
   <div @mouseover="showInnerElement(post.id)" @mouseleave="hideInnerElement" class="post" v-for="post in posts" >
-
-   <!-- <h3 v-if="post.reposted_user_id">{{ sharePostGetUser(post.user_id)}}</h3>  -->
 
       <div class="post-delete">
         <a  @click="openModal" > &nbsp <samp v-show="showInner==post.id" v-if="isLoggedIn==true">...</samp> </a>
@@ -129,6 +125,7 @@
                     <div class="post-modal-like">
                       <!-- =================================/public для сервера ============================== -->
                       <img class="post-like-img-like" @click="like(post)" :src="'/img/like.png'" > 
+                
                       <span  >{{post.like}}</span>
                       <img  :src="'/img/comment.png'" >
                       <img  :src="'/img/share.png'">
@@ -152,7 +149,17 @@
             </div>
           </div>
       </div>
-
+<!-- поширив пост  -->
+    <div v-if="post.reposted_user_id" class="post-share-user-container">
+      <b>Поширено від</b>
+      <div class="post-share-user">
+        <a v-if="post.reposted_user_id" :href="`/profile/${post.reposted_user.id}`">  
+           <img :src="`${post.reposted_user.avatar}`" >
+       </a>
+        <span>{{post.reposted_user.first_name + ' ' + post.reposted_user.last_name }}</span>
+      </div>
+    </div>
+ 
     <div class="post-photo">
         <img v-if="post.photo" @click="openFullScreen(post)" :src="`${post.photo}`" >
     </div>
@@ -161,9 +168,9 @@
       <div class="post-like">
         <!-- =================================/public для сервера ============================== -->
         <img class="post-like-img-like" @click="like(post)" :src="'/img/like.png'" > 
-        <span  >{{post.like}}</span>
+        <span v-if="post.like>0" >{{post.like}}</span>
         <img class="post-like-img-comment" @click="openFullScreen(post)" :src="'/img/comment.png'" >
-        <span  >{{post.comments.length}}</span>
+        <span v-if="post.comments.length>0" >{{post.comments.length}}</span>
         <img class="post-like-img-share" @click="sharePost(post)" :src="'/img/share.png'">
         <img class="post-like-img-save" @click="showModalSavePost(post)" :src="'/img/save.png'">
       </div>

@@ -171,3 +171,15 @@ label.registration-conditions {
 input.login-form-check-input {
   margin-right: 10px;
 }
+
+
+
+@media (max-width: 1140px)
+ {
+  .registration-overlay-test{
+    display: none;
+  }
+  .registration-overlay-test-logo{
+    display: none;
+  }
+}
