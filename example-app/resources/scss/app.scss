@@ -1,7 +1,9 @@
 @use "my-container-main.scss";
 @use "header.scss";
+@use "home-scss/homePage";
 @use "registrationPage.scss";
 @use "sideMenu.scss";
+@use "profilePage.scss";
 @use "profilePage-scss/profilePage.scss";
 @use "settings-scss/settings";
 @use "post-scss/post";
@@ -10,6 +12,7 @@
 @use "search-scss/search";
 @use "news-scss/news";
 @use "savedPosts-scss/savedPosts";
+@use "home-scss/homePage-adaptive";
 @use "settings-scss/settings-adaptive";
 
 @use "profilePage-scss/profilePagesAdaptive.scss";

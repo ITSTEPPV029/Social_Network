@@ -1,0 +1,197 @@
+$color-P: #fff;
+$color-secP: #990000;
+$color-a: #fff;
+$main-background: rgb(249, 172, 32);
+$min-heightDiv: 100vh;
+
+//Розмір цього елемента залежить від класу myContainer
+
+.homeMain {
+    position: relative;
+    background: $main-background;
+    overflow: hidden;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    overflow: hidden;
+
+    .homeDiv {
+        position: relative;
+        min-height: $min-heightDiv;
+        margin: auto;
+        margin-left: 3.38%;
+       
+        text {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 128px;
+            line-height: 133px;
+        }
+        div {
+            text-align: left;
+            z-index: 0;
+            padding-bottom: 2rem;
+        }
+    }
+    .homeSecond {
+        margin-right: auto;
+        margin-left: 0em;
+        div {
+            text-align: right;
+            margin: 1em;
+            height: 20%;
+            font-size: large;
+            * {
+                margin-right: 0.5em;
+            }
+
+            img {
+                height: 4em;
+                width: 4em;
+            }
+        }
+    }
+
+    .logo-main {
+        position: relative;
+        text-align: center;
+        margin-left: 8.12%;
+        margin-bottom: 8%;
+        height: 7rem;
+        
+        img {
+          //  width: 40%;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+            margin-right: 4em;
+            height: 10rem;
+
+        }
+    }
+
+    .moreDiv {
+        position: relative;
+        min-height: $min-heightDiv;
+        height: $min-heightDiv;
+        background-color: $main-background;
+        
+        // width: 28em;
+        > div:not(.imageDog) {
+            display: flex;
+            flex-direction: row;
+            margin-right: auto;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+
+            div:nth-child(1) {
+                margin-left: 0;
+                margin-right: 1em;
+            }
+            text-align: left;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+        h1 {
+            margin-left: 1%;
+            // width: 45%;
+            width: 100%;
+            font-size: 300%;
+        }
+    }
+
+    .imageDog {
+        position: absolute;
+        width: fit-content;
+        /* top: 4%;
+    left: 56.5%; */
+        img {
+            // width: 650px;
+            // min-height: 80vt;
+            height: 60vt;
+        }
+        /* background-image: url("/img/dog.png");
+    background-size: 100% 100%; */
+    }
+    .moreNext {
+        text-align: center !important;
+       // height: 3em;
+       // margin-bottom: 10%;
+        width: 100%;
+        color: $color-a;
+         margin-top: 5%;
+       // border: none;
+      //  background: none;
+       // text-align: center; 
+        // font-size: 1.4rem;
+        // font-family: Inter;
+        // font-weight: 700;
+        // line-height: 1.75rem;
+
+        img {
+            margin-top: 0.2%;
+            width: 3rem;
+            transition: transform 0.2s ease-out;
+        }
+    }
+
+    .video-frame {
+        width: 50%;
+        height: fit-content;
+        border: none;
+        video {
+            border: none;
+        }
+        background-color: gray;
+    }
+    //Шрифти основного тексту
+    h1 {
+        // margin-left: 1rem;
+        color: $color-P;
+        font-size: 300%;
+        font-weight: 700;
+        line-height: 150%;
+        text-shadow: 13px 8px 10px rgba(0, 0, 0, 0.25);
+        letter-spacing: 0.25rem;
+        // font-size: 255%;
+    }
+
+    .home-registration-button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        margin: 50px; 
+        h3{
+            color: #ffffff;
+            background-color: black;
+            padding: 20px;
+            border-radius: 20px;
+        }
+    }
+    .home-registration-button-content{
+         display: flex;
+         .home-registration-button2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            margin-top: 50px;
+            margin-right: 30px;
+            h3{
+                color: #ffffff;
+                background-color: black;
+                padding: 15px;
+                border-radius: 15px;
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+        }
+
+    }
+
+    #moreHome {
+        margin-top: 2%;
+    }
+}
