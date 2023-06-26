@@ -42,7 +42,7 @@
   <!-- _______________________________________Для виділення головного екрану__________________________________________________ -->
   <div id="moreHome">
     <div class="moreDiv">
-      <img  src="/img/PetLifeLogo_Line.png" />
+      <img class="moreDiv-img" src="/img/PetLifeLogo_Line.png" />
       <div>
         <div>
           <h1>Діліться</h1>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="moreDiv">
-      <img src="/img/PetLifeLogo_Line.png" />
+      <img class="moreDiv-img" src="/img/PetLifeLogo_Line.png" />
       <div>
         <div class="video-frame">
           <video id="myVideo2" controls width="100%" muted="muted">
