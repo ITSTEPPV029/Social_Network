@@ -67,16 +67,14 @@ class SearchController extends Controller
      */
     public function allUser()     
     {
-      $users= User::all();
+      $users= User::orderByDesc('id')->take(20)->get();
 
-      if(Auth::check())  
-      { 
-        $user = User::find(Auth::user()->id);
-        $users = $users->filter(function($value) use ($user) {
-          return !$user->checkIfFriend($value);
-         });  
-      }
-      
+      // $user = User::find(Auth::user()->id);
+
+        // $users = $users->filter(function($value) use ($user) {
+        //   return !$user->checkIfFriend($value);
+        //  });  
+       
       return view('home.usersFound',compact('users'));  
     }
 

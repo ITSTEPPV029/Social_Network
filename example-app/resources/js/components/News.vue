@@ -1,5 +1,44 @@
 <template>
 
+  <!-- вікно добавлення поста  -->
+<div class="post-SavePost-modal" v-if="ModalSavePost" >
+       <div class="post-SavePost-modal-content" >
+        <div class="post-SavePost-height">
+          <span @click="closeModalSavePost" >&#10006;</span>
+          
+          <h3>Зберегти в</h3> 
+        </div>
+
+          <div class="post-SavePost-categories">
+            <p  v-if="Сategories==null"  > добавте категорію </p>
+         
+            <div class="post-SavePost-show-categories" v-for="category in Сategories" :key="category.id">
+              <label :for="category.id"><b>{{ category.text }}</b></label><br>
+              <input type="radio" :id="category.id" v-model="selectedCategory"  name="options" :value="category.id">  
+            </div>
+
+          </div> 
+
+          <div class="post-SavePost-save-button">
+              <button class="post-SavePost-save-button-orange"  @click="savePostToCategory">Зберегти</button>
+          </div>
+
+          <div class="post-SavePost-orange-line"></div> 
+
+          <div class="post-SavePost-add-name-category">
+            <b>Назва</b>
+            <input type="text" v-model="Category"  placeholder="Додайте назву новій добірці..." />
+          </div> 
+
+          <div class="post-SavePost-button-container">
+            <button @click="closeModalSavePost">Скасувати</button> 
+            <button class="post-SavePost-button-range"  @click="addCategory">Створити</button>
+          </div> 
+        </div>
+   </div>
+
+
+
    <!-- показ картинки на весь екран  -->
    <div class="news-full-screen">
           <div class="news-moda-full-screen" v-if="showFullScreen" >
@@ -156,15 +195,19 @@
             <img v-if="post.photo" @click="openFullScreen(post)" :src="`${post.photo}`" >
         </div>
         
-        <div class="post-like-container">
-          <div class="post-like">
+        <div class="news-like-container">
+          <div class="news-like">
             <!-- =================================/public для сервера ============================== -->
             <img class="post-like-img-like" @click="like(post)" :src="'/img/like.png'" > 
             <span v-if="post.like>0" >{{post.like}}</span>
             <img class="post-like-img-comment" @click="openFullScreen(post)" :src="'/img/comment.png'" >
             <span v-if="post.comments.length>0" >{{post.comments.length}}</span>
+            <a :href="`/profile/${thisUser.id}`"> 
             <img class="post-like-img-share" @click="sharePost(post)" :src="'/img/share.png'">
+            </a>
+
             <img class="post-like-img-save" @click="showModalSavePost(post)" :src="'/img/save.png'">
+      
           </div>
       </div>
     
@@ -230,6 +273,8 @@
           showInner: 0,
           showModalAddPost: false,
           selectedFileName: '',
+          Сategories: [],
+          ModalSavePost: '',
         };
       },
       mounted(){
@@ -311,11 +356,50 @@
           this.showFullScreen = false;
         },
         
-        // deleteItem() {
-        //   // Your delete logic here
-        //   this.showModal = false; // Close the modal after deletion
-        // },
-    
+        // поширити фото 
+        sharePost(post){ 
+              axios.post('/api/sharePost',{ postId: post.id }).then(data=>{  
+            //  console.log(data.data);
+                });
+          },
+            //збереження поста в категорії 
+            savePostToCategory(){ 
+
+          if(this.selectedCategory!="")
+          {   
+            axios.post('/api/savePostToCategory',{ category: this.selectedCategory ,postId : this.postModal.id }).then(data=>{  
+          //  console.log(data.data)
+            this.closeModalSavePost();
+          });
+          }
+          },
+
+        //вікно збереження поста поста
+        showModalSavePost(post){ 
+          this.postModal=post;
+          axios.post('/api/getCategories').then(data=>{  
+            console.log(data.data)
+            this.Сategories = data.data;
+          });
+          this.ModalSavePost = true;
+        },
+        closeModalSavePost(){
+          this.ModalSavePost = false;
+          this.postModal=null;
+          this.Category='';
+        },
+        //добавлення категорії 
+        addCategory(){
+          
+          axios.post('/api/addCategory',{ category: this.Category }).then(data=>{  
+            console.log(data.data)
+            
+            this.Сategories = data.data;
+            });
+
+          this.Category='';
+        },
+
         scrollGetPost() {
             console.log("скрол");
            axios.post('/api/getPosts',{ id: this.thisUser.id , page: this.posts.length }).

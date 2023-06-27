@@ -1402,13 +1402,16 @@ input.login-form-check-input {
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
-  max-width: 100%; /* Забезпечує максимальну ширину елемента, щоб уникнути виходу зображення за межі */
-  max-height: 100%; /* Забезпечує максимальну висоту елемента, щоб уникнути виходу зображення за межі */
+  max-width: 100%;
+  /* Забезпечує максимальну ширину елемента, щоб уникнути виходу зображення за межі */
+  max-height: 100%;
+  /* Забезпечує максимальну висоту елемента, щоб уникнути виходу зображення за межі */
 }
 .post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-comments {
   width: 30%;
   height: 100%;
-  overflow: hidden; /* Обрізати вміст, який виходить за межі батьківського елемента */
+  overflow: hidden;
+  /* Обрізати вміст, який виходить за межі батьківського елемента */
 }
 .post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-comments a {
   float: right;
@@ -1460,7 +1463,8 @@ input.login-form-check-input {
 }
 .post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-comments .post-modal-comments .post-modal-comment .post-modal-comment-info span {
   display: block;
-  overflow-wrap: break-word; /* Альтернатива для word-wrap: break-word; */
+  overflow-wrap: break-word;
+  /* Альтернатива для word-wrap: break-word; */
   word-wrap: break-word;
   word-break: break-word;
 }
@@ -1948,6 +1952,117 @@ input.login-form-check-input {
   box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
 }
 
+.post-SavePost-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(98, 98, 98, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post-SavePost-modal .post-SavePost-modal-content {
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 500px;
+  height: auto;
+  padding: 10px;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-height h3 {
+  text-align: center;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-height span {
+  display: block;
+  text-align: right;
+  cursor: pointer;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-categories {
+  height: 200px;
+  padding: 10px;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-categories .post-SavePost-show-categories {
+  margin-top: 10px;
+  display: flex;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-categories .post-SavePost-show-categories label {
+  margin-right: 10px;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-categories .post-SavePost-show-categories input {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  border-color: #F8AD25;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-categories .post-SavePost-show-categories input[type=radio]:checked {
+  background-color: #F8AD25;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-save-button {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-save-button .post-SavePost-save-button-orange {
+  margin-left: 10px;
+  border-radius: 50px;
+  background-color: #F5F4F5;
+  padding-left: 22px;
+  padding-right: 22px;
+  text-align: center;
+  border: none;
+  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  background-color: #F8AD25;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-save-button .post-SavePost-save-button-orange:hover {
+  background-color: #fabe4f;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-orange-line {
+  height: 5px;
+  background-color: #F8AD25;
+  width: 100%;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-add-name-category {
+  height: auto;
+  background-color: #F2F2F2;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-add-name-category input {
+  width: 100%;
+  border-radius: 50px;
+  border: none;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #F2F2F2;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-add-name-category input[type=text]:focus {
+  outline: none;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-button-container {
+  text-align: right;
+  padding: 7px;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-button-container button {
+  margin-left: 10px;
+  border-radius: 50px;
+  background-color: #d7d7d7;
+  padding-left: 22px;
+  padding-right: 22px;
+  text-align: center;
+  border: none;
+  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-button-container .post-SavePost-button-range {
+  background-color: #F8AD25;
+}
+.post-SavePost-modal .post-SavePost-modal-content .post-SavePost-button-container button:hover {
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
 .news-full-screen .news-moda-full-screen {
   position: fixed;
   top: 0;
@@ -2298,19 +2413,22 @@ input.login-form-check-input {
      object-fit: cover;
   margin: 5px;
 }
-.news-container .news .post-like-container {
+.news-container .news .news-like-container {
   padding-left: 3%;
   margin-top: 2%;
   background-color: rgb(255, 255, 255);
   width: 400px;
 }
-.news-container .news .post-like-container .post-like {
+.news-container .news .news-like-container .news-like {
   display: flex;
   align-items: flex-end;
 }
-.news-container .news .post-like-container .post-like img {
+.news-container .news .news-like-container .news-like img {
   width: 50px;
   cursor: pointer;
+  margin-left: 8%;
+}
+.news-container .news .news-like-container .news-like a {
   margin-left: 7%;
 }
 .news-container .news .news-input-comment {
