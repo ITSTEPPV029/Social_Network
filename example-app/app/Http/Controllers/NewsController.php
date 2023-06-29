@@ -55,7 +55,7 @@ class NewsController extends Controller
             ->take(2)->get();
         }
 
-        if ($MyPost->isEmpty())// вибираємо рандомний пост 
+        if ($MyPost->isEmpty()||count($MyPost)==1)// вибираємо рандомний пост 
         {
                 $MyPost = MyPost::inRandomOrder()
                 ->with(['user', 'user.myPost', 'repostedUser'])

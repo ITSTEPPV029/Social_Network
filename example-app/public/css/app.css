@@ -51,6 +51,8 @@
   border-radius: 50%;
   margin-left: 20px;
   margin-right: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .homeMain {
@@ -1816,7 +1818,10 @@ input.login-form-check-input {
 .search-container .search-users .search-user-check-container .search-img img {
   height: 200px;
   display: block;
+  width: 200px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .search-container .search-users .search-user-check-container .search-user-info {
   margin-left: 10px;

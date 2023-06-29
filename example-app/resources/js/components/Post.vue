@@ -71,12 +71,12 @@
   <div @mouseover="showInnerElement(post.id)" @mouseleave="hideInnerElement" class="post" v-for="post in posts" >
 
       <div class="post-delete">
-        <a  @click="openModal" > &nbsp <samp v-show="showInner==post.id" v-if="isLoggedIn==true">...</samp> </a>
+        <a  @click="openModal(post)" > &nbsp <samp v-show="showInner==post.id" v-if="isLoggedIn==true">...</samp> </a>
           <div class="post-modal" v-if="showModal" @click="closeModal">
             <div class="post-modal-content" >
               <p>Ви дійсно бажаєте видалити пост?</p>
               <div class="post-modal-buttons">
-                <button @click="deletePost(post)">Видалити</button>
+                <button @click="deletePostModal">Видалити</button>
                 <button @click="closeModal">Скасувати</button>
               </div>
             </div>
@@ -242,6 +242,7 @@ export default {
       Сategories: [],
       selectedCategory: '',
       userPost: null,
+      deletePost: null,
     };
   },
   mounted(){
@@ -318,7 +319,8 @@ export default {
     },
 
     //вікно видалення поста
-    openModal() {
+    openModal(post) {
+      this.deletePost=post;
       this.showModal = true;
     },
     closeModal() {
@@ -442,11 +444,11 @@ export default {
       });
   },
 
-  deletePost(event)
+  deletePostModal()
   {
-   
-      axios.post('/api/deletePost', event).then(data => {
+      axios.post('/api/deletePost', this.deletePost).then(data => {
          this.posts=data.data;
+         this.deletePost=0;
        //  this.getPosts();
       },).catch(error => {
         console.log(error.response.data);
