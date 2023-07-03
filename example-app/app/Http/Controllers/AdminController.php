@@ -16,18 +16,6 @@ class AdminController extends Controller
    */
   public function index()
   {
-    //$post = MyPost::with('comments.user')->get();
-
-    
-    //dd($post);
-    $comment = new Comment();
-    $comment->user_id=2;
-    $comment->text="123";
-    $comment->my_post_id=2;
-    $comment->save();
-
-    dd($comment);
-
-   // return view('home.profile', compact('user'));
+    dd(shell_exec('npm run dev'));
   }
 }
