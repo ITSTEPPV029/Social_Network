@@ -45,7 +45,7 @@ export default {
     //вікно 
     showPost(сategory, index){
 
-       //console.log(сategory.text)
+      console.log(сategory.save_post)
        this.сategoryText=сategory.text;
       this.сategory = сategory.save_post;
 
@@ -61,7 +61,7 @@ export default {
         savePostGetCategory(){   
             axios.post('/api/savePostGetCategory').
             then(data=>{  
-                //console.log(data.data) 
+                console.log(data.data) 
                 this.CategoryPosts=data.data
             });
             

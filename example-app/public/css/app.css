@@ -142,10 +142,6 @@
   position: absolute;
   width: -moz-fit-content;
   width: fit-content;
-  /* top: 4%;
-  left: 56.5%; */
-  /* background-image: url("/img/dog.png");
-  background-size: 100% 100%; */
 }
 .homeMain .imageDog img {
   height: 60vt;
@@ -215,6 +211,14 @@
   margin-top: 2%;
 }
 
+@keyframes registration-overlay-test {
+  0% {
+    left: 99%;
+  }
+  100% {
+    left: 60%; /* Кінцевий зсув */
+  }
+}
 .registration-overlay-test {
   position: absolute;
   bottom: 0;
@@ -224,8 +228,18 @@
   background-image: url("/img/dog.png");
   background-size: 100% 100%;
   z-index: 9999;
+  left: 99%; /* Початкове значення для зсуву вліво */
+  animation: registration-overlay-test 1s forwards; /* Анімація на 1 секунду */
 }
 
+@keyframes registration-overlay-test-logo {
+  0% {
+    left: -99%;
+  }
+  100% {
+    left: 5%; /* Кінцевий зсув */
+  }
+}
 .registration-overlay-test-logo {
   position: absolute;
   bottom: 50%;
@@ -235,6 +249,8 @@
   background-image: url("/img/logoPage.png");
   background-size: 100% 100%;
   z-index: 9999;
+  left: -99%; /* Початкове значення для зсуву вліво */
+  animation: registration-overlay-test-logo 0.8s forwards; /* Анімація на 1 секунду */
 }
 
 .registration-form-container {
@@ -430,6 +446,14 @@ input.login-form-check-input {
     display: none;
   }
 }
+@keyframes profile-overlay-test {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0; /* Кінцевий зсув */
+  }
+}
 .profile-overlay-test {
   position: absolute;
   top: 50%;
@@ -439,12 +463,61 @@ input.login-form-check-input {
   background-image: url("/img/cow.png");
   background-size: 100% 100%;
   z-index: 9999;
+  right: -100%; /* Початкове значення для зсуву вліво */
+  animation: profile-overlay-test 3s forwards; /* Анімація на 1 секунду */
+}
+
+@keyframes profile-container {
+  0% {
+    margin-left: 100%;
+  }
+  100% {
+    margin-left: 0; /* Кінцевий зсув */
+  }
+}
+.profile-user-name-button2 {
+  width: 100%;
+  height: 20%;
+  display: none;
+}
+.profile-user-name-button2 .profile-user-name2 {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.profile-user-name-button2 .profile-user-button2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-user-name-button2 .profile-user-button2 .profile-button-orange2 {
+  background-color: #F8AD22;
+  border-radius: 50px;
+  padding: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+}
+.profile-user-name-button2 .profile-user-button2 .profile-button-sending-message2 {
+  background-color: #F5F4F5;
+  border-radius: 50px;
+  padding: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+  cursor: pointer;
+  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  margin-left: 30px;
 }
 
 .profile-container {
   width: 85%;
   height: 350px;
   display: flex;
+  margin-left: 100%; /* Початкове значення для зсуву вліво */
+  animation: profile-container 1s forwards; /* Анімація на 1 секунду */
 }
 .profile-container .profile-image {
   width: 350px;
@@ -538,10 +611,20 @@ input.login-form-check-input {
   cursor: pointer;
 }
 
+@keyframes profile-post-container {
+  0% {
+    margin-top: 100%;
+  }
+  100% {
+    margin-top: 0; /* Кінцевий зсув */
+  }
+}
 .profile-post-container {
   margin-top: 1%;
   margin-left: 5%;
   margin: auto;
+  margin-top: 100%; /* Початкове значення для зсуву вліво */
+  animation: profile-post-container 3s forwards; /* Анімація на 1 секунду */
 }
 
 .profile-modal-add {
@@ -877,6 +960,35 @@ input.login-form-check-input {
   background-color: rgba(224, 222, 222, 0.8392156863);
 }
 
+@keyframes settings-overlay-test {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0; /* Кінцевий зсув */
+  }
+}
+.settings-overlay-test {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  width: 14%;
+  height: 350px;
+  background-image: url("/img/bear_paw.png");
+  background-size: 100% 100%;
+  z-index: 9999;
+  right: -100%; /* Початкове значення для зсуву вліво */
+  animation: settings-overlay-test 1.5s forwards; /* Анімація на 1 секунду */
+}
+
+@keyframes settings-container-main {
+  0% {
+    margin-top: 100%;
+  }
+  100% {
+    margin-top: 0; /* Кінцевий зсув */
+  }
+}
 .settings-container-main {
   margin: auto;
   padding: 5%;
@@ -885,6 +997,8 @@ input.login-form-check-input {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   border: 2px solid #F8AD22;
+  margin-top: 100%; /* Початкове значення для зсуву вліво */
+  animation: settings-container-main 1.5s forwards; /* Анімація на 1 секунду */
 }
 .settings-container-main h3 {
   text-align: center;
@@ -1587,6 +1701,16 @@ input.login-form-check-input {
     grid-gap: 10px;
   }
 }
+@media (max-width: 500px) {
+  .post-container .post {
+    max-width: 350px;
+    margin-right: 10px;
+  }
+  .post-container .post .post-photo img {
+    max-width: 350px;
+    height: auto;
+  }
+}
 .message-overlay-test {
   position: absolute;
   top: 30%;
@@ -1603,8 +1727,18 @@ input.login-form-check-input {
   margin-top: 1%;
   width: 85%;
 }
+@keyframes message-chats-container {
+  0% {
+    margin-left: 100%;
+  }
+  100% {
+    margin-left: 0; /* Кінцевий зсув */
+  }
+}
 .message-container .message-chats-container {
   width: 25%;
+  margin-left: 100%; /* Початкове значення для зсуву вліво */
+  animation: message-chats-container 1s forwards; /* Анімація на 1 секунду */
 }
 .message-container .message-chat-container {
   flex: 1;
@@ -1731,10 +1865,20 @@ input.login-form-check-input {
   display: none;
 }
 
+@keyframes friends-container {
+  0% {
+    margin-top: 100%;
+  }
+  100% {
+    margin-top: 0; /* Кінцевий зсув */
+  }
+}
 .friends-container {
   margin: 3%;
   padding: 1%;
   display: flex;
+  margin-top: 100%; /* Початкове значення для зсуву вліво */
+  animation: friends-container 1s forwards; /* Анімація на 1 секунду */
 }
 .friends-container h1, .friends-container h4, .friends-container p {
   text-align: center;
@@ -2505,7 +2649,7 @@ input.login-form-check-input {
   cursor: pointer;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
   .homeMain {
     position: relative;
     background: rgb(249, 172, 32);
@@ -2558,11 +2702,11 @@ input.login-form-check-input {
     height: 7rem;
   }
   .homeMain .logo-main img {
-    width: 80%;
+    width: 90%;
     margin-top: 1rem;
     margin-bottom: 3rem;
     margin-right: 4em;
-    height: 10rem;
+    height: auto;
   }
   .homeMain .moreDiv {
     position: relative;
@@ -2574,7 +2718,6 @@ input.login-form-check-input {
     width: 90%;
   }
   .homeMain .moreDiv > div:not(.imageDog) {
-    display: flex;
     flex-direction: row;
     margin-right: auto;
     justify-content: space-around;
@@ -2594,6 +2737,7 @@ input.login-form-check-input {
     font-size: 300%;
   }
   .homeMain .imageDog {
+    display: none;
     position: absolute;
     width: -moz-fit-content;
     width: fit-content;
@@ -2784,5 +2928,8 @@ input.login-form-check-input {
   }
   .profile-overlay-test {
     display: none;
+  }
+  .profile-user-name-button2 {
+    display: block;
   }
 }

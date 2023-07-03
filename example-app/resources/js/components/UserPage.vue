@@ -1,8 +1,21 @@
 <template>
 
-
   <div class="profile-overlay-test"></div>
 
+  <div class="profile-user-name-button2">
+        <div class="profile-user-name2">
+          <h3><strong>{{ user.first_name }}</strong> &nbsp;
+            <strong>{{ user.last_name }}</strong>
+          </h3>
+        </div>
+
+        <div v-if="thisUser.id != user.id" class="profile-user-button2">
+          <a class="profile-button-orange2" v-if="checkIfFriend" @click="deleteFriend" >видалити з друзів</a>
+          <p v-if="checkFriendsRequest">запит на дружбу відправлений</p>
+          <a v-if="!checkIfFriend && !checkFriendsRequest" class="profile-button-orange2" @click="addFriends">добавити в друзі</a>
+          <a class="profile-button-sending-message2" :href="`/sendingMessage/${this.user.id}`">Написати</a>
+        </div>
+  </div>
 
   <div class="profile-container">
 

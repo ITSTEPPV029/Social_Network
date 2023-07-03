@@ -666,3 +666,23 @@
     grid-gap: 10px;
   }
 }
+@media (max-width: 500px)
+{
+  .post-container{
+    .post{
+      max-width: 350px;
+      margin-right: 10px;
+      .post-photo {
+        img {
+          max-width: 350px;
+          height: auto;   
+        }
+      }
+    } 
+  }
+  
+  
+  
+
+
+}

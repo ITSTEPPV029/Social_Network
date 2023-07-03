@@ -4,8 +4,6 @@ $color-a: #fff;
 $main-background: rgb(249, 172, 32);
 $min-heightDiv: 100vh;
 
-//Розмір цього елемента залежить від класу myContainer
-
 .homeMain {
     position: relative;
     background: $main-background;
@@ -101,19 +99,16 @@ $min-heightDiv: 100vh;
         }
     }
 
+  
+
     .imageDog {
         position: absolute;
         width: fit-content;
-        /* top: 4%;
-    left: 56.5%; */
         img {
-            // width: 650px;
-            // min-height: 80vt;
             height: 60vt;
-        }
-        /* background-image: url("/img/dog.png");
-    background-size: 100% 100%; */
+        }    
     }
+
     .moreNext {
         text-align: center !important;
        // height: 3em;

@@ -17,21 +17,35 @@ $message-color-user: #333;
 .message-container{
 
    display: flex;
-  // margin-left: 3%;
    margin-top: 1%;
-    // flex-direction: column;
-    // justify-content: center;
-    // /* align-items: center; */
-     width: 85%;
-    // margin: auto;
-    
-    .message-chats-container {
-      //flex: 1;
-      width: 25%;
+   width: 85%;
+ 
+   @keyframes message-chats-container {
+    0% {
+      margin-left: 100% /* Початковий зсув */
     }
-    
+    100% {
+      margin-left: 0; /* Кінцевий зсув */
+    }
+   }
+    .message-chats-container {
+      width: 25%;
+      margin-left: 100%; /* Початкове значення для зсуву вліво */
+      animation: message-chats-container 1s forwards; /* Анімація на 1 секунду */
+    }
+
+    // @keyframes message-chat-container {
+    //   0% {
+    //     margin-left: 100% /* Початковий зсув */
+    //   }
+    //   100% {
+    //     margin-left: 0; /* Кінцевий зсув */
+    //   }
+    //  }
     .message-chat-container {
       flex: 1;
+     // margin-left: 100%; /* Початкове значення для зсуву вліво */
+      //animation: message-chat-container 3s forwards; /* Анімація на 1 секунду */
     }
     
     .message-chats {

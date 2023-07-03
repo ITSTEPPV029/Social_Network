@@ -1,3 +1,13 @@
+
+@keyframes registration-overlay-test {
+  0% {
+    
+    left: 99% /* Початковий зсув */
+  }
+  100% {
+    left: 60%; /* Кінцевий зсув */
+  }
+}
 .registration-overlay-test{
   position: absolute;
   bottom: 0;
@@ -10,7 +20,21 @@
   background-size: 100% 100%;
   
   z-index: 9999;
+  left: 99%; /* Початкове значення для зсуву вліво */
+  animation: registration-overlay-test 1s forwards; /* Анімація на 1 секунду */
+
 }
+@keyframes registration-overlay-test-logo {
+  0% {
+    
+    left: -99% /* Початковий зсув */
+  }
+  100% {
+    left: 5%; /* Кінцевий зсув */
+  }
+}
+
+
 .registration-overlay-test-logo{
 
   position: absolute;
@@ -25,6 +49,8 @@
   
   z-index: 9999;
 
+  left: -99%; /* Початкове значення для зсуву вліво */
+  animation: registration-overlay-test-logo 0.8s forwards; /* Анімація на 1 секунду */
 }
 
 .registration-form-container {

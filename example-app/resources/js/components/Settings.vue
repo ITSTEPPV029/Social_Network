@@ -1,4 +1,6 @@
 <template>
+ <div class="settings-overlay-test"></div>
+
 <div class="settings-container-main">
   <h3>Налаштування профілю</h3>
   <br/>
@@ -45,7 +47,7 @@
           <option value="Жінка">Жінка </option>
           <option value="Чоловік">Чоловік</option>
           <option value="Нон-бінарний">Нон-бінарний</option>
-          <option value="Чоловік">Поза гендером</option>
+          <option value="Поза гендером">Поза гендером</option>
           <option value="Бігендер">Бігендер</option>
         </select>
       </div>

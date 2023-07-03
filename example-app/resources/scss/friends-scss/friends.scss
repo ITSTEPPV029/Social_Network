@@ -1,19 +1,38 @@
+
+
+
+
+
+@keyframes friends-container {
+    0% {
+      margin-top: 100% /* Початковий зсув */
+    }
+    100% {
+        margin-top: 0; /* Кінцевий зсув */
+    }
+   }
 .friends-container{
    // background-color: aqua;
     margin: 3%;
     padding: 1%;
     display: flex;
-   
+
+    margin-top: 100%; /* Початкове значення для зсуву вліво */
+    animation: friends-container 1s forwards; /* Анімація на 1 секунду */
+
     h1, h4, p {
         text-align: center;
     }
   
-
+  
+   
     .friends{
         background-color:#F5F4F5; 
         width: 55%;
         padding: 1%;
         border-radius: 20px;
+
+       
     }
     .friend-spacer{
 

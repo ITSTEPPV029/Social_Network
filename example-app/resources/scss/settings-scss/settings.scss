@@ -1,3 +1,37 @@
+
+@keyframes settings-overlay-test {
+  0% {
+    right: -100% /* Початковий зсув */
+  }
+  100% {
+    right: 0; /* Кінцевий зсув */
+  }
+}
+.settings-overlay-test{
+  position: absolute;
+  top: 40%;
+  right: 0;
+  width: 14%;
+  height: 350px;
+ 
+  background-image: url("/img/bear_paw.png");
+  background-size: 100% 100%;
+  
+  z-index: 9999;
+
+  right: -100%; /* Початкове значення для зсуву вліво */
+  animation: settings-overlay-test 1.5s forwards; /* Анімація на 1 секунду */
+
+}
+
+@keyframes settings-container-main {
+  0% {
+    margin-top: 100% /* Початковий зсув */
+  }
+  100% {
+    margin-top: 0; /* Кінцевий зсув */
+  }
+}
 .settings-container-main
 {
 
@@ -9,10 +43,12 @@
    border-radius: 20px;
    border: 2px solid #F8AD22;
 
+   margin-top: 100%; /* Початкове значення для зсуву вліво */
+   animation: settings-container-main 1.5s forwards; /* Анімація на 1 секунду */
+
    h3{
     text-align: center;
     cursor: pointer;
-
    }
 
    p{
