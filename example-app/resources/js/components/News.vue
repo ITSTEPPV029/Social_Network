@@ -506,7 +506,7 @@
             page=0;
           }
             axios.post('/api/getPosts',{ id: this.thisUser.id , page: page }).then(data=>{  
-            // console.log(data.data);
+             console.log(data.data);
               this.posts=data.data
              });
         },

@@ -16,6 +16,11 @@ class AdminController extends Controller
    */
   public function index()
   {
-    dd(shell_exec('npm run dev'));
+
+    
+    $MyPost = new MyPost();
+   dd($MyPost->count()); 
+
+   // dd(shell_exec('npm run dev'));
   }
 }
