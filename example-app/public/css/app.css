@@ -1961,8 +1961,8 @@ input.login-form-check-input {
 }
 .search-container .search-users .search-user-check-container .search-img img {
   height: 200px;
-  display: block;
   width: 200px;
+  display: block;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -1975,9 +1975,12 @@ input.login-form-check-input {
 }
 .search-container .search-users .search-user .search-img img {
   height: 150px;
+  width: 150px;
   display: block;
   margin-bottom: 10px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .search-container .search-users .search-user .search-user-info {
   margin-left: 10px;
@@ -2238,6 +2241,8 @@ input.login-form-check-input {
   border-radius: 50%;
   width: 60px;
   height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .news-full-screen .news-moda-full-screen .news-modal-full-screen-content .news-modal-full-screen-photo-content {
   width: 70%;
@@ -2483,6 +2488,7 @@ input.login-form-check-input {
 .news-container .news .news-new .news-user img {
   border-radius: 50%;
   width: 60px;
+  height: 60px;
   display: inline-block;
   margin: 5px;
 }
@@ -2607,6 +2613,11 @@ input.login-form-check-input {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .news-head-container {
+    display: none;
   }
 }
 .savedPosts-container {

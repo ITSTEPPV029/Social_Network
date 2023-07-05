@@ -343,7 +343,7 @@ export default {
     },
 
     deleteFriend() {
-      axios.post('/api/deleteFriendVueJs/', { id: this.user.id })
+      axios.post('/api/deleteFriendVueJs', { id: this.user.id })
         .then(data => {
           this.checkFriendsRequest = false;
           this.checkIfFriend = false;
@@ -354,7 +354,7 @@ export default {
     },
 
     addFriends() {
-      axios.post('/api/friendRequest/', { id: this.user.id })
+      axios.post('/api/friendRequest', { id: this.user.id })
         .then(data => {
           this.checkFriendsRequest = data.data;
           // console.log(data.data);
@@ -365,7 +365,7 @@ export default {
     },
 
     getFriends() {
-      axios.post('/api/getFriendsCount/', { id: this.user.id })
+      axios.post('/api/getFriendsCount', { id: this.user.id })
         .then(data => {
           // console.log(data.data);
            this.friendsCount= data.data;

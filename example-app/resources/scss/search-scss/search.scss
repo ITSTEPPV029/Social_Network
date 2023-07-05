@@ -18,11 +18,11 @@ border: 2px solid #F8AD22;
         border-radius: 50px;
         margin-bottom: 10px;
         .search-img{
-            
+          
             img{
                 height: 200px;
+                width: 200px;
                 display: block;
-                width:200px;
                 border-radius: 50%;
                 object-fit: cover;
             }
@@ -41,9 +41,11 @@ border: 2px solid #F8AD22;
             
             img{
                 height: 150px;
+                width: 150px;
                 display: block;
                 margin-bottom: 10px;
                 border-radius: 50%;
+                object-fit: cover;
             }
         }
         .search-user-info{
@@ -221,4 +223,6 @@ border: 2px solid #F8AD22;
     box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
 
  }
+ 
+
  
