@@ -9,7 +9,7 @@ use App\Models\User;
 class NewsController extends Controller
 {
     /**
-     * .
+     * 
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,7 +19,7 @@ class NewsController extends Controller
     }
 
     /**
-     * .
+     * 
      *
      * @return \Illuminate\Http\Response
      */

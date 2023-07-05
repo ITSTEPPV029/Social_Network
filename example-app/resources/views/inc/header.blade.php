@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
   <div class="header-container">
 
-    <a href="/">
+    <a href="{{route('profile.show',['user' => Auth::user()])}}">
       <img class="header-logo"  src="/img/logoHeader.png" />
     </a>
      

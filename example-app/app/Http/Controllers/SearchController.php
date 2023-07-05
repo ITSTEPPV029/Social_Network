@@ -25,10 +25,11 @@ class SearchController extends Controller
        $userName = $request->input('search');
        $users= User::where(DB::raw("CONCAT (first_name,' ', last_name)"),'LIKE',"%{$userName}%")
        ->orWhere('nick_name','LIKE',"%{$userName}%")->get();
-             if($users==null)
-             {
-                 abort(404);
-             }
+
+      if($users==null){
+        abort(404);
+      }
+      
       return view('home.usersFound',compact('users'));    
     }
 
@@ -51,15 +52,13 @@ class SearchController extends Controller
         'kindPet' => '',
        ]);
 
-       $filter = app()->make(UserFilter::class,['queryParams'=>array_filter($data)]);
+      $filter = app()->make(UserFilter::class,['queryParams'=>array_filter($data)]);
 
-        $users = User::filter($filter)->get();
-     
-      return $users;
-     // return view('home.usersFound',compact('users'));    
+      $users = User::filter($filter)->get();
+      return $users;    
     }
 
-      /**
+    /**
      * вивід всіх користувачів  з фільтраціює (вивідом не друзів)
      *
      * @param  
@@ -70,10 +69,9 @@ class SearchController extends Controller
       $users= User::orderByDesc('id')->take(20)->get();
 
       // $user = User::find(Auth::user()->id);
-
-        // $users = $users->filter(function($value) use ($user) {
-        //   return !$user->checkIfFriend($value);
-        //  });  
+      // $users = $users->filter(function($value) use ($user) {
+      //   return !$user->checkIfFriend($value);
+      //  });  
        
       return view('home.usersFound',compact('users'));  
     }
@@ -84,10 +82,8 @@ class SearchController extends Controller
      * @param  
      * @return \Illuminate\Http\Response
      */
-
     public function getUsersMap(Request $request)     
     {
-     
          $centerLat = Auth::user()->latitude;//. 50.742864;
          $centerLng = Auth::user()->longitude;//25.331121;
          $radius = 50000;//радіус пошуку користувачів
@@ -99,9 +95,5 @@ class SearchController extends Controller
             ->get();
 
         return $users;//response()->json($chat->load('user'));
-    
     }
-
-
-
 }

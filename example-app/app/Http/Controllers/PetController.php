@@ -10,18 +10,14 @@ use App\Models\User;
 class PetController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        // $user->pets->get();
-        //$pets = Pet::where('user_id', $request->input('id'))->get();
-
-        $user = User::find($request->input('id'));
-        return  $user->pets; 
-
+      $user = User::find($request->input('id'));
+      return  $user->pets; 
     }
 
     /**
@@ -34,7 +30,7 @@ class PetController extends Controller
         //
     }
     /**
-     * Store a newly created resource in storage.
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -45,8 +41,9 @@ class PetController extends Controller
          $avatar = $request->file('file');
          $photoName = $avatar->store('uploads', 'public');
 
-    //   $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
+    //   $pet->avatar = "/public/storage/" . $photoName; для сервера 
          $pet->avatar = "/storage/" . $photoName;
+
          $pet->name = $request->input('name');
          $pet->kind_of = $request->input('kindOfPet');
          $pet->gender = $request->input('genderPet');
@@ -84,7 +81,7 @@ class PetController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Pet  $pet
@@ -103,7 +100,7 @@ class PetController extends Controller
             $avatar = $request->file('file');
             $photoName = $avatar->store('uploads', 'public');
             $pet->avatar = "/storage/" . $photoName;
-            // $pet->avatar = "/public/storage/" . $photoMainName; для сервера 
+           // $pet->avatar = "/public/storage/" . $photoName; // для сервера 
             $pet->save();
         }
     
@@ -119,13 +116,11 @@ class PetController extends Controller
      */
     public function destroy(Request $request)
     {
-       
         $pet = Pet::find($request->input('id'));
         $pet->delete();
 
         $user = User::find( Auth::user()->id );
         return  $user->pets; 
-
     }
 
 }

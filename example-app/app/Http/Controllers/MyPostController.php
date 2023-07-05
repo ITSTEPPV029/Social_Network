@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MyPostController extends Controller
 {
-  /**
+   /**
      * створення поста
      *
      * @param  Illuminate\Http\Request $request
@@ -45,7 +45,7 @@ class MyPostController extends Controller
       ->id)->take(2)->get(); 
         
     }
-/**
+   /**
      * отримання всіх постів  
      *
      * @param 
@@ -74,7 +74,7 @@ class MyPostController extends Controller
        return  $MyPost; 
     } 
     
-/**
+   /**
      * ставимо лайк на пост 
      *
      * @param 
@@ -127,7 +127,7 @@ class MyPostController extends Controller
        $myPost= MyPost::find($postId);
         // видалення поширених постів
        MyPost::where('reposted_user_id',Auth::user()->id)
-       ->where('photo',  $myPost->photo)
+       ->where('photo', $myPost->photo)
        ->delete();
 
        if(MyPost::where('id',  $postId)->first())
@@ -138,8 +138,6 @@ class MyPostController extends Controller
                   
          MyPost::where('id', $postId)->delete();      
        }     
-
-      
 
         return MyPost::with('comments.user')
         ->with(['user', 'user.myPost', 'repostedUser'])
@@ -159,7 +157,6 @@ class MyPostController extends Controller
       $myPost= MyPost::find($request->input('postId'));
 
       $newPost = new MyPost();
-
       $newPost->reposted_user_id=$myPost->user_id;
       $newPost->user_id=Auth::user()->id;
       $newPost->photo=$myPost->photo;
@@ -167,17 +164,16 @@ class MyPostController extends Controller
       $newPost->save();
 
       return $newPost;
-
     }
     
      /**
-     * поширити пост 
+     * 
      *
      * @param 
      * @return \Illuminate\Http\Response
      */
     public function sharePostGetUser(Request $request) {
-      
-    //  return User::find($request->input('idUser'));
+
+      return User::find($request->input('idUser'));
     }
 }

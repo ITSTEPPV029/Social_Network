@@ -9,11 +9,23 @@ use Illuminate\Support\Facades\Auth;
 
 class MapController extends Controller
 {
+   /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function mapView()     
     {    
         return view('home/map');
     }
 
+   /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)     
     {
        User::where('id', Auth::user()->id)->update([
@@ -30,8 +42,6 @@ class MapController extends Controller
             ->whereRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) <= ?', [$centerLat, $centerLat, $centerLng, $radius])
             ->get();
 
-
-        return $users;//response()->json($chat->load('user'));
-    
+        return $users;
     }
 }

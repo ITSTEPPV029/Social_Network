@@ -15,9 +15,14 @@ class ChatController extends Controller
         return view('home/chat');
     }
 
+  /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function index()     
     {     
-       // return Chat::latest()->take(10)->get();
        $messages = Chat::with('user')
        ->orderByDesc('created_at')
               ->take(7)
@@ -25,23 +30,29 @@ class ChatController extends Controller
      $messages = array_reverse($messages->toArray());
         return response()->json($messages);
     }
+
+   /**
+     * для можливого загального чату
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)     
     {
-       $chat = new Chat();  
-       $chat->text = $request->input('text');
-       $chat->user_id = Auth::user()->id;
-       $chat->save(); 
+    //    $chat = new Chat();  
+    //    $chat->text = $request->input('text');
+    //    $chat->user_id = Auth::user()->id;
+    //    $chat->save(); 
      
-        //$chat->crated_at=// доробити 
-        broadcast(new StoreChatEvent($chat))->toOthers();
-        //Chat::create()
-        // $request->validate([
-        //     'email' => 'required|email|max:255',
-        //     'password' => 'required|string|min:6',
-        //    ]);
-       //return $chat->load('user');
-        return response()->json($chat->load('user'));
         
+    //     broadcast(new StoreChatEvent($chat))->toOthers();
+    //     //Chat::create()
+    //     // $request->validate([
+    //     //     'email' => 'required|email|max:255',
+    //     //     'password' => 'required|string|min:6',
+    //     //    ]);
+    //    //return $chat->load('user');
+    //     return response()->json($chat->load('user'));     
     }
 
 

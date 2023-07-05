@@ -19,7 +19,13 @@ class ProfileController extends Controller
   {
     return view('home.profile', compact('user'));
   }
-  
+
+ /**
+  * 
+  *
+  * @param 
+  * @return \Illuminate\Http\Response
+  */
   public function getCheckUser(Request $request)
   {
     $userPage = User::find( $request->input('id'));
@@ -32,12 +38,17 @@ class ProfileController extends Controller
 
     return  $mas;
   }
-  
+
+ /**
+  * 
+  *
+  * @param 
+  * @return \Illuminate\Http\Response
+  */
   public function getUserPost(Request $request)
   {
     $user = User::find( $request->input('id'));
     return $user;
   }
-
 
 }

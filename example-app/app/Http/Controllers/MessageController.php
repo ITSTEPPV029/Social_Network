@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
-    //вивід остання чату користувача (коли він нажимає на повідомлення)
+   /**
+     * вивід остання чату користувача (коли він нажимає на повідомлення)
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function messageShow()     
     {    
         $user_id = Auth::user()->id; 
@@ -56,17 +61,34 @@ class MessageController extends Controller
      return view('home/message',compact('user'));
     }
     
+   /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function openChat(Request $request) 
     {
         return  $this->index($request);
     }
- 
+
+   /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+    */
     public function sendingMessage(User $user)     
     {          
         return view('home/message',compact('user'));
     }
 
-//отримує повідомлення від користувача з яким зараз чат  
+   /**
+     * отримує повідомлення від користувача з яким зараз чат
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */  
     public function index(Request $request)     
     {     
         $user = User::find($request->input('id'));
@@ -89,6 +111,12 @@ class MessageController extends Controller
         return  $messages;
     }
 
+   /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)     
     {
         $message = new Message();  
@@ -103,6 +131,12 @@ class MessageController extends Controller
      return response()->json($message->load('senderUser'));
     }
 
+   /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function getChats()     
     {       
        $user_id =  Auth::user()->id; 
@@ -155,12 +189,24 @@ class MessageController extends Controller
         return  $user;
     }
 
+     /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function  indexChat(Request $request)
     {
        $user  = Auth::user();
        return  $user ;
     }
-//відмічаємо що повідомлення прочитано
+
+  /**
+     * відмічаємо що повідомлення прочитано
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function readFalse(User $user)
     {
         $messages = Message::where('sender_user_id', $user->id)
@@ -173,12 +219,24 @@ class MessageController extends Controller
         }
     }
 
+  /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function  readMessageTrue(Request $request)
     {
         $user = User::find($request->input('id'));
         $this->readFalse($user);
     }
 
+    /**
+     * 
+     *
+     * @param 
+     * @return \Illuminate\Http\Response
+     */
     public function  getNotReadMessage(Request $request)
     {
         $user = User::find($request->input('id'));
