@@ -2039,6 +2039,8 @@ input.login-form-check-input {
 .user-marker-icon {
   border-radius: 50%;
   overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .search-modal-map {
@@ -2083,8 +2085,11 @@ input.login-form-check-input {
 }
 .search-modal-map2 .search-modal-map-content .search-user-check-container .search-img img {
   height: 100px;
+  width: 100px;
   display: block;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .search-modal-map2 .search-modal-map-content .search-user-check-container .search-user-info {
   margin-left: 10px;
@@ -2242,13 +2247,13 @@ input.login-form-check-input {
   align-items: center;
 }
 .news-full-screen .news-moda-full-screen .news-modal-full-screen-content .news-modal-full-screen-user img {
+  -o-object-fit: cover;
+     object-fit: cover;
   margin: 30px;
   margin-right: 10px;
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 .news-full-screen .news-moda-full-screen .news-modal-full-screen-content .news-modal-full-screen-photo-content {
   width: 70%;
@@ -2492,11 +2497,13 @@ input.login-form-check-input {
   display: flex;
 }
 .news-container .news .news-new .news-user img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: inline-block;
+  margin: 5px;
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  display: inline-block;
-  margin: 5px;
 }
 .news-container .news .news-delete {
   text-align: right;
