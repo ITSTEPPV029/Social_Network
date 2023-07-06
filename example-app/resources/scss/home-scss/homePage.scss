@@ -30,6 +30,7 @@ $min-heightDiv: 100vh;
             text-align: left;
             z-index: 0;
             padding-bottom: 2rem;
+            //font-size: 100%;
         }
     }
     .homeSecond {
@@ -164,6 +165,11 @@ $min-heightDiv: 100vh;
             padding: 20px;
             border-radius: 20px;
         }
+
+        h3:hover{
+            background-color: #2E2E2E;
+        }
+
     }
     .home-registration-button-content{
          display: flex;
@@ -181,6 +187,9 @@ $min-heightDiv: 100vh;
                 border-radius: 15px;
                 padding-left: 40px;
                 padding-right: 40px;
+            }
+            h3:hover{
+                background-color: #2E2E2E;
             }
         }
 

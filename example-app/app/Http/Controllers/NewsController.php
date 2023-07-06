@@ -35,7 +35,7 @@ class NewsController extends Controller
         $combinedFriends = $friends->union($friendsOfMine);//обєднуємо колекцію
        
         $MyPost = new MyPost();
-        $index =0;
+        $index = 0;
         if ($page>0&&!$combinedFriends->isEmpty()) {
             $MyPost = MyPost::with('comments.user')
             ->with(['user', 'user.myPost'])

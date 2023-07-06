@@ -188,6 +188,9 @@
   padding: 20px;
   border-radius: 20px;
 }
+.homeMain .home-registration-button h3:hover {
+  background-color: #2E2E2E;
+}
 .homeMain .home-registration-button-content {
   display: flex;
 }
@@ -206,6 +209,9 @@
   border-radius: 15px;
   padding-left: 40px;
   padding-right: 40px;
+}
+.homeMain .home-registration-button-content .home-registration-button2 h3:hover {
+  background-color: #2E2E2E;
 }
 .homeMain #moreHome {
   margin-top: 2%;
@@ -1464,6 +1470,8 @@ input.login-form-check-input {
   border-radius: 50%;
   width: 60px;
   height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .post-container .post .post-full-screen .post-moda-full-screen .post-modal-full-screen-content .post-modal-full-screen-photo-content {
   width: 70%;
