@@ -174,7 +174,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
+      
       .news-modal-full-screen-user{
         
         img{
@@ -511,15 +511,17 @@
      
       .news-user {
         display: flex;
-        
-        img {
-          border-radius: 50%;
-          width: 60px;
-          height: 60px;
-          display: inline-block;
-          margin: 5px;
-          object-fit: cover;
+        a{
+          img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+            margin: 5px;
+            object-fit: cover;
+          }
         }
+        
       }
     }
     
