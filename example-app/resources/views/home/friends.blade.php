@@ -17,7 +17,7 @@
           @foreach($user->friends() as $friend)
             <div class="friend-info">
               <a href="{{route('profile.show',$friend)}}" >
-                  <img style="height:100px;" src="{{ asset($friend->avatar) }}">
+                  <img style="height:100px; width:100px;" src="{{ asset($friend->avatar) }}">
               </a>
                 <b>{{$friend->first_name }} &nbsp; {{$friend->last_name}}</b><br/>
             </div>
@@ -42,7 +42,7 @@
       @foreach($user->friendsRequest() as $friend)
         <div class="friend-info">
           <a href="{{route('profile.show',$friend)}}" >
-              <img style="height:100px;" src="{{ asset($friend->avatar) }}">
+              <img style="height:100px; width:100px;" src="{{ asset($friend->avatar) }}">
           </a>
             <b>{{$friend->first_name }} &nbsp; {{$friend->last_name}}</b><br/>
         </div>

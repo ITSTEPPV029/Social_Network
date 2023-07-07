@@ -4,6 +4,18 @@ $color-a: #fff;
 $main-background: rgb(249, 172, 32);
 $min-heightDiv: 100vh;
 
+.home-text-video{
+color: #fff;
+font-size: 60px;
+text-shadow: 13px 8px 10px rgba(0, 0, 0, 0.25);
+}
+.home-line{
+
+    width: 100%;
+    height: 10px;
+background-color: #2E2E2E;
+}
+
 .homeMain {
     position: relative;
     background: $main-background;
@@ -29,7 +41,7 @@ $min-heightDiv: 100vh;
         div {
             text-align: left;
             z-index: 0;
-            padding-bottom: 2rem;
+          //  padding-bottom: 2rem;
             //font-size: 100%;
         }
     }
@@ -105,8 +117,10 @@ $min-heightDiv: 100vh;
     .imageDog {
         position: absolute;
         width: fit-content;
+        padding: 0;
         img {
             height: 60vt;
+           
         }    
     }
 
@@ -116,7 +130,8 @@ $min-heightDiv: 100vh;
        // margin-bottom: 10%;
         width: 100%;
         color: $color-a;
-         margin-top: 5%;
+         margin-top: 9%;
+
        // border: none;
       //  background: none;
        // text-align: center; 
@@ -133,13 +148,18 @@ $min-heightDiv: 100vh;
     }
 
     .video-frame {
-        width: 50%;
+        width: 60%;
         height: fit-content;
         border: none;
+       // box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+        border-radius: 30px;
+      
         video {
             border: none;
+            border-radius: 30px;
+            box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.5);
         }
-        background-color: gray;
+       // background-color: gray;
     }
     //Шрифти основного тексту
     h1 {

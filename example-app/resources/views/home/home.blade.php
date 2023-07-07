@@ -27,7 +27,7 @@
       {{-- <a href="login" style="width: 7.5rem;">Увійти</a>
       <a href="registration">Зареєструватися</a> --}}
     </div>
-    <div class="imageDog" style="bottom: -8%; right: 0%;">
+    <div class="imageDog" style="bottom: 0%; right: 0%;">
       <img src="/img/dog.png" />
     </div>
 
@@ -37,28 +37,37 @@
     </div>
 
   </div>
-
+<div class="home-line"></div>
 
   <!-- _______________________________________Для виділення головного екрану__________________________________________________ -->
   <div id="moreHome">
     <div class="moreDiv">
       <img class="moreDiv-img" src="/img/PetLifeLogo_Line.png" />
       <div>
-        <div>
+        <div class="home-text-video" >
+          <b>Додавайте</b> <br/>
+          <b>у свій профіль</b> <br/>
+          <b> інформацію </b><br/>
+          <b> про своїх </b><br/>
+          <b>  улюбленців</b>
+        </div>
+
+
+        {{-- <div>
           <h1>Діліться</h1>
           <h1>своїми</h1>
           <h1>моментами</h1>
           <h1>з іншими</h1>
-        </div>
+        </div> --}}
         <div class="video-frame">
           <video  id="myVideo" controls width="100%" muted="muted">
-            <source src="/video/testVideo.mp4" />
+            <source src="/video/testVideo1.mp4" />
           </video>
         </div>
       </div>
-      <div class="imageDog" style="bottom: 0%; right: 0%;">
-        <img src="/img/dog.png" style="height: 450px;" />
-      </div>
+      {{-- <div class="imageDog" style="bottom: 0%; right: -2%;">
+        <img src="/img/dog.png" style="height: 350px;" /> 
+      </div> --}}
     </div>
     <div class="moreDiv">
       <img class="moreDiv-img" src="/img/PetLifeLogo_Line.png" />
@@ -68,17 +77,26 @@
             <source src="/video/testVideo1.mp4" />
           </video>
         </div>
-        <div style="text-align: right;">
+
+        <div class="home-text-video" style="text-align: right;" >
+              
+          <b>Знаходьте</b> <br/>
+          <b>компанію</b> <br/>
+          <b> для себе і своїх </b><br/>
+          <b> улюбленців за </b><br/>
+          <b> допомогою карти</b>
+        </div>
+        {{-- <div style="text-align: right;">
           <h1>Знаходьте</h1>
           <h1>компанію</h1>
           <h1>для себе</h1>
           <h1>і своїх</h1>
           <h1>улюбленців</h1>
-        </div>
+        </div> --}}
       </div>
-      <div class="imageDog" style="bottom: -15%; left: 0%;">
+      {{-- <div class="imageDog" style="bottom: -15%; left: 0%;">
         <img src="/img/cat.png" style="height: 450px;" />
-      </div>
+      </div> --}}
     </div>
 
     <div class="home-registration-button">
