@@ -6,7 +6,12 @@ $min-heightDiv: 100vh;
 
 @media (max-width: 1100px)
 {
-
+    .home-text-video{
+        padding: 20px;
+        color: #fff;
+        font-size: 40px;
+        text-shadow: 13px 8px 10px rgba(0, 0, 0, 0.25);
+        }
 .homeMain {
     position: relative;
     background: $main-background;
