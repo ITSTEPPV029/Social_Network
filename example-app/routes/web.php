@@ -42,7 +42,10 @@ Route::get('search/', 'SearchController@searchUser')->middleware('auth')->name('
 Route::get('allUser/', 'SearchController@allUser')->middleware('auth')->name('allUser.allUser');
 Route::get('filter/', 'SearchController@filterUser')->middleware('auth')->name('filterUser');
 
-Route::get('profile/{user}/', 'ProfileController@show')->middleware('auth')->name('profile.show');
+Route::get('profile/{user}/', 'ProfileController@show')->name('profile.show');
+//Route::get('profile/{user}/', 'ProfileController@show')->middleware('auth')->name('profile.show');
+//Route::get('profile/{user}/', 'ProfileController@showGuest')->middleware('guest')->name('profile.show.guest');
+
 //Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);
 Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 

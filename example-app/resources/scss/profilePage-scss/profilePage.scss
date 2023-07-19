@@ -1,4 +1,52 @@
 
+.guest-page-user{
+
+  width: 70%;
+  //height: 1000px;
+  min-height: 100vh;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 3%;
+  padding-top: 1%;
+
+}
+.guest-page-panel{
+ 
+  margin: auto;
+  margin-bottom: 2%;
+  background-color: #F8AD22;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 1%;
+
+a{
+  margin-left: 3%;
+  margin-right: 3%;
+  text-decoration: none;
+
+  .guest-page-button {
+      color: #ffffff;
+      background-color: black;
+      padding: 10px;
+      border-radius: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    }
+    .guest-page-button:hover
+    {
+      background-color: rgb(63, 63, 63);
+    }
+
+}
+
+}
+
+
+
 @keyframes profile-overlay-test {
   0% {
     right: -100% /* Початковий зсув */
@@ -178,19 +226,35 @@
           padding-right: 5%;
            cursor: pointer;
            color: white;
-           box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+           box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+           border: 2px solid #F8AD22;
+        }
+        .profile-button-orange:hover{
+          border: 2px solid #F8AD22;
+          background-color:#ffffff;
+          color: rgb(0, 0, 0);
         }
 
+
         .profile-button-sending-message {
-          background-color:#F5F4F5;
+          border: 2px solid #F8AD22;
+          background-color:#ffffff;
           border-radius: 50px;
           padding: 1%;
           padding-left: 3%;
           padding-right: 3%;
            cursor: pointer;
-           box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+           box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
           margin-left: 30px;
         }
+        
+        .profile-button-sending-message:hover{
+          border: 2px solid #F8AD22;
+          background-color:#F8AD22;
+          color: white;
+        }
+
+
       }
     }
 
@@ -432,17 +496,24 @@
       
           margin-top: 10px;
           border-radius: 50px;
-          background-color: #F5F4F5;//======================================
+        //  background-color: #F5F4F5;//======================================
           padding-left: 42px;
           padding-right: 42px;
           text-align: center;
-          border: none;
+         // border: none;
           box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+
+          border: 2px solid #F8AD22;
+          background-color: #ffffff;
+          color: #000;
       }
       .profile-add-modal-button:hover{
-        background-color: #e0deded6;
+        background-color: #F8AD22;
+        color: #ffffff;
       }
         
+
+
     }
 
   }
@@ -453,15 +524,19 @@
       margin-left: 50px;
   margin-top: 10px;
   border-radius: 50px;
-  background-color: #F5F4F5;//======================================
+  background-color: #ffffff;//======================================
   padding-left: 22px;
   padding-right: 22px;
   text-align: center;
   border: none;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
 }
 .profile-edit-modal-button:hover{
-  background-color: #e0deded6;
+  border: 2px solid #F8AD22;
+  background-color: #F8AD22;
+  color: #ffffff;
+
 }
 
 

@@ -428,7 +428,6 @@ input.login-form-check-input {
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   position: relative;
-  box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
 }
@@ -439,20 +438,10 @@ input.login-form-check-input {
   margin-left: 10px;
 }
 .sideMenu-container .sideMenu-container-menu .sideMenu-menu-item:hover {
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.1);
+  background-color: #F8AD25;
 }
-.sideMenu-container .sideMenu-container-menu .sideMenu-menu-item::before {
-  content: "";
-  position: absolute;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0); /* Початкове значення тіні */
-  transition: box-shadow 0.2s ease-in-out; /* Плавний перехід тіні */
-}
-.sideMenu-container .sideMenu-container-menu .sideMenu-menu-item:hover::before {
-  box-shadow: inset 1px 4px 10px rgba(0, 0, 0, 0.2); /* Тінь при наведенні */
+.sideMenu-container .sideMenu-container-menu .sideMenu-menu-item:hover img {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg);
 }
 .sideMenu-container .sideMenu-line {
   border-radius: 10px;
@@ -466,6 +455,44 @@ input.login-form-check-input {
     display: none;
   }
 }
+.guest-page-user {
+  width: 70%;
+  min-height: 100vh;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 3%;
+  padding-top: 1%;
+}
+
+.guest-page-panel {
+  margin: auto;
+  margin-bottom: 2%;
+  background-color: #F8AD22;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 1%;
+}
+.guest-page-panel a {
+  margin-left: 3%;
+  margin-right: 3%;
+  text-decoration: none;
+}
+.guest-page-panel a .guest-page-button {
+  color: #ffffff;
+  background-color: black;
+  padding: 10px;
+  border-radius: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.guest-page-panel a .guest-page-button:hover {
+  background-color: rgb(63, 63, 63);
+}
+
 @keyframes profile-overlay-test {
   0% {
     right: -100%;
@@ -600,17 +627,29 @@ input.login-form-check-input {
   padding-right: 5%;
   cursor: pointer;
   color: white;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
+}
+.profile-container .profile-info-container .profile-user-name-button .profile-user-button .profile-button-orange:hover {
+  border: 2px solid #F8AD22;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
 }
 .profile-container .profile-info-container .profile-user-name-button .profile-user-button .profile-button-sending-message {
-  background-color: #F5F4F5;
+  border: 2px solid #F8AD22;
+  background-color: #ffffff;
   border-radius: 50px;
   padding: 1%;
   padding-left: 3%;
   padding-right: 3%;
   cursor: pointer;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
   margin-left: 30px;
+}
+.profile-container .profile-info-container .profile-user-name-button .profile-user-button .profile-button-sending-message:hover {
+  border: 2px solid #F8AD22;
+  background-color: #F8AD22;
+  color: white;
 }
 .profile-container .profile-info-container .profile-user-info-container {
   width: 100%;
@@ -793,31 +832,36 @@ input.login-form-check-input {
 .profile-modal-add .profile-modal-add-content .profile-modal-add-button-content .profile-add-modal-button {
   margin-top: 10px;
   border-radius: 50px;
-  background-color: #F5F4F5;
   padding-left: 42px;
   padding-right: 42px;
   text-align: center;
-  border: none;
   box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
+  background-color: #ffffff;
+  color: #000;
 }
 .profile-modal-add .profile-modal-add-content .profile-modal-add-button-content .profile-add-modal-button:hover {
-  background-color: rgba(224, 222, 222, 0.8392156863);
+  background-color: #F8AD22;
+  color: #ffffff;
 }
 
 .profile-edit-modal-button {
   margin-left: 50px;
   margin-top: 10px;
   border-radius: 50px;
-  background-color: #F5F4F5;
+  background-color: #ffffff;
   padding-left: 22px;
   padding-right: 22px;
   text-align: center;
   border: none;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
 }
 
 .profile-edit-modal-button:hover {
-  background-color: rgba(224, 222, 222, 0.8392156863);
+  border: 2px solid #F8AD22;
+  background-color: #F8AD22;
+  color: #ffffff;
 }
 
 .profile-modal-info {
@@ -1220,10 +1264,13 @@ input.login-form-check-input {
   padding-right: 5%;
   color: #ffffff;
   cursor: pointer;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
 }
 .settings-button-save-container .settings-button-save:hover {
-  background-color: #f7c466;
+  border: 2px solid #F8AD22;
+  background-color: #ffffff;
+  color: #000;
 }
 
 .post-add-container {
@@ -1235,16 +1282,18 @@ input.login-form-check-input {
 .post-add-container button {
   border-radius: 50px;
   padding: 5px;
-  background-color: #F8AD25;
   padding-left: 10px;
   padding-right: 10px;
-  color: #ffffff;
   border: none;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+  background-color: #F8AD25;
+  color: #ffffff;
+  border: 2px solid #F8AD22;
 }
 .post-add-container button:hover {
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.3);
-  background-color: #de9d23;
+  border: 2px solid #F8AD22;
+  background-color: #ffffff;
+  color: #000;
 }
 .post-add-container .post-SavePost-modal {
   position: fixed;
@@ -1936,7 +1985,7 @@ input.login-form-check-input {
   text-align: center;
   width: 30%;
   display: block;
-  background-color: #F8AD22;
+  background-color: #ffffff;
   border-radius: 50px;
   padding: 1%;
   margin: 10px;
@@ -1944,22 +1993,35 @@ input.login-form-check-input {
   padding-right: 5%;
   cursor: pointer;
   color: white;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
+}
+
+.friend-button-orange:hover {
+  border: 2px solid #F8AD22;
+  background-color: #F8AD22;
+  color: white;
 }
 
 .friend-button-delete-orange {
   text-align: center;
   width: 32%;
   display: block;
-  background-color: #F8AD22;
+  background-color: #ffffff;
   border-radius: 50px;
   padding: 1%;
   margin: 10px;
   padding-left: 2%;
   padding-right: 2%;
   cursor: pointer;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
+}
+
+.friend-button-delete-orange:hover {
+  border: 2px solid #F8AD22;
+  background-color: #F8AD22;
   color: white;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
 }
 
 .search-container {
@@ -2041,15 +2103,15 @@ input.login-form-check-input {
   border: none;
   text-align: center;
   width: auto;
-  background-color: #F5F4F5;
+  background-color: #ffffff;
   border-radius: 50px;
   padding: 1%;
   padding-left: 5%;
   padding-right: 5%;
   cursor: pointer;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
 }
-
 .user-marker-icon {
   border-radius: 50%;
   overflow: hidden;
@@ -2126,7 +2188,14 @@ input.login-form-check-input {
   padding: 1%;
   cursor: pointer;
   color: white;
-  box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F8AD22;
+}
+
+.search-map-button:hover {
+  border: 2px solid #F8AD22;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .post-SavePost-modal {

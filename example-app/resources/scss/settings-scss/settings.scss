@@ -258,12 +258,20 @@
       color: #ffffff;
        cursor: pointer;
      //  color: white;
-       box-shadow: 0px 5px 9px rgba(0, 0, 0, 0.5);
+     border: 2px solid #F8AD22;
+       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+       
     }
     .settings-button-save:hover{
+      border: 2px solid #F8AD22;
+      background-color: #ffffff;
+      color: #000;
 
-      background-color: #f7c466;
+
     }
+
+
+
 
   }
 

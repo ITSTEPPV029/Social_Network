@@ -17,8 +17,29 @@ class ProfileController extends Controller
    */
   public function show(User $user)
   {
-    return view('home.profile', compact('user'));
+    if (auth()->check()) {
+      // Зареєстрований користувач
+      return view('home.profile', compact('user'));
+    } else {
+        // Незареєстрований користувач
+        return view('home.profileGuest', compact('user'));
+    }
+    
+    
   }
+
+  /**
+   * сторінка користувача для не авторизованого
+   *
+   * @param  App\Models\User
+   * @return \Illuminate\Http\Response
+   */
+  // public function  showGuest(User $user)
+  // {
+  //   return view('home.profileGuest', compact('user'));
+  // }
+
+
 
  /**
   * 
