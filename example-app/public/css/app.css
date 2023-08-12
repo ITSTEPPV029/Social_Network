@@ -1992,7 +1992,7 @@ input.login-form-check-input {
   padding-left: 5%;
   padding-right: 5%;
   cursor: pointer;
-  color: white;
+  color: rgb(0, 0, 0);
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
   border: 2px solid #F8AD22;
 }

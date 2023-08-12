@@ -5,7 +5,7 @@
 <div class="guest-page-user">
 
   <div class="guest-page-panel">
-     <h3>Для перегляду повної інформації потрібно </h3>
+     <a href="/"><h3><u>Про нас</u></h3></a>
 
     <a href="{{ route('login.getSigin') }}"><h5 class="guest-page-button" >Увійти</h5> </a>
      <h3>або </h3>
