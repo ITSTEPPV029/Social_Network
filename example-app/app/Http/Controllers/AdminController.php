@@ -9,18 +9,13 @@ use App\Models\Comment;
 class AdminController extends Controller
 {
   /**
-   * тест адмін
+   * test admin
    *
    * @param  
-   * @return \Illuminate\Http\Response
+   * @return 
    */
   public function index()
   {
 
-    
-    $MyPost = new MyPost();
-   dd($MyPost->count()); 
-
-   // dd(shell_exec('npm run dev'));
   }
 }

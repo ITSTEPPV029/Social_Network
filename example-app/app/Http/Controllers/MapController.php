@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Map\MapService;
 
 class MapController extends Controller
 {
@@ -21,27 +22,15 @@ class MapController extends Controller
     }
 
    /**
-     * 
+     * saving the user's coordinates on the map
      *
-     * @param 
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request 
+     * @return App\Models\User
      */
     public function store(Request $request)     
     {
-       User::where('id', Auth::user()->id)->update([
-        'latitude' => $request->input('latitude'),
-        'longitude' => $request->input('longitude'),]);
-
-         $centerLat = 50.742864;
-         $centerLng = 25.331121;
-         $radius = 150000;
-
-            $users = DB::table('users')
-            ->select('*')
-            ->selectRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) AS distance', [$centerLat, $centerLat, $centerLng])
-            ->whereRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) <= ?', [$centerLat, $centerLat, $centerLng, $radius])
-            ->get();
-
+        $users = MapService::store($request);
+    
         return $users;
     }
 }

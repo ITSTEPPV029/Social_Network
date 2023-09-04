@@ -10,29 +10,37 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-    public function chatView()     
-    {    
-        return view('home/chat');
-    }
+ /**
+  *  chat page 
+  *
+  * @param 
+  * @return \Illuminate\Http\Response
+  */
+  public function chatView()     
+  {    
+    return view('home/chat');
+  }
 
   /**
-     * 
-     *
-     * @param 
-     * @return \Illuminate\Http\Response
-     */
-    public function index()     
-    {     
-       $messages = Chat::with('user')
-       ->orderByDesc('created_at')
-              ->take(7)
-              ->get();
-     $messages = array_reverse($messages->toArray());
-        return response()->json($messages);
-    }
+   * 
+   *
+   * @param 
+   * @return \Illuminate\Http\Response
+   */
+  public function index()     
+  {     
+    $messages = Chat::with('user')
+    ->orderByDesc('created_at')
+    ->take(7)
+    ->get();
+
+    $messages = array_reverse($messages->toArray());
+
+    return response()->json($messages);
+  }
 
    /**
-     * для можливого загального чату
+     * for possible general chat
      *
      * @param 
      * @return \Illuminate\Http\Response

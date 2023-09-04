@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Services\Comment;
+
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
+
+class CommentService 
+{   
+    /**
+     *  registration
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return App\Models\Comment;
+     */
+    public static function store($request)
+    {
+        $comment = new Comment();
+        $comment->user_id=Auth::user()->id;
+        $comment->text=$request->input('comment');
+        $comment->my_post_id=$request->input('idPost');
+        $comment->save();
+
+        return $comment = Comment::find($comment->id); 
+         
+    }
+
+
+   
+}

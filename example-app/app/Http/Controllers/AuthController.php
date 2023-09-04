@@ -3,51 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AuthRequest;
+use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Auth\AuthService; 
 
 class AuthController extends Controller
 {
     /**
-     * сторінка 
+     * registration
      *
-     * @param 
+     * @param  Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function getSigUp()
-    {
-        return view('home/registration');
+    public function postSigUp(RegistrationRequest $request)
+    { 
+        $data = $request->validated();
+        AuthService::postSigUp($data,$request);
+
+        return redirect()->route('profile.show', ['user' => Auth::user()]);
     }
 
     /**
-     * реєстрація та авторизація 
+     * authorization
      *
-     * @param  Illuminate\Http\Request $request
+     * @param  Illuminate\Http\Request 
      * @return \Illuminate\Http\Response
      */
-    public function postSigUp(Request $request)
+    public function postSigin(AuthRequest $request)
     {
-        $data = $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            //'nick_name' => 'required|string|unique:users|max:30|alpha_dash',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|string|min:6',
-        ]);
+        $request->validated();
 
-        $data['password'] = bcrypt($data['password']);
-        User::create($data);
+        if (AuthService::postSigin($request))
+         return redirect()->back()->withInput($request->only('email'))->withErrors([
+            'email' => 'Неправильна електронна адреса або пароль',]); 
 
-        if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
-            return redirect()->back();
-        }
-
-        $user = Auth::user();
-        return redirect()->route('profile.show', compact('user'));
+        return redirect()->route('profile.show',['user' => Auth::user()]); 
     }
 
     /**
-     * сторінка авторизації
+     * authorization page
      *
      * @param  
      * @return \Illuminate\Http\Response
@@ -58,30 +54,7 @@ class AuthController extends Controller
     }
 
     /**
-     * авторизація 
-     *
-     * @param  Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postSigin(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email|max:255',
-            'password' => 'required|string',
-           ]);
-     
-           if(!Auth::attempt($request->only(['email','password']),$request->has('remember')))
-           {
-               //return redirect()->back(); 
-               return redirect()->back()->withInput($request->only('email'))->withErrors([
-                'email' => 'Неправильна електронна адреса або пароль',]); 
-           }
-           $user=  Auth::user();
-           return redirect()->route('profile.show',compact('user')); 
-    }
-
-    /**
-     *  головна сторінка
+     *  home page
      *
      * @param 
      * @return 
@@ -92,16 +65,15 @@ class AuthController extends Controller
         return view('home/home');
     }
 
-    /**
-     *  выдновлення паролю
+   /**
+     * registration page
      *
      * @param 
-     * @return 
+     * @return \Illuminate\Http\Response
      */
-    public function forgotPassword()
+    public function getSigUp()
     {
-        return view('home/forgot');
+        return view('home/registration');
     }
-
-
+  
 }

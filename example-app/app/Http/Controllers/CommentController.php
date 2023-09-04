@@ -5,24 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Comment\CommentService;
 
 class CommentController extends Controller
 {
     /**
-     * створення коментаря
+     * creating a comment
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request 
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-         $comment = new Comment();
-         $comment->user_id=Auth::user()->id;
-         $comment->text=$request->input('comment');
-         $comment->my_post_id=$request->input('idPost');
-         $comment->save();
-
-         $comment = Comment::find($comment->id); 
+        $comment = CommentService::store($request);
         return  $comment->load('user');
     }
 }
