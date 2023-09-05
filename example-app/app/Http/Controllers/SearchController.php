@@ -11,55 +11,41 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Filters\UserFilter;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\SearchRequest;
+use App\Services\Search\SearchService;
 
 class SearchController extends Controller
 {
     /**
-     * пошук користувача по імені та ніку
+     * user search by name and nickname
      *
      * @param  Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
     public function searchUser(Request $request)     
     {
-       $userName = $request->input('search');
-       $users= User::where(DB::raw("CONCAT (first_name,' ', last_name)"),'LIKE',"%{$userName}%")
-       ->orWhere('nick_name','LIKE',"%{$userName}%")->get();
+      $users = SearchService::searchUser($request);
 
-      if($users==null){
-        abort(404);
-      }
-      
       return view('home.usersFound',compact('users'));    
     }
 
      /**
-     * пошук користувача по імені
+     * user search 
      *
      * @param  Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function filterUser(Request $request)     
+    public function filterUser(SearchRequest $request)     
     {
-      $data = $request->validate([
-        'name' => '',
-        'nick_name' => '',
-        'date_of_birth'=> '',
-        'gender' => '',
-        'city' => '',
-        'agePet' => '',
-        'genderPet' => '',
-        'kindPet' => '',
-       ]);
+      $data = $request->validated();
 
       $filter = app()->make(UserFilter::class,['queryParams'=>array_filter($data)]);
 
-      $users = User::filter($filter)->get();
-      return $users;    
+      return User::filter($filter)->get();  
     }
 
     /**
-     * вивід всіх користувачів  з фільтраціює (вивідом не друзів)
+     * output of all users with filtering (output of no friends)
      *
      * @param  
      * @return \Illuminate\Http\Response
@@ -67,33 +53,18 @@ class SearchController extends Controller
     public function allUser()     
     {
       $users= User::orderByDesc('id')->take(20)->get();
-
-      // $user = User::find(Auth::user()->id);
-      // $users = $users->filter(function($value) use ($user) {
-      //   return !$user->checkIfFriend($value);
-      //  });  
-       
+ 
       return view('home.usersFound',compact('users'));  
     }
 
    /**
-     * вивід користувачів які входять в радіус пошуку 
+     * output of users included in the search radius 
      *
      * @param  
      * @return \Illuminate\Http\Response
      */
-    public function getUsersMap(Request $request)     
+    public function getUsersMap()     
     {
-         $centerLat = Auth::user()->latitude;//. 50.742864;
-         $centerLng = Auth::user()->longitude;//25.331121;
-         $radius = 50000;//радіус пошуку користувачів
-
-            $users = DB::table('users')
-            ->select('*')
-            ->selectRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) AS distance', [$centerLat, $centerLat, $centerLng])
-            ->whereRaw('(6371000 * 2 * ASIN(SQRT(POWER(SIN(RADIANS(latitude - ?) / 2), 2) + COS(RADIANS(?)) * COS(RADIANS(latitude)) * POWER(SIN(RADIANS(longitude - ?) / 2), 2)))) <= ?', [$centerLat, $centerLat, $centerLng, $radius])
-            ->get();
-
-        return $users;//response()->json($chat->load('user'));
+        return SearchService::getUsersMap();
     }
 }

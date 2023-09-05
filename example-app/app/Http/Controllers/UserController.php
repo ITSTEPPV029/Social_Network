@@ -6,82 +6,59 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use vendor\Intervention\Image\Facades\Image;
+use App\Services\User\UserService;
 
 class UserController extends Controller
 {
 
   /**
-   * запит на дружбу
+   * friend request
    *
-   * @param  \App\Models\User $user
-   * @return \Illuminate\Http\Response
+   * @param  Illuminate\Http\Request;
+   * @return 
    */
   public function friendRequest(Request $request)
   {
-    $user = User::find($request->input('id'));
-    $User = \App\Models\User::find(Auth::user()->id);
-
-    if ($User->checkIfFriend($user))
-      return false;
-
-    if ($User->id != $user->id)
-      $User->friendsOfMine()->attach($user->id);
-    //return redirect()->back(); 
-    return true;
+    return UserService::friendRequest($request);
   }
 
   /**
-   * підтвердження дружби
+   * confirmation of friendship
    *
    * @param  \App\Models\User $user
-   * @return \Illuminate\Http\Response
+   * @return 
    */
   public function addFriend(User $user)
   {
-    $User = \App\Models\User::find(Auth::user()->id);
-    $User->friendsRequest()->where('id', $user->id)->first()->pivot->update(['friend_request' => true]);
+    UserService::addFriend($user);
     return redirect()->back();
   }
 
   /**
-   * добавлення аватарки
+   * adding an avatar
    *
    * @param \Illuminate\Http\Request $request
    * @return \Illuminate\Http\Response
    */
   public function addAvatar(Request $request)
   {
-    $user = \App\Models\User::find(Auth::user()->id);
-
-    if ($user->avatar != "/storage/uploads/anonym.png")
-      unlink(public_path($user->avatar));
-
-    // if($user->avatar!="/public/storage/uploads/anonym.png")       //для хоста
-    //  unlink(public_path(str_replace('/public', '', $user->avatar))); 
-
-    $photoMainName = $request->file('avatar')->store('uploads', 'public');
-    $user->avatar = "/storage/" . $photoMainName;
-    // $user->avatar="public/storage/".$photoMainName;     //public для хоста
-    $user->save();
+    UserService::addAvatar($request);
     return redirect()->back();
   }
 
   /**
-   * перевірка чи користувач авторизований і чи його сторінка 
+   * checking whether the user is authorized and whether his page
    *
    * @param 
    * @return \Illuminate\Http\Response
    */
   public function isLoggedIn(Request $request)
   {
-    if (Auth::user()->id == $request->input('id')) {
-      return 1;
-    }
-    return  0;
+    return (Auth::user()->id == $request->input('id')) ? 1 : 0;
   }
 
   /**
-   *сторінка друзів
+   * friends page
    *
    * @param 
    * @return \Illuminate\Http\Response
@@ -93,19 +70,18 @@ class UserController extends Controller
   }
 
   /**
-   *сторінка друзів
+   * 
    *
-   * @param 
+   * @param User $user
    * @return \Illuminate\Http\Response
    */
-  public function  pageFriendsJs(User $user)
+  public function pageFriendsJs(User $user)
   {
-    //$user = \App\Models\User::find(Auth::user()->id);
     return view('home/friends', compact('user'));
   }
 
   /**
-   *видалити з друзів друзів
+   * remove friends from friends
    *
    * @param User $user
    * @return \Illuminate\Http\Response
@@ -122,9 +98,9 @@ class UserController extends Controller
   }
 
   /**
-   *видалити з друзів друзів Js
+   * remove friends from friends Js
    *
-   * @param 
+   * @param Illuminate\Http\Request;
    * @return \Illuminate\Http\Response
    */
   public function deleteFriendVueJs(Request $request)
@@ -140,10 +116,10 @@ class UserController extends Controller
   }
 
   /**
-   * повертаємо кількість друзів 
+   * return the number of friends
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request;
+   * @return 
    */
   public function  getFriendsCount(Request $request)
   {

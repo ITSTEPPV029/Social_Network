@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\SettingsRequest;
 
 class SettingsController extends Controller
 {
@@ -23,34 +24,15 @@ class SettingsController extends Controller
     /**
      * 
      *
-     * @param 
-     * @return \Illuminate\Http\Response
+     * @param App\Http\Requests\SettingsRequest;
+     * @return App\Models\User;
      */
-    public function  update(Request $request)
+    public function  update(SettingsRequest $request)
     {
-        $validatedData = $request->validate([
-            'first_name' => 'string|regex:/^[^0-9]*$/',
-            'last_name' => 'string|regex:/^[^0-9]*$/',
-            'nick_name' => [
-                'string', 'max:30', 'alpha_dash',
-                Rule::unique('users')->ignore(Auth::user()->id),
-            ],
-            'email' => [
-                'required',
-                'email',
-                'max:255',
-                Rule::unique('users')->ignore(Auth::user()->id),
-            ],
-            'date_of_birth' => 'nullable|date|before_or_equal:today',
-            'gender' => '',
-            'city' => '',
-            'about_me' => '',
-        ]);
+        $validatedData = $request->validated();
 
         $userModel = User::find(Auth::user()->id);
         $userModel->update($validatedData);
-
-        $userModel = User::find(Auth::user()->id);
 
         return $userModel;
     }
@@ -58,8 +40,8 @@ class SettingsController extends Controller
     /**
      * 
      *
-     * @param 
-     * @return \Illuminate\Http\Response
+     * @param Illuminate\Http\Request;
+     * @return App\Models\User;
      */
     public function uploadAvatar(Request $request)
     {
