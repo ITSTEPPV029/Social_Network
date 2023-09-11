@@ -19,56 +19,75 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('index','MyPostController@index')->middleware('auth:api')->name('index');
-Route::post('store','MyPostController@store')->middleware('auth:api')->name('store');
-Route::post('deletePost','MyPostController@delete')->middleware('auth:api')->name('deletePost');
-Route::post('isLoggedIn', 'UserController@isLoggedIn')->middleware('auth:api')->name('isLoggedIn');
-Route::post('like','MyPostController@like')->middleware('auth:api')->name('like');
-Route::post('isLiked','MyPostController@isLiked')->middleware('auth:api');
-Route::post('sharePost','MyPostController@sharePost')->middleware('auth:api');
-Route::post('sharePostGetUser','MyPostController@sharePostGetUser')->middleware('auth:api');
+Route::controller(MyPostController::class)->middleware('auth:api')->group(function () {
+    Route::post('index','index')->name('index');
+    Route::post('store','store')->name('store');
+    Route::post('deletePost','delete')->name('deletePost');
+    Route::post('isLoggedIn', 'isLoggedIn')->name('isLoggedIn');
+    Route::post('like','like')->name('like');
+    Route::post('isLiked','isLiked');
+    Route::post('sharePost','sharePost');
+    Route::post('sharePostGetUser','sharePostGetUser');
+});
 
+Route::controller(ChatController::class)->middleware('auth:api')->group(function () {
+    Route::post('chat/','store');
+    Route::get('chat/','index');
+});
 
-Route::post('chat/','ChatController@store')->middleware('auth:api');
-Route::get('chat/','ChatController@index')->middleware('auth:api');
+Route::controller(ChatController::class)->middleware('auth:api')->group(function () {
+    Route::post('chat/','store');
+    Route::get('chat/','index');
+});
 
-Route::post('message/store','MessageController@store')->middleware('auth:api');
-Route::post('message/index','MessageController@index')->middleware('auth:api');
-Route::post('message/indexChat','MessageController@indexChat')->middleware('auth:api');
-Route::get('message/getChats','MessageController@getChats')->middleware('auth:api');
-Route::post('message/openChat','MessageController@openChat')->middleware('auth:api');
-Route::post('message/readMessageTrue','MessageController@readMessageTrue')->middleware('auth:api');
-Route::post('message/getNotReadMessage','MessageController@getNotReadMessage')->middleware('auth:api');
+Route::controller(MessageController::class)->middleware('auth:api')->group(function () {
+    Route::post('message/store','store');
+    Route::post('message/index','index');
+    Route::post('message/indexChat','indexChat');
+    Route::get('message/getChats','getChats');
+    Route::post('message/openChat','openChat');
+    Route::post('message/readMessageTrue','readMessageTrue');
+    Route::post('message/getNotReadMessage','getNotReadMessage');
+});
+
+Route::controller(SettingsController::class)->middleware('auth:api')->group(function () {
+    Route::post('settings','update');
+    Route::post('upload-avatar','uploadAvatar');  
+});
+
+Route::controller(PetController::class)->middleware('auth:api')->group(function () {
+    Route::post('PetStore', 'store');
+    Route::post('getPets', 'index');
+    Route::post('PetUpdate', 'update');
+    Route::post('deletePets', 'destroy');
+});
+
+Route::controller(ProfileController::class)->middleware('auth:api')->group(function () {
+    Route::post('getCheckUser', 'getCheckUser');
+    Route::post('getUserPost', 'getUserPost');
+});
+
+Route::controller(UserController::class)->middleware('auth:api')->group(function () {
+    Route::post('friendRequest', 'friendRequest');
+    Route::post('deleteFriendVueJs', 'deleteFriendVueJs');
+    Route::post('deleteFriendVueJs', 'deleteFriendVueJs');
+    Route::post('getFriendsCount', 'getFriendsCount');
+});
+
+Route::controller(SavePostController::class)->middleware('auth:api')->group(function () {
+    Route::post('addCategory', 'addCategory');
+    Route::post('getCategories', 'getCategories');
+    Route::post('savePostToCategory', 'savePostToCategory');
+    Route::post('savePostGetCategory', 'savePostGetCategory');
+});
+
+Route::controller(SearchController::class)->middleware('auth:api')->group(function () {
+    Route::post('getUsersMap', 'getUsersMap');
+    Route::post('filter', 'filterUser');
+});
 
 Route::post('comment/store','CommentController@store')->middleware('auth:api');
-
 Route::post('map/store','MapController@store')->middleware('auth:api');
-
-Route::post('settings','SettingsController@update')->middleware('auth:api');
-Route::post('upload-avatar','SettingsController@uploadAvatar')->middleware('auth:api');
-
-Route::post('PetStore', 'PetController@store')->middleware('auth:api');
-Route::post('getPets', 'PetController@index')->middleware('auth:api');
-Route::post('PetUpdate', 'PetController@update')->middleware('auth:api');
-Route::post('deletePets', 'PetController@destroy')->middleware('auth:api');
-
-Route::post('getCheckUser', 'ProfileController@getCheckUser')->middleware('auth:api');
-Route::post('getUserPost', 'ProfileController@getUserPost')->middleware('auth:api');
-
-
-Route::post('friendRequest', 'UserController@friendRequest')->middleware('auth:api');
-Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
-Route::post('deleteFriendVueJs', 'UserController@deleteFriendVueJs')->middleware('auth:api');
-Route::post('getFriendsCount', 'UserController@getFriendsCount')->middleware('auth:api');
-
 Route::post('getPosts', 'NewsController@getPost')->middleware('auth:api');
-
-Route::post('addCategory', 'SavePostController@addCategory')->middleware('auth:api');
-Route::post('getCategories', 'SavePostController@getCategories')->middleware('auth:api');
-Route::post('savePostToCategory', 'SavePostController@savePostToCategory')->middleware('auth:api');
-Route::post('savePostGetCategory', 'SavePostController@savePostGetCategory')->middleware('auth:api');
-
-Route::post('getUsersMap', 'SearchController@getUsersMap')->middleware('auth:api');
-Route::post('filter', 'SearchController@filterUser')->middleware('auth:api');
 
 

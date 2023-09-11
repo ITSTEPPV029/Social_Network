@@ -1,12 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\MyPostController;
-use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 /*
@@ -25,49 +19,46 @@ Route::get('/', function () {
 });
 Route::view('home/home', 'home')->name('home.home');
 
-Route::get('registration/', 'AuthController@getSigUp')->middleware('guest')->name('registration.getSigUp');
-Route::post('registration/', 'AuthController@postSigUp')->middleware('guest')->name('registration.postSigUp');
-Route::get('login/', 'AuthController@getSigin')->middleware('guest')->name('login.getSigin');
-Route::post('login/', 'AuthController@postSigin')->middleware('guest')->name('login.postSigin');
-Route::get('logout/', 'AuthController@getSigout')->name('logout.getSigout');
+Route::controller(AuthController::class)->middleware('guest')->group(function () {
+    Route::get('registration/', 'getSigUp')->name('registration.getSigUp');
+    Route::post('registration/', 'postSigUp')->name('registration.postSigUp');
+    Route::get('login/', 'getSigin')->name('login.getSigin');
+    Route::post('login/', 'postSigin')->name('login.postSigin');
+    Route::get('logout/', 'getSigout')->name('logout.getSigout');
+    Route::get('forgot/', 'forgotPassword')->name('forgot.password');
 
-Route::post('avatar/add', 'UserController@addAvatar')->middleware('auth')->name('avatar.addAvatar');
-Route::get('friendRequest/{user}', 'UserController@friendRequest')->middleware('auth')->name('friendRequest.friendRequest');
-Route::get('addFriend/{user}', 'UserController@addFriend')->middleware('auth')->name('addFriend.addFriend');
-Route::get('friends', 'UserController@getFriends')->middleware('auth')->name('friends');
-Route::get('pageFriends/{user}', 'UserController@pageFriendsJs')->middleware('auth');
-Route::get('deleteFriend/{user}', 'UserController@deleteFriend')->middleware('auth')->name('deleteFriend');
+});
 
-Route::get('search/', 'SearchController@searchUser')->middleware('auth')->name('search.searchUser');
-Route::get('allUser/', 'SearchController@allUser')->middleware('auth')->name('allUser.allUser');
-Route::get('filter/', 'SearchController@filterUser')->middleware('auth')->name('filterUser');
+Route::controller(UserController::class)->middleware('auth')->group(function () {
+    Route::post('avatar/add', 'addAvatar')->name('avatar.addAvatar');
+    Route::get('friendRequest/{user}', 'friendRequest')->name('friendRequest.friendRequest');
+    Route::get('addFriend/{user}', 'addFriend')->name('addFriend.addFriend');
+    Route::get('friends', 'getFriends')->name('friends');
+    Route::get('pageFriends/{user}', 'pageFriendsJs');
+    Route::get('deleteFriend/{user}', 'deleteFriend')->name('deleteFriend');
+});
+
+Route::controller(SearchController::class)->middleware('auth')->group(function () {
+    Route::get('search/', 'searchUser')->name('search.searchUser');
+    Route::get('allUser/', 'allUser')->name('allUser.allUser');
+    Route::get('filter/', 'filterUser')->name('filterUser');
+});
+
+
+Route::controller(PetController::class)->group(function () {
+    Route::get('/allpets', 'index');
+    Route::get('/addPets', 'add')->name('addPet');
+    Route::post('pet/add', 'store')->name('savePet');
+});
+
 
 Route::get('profile/{user}/', 'ProfileController@show')->name('profile.show');
-//Route::get('profile/{user}/', 'ProfileController@show')->middleware('auth')->name('profile.show');
-//Route::get('profile/{user}/', 'ProfileController@showGuest')->middleware('guest')->name('profile.show.guest');
-
-//Route::post('/oauth/token', [AccessTokenController::class, 'issueToken']);
 Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
-
 Route::get('chat/', 'ChatController@chatView')->middleware('auth')->name('chat');
-
-//виведення всіх тварин
-Route::get('/allpets', 'PetController@index');
-//додавання тваринок
-Route::get('/addPets', 'PetController@add')->name('addPet');
-Route::post('pet/add', 'PetController@store')->name('savePet');
-
 Route::get('message/','MessageController@messageShow')->middleware('auth')->name('message');
-//добавив age/{us  було age{us 
 Route::get('sendingMessage/{user}/','MessageController@sendingMessage')->middleware('auth')->name('sendingMessage');
-
-
 Route::get('/admin', 'AdminController@index');
-
 Route::get('/map', 'MapController@mapView')->middleware('auth')->name('map');
-
 Route::get('/settings', 'SettingsController@settingsView')->middleware('auth')->name('settings');
-
-Route::get('forgot/', 'AuthController@forgotPassword')->name('forgot.password');
 Route::get('news', 'NewsController@index')->middleware('auth')->name('news');
 Route::get('savedPosts', 'SavePostController@savedPosts')->middleware('auth')->name('savedPosts');
