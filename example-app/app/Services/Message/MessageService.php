@@ -20,8 +20,7 @@ class MessageService
     {
         $user_id = Auth::user()->id;
 
-        $user = DB::table('messages')
-            ->select('users.*')
+        $user =  Message::select('*')
             ->join('users', function ($join) use ($user_id) {
                 $join->on('users.id', '=', 'messages.recipient_user_id')
                     ->orWhere('users.id', '=', 'messages.sender_user_id');
@@ -38,9 +37,8 @@ class MessageService
             ->first();
 
         if ($user == null) {
-            $user = DB::table('users')
-                ->distinct()
-                ->select('users.*')
+            $user = User::distinct()
+                ->select('*')
                 ->join('messages', function ($join) use ($user_id) {
                     $join->on('users.id', '=', 'messages.sender_user_id')
                         ->orWhere('users.id', '=', 'messages.recipient_user_id');
@@ -135,9 +133,7 @@ class MessageService
     public static function getChats()
     {
         $user_id =  Auth::user()->id;
-        $user = DB::table('users')
-            ->distinct()
-            ->select('users.*')
+        $user = User::select('*')
             ->where(function ($query) use ($user_id) {
                 $query->where('sender_user_id', $user_id)
                     ->orWhere('recipient_user_id', $user_id);
@@ -155,8 +151,7 @@ class MessageService
         //створення колекції з ід
         $user_ids = $user->pluck('id')->toArray();
 
-        $additionalUsers = DB::table('users')
-            ->distinct()
+        $additionalUsers =User::distinct()
             ->select('users.*')
             ->join('messages', function ($join) use ($user_id) {
                 $join->on('users.id', '=', 'messages.sender_user_id')

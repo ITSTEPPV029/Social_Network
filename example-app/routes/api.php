@@ -23,7 +23,7 @@ Route::controller(MyPostController::class)->middleware('auth:api')->group(functi
     Route::post('index','index')->name('index');
     Route::post('store','store')->name('store');
     Route::post('deletePost','delete')->name('deletePost');
-    Route::post('isLoggedIn', 'isLoggedIn')->name('isLoggedIn');
+    // Route::post('isLoggedIn', 'isLoggedIn')->name('isLoggedIn');
     Route::post('like','like')->name('like');
     Route::post('isLiked','isLiked');
     Route::post('sharePost','sharePost');

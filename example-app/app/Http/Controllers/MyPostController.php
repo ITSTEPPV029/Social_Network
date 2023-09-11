@@ -79,7 +79,7 @@ class MyPostController extends Controller
   {
     return MyPostService::sharePost($request);
   }
-
+  
   /**
    * 
    * @param 

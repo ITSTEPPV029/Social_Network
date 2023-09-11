@@ -16,13 +16,19 @@ class CommentService
      */
     public static function store($request)
     {
-        $comment = new Comment();
-        $comment->user_id=Auth::user()->id;
-        $comment->text=$request->input('comment');
-        $comment->my_post_id=$request->input('idPost');
-        $comment->save();
+        return Comment::create([
+            'user_id' => Auth::user()->id,
+            'text' => $request->input('comment'),
+            'my_post_id' => $request->input('idPost'),
+        ]);
 
-        return $comment = Comment::find($comment->id); 
+        // $comment = new Comment();
+        // $comment->user_id=Auth::user()->id;
+        // $comment->text=$request->input('comment');
+        // $comment->my_post_id=$request->input('idPost');
+        // $comment->save();
+
+        // return $comment = Comment::find($comment->id); 
          
     }
 

@@ -514,19 +514,20 @@ export default {
 
     //  axios.post('/api/test',{ id: this.id }).then(response => {
     //     console.log(response.data) });
-  
-    axios.post('/api/isLoggedIn',{ id: this.id })
-    .then(response => {
-      const isLoggedIn = response.data;
-      if (isLoggedIn === 1) {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    this.isLoggedIn = true;
+
+    // axios.post('/api/isLoggedIn',{ id: this.id })
+    // .then(response => {
+    //   const isLoggedIn = response.data;
+    //   if (isLoggedIn === 1) {
+    //     this.isLoggedIn = true;
+    //   } else {
+    //     this.isLoggedIn = false;
+    //   }
+    // })
+    // .catch(error => {
+    //   console.log(error);
+    // });
 
     },
 
