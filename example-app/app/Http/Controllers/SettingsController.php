@@ -31,10 +31,10 @@ class SettingsController extends Controller
     {
         $validatedData = $request->validated();
 
-        $userModel = User::find(Auth::user()->id);
-        $userModel->update($validatedData);
+        $user = User::find(Auth::user()->id);
+        $user->update($validatedData);
 
-        return $userModel;
+        return $user;
     }
 
     /**

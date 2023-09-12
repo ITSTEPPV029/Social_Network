@@ -14,12 +14,12 @@ class UserController extends Controller
   /**
    * friend request
    *
-   * @param  Illuminate\Http\Request;
-   * @return 
+   * @param  Illuminate\Http\Request
+   * @return \Illuminate\Http\Response
    */
   public function friendRequest(Request $request)
   {
-    return UserService::friendRequest($request);
+    return  response()->json(UserService::friendRequest($request));
   }
 
   /**
@@ -37,7 +37,7 @@ class UserController extends Controller
   /**
    * adding an avatar
    *
-   * @param \Illuminate\Http\Request $request
+   * @param \Illuminate\Http\Request
    * @return \Illuminate\Http\Response
    */
   public function addAvatar(Request $request)
@@ -49,13 +49,13 @@ class UserController extends Controller
   /**
    * checking whether the user is authorized and whether his page
    *
-   * @param 
+   * @param \Illuminate\Http\Request
    * @return \Illuminate\Http\Response
    */
-  public function isLoggedIn(Request $request)
-  {
-    return (Auth::user()->id == $request->input('id')) ? 1 : 0;
-  }
+  // public function isLoggedIn(Request $request)
+  // {
+  //   return (Auth::user()->id == $request->input('id')) ? 1 : 0;
+  // }
 
   /**
    * friends page
@@ -101,7 +101,7 @@ class UserController extends Controller
    * remove friends from friends Js
    *
    * @param Illuminate\Http\Request;
-   * @return \Illuminate\Http\Response
+   * @return 
    */
   public function deleteFriendVueJs(Request $request)
   {

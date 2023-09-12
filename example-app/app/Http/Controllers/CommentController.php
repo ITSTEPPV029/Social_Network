@@ -18,6 +18,6 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $comment = CommentService::store($request);
-        return  $comment->load('user');
+        return  response()->json($comment->load('user'));
     }
 }

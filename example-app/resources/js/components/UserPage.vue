@@ -324,7 +324,7 @@ export default {
       else
         this.showModalInfoPet = true;
     },
-
+    
     openFileInput() {
       this.$refs.fileInput.click();
     },
@@ -456,7 +456,7 @@ export default {
         alert('Please select a file');
         return;
       }
-
+      
       const formData = new FormData();
       formData.append('file', this.selectedFile);
       formData.append('name', this.textInput);

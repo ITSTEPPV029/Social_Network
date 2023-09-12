@@ -22,8 +22,8 @@ class ProfileController extends Controller
 
  /**
   * 
-  * @param 
-  * @return \Illuminate\Http\Response
+  * @param \Illuminate\Http\Request 
+  * @return  \Illuminate\Http\Response
   */
   public function getCheckUser(Request $request)
   {
@@ -35,18 +35,18 @@ class ProfileController extends Controller
       'checkIfFriend'=>$user->checkIfFriend($userPage),
     ];
 
-    return  $mas;
+    return   response()->json($mas);
   }
 
  /**
   * 
-  * @param 
+  * @param \Illuminate\Http\Request 
   * @return \Illuminate\Http\Response
   */
   public function getUserPost(Request $request)
   {
     $user = User::find( $request->input('id'));
-    return $user;
+    return  response()->json($user);
   }
 
 }

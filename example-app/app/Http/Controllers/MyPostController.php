@@ -18,7 +18,7 @@ class MyPostController extends Controller
    * post create 
    *
    * @param  Illuminate\Http\Request
-   * @return 
+   * @return App\Models\MyPost
    */
   public function store(MyPostRequest $request)
   {
@@ -28,8 +28,8 @@ class MyPostController extends Controller
   /**
    * get all posts
    *
-   * @param 
-   * @return 
+   * @param Illuminate\Http\Request
+   * @return App\Models\MyPost
    */
   public function index(Request $request)
   {
@@ -44,14 +44,14 @@ class MyPostController extends Controller
    */
   public function like(Request $request)
   {
-    return MyPostService::like($request);
+    MyPostService::like($request);
   }
 
   /**
    * checking whether the post has already been liked
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request
+   * @return 
    */
   public function isLiked(Request $request)
   {
@@ -61,8 +61,8 @@ class MyPostController extends Controller
   /**
    * delete post
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request
+   * @return App\Models\MyPost
    */
   public function delete(Request $request)
   {
@@ -72,8 +72,8 @@ class MyPostController extends Controller
   /**
    * share the post
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request
+   * @return App\Models\MyPost
    */
   public function sharePost(Request $request)
   {
@@ -82,8 +82,8 @@ class MyPostController extends Controller
   
   /**
    * 
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request
+   * @return App\Models\User;
    */
   public function sharePostGetUser(Request $request)
   {

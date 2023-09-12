@@ -31,13 +31,13 @@ class MessageController extends Controller
      */
     public function openChat(Request $request) 
     {
-        return  $this->index($request);
+        return $this->index($request);
     }
 
    /**
      * 
      *
-     * @param 
+     * @param App\Models\User
      * @return \Illuminate\Http\Response
     */
     public function sendingMessage(User $user)     
@@ -54,7 +54,7 @@ class MessageController extends Controller
     public function index(Request $request)     
     {     
         $messages = MessageService::index($request);
-        return  $messages;
+        return  response()->json($messages);
     }
 
    /**
@@ -78,26 +78,26 @@ class MessageController extends Controller
     public function getChats()     
     {       
         $user = MessageService::getChats(); 
-        return $user;
+        return response()->json($user);
     }
 
     /**
      * 
      *
-     * @param 
+     * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function  indexChat(Request $request)
+    public function indexChat(Request $request)
     {
-        return Auth::user(); 
+        return response()->json(Auth::user()); 
     }
 
 
   /**
      * 
      *
-     * @param 
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request
+     * @return 
      */
     public function  readMessageTrue(Request $request)
     {
@@ -113,7 +113,7 @@ class MessageController extends Controller
      */
     public function  getNotReadMessage()
     {
-        return MessageService::getNotReadMessage();
+      return response()->json(MessageService::getNotReadMessage()); 
     }
     
 }

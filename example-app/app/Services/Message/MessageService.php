@@ -81,8 +81,9 @@ class MessageService
             ->orderByDesc('created_at')->take(7)->get();
 
         $messages = array_reverse($messages->toArray());
-
+       
         self::readFalse($user);
+        return $messages;
     }
 
 
@@ -128,7 +129,7 @@ class MessageService
      * 
      *
      * @param 
-     * @return 
+     * @return App\Models\User
      */
     public static function getChats()
     {

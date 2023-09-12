@@ -13,22 +13,22 @@ class SavePostController extends Controller
 {
     /**
      * 
-     *
+     * @param \Illuminate\Http\Request 
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        return  $request;
+       // return $request;
     }
 
     /**
      * 
-     *
+     * @param \Illuminate\Http\Request 
      * @return \Illuminate\Http\Response
      */
     public function  addCategory(Request $request)
     {
-        return SavePostService::addCategory($request);
+        return  response()->json(SavePostService::addCategory($request));
     }
 
     /**
@@ -38,17 +38,17 @@ class SavePostController extends Controller
      */
     public function getCategories()
     {
-       return SavePostCategory::where('user_id', Auth::user()->id)->get();
+       return  response()->json(SavePostCategory::where('user_id', Auth::user()->id)->get());
     }
 
     /**
      * 
-     *
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request 
+     * @return 
      */
     public function savePostToCategory(Request $request)
     {
-        return SavePostService::savePostToCategory($request);
+        SavePostService::savePostToCategory($request);
     }
 
     /**
@@ -68,6 +68,6 @@ class SavePostController extends Controller
      */
     public function savePostGetCategory()
     {
-        return  SavePostCategory::with('savePost.myPost')->where('user_id', Auth::user()->id)->get();
+        return  response()->json(SavePostCategory::with('savePost.myPost')->where('user_id', Auth::user()->id)->get());
     }
 }

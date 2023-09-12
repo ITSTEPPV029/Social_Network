@@ -25,12 +25,11 @@ class MapController extends Controller
      * saving the user's coordinates on the map
      *
      * @param \Illuminate\Http\Request 
-     * @return App\Models\User
+     * @return Illuminate\Http\Response
      */
     public function store(Request $request)     
     {
         $users = MapService::store($request);
-    
-        return $users;
+        return  response()->json($users);
     }
 }

@@ -13,7 +13,7 @@ class SavePostService{
    /**
      * 
      * @param \Illuminate\Http\Request  
-     * @return 
+     * @return App\Models\SavePostCategory;
      */
     public static function  addCategory($request)
     {
@@ -38,8 +38,6 @@ class SavePostService{
         $savePost->my_post_id = $request->input('postId');
         $savePost->user_id = Auth::user()->id;
         $savePost->save();
-
-        return $request;
     }
 }
 

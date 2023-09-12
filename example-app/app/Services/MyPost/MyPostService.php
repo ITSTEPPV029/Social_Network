@@ -8,17 +8,18 @@ use App\Models\Comment;
 use App\Models\MyPost;
 use App\Models\Like;
 
-class MyPostService 
-{   
-/**
+class MyPostService
+{
+  /**
    * post create 
    *
    * @param  Illuminate\Http\Request 
-   * @return \Illuminate\Http\Response
+   * @return App\Models\MyPost
    */
   public static function store($request)
   {
     $MyPost = new MyPost();
+    
     if ($request->file('file')) {
       $photoName = $request->file('file')->store('uploads', 'public');
       $MyPost->photo = "/storage/" . $photoName;
@@ -42,10 +43,10 @@ class MyPostService
   /**
    * get all posts
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request 
+   * @return App\Models\MyPost
    */
-  public static function index( $request)
+  public static function index($request)
   {
     $id = $request->input('id');
     $page = $request->input('page');
@@ -56,55 +57,55 @@ class MyPostService
         ->orderBy('id', 'desc')
         ->where('user_id', $id)
         ->take(2)->get();
-    } else
+    } else {
       $MyPost = MyPost::with('comments.user')
         ->with(['user', 'user.myPost', 'repostedUser'])
         ->orderBy('id', 'desc')
         ->where('user_id', $id)
         ->take(2)->get();
+    }
 
     return  $MyPost;
   }
 
-/**
+  /**
    * like the post 
    *
    * @param Illuminate\Http\Request
    * @return 
    */
-  public static function like( $request)
+  public static function like($request)
   {
     if (!Like::where('my_post_id', $request->input('id'))->where('user_id', Auth::user()->id)->first()) {
       Like::create([
         'my_post_id' => $request->input('id'),
         'user_id' => Auth::user()->id,
       ]);
+
       MyPost::where('id', $request->input('id'))->increment('like');
     } else {
-      Like::where('my_post_id', $request->input('id'))
-        ->where('user_id', Auth::user()->id)->delete();
+      Like::where('my_post_id', $request->input('id'))->where('user_id', Auth::user()->id)->delete();
       MyPost::where('id', $request->input('id'))->where('like', '>', 0)->decrement('like');
     }
-
   }
-/**
+
+  /**
    * checking whether the post has already been liked
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request
+   * @return 
    */
   public static function isLiked($request)
   {
-    if (Like::where('my_post_id', $request->input('id'))->where('user_id', Auth::user()->id)->first()) {
-      return 1;
-    }
-    return 0;
+    return Like::where('my_post_id', $request->input('id'))->where('user_id', Auth::user()->id)
+      ->exists() ? 1 : 0;
   }
- /**
+
+  /**
    * delete post
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request
+   * @return App\Models\MyPost
    */
   public static function delete($request)
   {
@@ -115,10 +116,12 @@ class MyPostService
       ->where('photo', $myPost->photo)
       ->delete();
 
-    if (MyPost::where('id',  $postId)->first()){
+    if (MyPost::where('id',  $postId)->first()) {
       Like::where('my_post_id', $postId)->delete();
-      if (file_exists(public_path($myPost->photo)))
+
+      if (file_exists(public_path($myPost->photo))) {
         unlink(public_path($myPost->photo));
+      }
 
       MyPost::where('id', $postId)->delete();
     }
@@ -126,32 +129,33 @@ class MyPostService
     return MyPost::with('comments.user')
       ->with(['user', 'user.myPost', 'repostedUser'])
       ->orderBy('id', 'desc')
-      ->where('user_id', Auth::user()
-        ->id)->take(2)->get();
+      ->where('user_id', Auth::user()->id)
+      ->take(2)->get();
   }
 
   /**
    * share the post
    *
-   * @param 
-   * @return \Illuminate\Http\Response
+   * @param Illuminate\Http\Request
+   * @return App\Models\MyPost
    */
-  public static function sharePost( $request)
+  public static function sharePost($request)
   {
     $myPost = MyPost::find($request->input('postId'));
 
-    $newPost = new MyPost();
-    $newPost->reposted_user_id = $myPost->user_id;
-    $newPost->user_id = Auth::user()->id;
-    $newPost->photo = $myPost->photo;
-    $newPost->text = $myPost->text;
-    $newPost->save();
+    return MyPost::create([
+      'reposted_user_id' => $myPost->user_id,
+      'user_id' => Auth::user()->id,
+      'photo' => $myPost->photo,
+      'text' => $myPost->text,
+    ]);
 
-    return $newPost;
+    // $newPost = new MyPost();
+    // $newPost->reposted_user_id = $myPost->user_id;
+    // $newPost->user_id = Auth::user()->id;
+    // $newPost->photo = $myPost->photo;
+    // $newPost->text = $myPost->text;
+    // $newPost->save();
+    // return $newPost;
   }
-
-
-
-
-
 }

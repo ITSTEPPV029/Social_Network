@@ -25,7 +25,7 @@ class ChatController extends Controller
    * 
    *
    * @param 
-   * @return \Illuminate\Http\Response
+   * @return 
    */
   public function index()     
   {     
@@ -52,7 +52,6 @@ class ChatController extends Controller
     //    $chat->user_id = Auth::user()->id;
     //    $chat->save(); 
      
-        
     //     broadcast(new StoreChatEvent($chat))->toOthers();
     //     //Chat::create()
     //     // $request->validate([

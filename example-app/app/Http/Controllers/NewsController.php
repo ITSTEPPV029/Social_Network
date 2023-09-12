@@ -28,6 +28,6 @@ class NewsController extends Controller
      */
     public function getPost(Request $request)
     {
-       return  NewsService::getPost($request);
+       return  response()->json(NewsService::getPost($request));
     }
 }

@@ -9,7 +9,7 @@ use App\Models\SavePostCategory;
 use App\Models\SavePost;
 use Illuminate\Support\Facades\DB;
 
-class UserService{
+class UserService {
 
   /**
    * friend request

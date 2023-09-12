@@ -23,7 +23,6 @@ Route::controller(MyPostController::class)->middleware('auth:api')->group(functi
     Route::post('index','index')->name('index');
     Route::post('store','store')->name('store');
     Route::post('deletePost','delete')->name('deletePost');
-    // Route::post('isLoggedIn', 'isLoggedIn')->name('isLoggedIn');
     Route::post('like','like')->name('like');
     Route::post('isLiked','isLiked');
     Route::post('sharePost','sharePost');
@@ -35,19 +34,14 @@ Route::controller(ChatController::class)->middleware('auth:api')->group(function
     Route::get('chat/','index');
 });
 
-Route::controller(ChatController::class)->middleware('auth:api')->group(function () {
-    Route::post('chat/','store');
-    Route::get('chat/','index');
-});
-
-Route::controller(MessageController::class)->middleware('auth:api')->group(function () {
-    Route::post('message/store','store');
-    Route::post('message/index','index');
-    Route::post('message/indexChat','indexChat');
-    Route::get('message/getChats','getChats');
-    Route::post('message/openChat','openChat');
-    Route::post('message/readMessageTrue','readMessageTrue');
-    Route::post('message/getNotReadMessage','getNotReadMessage');
+Route::prefix('message')->controller(MessageController::class)->middleware('auth:api')->group(function () {
+    Route::post('/store','store');
+    Route::post('/index','index');
+    Route::post('/indexChat','indexChat');
+    Route::get('/getChats','getChats');
+    Route::post('/openChat','openChat');
+    Route::post('/readMessageTrue','readMessageTrue');
+    Route::post('/getNotReadMessage','getNotReadMessage');
 });
 
 Route::controller(SettingsController::class)->middleware('auth:api')->group(function () {
@@ -69,7 +63,6 @@ Route::controller(ProfileController::class)->middleware('auth:api')->group(funct
 
 Route::controller(UserController::class)->middleware('auth:api')->group(function () {
     Route::post('friendRequest', 'friendRequest');
-    Route::post('deleteFriendVueJs', 'deleteFriendVueJs');
     Route::post('deleteFriendVueJs', 'deleteFriendVueJs');
     Route::post('getFriendsCount', 'getFriendsCount');
 });

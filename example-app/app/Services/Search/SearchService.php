@@ -9,13 +9,13 @@ use App\Models\SavePostCategory;
 use App\Models\SavePost;
 use Illuminate\Support\Facades\DB;
 
-class SearchService{
+class SearchService {
 
  /**
      * user search by name and nickname
      *
      * @param  Illuminate\Http\Request
-     * @return 
+     * @return App\Models\User;
      */
     public static function searchUser($request)     
     {
@@ -31,7 +31,7 @@ class SearchService{
      * output of users included in the search radius 
      *
      * @param  
-     * @return \Illuminate\Http\Response
+     * @return App\Models\User;
      */
     public static function getUsersMap()     
     {

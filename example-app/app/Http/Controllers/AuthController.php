@@ -14,7 +14,7 @@ class AuthController extends Controller
     /**
      * registration
      *
-     * @param  Illuminate\Http\Request
+     * @param  App\Http\Requests\RegistrationRequest
      * @return \Illuminate\Http\Response
      */
     public function postSigUp(RegistrationRequest $request)
@@ -28,17 +28,18 @@ class AuthController extends Controller
     /**
      * authorization
      *
-     * @param  Illuminate\Http\Request 
+     * @param  App\Http\Requests\AuthRequest
      * @return \Illuminate\Http\Response
      */
     public function postSigin(AuthRequest $request)
     {
         $request->validated();
 
-        if (AuthService::postSigin($request))
-         return redirect()->back()->withInput($request->only('email'))->withErrors([
-            'email' => 'Неправильна електронна адреса або пароль',]); 
-
+        if (AuthService::postSigin($request)) {
+            return redirect()->back()->withInput($request->only('email'))->withErrors([
+                'email' => 'Неправильна електронна адреса або пароль',]); 
+        }
+        
         return redirect()->route('profile.show',['user' => Auth::user()]); 
     }
 
@@ -57,7 +58,7 @@ class AuthController extends Controller
      *  home page
      *
      * @param 
-     * @return 
+     * @return Illuminate\Http\Response
      */
     public function getSigout()
     {

@@ -11,14 +11,14 @@ use  App\Services\Pet\PetService;
 class PetController extends Controller
 {
     /**
-     * 
      *
+     * @param  \Illuminate\Http\Request 
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
       $user = User::find($request->input('id'));
-      return  $user->pets; 
+      return  response()->json($user->pets); 
     }
 
     /**
@@ -35,11 +35,11 @@ class PetController extends Controller
      * 
      *
      * @param  \Illuminate\Http\Request  
-     * @return  App\Models\Pet;
+     * @return  \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        return PetService::store($request);
+        return response()->json(PetService::store($request));
     }
 
     /**
@@ -68,22 +68,22 @@ class PetController extends Controller
      * 
      *
      * @param  \Illuminate\Http\Request 
-     * @return App\Models\Pet;
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        return PetService::update($request);
+        return  response()->json(PetService::update($request));
     }
 
     /**
      * 
      *
-     * @param  \App\Models\Pet  $pet
+     * @param  \Illuminate\Http\Request 
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        return PetService::destroy($request);
+        return  response()->json(PetService::destroy($request));
     }
 
 }

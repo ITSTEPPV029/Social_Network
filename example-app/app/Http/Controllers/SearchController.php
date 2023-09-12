@@ -16,55 +16,55 @@ use App\Services\Search\SearchService;
 
 class SearchController extends Controller
 {
-    /**
-     * user search by name and nickname
-     *
-     * @param  Illuminate\Http\Request
-     * @return \Illuminate\Http\Response
-     */
-    public function searchUser(Request $request)     
-    {
-      $users = SearchService::searchUser($request);
+  /**
+   * user search by name and nickname
+   *
+   * @param  Illuminate\Http\Request
+   * @return \Illuminate\Http\Response
+   */
+  public function searchUser(Request $request)
+  {
+    $users = SearchService::searchUser($request);
 
-      return view('home.usersFound',compact('users'));    
-    }
+    return view('home.usersFound', compact('users'));
+  }
 
-     /**
-     * user search 
-     *
-     * @param  Illuminate\Http\Request
-     * @return \Illuminate\Http\Response
-     */
-    public function filterUser(SearchRequest $request)     
-    {
-      $data = $request->validated();
+  /**
+   * user search 
+   *
+   * @param  Illuminate\Http\Request
+   * @return \Illuminate\Http\Response
+   */
+  public function filterUser(SearchRequest $request)
+  {
+    $data = $request->validated();
 
-      $filter = app()->make(UserFilter::class,['queryParams'=>array_filter($data)]);
+    $filter = app()->make(UserFilter::class, ['queryParams' => array_filter($data)]);
 
-      return User::filter($filter)->get();  
-    }
+    return  response()->json(User::filter($filter)->get());
+  }
 
-    /**
-     * output of all users with filtering (output of no friends)
-     *
-     * @param  
-     * @return \Illuminate\Http\Response
-     */
-    public function allUser()     
-    {
-      $users= User::orderByDesc('id')->take(20)->get();
- 
-      return view('home.usersFound',compact('users'));  
-    }
+  /**
+   * output of all users with filtering (output of no friends)
+   *
+   * @param  
+   * @return \Illuminate\Http\Response
+   */
+  public function allUser()
+  {
+    $users = User::orderByDesc('id')->take(20)->get();
 
-   /**
-     * output of users included in the search radius 
-     *
-     * @param  
-     * @return \Illuminate\Http\Response
-     */
-    public function getUsersMap()     
-    {
-        return SearchService::getUsersMap();
-    }
+    return view('home.usersFound', compact('users'));
+  }
+
+  /**
+   * output of users included in the search radius 
+   *
+   * @param  
+   * @return \Illuminate\Http\Response
+   */
+  public function getUsersMap()
+  {
+    return  response()->json(SearchService::getUsersMap());
+  }
 }
