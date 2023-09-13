@@ -29,13 +29,13 @@ class AuthService
     /**
      *  authorization
      *
-     * @param 
+     * @param \Illuminate\Http\Request
      * @return 
      */
    public static function  postSigin($request)
     {
         if (!Auth::attempt($request->only(['email','password']),$request->has('remember')))
-        return true;
+         return true;
         
        return false;
     }
