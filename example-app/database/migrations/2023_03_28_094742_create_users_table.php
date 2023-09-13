@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('nick_name')->nullable();//->unique();
             $table->string('email');//->unique();
-            $table->string('avatar')->default('/public/storage/uploads/anonym.png');//public
+            $table->string('avatar')->default('/storage/uploads/anonym.png');//public
             $table->boolean('admin')->default(false); 
             
             $table->integer('age')->nullable();

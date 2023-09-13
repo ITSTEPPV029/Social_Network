@@ -45,6 +45,7 @@ class SettingsController extends Controller
      */
     public function uploadAvatar(Request $request)
     {
+        
         $user = \App\Models\User::find(Auth::user()->id);
 
         if ($user->avatar != "/storage/uploads/anonym.png")
